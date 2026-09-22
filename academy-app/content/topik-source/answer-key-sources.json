@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "answerKeysFile": "content/topik-source/answer-keys.json",
+  "missingSourceKeyExams": [
+    96
+  ],
+  "sources": [
+    {
+      "exam": 35,
+      "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/35/35회 TOPIK 2_읽기(정답표).pdf",
+      "sourceSha256": "22bd753ef39fd1fcebe9d64a8e149fe74b0d6fad9b8041def4a91f7c9e927698",
+      "pdfPage": 1,
+      "headingVerified": "읽기",
+      "method": "Visually transcribed all 50 answers from rendered source page; not copied from OCR",
+      "answerNumbering": "one-based 1..4",
+      "counts": {
+        "1": 12,
+        "2": 13,
+        "3": 12,
+        "4": 13
+      }
+    },
+    {
+      "exam": 36,
+      "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/36/36회 토픽2_B형 정답표.pdf",
+      "sourceSha256": "c03c9764705f73c685459d390f48b4df55020899db9d7952ba878b666932cfee",
+      "pdfPage": 3,
+      "headingVerified": "읽기",
+      "method": "Visually transcribed all 50 answers from rendered source page; not copied from OCR",
+      "answerNumbering": "one-based 1..4",
+      "counts": {
+        "1": 12,
+        "2": 12,
+        "3": 13,
+        "4": 13
+      }
+    },
+    {
+      "exam": 37,
+      "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/37/37회 TOPIK2_정답표.pdf",
+      "sourceSha256": "b8f41f1aa3e0ef4b686f80f4f6f7c367abe733178de296e7a8a0802da7f75502",
+      "pdfPage": 3,
+      "headingVerified": "읽기",
+      "method": "Visually transcribed all 50 answers from rendered source page; not copied from OCR",
+      "answerNumbering": "one-based 1..4",
+      "counts": {
+        "1": 12,
+        "2": 12,
+        "3": 13,
+        "4": 13
+      }
+    },
+    {
+      "exam": 41,
+      "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/41/41회_정답표.pdf",
+      "sourceSha256": "61b39add600bb0d8462933e784ab591e3c4440ee6323e2f4710fcd0e4481af2c",
+      "pdfPage": 4,
+      "headingVerified": "읽기",
+      "method": "Visually transcribed all 50 answers from rendered source page; not copied from OCR",
+      "answerNumbering": "one-based 1..4",
+      "counts": {
+        "1": 13,
+        "2": 11,
+        "3": 14,
+        "4": 12
+      }
+    },
+    {
+      "exam": 47,
+      "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/47/47회_정답.pdf",
+      "sourceSha256": "a757fa687256a35d86d003bfb919e9b0afe60c6bb2ef1e717d861f18fe471df7",
+      "pdfPage": 4,
+      "headingVerified": "읽기",
+      "method": "Visually transcribed all 50 answers from rendered source page; not copied from OCR",
+      "answerNumbering": "one-based 1..4",
+      "counts": {
+        "1": 12,
+        "2": 12,
+        "3": 13,
+        "4": 13
+      }
+    },
+    {
+      "exam": 52,
+      "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/52/52회_정답지.pdf",
+      "sourceSha256": "2f43c72ea401bd20be5d1a342f967a8f6cd8bb0fa04accce4a4e4e7da4a231d4",
+      "pdfPage": 3,
+      "headingVerified": "읽기",
+      "method": "Visually transcribed all 50 answers from rendered source page; not copied from OCR",
+      "answerNumbering": "one-based 1..4",
+      "counts": {
+        "1": 12,
+        "2": 12,
+        "3": 13,
+        "4": 13
+      }
+    },
+    {
+      "exam": 60,
+      "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/60/60회_정답.pdf",
+      "sourceSha256": "ed69c6aa48a7d7fc33c54d8dfc03d65598ec2ff1f5e463d3b9e4b4edae6bb598",
+      "pdfPage": 4,
+      "headingVerified": "읽기",
+      "method": "Visually transcribed all 50 answers from rendered source page; not copied from OCR",
+      "answerNumbering": "one-based 1..4",
+      "counts": {
+        "1": 13,
+        "2": 12,
+        "3": 12,
+        "4": 13
+      }
+    },
+    {
+      "exam": 64,
+      "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/64/64회_정답.pdf",
+      "sourceSha256": "8a6f5805a5db2c83060e2ea05e6c6d73264a3f6506f5a1b877e0e177bbef761c",
+      "pdfPage": 3,
+      "headingVerified": "읽기",
+      "method": "Visually transcribed all 50 answers from rendered source page; not copied from OCR",
+      "answerNumbering": "one-based 1..4",
+      "counts": {
+        "1": 12,
+        "2": 12,
+        "3": 13,
+        "4": 13
+      }
+    },
+    {
+      "exam": 83,
+      "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/83/83_정답 및 배점표.pdf",
+      "sourceSha256": "6964b249281b41762b5a46e121bfa5b6f599bd8ec31eccbaca5bb03f975c50ed",
+      "pdfPage": 3,
+      "headingVerified": "읽기",
+      "method": "Visually transcribed all 50 answers from rendered source page; not copied from OCR",
+      "answerNumbering": "one-based 1..4",
+      "counts": {
+        "1": 13,
+        "2": 12,
+        "3": 13,
+        "4": 12
+      }
+    },
+    {
+      "exam": 91,
+      "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/91/91_정답 및 배점표.pdf",
+      "sourceSha256": "76ba5fbddcaba86d30f238425925e7803e588c5cbfe30a7d62f4d0f4cecb2a9a",
+      "pdfPage": 3,
+      "headingVerified": "읽기",
+      "method": "Visually transcribed all 50 answers from rendered source page; not copied from OCR",
+      "answerNumbering": "one-based 1..4",
+      "counts": {
+        "1": 13,
+        "2": 12,
+        "3": 12,
+        "4": 13
+      }
+    },
+    {
+      "exam": 102,
+      "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/102/102_정답 및 배점표.pdf",
+      "sourceSha256": "8a3fca7b451fcead1a68f5e986a2aa3d9a35ac93fbe2af098a8b383149feae37",
+      "pdfPage": 3,
+      "headingVerified": "읽기",
+      "method": "Visually transcribed all 50 answers from rendered source page; not copied from OCR",
+      "answerNumbering": "one-based 1..4",
+      "counts": {
+        "1": 12,
+        "2": 12,
+        "3": 13,
+        "4": 13
+      }
+    }
+  ]
+}

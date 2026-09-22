@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "extractionVersion": 2,
+  "exam": 102,
+  "kind": "reading",
+  "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/102/102_2교시_읽기.pdf",
+  "sourceName": "102_2교시_읽기.pdf",
+  "sourceSha256": "9fd4f5c158c0ab7a9c0617ae606fd630d5d8c35a56ed722cfa5784912aec79f1",
+  "pdfPage": 2,
+  "sourcePageCount": 25,
+  "sectionPage": null,
+  "isFrontMatter": true,
+  "isBlank": true,
+  "imagePath": "tmp/topik-pages/102/reading/page-002.png",
+  "width": 1786,
+  "height": 2526,
+  "bboxConvention": "normalized top-left x,y,width,height",
+  "nativeText": "",
+  "engine": "Apple Vision",
+  "languages": [
+    "ko-KR",
+    "en-US"
+  ],
+  "text": "",
+  "lines": []
+}

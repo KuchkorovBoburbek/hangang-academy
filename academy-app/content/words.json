@@ -1,0 +1,386 @@
+[
+  {
+    "id": "V01",
+    "ko": "약속",
+    "uz": "va’da; uchrashuv kelishuvi",
+    "category": "Kundalik hayot",
+    "example": "내일 친구와 약속이 있어요.",
+    "translation": "Ertaga do‘stim bilan uchrashuvim bor."
+  },
+  {
+    "id": "V02",
+    "ko": "준비하다",
+    "uz": "tayyorlamoq",
+    "category": "O‘qish va ish",
+    "example": "시험을 준비하고 있어요.",
+    "translation": "Imtihonga tayyorlanyapman."
+  },
+  {
+    "id": "V03",
+    "ko": "복습하다",
+    "uz": "takrorlamoq",
+    "category": "O‘qish va ish",
+    "example": "수업 후에 꼭 복습해요.",
+    "translation": "Darsdan keyin albatta takrorlayman."
+  },
+  {
+    "id": "V04",
+    "ko": "신청하다",
+    "uz": "ariza bermoq",
+    "category": "O‘qish va ish",
+    "example": "한국어 수업을 신청했어요.",
+    "translation": "Koreys tili darsiga yozildim."
+  },
+  {
+    "id": "V05",
+    "ko": "기회",
+    "uz": "imkoniyat",
+    "category": "O‘qish va ish",
+    "example": "좋은 기회를 놓치지 마세요.",
+    "translation": "Yaxshi imkoniyatni qo‘ldan boy bermang."
+  },
+  {
+    "id": "V06",
+    "ko": "경험",
+    "uz": "tajriba",
+    "category": "O‘qish va ish",
+    "example": "다양한 경험이 도움이 돼요.",
+    "translation": "Turli tajribalar yordam beradi."
+  },
+  {
+    "id": "V07",
+    "ko": "습관",
+    "uz": "odat",
+    "category": "Kundalik hayot",
+    "example": "일찍 일어나는 습관이 있어요.",
+    "translation": "Erta turish odatim bor."
+  },
+  {
+    "id": "V08",
+    "ko": "건강",
+    "uz": "salomatlik",
+    "category": "Kundalik hayot",
+    "example": "건강을 위해 운동해요.",
+    "translation": "Salomatlik uchun mashq qilaman."
+  },
+  {
+    "id": "V09",
+    "ko": "노력하다",
+    "uz": "harakat qilmoq",
+    "category": "O‘qish va ish",
+    "example": "목표를 위해 노력해요.",
+    "translation": "Maqsadim uchun harakat qilaman."
+  },
+  {
+    "id": "V10",
+    "ko": "결과",
+    "uz": "natija",
+    "category": "O‘qish va ish",
+    "example": "시험 결과가 나왔어요.",
+    "translation": "Imtihon natijasi chiqdi."
+  },
+  {
+    "id": "V11",
+    "ko": "발음",
+    "uz": "talaffuz",
+    "category": "O‘qish va ish",
+    "example": "매일 발음을 연습해요.",
+    "translation": "Har kuni talaffuzni mashq qilaman."
+  },
+  {
+    "id": "V12",
+    "ko": "실수",
+    "uz": "xato",
+    "category": "O‘qish va ish",
+    "example": "누구나 실수를 해요.",
+    "translation": "Hamma xato qiladi."
+  },
+  {
+    "id": "V13",
+    "ko": "주문하다",
+    "uz": "buyurtma bermoq",
+    "category": "Kundalik hayot",
+    "example": "커피를 주문했어요.",
+    "translation": "Qahva buyurtma qildim."
+  },
+  {
+    "id": "V14",
+    "ko": "예약하다",
+    "uz": "oldindan band qilmoq",
+    "category": "Sayohat",
+    "example": "호텔을 예약했어요.",
+    "translation": "Mehmonxonani band qildim."
+  },
+  {
+    "id": "V15",
+    "ko": "도착하다",
+    "uz": "yetib kelmoq",
+    "category": "Sayohat",
+    "example": "기차가 역에 도착했어요.",
+    "translation": "Poyezd bekatga yetib keldi."
+  },
+  {
+    "id": "V16",
+    "ko": "출발하다",
+    "uz": "yo‘lga chiqmoq",
+    "category": "Sayohat",
+    "example": "아침 일찍 출발해요.",
+    "translation": "Ertalab erta yo‘lga chiqamiz."
+  },
+  {
+    "id": "V17",
+    "ko": "교통",
+    "uz": "transport qatnovi",
+    "category": "Sayohat",
+    "example": "이 동네는 교통이 편리해요.",
+    "translation": "Bu mahallada transport qatnovi qulay."
+  },
+  {
+    "id": "V18",
+    "ko": "환승하다",
+    "uz": "boshqa transportga o‘tirmoq",
+    "category": "Sayohat",
+    "example": "다음 역에서 환승하세요.",
+    "translation": "Keyingi bekatda boshqa yo‘nalishga o‘ting."
+  },
+  {
+    "id": "V19",
+    "ko": "문화",
+    "uz": "madaniyat",
+    "category": "Jamiyat",
+    "example": "한국 문화에 관심이 있어요.",
+    "translation": "Koreya madaniyatiga qiziqaman."
+  },
+  {
+    "id": "V20",
+    "ko": "환경",
+    "uz": "atrof-muhit",
+    "category": "Jamiyat",
+    "example": "환경을 보호해야 해요.",
+    "translation": "Atrof-muhitni himoya qilish kerak."
+  },
+  {
+    "id": "V21",
+    "ko": "정보",
+    "uz": "ma’lumot",
+    "category": "Jamiyat",
+    "example": "필요한 정보를 찾았어요.",
+    "translation": "Kerakli ma’lumotni topdim."
+  },
+  {
+    "id": "V22",
+    "ko": "관계",
+    "uz": "munosabat; aloqa",
+    "category": "Jamiyat",
+    "example": "좋은 관계를 유지해요.",
+    "translation": "Yaxshi munosabatni saqlaymiz."
+  },
+  {
+    "id": "V23",
+    "ko": "성공하다",
+    "uz": "muvaffaqiyatga erishmoq",
+    "category": "O‘qish va ish",
+    "example": "꾸준히 노력하면 성공할 수 있어요.",
+    "translation": "Muntazam harakat qilsangiz, muvaffaqiyatga erishishingiz mumkin."
+  },
+  {
+    "id": "V24",
+    "ko": "실패하다",
+    "uz": "muvaffaqiyatsizlikka uchramoq",
+    "category": "O‘qish va ish",
+    "example": "실패해도 다시 도전해요.",
+    "translation": "Muvaffaqiyatsizlikdan keyin ham yana urinaman."
+  },
+  {
+    "id": "V25",
+    "ko": "선택하다",
+    "uz": "tanlamoq",
+    "category": "Kundalik hayot",
+    "example": "원하는 색을 선택하세요.",
+    "translation": "Istagan rangingizni tanlang."
+  },
+  {
+    "id": "V26",
+    "ko": "결정하다",
+    "uz": "qaror qilmoq",
+    "category": "Kundalik hayot",
+    "example": "아직 결정하지 못했어요.",
+    "translation": "Hali qaror qila olmadim."
+  },
+  {
+    "id": "V27",
+    "ko": "이해하다",
+    "uz": "tushunmoq",
+    "category": "O‘qish va ish",
+    "example": "설명을 잘 이해했어요.",
+    "translation": "Tushuntirishni yaxshi tushundim."
+  },
+  {
+    "id": "V28",
+    "ko": "설명하다",
+    "uz": "tushuntirmoq",
+    "category": "O‘qish va ish",
+    "example": "다시 설명해 주세요.",
+    "translation": "Qayta tushuntirib bering."
+  },
+  {
+    "id": "V29",
+    "ko": "기억하다",
+    "uz": "eslamoq; yodda tutmoq",
+    "category": "O‘qish va ish",
+    "example": "이 단어를 기억하세요.",
+    "translation": "Bu so‘zni yodda tuting."
+  },
+  {
+    "id": "V30",
+    "ko": "잊어버리다",
+    "uz": "unutib yubormoq",
+    "category": "Kundalik hayot",
+    "example": "우산을 잊어버렸어요.",
+    "translation": "Soyabonni unutib qoldirdim."
+  },
+  {
+    "id": "V31",
+    "ko": "편리하다",
+    "uz": "qulay bo‘lmoq",
+    "category": "Kundalik hayot",
+    "example": "지하철이 편리해요.",
+    "translation": "Metro qulay."
+  },
+  {
+    "id": "V32",
+    "ko": "불편하다",
+    "uz": "noqulay bo‘lmoq",
+    "category": "Kundalik hayot",
+    "example": "이 의자는 조금 불편해요.",
+    "translation": "Bu stul biroz noqulay."
+  },
+  {
+    "id": "V33",
+    "ko": "중요하다",
+    "uz": "muhim bo‘lmoq",
+    "category": "O‘qish va ish",
+    "example": "시간을 지키는 것이 중요해요.",
+    "translation": "Vaqtga rioya qilish muhim."
+  },
+  {
+    "id": "V34",
+    "ko": "필요하다",
+    "uz": "kerak bo‘lmoq",
+    "category": "Kundalik hayot",
+    "example": "도움이 필요해요.",
+    "translation": "Yordam kerak."
+  },
+  {
+    "id": "V35",
+    "ko": "충분하다",
+    "uz": "yetarli bo‘lmoq",
+    "category": "Kundalik hayot",
+    "example": "시간이 충분해요.",
+    "translation": "Vaqt yetarli."
+  },
+  {
+    "id": "V36",
+    "ko": "부족하다",
+    "uz": "yetishmaslik",
+    "category": "Kundalik hayot",
+    "example": "아직 경험이 부족해요.",
+    "translation": "Hali tajribam yetishmaydi."
+  },
+  {
+    "id": "V37",
+    "ko": "장점",
+    "uz": "afzallik",
+    "category": "Jamiyat",
+    "example": "이 방법의 장점은 무엇이에요?",
+    "translation": "Bu usulning afzalligi nima?"
+  },
+  {
+    "id": "V38",
+    "ko": "단점",
+    "uz": "kamchilik",
+    "category": "Jamiyat",
+    "example": "누구에게나 단점이 있어요.",
+    "translation": "Har kimning kamchiligi bor."
+  },
+  {
+    "id": "V39",
+    "ko": "의견",
+    "uz": "fikr; mulohaza",
+    "category": "Jamiyat",
+    "example": "여러분의 의견을 듣고 싶어요.",
+    "translation": "Fikringizni eshitmoqchiman."
+  },
+  {
+    "id": "V40",
+    "ko": "관심",
+    "uz": "qiziqish; e’tibor",
+    "category": "Jamiyat",
+    "example": "한국어에 관심이 많아요.",
+    "translation": "Koreys tiliga qiziqishim katta."
+  },
+  {
+    "id": "V41",
+    "ko": "목표",
+    "uz": "maqsad",
+    "category": "O‘qish va ish",
+    "example": "올해 목표는 합격이에요.",
+    "translation": "Bu yilgi maqsadim imtihondan o‘tish."
+  },
+  {
+    "id": "V42",
+    "ko": "일정",
+    "uz": "jadval; reja",
+    "category": "O‘qish va ish",
+    "example": "다음 주 일정을 확인해요.",
+    "translation": "Kelasi haftaning jadvalini tekshiraman."
+  },
+  {
+    "id": "V43",
+    "ko": "제출하다",
+    "uz": "topshirmoq",
+    "category": "O‘qish va ish",
+    "example": "내일까지 과제를 제출하세요.",
+    "translation": "Ertagacha vazifani topshiring."
+  },
+  {
+    "id": "V44",
+    "ko": "참석하다",
+    "uz": "qatnashmoq",
+    "category": "O‘qish va ish",
+    "example": "회의에 참석했어요.",
+    "translation": "Majlisda qatnashdim."
+  },
+  {
+    "id": "V45",
+    "ko": "지각하다",
+    "uz": "kech qolmoq",
+    "category": "O‘qish va ish",
+    "example": "수업에 지각하지 마세요.",
+    "translation": "Darsga kech qolmang."
+  },
+  {
+    "id": "V46",
+    "ko": "연락하다",
+    "uz": "bog‘lanmoq; xabar bermoq",
+    "category": "Kundalik hayot",
+    "example": "도착하면 연락하세요.",
+    "translation": "Yetib borganingizda xabar bering."
+  },
+  {
+    "id": "V47",
+    "ko": "계획",
+    "uz": "reja",
+    "category": "Kundalik hayot",
+    "example": "주말 계획이 있어요?",
+    "translation": "Dam olish kunlariga rejangiz bormi?"
+  },
+  {
+    "id": "V48",
+    "ko": "꾸준히",
+    "uz": "muntazam ravishda",
+    "category": "O‘qish va ish",
+    "example": "매일 꾸준히 연습해요.",
+    "translation": "Har kuni muntazam mashq qilaman."
+  }
+]

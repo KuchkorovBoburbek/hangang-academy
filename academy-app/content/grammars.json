@@ -1,0 +1,1001 @@
+[
+  {
+    "id": "A01",
+    "form": "-다가",
+    "meaning": "Bir ish davomida boshqa ishga o‘tish yoki kutilmagan hodisa yuz berishi.",
+    "syntax": "V + 다가",
+    "ko": "집에 가다가 친구를 만났어요.",
+    "uz": "Uyga ketayotib do‘stimni uchratdim.",
+    "note": "Birinchi harakat davomida o‘zgarish sodir bo‘ladi. Tugagan ish uchun ko‘pincha -았/었다가 ishlatiladi."
+  },
+  {
+    "id": "A02",
+    "form": "-고 나서",
+    "meaning": "Bir ish to‘liq tugagandan keyin boshqa ishni bajarish.",
+    "syntax": "V + 고 나서",
+    "ko": "숙제를 하고 나서 영화를 봤어요.",
+    "uz": "Vazifani bajarib bo‘lgach, kino ko‘rdim.",
+    "note": "Oddiy -고 dan farqli ravishda, birinchi ishning tugaganini ta’kidlaydi."
+  },
+  {
+    "id": "A03",
+    "form": "-(으)ㄴ/는데",
+    "meaning": "Vaziyatni tanishtirish, keyingi gapga fon yaratish yoki qarama-qarshilik.",
+    "syntax": "V-는데 · A-(으)ㄴ데 · N-인데",
+    "ko": "이 가방은 예쁜데 조금 비싸요.",
+    "uz": "Bu sumka chiroyli, lekin biroz qimmat.",
+    "note": "있다/없다 bilan -는데: 있는데, 없는데. O‘tgan zamonda -았/었는데."
+  },
+  {
+    "id": "A04",
+    "form": "-(으)려고",
+    "meaning": "Biror ishni bajarish maqsadi: «…moqchi bo‘lib», «…ish uchun».",
+    "syntax": "V + (으)려고",
+    "ko": "한국어를 배우려고 학원에 다녀요.",
+    "uz": "Koreys tilini o‘rganish uchun o‘quv markaziga qatnayman.",
+    "note": "Odatda oldingi va keyingi harakatning bajaruvchisi bir xil bo‘ladi."
+  },
+  {
+    "id": "A05",
+    "form": "-(으)려면",
+    "meaning": "Ko‘zlangan ishni qilish uchun bajarilishi kerak bo‘lgan shart.",
+    "syntax": "V + (으)려면",
+    "ko": "합격하려면 매일 복습해야 해요.",
+    "uz": "Imtihondan o‘tmoqchi bo‘lsangiz, har kuni takrorlashingiz kerak.",
+    "note": "«A qilmoqchi bo‘lsangiz, B zarur» tuzilishi. C33 bilan solishtiring."
+  },
+  {
+    "id": "A06",
+    "form": "-느라고",
+    "meaning": "Bir ish bilan band bo‘lish oqibatida boshqa ish bajarilmasligi.",
+    "syntax": "V + 느라고",
+    "ko": "숙제를 하느라고 전화를 못 받았어요.",
+    "uz": "Vazifa qilayotganim uchun telefonga javob bera olmadim.",
+    "note": "Odatda bir xil ega va salbiy natija keladi. Sifatga qo‘shilmaydi; oldiga -았/었- qo‘yilmaydi."
+  },
+  {
+    "id": "A07",
+    "form": "-아/어야",
+    "meaning": "Keyingi natija uchun zarur shart: «faqat …sagina».",
+    "syntax": "V/A + 아/어야",
+    "ko": "표가 있어야 들어갈 수 있어요.",
+    "uz": "Faqat chipta bo‘lsagina kirish mumkin.",
+    "note": "-아/어야 하다 majburiyatni, bu bog‘lovchi esa natijaning shartini bildiradi."
+  },
+  {
+    "id": "A08",
+    "form": "-(으)ㄹ까 봐(서)",
+    "meaning": "Noxush holat bo‘lishidan xavotirlanib biror chora ko‘rish.",
+    "syntax": "V/A + (으)ㄹ까 봐(서)",
+    "ko": "늦을까 봐 일찍 출발했어요.",
+    "uz": "Kech qolishdan xavotirlanib, erta yo‘lga chiqdim.",
+    "note": "Oddiy taxmindan farqli ravishda, xavotir yoki ehtiyot chorasi seziladi."
+  },
+  {
+    "id": "A09",
+    "form": "-거나",
+    "meaning": "Ikki yoki undan ko‘p variantdan birini tanlash: «yoki».",
+    "syntax": "V/A + 거나",
+    "ko": "주말에는 쉬거나 친구를 만나요.",
+    "uz": "Dam olish kunlari dam olaman yoki do‘stim bilan uchrashaman.",
+    "note": "Otlar orasidagi «yoki» uchun N-(이)나 ishlatiladi."
+  },
+  {
+    "id": "A10",
+    "form": "-자마자",
+    "meaning": "Birinchi hodisadan darhol keyin ikkinchisi sodir bo‘lishi.",
+    "syntax": "V + 자마자",
+    "ko": "집에 오자마자 손을 씻었어요.",
+    "uz": "Uyga kelishim bilanoq qo‘limni yuvdim.",
+    "note": "Zamon odatda keyingi gapda ko‘rsatiladi. C08 dagi yaqin shakllar bilan solishtiring."
+  },
+  {
+    "id": "A11",
+    "form": "-(으)ㄹ수록",
+    "meaning": "Bir holat kuchaygani sari boshqasining ham o‘zgarishi.",
+    "syntax": "V/A + (으)ㄹ수록",
+    "ko": "연습할수록 발음이 좋아져요.",
+    "uz": "Mashq qilgan sari talaffuz yaxshilanadi.",
+    "note": "«Borgan sari» ma’nosi. -면 -을수록 shakli ta’kidni kuchaytiradi."
+  },
+  {
+    "id": "A12",
+    "form": "-아/어서",
+    "meaning": "Sababni yoki o‘zaro bog‘liq harakatlar ketma-ketligini ifodalaydi.",
+    "syntax": "V/A + 아/어서 · N-(이)라서",
+    "ko": "비가 와서 집에 있었어요.",
+    "uz": "Yomg‘ir yog‘gani uchun uyda qoldim.",
+    "note": "Ketma-ketlik: 친구를 만나서 같이 갔어요. Sabab ma’nosida buyruq/taklif bilan odatda -(으)니까 tanlanadi."
+  },
+  {
+    "id": "A13",
+    "form": "-아/어서 그런지",
+    "meaning": "Taxmin qilinayotgan sabab: «…gani uchun bo‘lsa kerak».",
+    "syntax": "V/A + 아/어서 그런지 · N-(이)라서 그런지",
+    "ko": "주말이라서 그런지 사람이 많아요.",
+    "uz": "Dam olish kuni bo‘lgani uchun bo‘lsa kerak, odam ko‘p.",
+    "note": "Sabab aniq tasdiqlanmaydi; gapiruvchi taxmin qiladi."
+  },
+  {
+    "id": "A14",
+    "form": "-더니",
+    "meaning": "Avval kuzatilgan holat bilan keyingi o‘zgarish yoki natijani bog‘laydi.",
+    "syntax": "V/A + 더니",
+    "ko": "아침에는 춥더니 지금은 따뜻해요.",
+    "uz": "Ertalab sovuq edi, hozir esa iliq.",
+    "note": "Ko‘pincha bevosita kuzatuvga tayanadi. O‘zining tugagan harakati va natijasida -았/었더니 ko‘p qo‘llanadi."
+  },
+  {
+    "id": "A15",
+    "form": "-(으)ㄹ지",
+    "meaning": "Qaysi ishni qilishni bilmaslik, tanlash yoki o‘ylash.",
+    "syntax": "V/A + (으)ㄹ지",
+    "ko": "무엇을 먹을지 아직 못 정했어요.",
+    "uz": "Nima yeyishni hali tanlamadim.",
+    "note": "Ko‘pincha 모르다, 고민하다, 정하다 bilan keladi; kelajakdagi noaniqlikni ham bildiradi."
+  },
+  {
+    "id": "A16",
+    "form": "-(으)면서",
+    "meaning": "Bir paytda bajariladigan ikki harakat: «…ib turib».",
+    "syntax": "V + (으)면서",
+    "ko": "음악을 들으면서 공부해요.",
+    "uz": "Musiqa tinglab dars qilaman.",
+    "note": "Bir vaqtdagi harakatlarda ega odatda bir xil. «…bo‘lsa-da» ma’nosi C27 da."
+  },
+  {
+    "id": "A17",
+    "form": "-(으)니까",
+    "meaning": "Sababni yoki bir ish ortidan aniqlangan vaziyatni ko‘rsatadi.",
+    "syntax": "V/A + (으)니까 · N-(이)니까",
+    "ko": "집에 오니까 택배가 와 있었어요.",
+    "uz": "Uyga kelganimda, jo‘natma kelib turgan ekan.",
+    "note": "Sabab ma’nosi ham bor: 추우니까 창문을 닫으세요. Kitobda kuzatib aniqlash vazifasi ta’kidlangan."
+  },
+  {
+    "id": "A18",
+    "form": "-(으)면",
+    "meaning": "Shart yoki takroriy vaziyat: «agar …sa», «…ganda».",
+    "syntax": "V/A + (으)면 · N-(이)면",
+    "ko": "시간이 있으면 도와주세요.",
+    "uz": "Vaqtingiz bo‘lsa, yordam bering.",
+    "note": "Haqiqiy yoki faraziy shart bo‘lishi mumkin; niyat shartini bildiruvchi -(으)려면 bilan farqlang."
+  },
+  {
+    "id": "A19",
+    "form": "-든지",
+    "meaning": "Qaysi variant bo‘lishidan qat’i nazar; erkin tanlov.",
+    "syntax": "V/A + 든지 · N-(이)든지",
+    "ko": "어디에 가든지 연락하세요.",
+    "uz": "Qayerga borsangiz ham, xabar bering.",
+    "note": "-든지 tanlovga, -던 esa o‘tgan tajriba yoki davom etgan holatga aloqador."
+  },
+  {
+    "id": "A20",
+    "form": "-(으)ㄴ/는 데다가",
+    "meaning": "Bir xususiyatga yana boshqasini qo‘shish: «ustiga-ustak».",
+    "syntax": "V-는 데다가 · A-(으)ㄴ 데다가 · N-인 데다가",
+    "ko": "이 식당은 싼 데다가 맛도 좋아요.",
+    "uz": "Bu oshxona arzon, ustiga-ustak taomi ham mazali.",
+    "note": "Odatda bir yo‘nalishdagi ikki baho yoki holat qo‘shiladi."
+  },
+  {
+    "id": "A21",
+    "form": "-(으)ㄴ/는 대신에",
+    "meaning": "Bir ishning o‘rniga boshqasi; bir narsaga evaz yoki muvozanat.",
+    "syntax": "V-는 대신에 · A-(으)ㄴ 대신에 · N 대신에",
+    "ko": "커피를 마시는 대신에 차를 마셔요.",
+    "uz": "Qahva o‘rniga choy ichaman.",
+    "note": "Qarama-qarshi baho ham mumkin: 비싼 대신에 품질이 좋아요."
+  },
+  {
+    "id": "A22",
+    "form": "-아/어도",
+    "meaning": "Shart yoki holatga qaramay natija o‘zgarmasligi: «…sa ham».",
+    "syntax": "V/A + 아/어도 · N-(이)어도",
+    "ko": "바빠도 아침은 꼭 먹어요.",
+    "uz": "Band bo‘lsam ham, albatta nonushta qilaman.",
+    "note": "Haqiqiy holatda ham, farazda ham keladi. -아/어도 되다 esa ruxsat bildiradi."
+  },
+  {
+    "id": "A23",
+    "form": "-는 김에",
+    "meaning": "Bir ishga kirishilgan imkoniyatdan foydalanib yana ish qilish.",
+    "syntax": "V-는 김에 / V-(으)ㄴ 김에",
+    "ko": "은행에 가는 김에 우체국에도 들를게요.",
+    "uz": "Bankka borayotganimda, fursatdan foydalanib pochtaga ham kiraman.",
+    "note": "Oddiy bir vaqtdalik emas: birinchi ish ikkinchisiga qulay imkoniyat yaratadi."
+  },
+  {
+    "id": "A24",
+    "form": "-는 바람에",
+    "meaning": "Kutilmagan sabab tufayli ko‘pincha salbiy natija yuz berishi.",
+    "syntax": "V + 는 바람에",
+    "ko": "버스가 늦게 오는 바람에 지각했어요.",
+    "uz": "Avtobus kech kelgani sababli kech qoldim.",
+    "note": "Ko‘pincha nazoratdan tashqari hodisa. Barcha sabab gaplarida -느라고 bilan almashmaydi."
+  },
+  {
+    "id": "A25",
+    "form": "-(으)ㄴ 채(로)",
+    "meaning": "Bir holatni o‘zgartirmay boshqa harakatni bajarish.",
+    "syntax": "V + (으)ㄴ 채(로)",
+    "ko": "안경을 쓴 채로 잠들었어요.",
+    "uz": "Ko‘zoynagimni taqqan holda uxlab qolibman.",
+    "note": "Natijaviy holat saqlanadi. Ikki faol harakatning bir vaqtdaligi bilan farqlang."
+  },
+  {
+    "id": "A26",
+    "form": "-(으)ㄴ/는 덕분에",
+    "meaning": "Yaxshi natijaga olib kelgan sabab: «…sharofati bilan».",
+    "syntax": "V-(으)ㄴ/는 덕분에 · A-(으)ㄴ 덕분에 · N 덕분에",
+    "ko": "선생님이 도와주신 덕분에 합격했어요.",
+    "uz": "Ustozim yordam bergani sharofati bilan imtihondan o‘tdim.",
+    "note": "Odatda ijobiy natija; salbiy sabab uchun ko‘pincha 탓에 yoki 바람에 keladi."
+  },
+  {
+    "id": "A27",
+    "form": "-도록",
+    "meaning": "Maqsad, ko‘zlangan natija yoki vaqt/daraja chegarasi.",
+    "syntax": "V/A + 도록",
+    "ko": "잊지 않도록 메모해 두세요.",
+    "uz": "Unutmaslik uchun yozib qo‘ying.",
+    "note": "Vaqt/daraja: 밤새도록 공부했어요. C11 va C31 vazifalarini solishtiring."
+  },
+  {
+    "id": "A28",
+    "form": "-기에 / -길래",
+    "meaning": "Ko‘rilgan yoki ma’lum bo‘lgan holat asosida ish qilish sababi.",
+    "syntax": "V/A + 기에/길래 · N-(이)기에/길래",
+    "ko": "과일이 싸길래 많이 샀어요.",
+    "uz": "Meva arzon ekan, ko‘proq sotib oldim.",
+    "note": "-기에 yozma nutqda, -길래 og‘zaki nutqda ko‘proq uchraydi. Eshitilgan xabar uchun C32 ga qarang."
+  },
+  {
+    "id": "A29",
+    "form": "-더라도",
+    "meaning": "Kuchli farazga qaramay natija yoki qaror o‘zgarmasligi.",
+    "syntax": "V/A + 더라도 · N-(이)더라도",
+    "ko": "힘들더라도 포기하지 않겠어요.",
+    "uz": "Qiyin bo‘lsa ham, taslim bo‘lmayman.",
+    "note": "Ko‘pincha -아/어도 ga nisbatan kuchliroq faraz yoki qat’iylik seziladi."
+  },
+  {
+    "id": "A30",
+    "form": "-다가 보면 / -다 보면",
+    "meaning": "Ish takrorlanishi yoki davom etishi natijasida bir holat yuz berishi.",
+    "syntax": "V + 다(가) 보면",
+    "ko": "매일 읽다 보면 속도가 빨라져요.",
+    "uz": "Har kuni o‘qiyversangiz, tezligingiz oshadi.",
+    "note": "Umumiy yoki kutiladigan natija. Allaqachon aniqlangan natija uchun C24 dagi -다 보니까 bilan farqlang."
+  },
+  {
+    "id": "B01",
+    "form": "-아/어 놓다",
+    "meaning": "Ishni bajarib, uning natijasini saqlab qo‘yish.",
+    "syntax": "V + 아/어 놓다",
+    "ko": "창문을 열어 놓았어요.",
+    "uz": "Derazani ochib qo‘ydim.",
+    "note": "Natija saqlanadi; oldindan tayyorgarlik ma’nosi ham bo‘lishi mumkin. B19 bilan yaqin."
+  },
+  {
+    "id": "B02",
+    "form": "-기로 하다",
+    "meaning": "Bir ishni qilishga qaror qilish yoki kelishish.",
+    "syntax": "V + 기로 하다",
+    "ko": "친구와 내일 만나기로 했어요.",
+    "uz": "Do‘stim bilan ertaga uchrashishga kelishdik.",
+    "note": "-기로 했다 shakli qaror yoki kelishuv allaqachon qilinganini ko‘rsatadi."
+  },
+  {
+    "id": "B03",
+    "form": "-(으)면 되다",
+    "meaning": "Shartni bajarsa kifoya: «…sa bo‘ladi», «…sa yetadi».",
+    "syntax": "V/A + (으)면 되다",
+    "ko": "여기에 이름을 쓰면 돼요.",
+    "uz": "Bu yerga ismingizni yozsangiz bo‘ladi.",
+    "note": "Zarur ishning yetarli shartini bildiradi. Ruxsat ma’nosidagi -아/어도 되다 bilan aynan bir xil emas."
+  },
+  {
+    "id": "B04",
+    "form": "-게 하다",
+    "meaning": "Boshqasiga ish qildirish yoki bir holatga sabab bo‘lish.",
+    "syntax": "V/A + 게 하다",
+    "ko": "선생님은 학생들에게 다시 읽게 했어요.",
+    "uz": "Ustoz o‘quvchilarga qayta o‘qitdi.",
+    "note": "Sababchi shaxs bor; majburlash yoki imkon berish ma’nosi vaziyatga bog‘liq."
+  },
+  {
+    "id": "B05",
+    "form": "-게 되다",
+    "meaning": "Vaziyat, jarayon yoki tashqi omil natijasida o‘zgarish yuz berishi.",
+    "syntax": "V/A + 게 되다",
+    "ko": "한국 회사에서 일하게 됐어요.",
+    "uz": "Koreya kompaniyasida ishlaydigan bo‘ldim.",
+    "note": "Faqat shaxsiy qaror emas, ishning qanday holatga kelib qolganini ta’kidlaydi."
+  },
+  {
+    "id": "B06",
+    "form": "-(으)ㄴ 적이 있다",
+    "meaning": "Oldin bir ishni qilib ko‘rganlik, hayotiy tajriba.",
+    "syntax": "V + (으)ㄴ 적이 있다/없다",
+    "ko": "제주도에 간 적이 있어요.",
+    "uz": "Jejuga borganman.",
+    "note": "«Qachondir shunday tajriba bo‘lgan» ma’nosi; aniq bir o‘tgan voqeani aytishdan farqlanadi."
+  },
+  {
+    "id": "B07",
+    "form": "-아/어 있다",
+    "meaning": "Harakat tugagach hosil bo‘lgan holatning saqlanishi.",
+    "syntax": "V + 아/어 있다",
+    "ko": "문이 열려 있어요.",
+    "uz": "Eshik ochiq turibdi.",
+    "note": "Ko‘pincha holat o‘zgarishi fe’llari bilan: 앉아 있다, 서 있다. Davom etayotgan jarayon -고 있다 bilan farqlanadi."
+  },
+  {
+    "id": "B08",
+    "form": "-아/어 가다",
+    "meaning": "Hozirdan keyinga tomon davom etish yoki yakuniga yaqinlashish.",
+    "syntax": "V/A + 아/어 가다",
+    "ko": "일이 거의 끝나 가요.",
+    "uz": "Ish deyarli tugab boryapti.",
+    "note": "Jarayonning oldinga rivojlanishi. O‘tmishdan hozirgacha davom uchun B10."
+  },
+  {
+    "id": "B09",
+    "form": "-(으)ㄴ/는 셈이다",
+    "meaning": "Hisoblab yoki taqqoslab qaraganda, amalda shunday deb baholash.",
+    "syntax": "V-(으)ㄴ/는 셈이다 · A-(으)ㄴ 셈이다",
+    "ko": "열 문제 중 아홉 문제를 맞혔으니 거의 다 맞힌 셈이에요.",
+    "uz": "O‘nta savoldan to‘qqiztasi to‘g‘ri: deyarli hammasini topgan hisoblanaman.",
+    "note": "To‘g‘ridan-to‘g‘ri fakt emas, vaziyatdan chiqarilgan baho. C09 ga qarang."
+  },
+  {
+    "id": "B10",
+    "form": "-아/어 오다",
+    "meaning": "O‘tmishda boshlangan ishning hozirgacha davom etishi.",
+    "syntax": "V/A + 아/어 오다",
+    "ko": "삼 년 동안 한국어를 공부해 왔어요.",
+    "uz": "Uch yildan beri koreys tilini o‘rganib kelyapman.",
+    "note": "Boshlanish nuqtasi o‘tmishda, yo‘nalish hozirga tomon. B08 bilan solishtiring."
+  },
+  {
+    "id": "B11",
+    "form": "-(으)ㄹ 뻔하다",
+    "meaning": "Bir hodisa deyarli yuz berishi, ammo aslida yuz bermasligi.",
+    "syntax": "V + (으)ㄹ 뻔하다",
+    "ko": "계단에서 넘어질 뻔했어요.",
+    "uz": "Zinada yiqilib tushay dedim.",
+    "note": "Ko‘pincha -을 뻔했다 va 하마터면 bilan keladi; hodisa sodir bo‘lmagan."
+  },
+  {
+    "id": "B12",
+    "form": "-나 보다",
+    "meaning": "Ko‘rinayotgan belgilar asosidagi taxmin.",
+    "syntax": "V-나 보다 · A-(으)ㄴ가 보다 · N-인가 보다",
+    "ko": "불이 꺼진 걸 보니 모두 나갔나 봐요.",
+    "uz": "Chiroq o‘chiqligiga qaraganda, hamma chiqib ketgan shekilli.",
+    "note": "있다/없다: 있나 보다, 없나 보다. O‘tgan zamon: -았/었나 보다."
+  },
+  {
+    "id": "B13",
+    "form": "-기 마련이다",
+    "meaning": "Tabiiy, odatiy yoki muqarrar deb qaraladigan natija.",
+    "syntax": "V/A + 기 마련이다",
+    "ko": "처음에는 누구나 실수하기 마련이에요.",
+    "uz": "Boshida hamma xato qilishi tabiiy.",
+    "note": "Majburiyat yoki buyruq emas; umumiy qonuniyatni bildiradi. C03 bilan bog‘liq."
+  },
+  {
+    "id": "B14",
+    "form": "-(으)ㄴ/는 모양이다",
+    "meaning": "Vaziyat yoki dalildan taxminiy xulosa chiqarish.",
+    "syntax": "V-는/(으)ㄴ 모양이다 · A-(으)ㄴ 모양이다",
+    "ko": "길이 젖은 걸 보니 비가 온 모양이에요.",
+    "uz": "Yo‘l ho‘lligiga qaraganda, yomg‘ir yog‘gan ko‘rinadi.",
+    "note": "Kelajak taxmini: -(으)ㄹ 모양이다; ot bilan N-인 모양이다."
+  },
+  {
+    "id": "B15",
+    "form": "-아/어 버리다",
+    "meaning": "Harakatning butunlay tugashi; afsus yoki yengillik hissi.",
+    "syntax": "V + 아/어 버리다",
+    "ko": "중요한 파일을 지워 버렸어요.",
+    "uz": "Muhim faylni o‘chirib yubordim.",
+    "note": "Oddiy tugallanishdan tashqari so‘zlovchining hissiy munosabati ham sezilishi mumkin."
+  },
+  {
+    "id": "B16",
+    "form": "-아/어 보이다",
+    "meaning": "Tashqi ko‘rinishdan shunday taassurot uyg‘otish.",
+    "syntax": "A + 아/어 보이다",
+    "ko": "오늘은 좀 피곤해 보여요.",
+    "uz": "Bugun biroz charchagan ko‘rinasiz.",
+    "note": "Ko‘pincha sifat bilan keladi. «Sinab ko‘rish» ma’nosidagi V-아/어 보다 bilan adashtirmang."
+  },
+  {
+    "id": "B17",
+    "form": "-(으)ㄴ/는 척하다",
+    "meaning": "Aslida unday bo‘lmasa-da, o‘zini shunday tutish.",
+    "syntax": "V-는/(으)ㄴ 척하다 · A-(으)ㄴ 척하다 · N-인 척하다",
+    "ko": "동생은 자는 척했어요.",
+    "uz": "Ukam o‘zini uxlayotgandek tutdi.",
+    "note": "-는 척: hozir qilayotgandek; -(으)ㄴ 척: bajargandek ko‘rsatish."
+  },
+  {
+    "id": "B18",
+    "form": "-(으)ㄹ지도 모르다",
+    "meaning": "Noaniq ehtimol: «balki …ar», «…ishi mumkin».",
+    "syntax": "V/A + (으)ㄹ지도 모르다 · N-일지도 모르다",
+    "ko": "오후에 비가 올지도 몰라요.",
+    "uz": "Tushdan keyin yomg‘ir yog‘ishi mumkin.",
+    "note": "Taxmin aniq emas. O‘tgan voqea uchun -았/었을지도 모르다."
+  },
+  {
+    "id": "B19",
+    "form": "-아/어 두다",
+    "meaning": "Kelgusida kerak bo‘lishi uchun oldindan bajarib qo‘yish.",
+    "syntax": "V + 아/어 두다",
+    "ko": "시험 날짜를 적어 두었어요.",
+    "uz": "Imtihon sanasini yozib qo‘ydim.",
+    "note": "Natijani keyin foydalanish uchun saqlash ta’kidlanadi. -아/어 놓다 bilan ko‘p vaziyatda yaqin."
+  },
+  {
+    "id": "B20",
+    "form": "-(으)ㄹ 리가 없다",
+    "meaning": "Bir holatni mantiqan imkonsiz deb qat’iy inkor qilish.",
+    "syntax": "V/A + (으)ㄹ 리가 없다 · N-일 리가 없다",
+    "ko": "지금 집에 있을 리가 없어요.",
+    "uz": "Hozir uyda bo‘lishi mumkin emas.",
+    "note": "Oddiy bilmaslik emas, kuchli ishonch. O‘tgan zamon: -았/었을 리가 없다."
+  },
+  {
+    "id": "C01",
+    "form": "-(으)ㄴ/는 것 같다",
+    "meaning": "Taxmin: «shekilli», «o‘xshaydi», «…deb o‘ylayman».",
+    "syntax": "-(으)ㄴ/는 듯하다 · -나 보다 · -(으)ㄴ/는 모양이다",
+    "ko": "옆집이 이사를 가는 것 같아요.",
+    "uz": "Qo‘shnilar ko‘chib ketayotganga o‘xshaydi.",
+    "note": "Yaqin shakllar dalilga tayangan taxminda mos keladi. 것 같다 shaxsiy fikrda ham keng ishlatiladi; kelajak: -(으)ㄹ 것 같다."
+  },
+  {
+    "id": "C02",
+    "form": "-(으)ㄹ 정도로",
+    "meaning": "Harakat yoki holatning darajasi: «…darajada».",
+    "syntax": "-(으)ㄹ 만큼 · -게",
+    "ko": "목이 아플 정도로 많이 웃었어요.",
+    "uz": "Tomog‘im og‘rigudek darajada ko‘p kuldim.",
+    "note": "Daraja ifodalanganda 만큼 va -게 yaqin. Har bir -게 yoki 만큼 aynan shu ma’noda bo‘lavermaydi."
+  },
+  {
+    "id": "C03",
+    "form": "-기 마련이다",
+    "meaning": "Tabiiy va kutiladigan qonuniyat.",
+    "syntax": "-는 법이다 · -게 되어 있다",
+    "ko": "오래 쓰면 물건은 낡기 마련이에요.",
+    "uz": "Uzoq ishlatilsa, buyum eskirishi tabiiy.",
+    "note": "-게 되어 있다 bu yerda tabiiy natija; boshqa vaziyatlarda reja, qoida yoki tuzilishni ham bildiradi."
+  },
+  {
+    "id": "C04",
+    "form": "-(으)ㄹ 수밖에 없다",
+    "meaning": "Boshqa yo‘l qolmagani sababli majbur bo‘lish.",
+    "syntax": "-아/어야만 하다 · -지 않을 수 없다",
+    "ko": "막차를 놓쳐서 택시를 탈 수밖에 없었어요.",
+    "uz": "Oxirgi avtobusni o‘tkazib yuborib, taksiga chiqishga majbur bo‘ldim.",
+    "note": "수밖에 없다 boshqa muqobil yo‘qligini, -아/어야 하다 esa zaruratni bildiradi."
+  },
+  {
+    "id": "C05",
+    "form": "-(으)ㄹ 뿐만 아니라",
+    "meaning": "Bir xususiyatga yana birini qo‘shish: «nafaqat …, balki».",
+    "syntax": "-(으)ㄴ/는 데다가 · -(으)ㄴ/는 것은 물론이고",
+    "ko": "이 방은 넓을 뿐만 아니라 밝아요.",
+    "uz": "Bu xona nafaqat keng, balki yorug‘ ham.",
+    "note": "Qo‘shilish shakliga e’tibor bering: 넓을 뿐만 아니라 / 넓은 데다가 / 넓은 것은 물론이고."
+  },
+  {
+    "id": "C06",
+    "form": "-는 바람에",
+    "meaning": "Salbiy natijaga olib keluvchi sabab.",
+    "syntax": "-는 통에 · -아/어서 · -느라고 · -(으)ㄴ/는 탓에",
+    "ko": "밖이 시끄러운 탓에 잠을 못 잤어요.",
+    "uz": "Tashqari shovqin bo‘lgani sababli uxlay olmadim.",
+    "note": "Kitobdagi ikki vaziyatda turli shakllar solishtiriladi. -느라고 bir ish bilan bandlikni talab qiladi; hammasi erkin almashmaydi."
+  },
+  {
+    "id": "C07",
+    "form": "-(으)ㄹ까 봐(서)",
+    "meaning": "Yuz berishi mumkin bo‘lgan hodisadan xavotir.",
+    "syntax": "-(으)ㄹ 것 같아서 · -(으)ㄹ지도 몰라서",
+    "ko": "비가 올까 봐 우산을 챙겼어요.",
+    "uz": "Yomg‘ir yog‘ishidan xavotirlanib, soyabon oldim.",
+    "note": "Keyingi gap xavotir yoki ehtiyot chorasi bo‘lsa yaqin. Oddiy taxminning o‘zi xavotirni anglatmaydi."
+  },
+  {
+    "id": "C08",
+    "form": "-자마자",
+    "meaning": "Bir hodisa ortidan darhol ikkinchisi.",
+    "syntax": "-는 대로 · -(으)면 바로 · -기가 무섭게",
+    "ko": "수업이 끝나자마자 도서관에 갈 거예요.",
+    "uz": "Dars tugashi bilanoq kutubxonaga boraman.",
+    "note": "-는 대로 reja/buyruqda juda mos; -기가 무섭게 tez va keskin ketma-ketlikni kuchliroq ta’kidlaydi."
+  },
+  {
+    "id": "C09",
+    "form": "-(으)ㄴ/는 셈이다",
+    "meaning": "Vaziyat amalda boshqa holat bilan teng deb baholanadi.",
+    "syntax": "-(으)ㄴ/는 거나 같다 · 거나 마찬가지이다 · 거나 다름없다",
+    "ko": "친구가 다 했으니 저는 구경만 한 셈이에요.",
+    "uz": "Hammasini do‘stim qildi, men esa faqat tomosha qilgan hisoblanaman.",
+    "note": "To‘liq shakllar: 구경만 한 거나 같다 / 마찬가지이다 / 다름없다. Baho yoki taqqoslash saqlanishi kerak."
+  },
+  {
+    "id": "C10",
+    "form": "-(으)나 마나",
+    "meaning": "Ishni qilish-qilmaslik natijaga ta’sir qilmaydi.",
+    "syntax": "-아/어도 · -지 않아도 · -(으)ㄹ 것도 없이",
+    "ko": "물어보나 마나 대답은 같을 거예요.",
+    "uz": "So‘rasam ham, so‘ramasam ham, javob bir xil bo‘ladi.",
+    "note": "Natija oldindan ayon. -아/어도 yakka o‘zi «foydasiz» degani emas; buni gapning mazmuni beradi."
+  },
+  {
+    "id": "C11",
+    "form": "-게",
+    "meaning": "Maqsad yoki ko‘zlangan natija.",
+    "syntax": "-도록",
+    "ko": "잊지 않게 휴대 전화에 메모했어요.",
+    "uz": "Unutmaslik uchun telefonimga yozib qo‘ydim.",
+    "note": "Bu yerda maqsad bildiruvchi -게 nazarda tutilgan. 예쁘게 dagi ravish yasovchi vazifa boshqa."
+  },
+  {
+    "id": "C12",
+    "form": "-는 길에",
+    "meaning": "Bir joyga ketayotgan yoki qaytayotgan yo‘lda.",
+    "syntax": "-다가",
+    "ko": "학교에 가는 길에 친구를 만났어요.",
+    "uz": "Maktabga ketayotib do‘stimni uchratdim.",
+    "note": "Harakat yo‘nalishi bo‘lsa 가다가 bilan yaqin. -다가 ning barcha ishlatilishi «yo‘lda» degani emas."
+  },
+  {
+    "id": "C13",
+    "form": "-아/어 봐야",
+    "meaning": "Urinishning foydasi yoki natijasi cheklangan.",
+    "syntax": "-아/어 봐도 · -(ㄴ/는)다고 해도",
+    "ko": "지금 출발해 봐야 제시간에 도착하기 어려워요.",
+    "uz": "Hozir yo‘lga chiqqanimiz bilan, vaqtida yetib borish qiyin.",
+    "note": "Keyingi gap foydasizlik yoki cheklovni ko‘rsatadi. 해 봐야 ning taxminiy miqdor ma’nosi ham mavjud."
+  },
+  {
+    "id": "C14",
+    "form": "-(으)ㄹ 뿐이다",
+    "meaning": "Faqat shu holat yoki ish bilan cheklanish.",
+    "syntax": "N에 불과하다 · N에 지나지 않다 · -(으)ㄹ 따름이다",
+    "ko": "그 말은 변명일 뿐이에요.",
+    "uz": "Bu gap shunchaki bahona, xolos.",
+    "note": "Otli shakl: 변명에 불과하다/지나지 않다. Holat-hisda: 미안할 뿐이다 → 미안할 따름이다."
+  },
+  {
+    "id": "C15",
+    "form": "-았/었어야 했는데",
+    "meaning": "Bajarilmagan kerakli ishga afsuslanish.",
+    "syntax": "-(으)ㄹ걸 그랬다",
+    "ko": "미리 예약했어야 했는데 잊었어요.",
+    "uz": "Oldindan band qilishim kerak edi, lekin unutdim.",
+    "note": "예약할걸 그랬어요 «band qilsam bo‘larkan» degan afsus. -았/었어야 했다 ayrim gaplarda zaruratning o‘zi bo‘lishi mumkin."
+  },
+  {
+    "id": "C16",
+    "form": "-(으)려던 참이다",
+    "meaning": "Ayni hozir bir ishni boshlamoqchi bo‘lib turish.",
+    "syntax": "-(으)려고 하다",
+    "ko": "저도 지금 전화하려던 참이었어요.",
+    "uz": "Men ham ayni hozir telefon qilmoqchi bo‘lib turgandim.",
+    "note": "-려고 하다 umumiy niyat; -려던 참이다 juda yaqin paytdagi tayyor niyatni bildiradi."
+  },
+  {
+    "id": "C17",
+    "form": "-기 위해서",
+    "meaning": "Maqsad: «…ish uchun».",
+    "syntax": "-(으)려고 · -고자",
+    "ko": "장학금을 받기 위해서 열심히 공부해요.",
+    "uz": "Stipendiya olish uchun qattiq o‘qiyman.",
+    "note": "-고자 rasmiyroq. Maqsadli harakatlarda mos; N을/를 위해서 esa otga qo‘shiladi."
+  },
+  {
+    "id": "C18",
+    "form": "-는 대로",
+    "meaning": "Ko‘rsatilgan usul yoki namuna bo‘yicha aynan bajarish.",
+    "syntax": "-는 것처럼 · -는 것과 같이",
+    "ko": "제가 하는 대로 따라 하세요.",
+    "uz": "Men qilganimdek takrorlang.",
+    "note": "Bu «…bilanoq» ma’nosidagi -는 대로 emas. C08 bilan vazifasini solishtiring."
+  },
+  {
+    "id": "C19",
+    "form": "-에 달려 있다",
+    "meaning": "Natijaning omil yoki usulga bog‘liqligi.",
+    "syntax": "-기 나름이다",
+    "ko": "결과는 얼마나 노력하느냐에 달려 있어요.",
+    "uz": "Natija qancha harakat qilishingizga bog‘liq.",
+    "note": "Natija bajarish usuliga bog‘liq bo‘lsa yaqin: 노력하기 나름이다. N에 달려 있다 kengroq qo‘llanadi."
+  },
+  {
+    "id": "C20",
+    "form": "-(으)ㄹ지도 모르다",
+    "meaning": "Bir hodisaning yuz berish ehtimoli.",
+    "syntax": "-(으)ㄹ 수도 있다",
+    "ko": "내일은 길이 막힐지도 몰라요.",
+    "uz": "Ertaga yo‘lda tirbandlik bo‘lishi mumkin.",
+    "note": "-을 수도 있다 bu yerda ehtimol; boshqa gaplarda qobiliyat yoki variantni ham ko‘rsatishi mumkin."
+  },
+  {
+    "id": "C21",
+    "form": "-(으)ㄹ 만하다",
+    "meaning": "Bir ishga arzirli, yaroqli yoki bajarishga yetarli bo‘lish.",
+    "syntax": "-(으)ㄹ 수 있다 (mos kontekstda)",
+    "ko": "근처에 아이들과 놀 만한 공원이 있어요.",
+    "uz": "Yaqinda bolalar bilan o‘ynashga qulay bog‘ bor.",
+    "note": "놀 수 있는 bog‘da o‘ynash mumkinligini, 놀 만한 esa yaroqliligini ham bildiradi; doim aynan teng emas."
+  },
+  {
+    "id": "C22",
+    "form": "-은/는커녕",
+    "meaning": "Katta kutilmani chetga qo‘yib, hatto kichigi ham bajarilmasligi.",
+    "syntax": "-은/는 물론이고 · -은/는 말할 것도 없고",
+    "ko": "너무 바빠서 여행은커녕 산책도 못 해요.",
+    "uz": "Juda bandman: sayohat u yoqda tursin, sayr ham qila olmayman.",
+    "note": "Yaqin shakllar keyingi qism salbiy bo‘lgandagina shu ma’noni beradi. 밥은커녕 / 커피는커녕."
+  },
+  {
+    "id": "C23",
+    "form": "-(으)ㄴ/는 척하다",
+    "meaning": "O‘zini haqiqatga mos bo‘lmagan tarzda ko‘rsatish.",
+    "syntax": "-(으)ㄴ/는 체하다 · -(으)ㄴ/는 것처럼 행동하다",
+    "ko": "그는 모르는 척했어요.",
+    "uz": "U o‘zini bilmagandek tutdi.",
+    "note": "모르는 체했다 / 모르는 것처럼 행동했다. Oddiy o‘xshashlikdan farqli ravishda atayin qiyofa ko‘rsatish bor."
+  },
+  {
+    "id": "C24",
+    "form": "-다가 보니까 / -다 보니까",
+    "meaning": "Davomli tajriba ortidan aniqlangan natija yoki sabab.",
+    "syntax": "-(으)ㄴ/는 탓에 (salbiy natijali kontekstda)",
+    "ko": "잠을 적게 자다 보니까 자주 피곤해요.",
+    "uz": "Kam uxlayverganim uchun tez-tez charchayman.",
+    "note": "자주 자지 못하는 탓에 kabi sabab shakli salbiy vaziyatda yaqin. Ijobiy natijada 탓에 bilan almashmaydi."
+  },
+  {
+    "id": "C25",
+    "form": "-듯이",
+    "meaning": "Ikki holatni o‘xshatish: «xuddi …dek».",
+    "syntax": "-(으)ㄴ/는 것처럼",
+    "ko": "사람마다 취향이 다르듯이 생각도 달라요.",
+    "uz": "Odamlarning didi turlicha bo‘lganidek, fikri ham turlicha.",
+    "note": "다른 것처럼 yaqin. Taxmin bildiruvchi -는 듯하다 bilan vazifasi boshqa."
+  },
+  {
+    "id": "C26",
+    "form": "-(으)ㄴ/는 반면에",
+    "meaning": "Ikki xususiyat yoki tomonning qarama-qarshiligi.",
+    "syntax": "-(으)ㄴ/는 데 반해",
+    "ko": "이 집은 넓은 반면에 교통이 불편해요.",
+    "uz": "Bu uy keng, ammo transport qatnovi noqulay.",
+    "note": "넓은 데 반해 bilan yaqin. Taqqoslanayotgan tomon yoki mezon aniq bo‘lishi kerak."
+  },
+  {
+    "id": "C27",
+    "form": "-(으)면서(도)",
+    "meaning": "Bir holat mavjud bo‘la turib, unga zid ish qilish.",
+    "syntax": "-고서도",
+    "ko": "그는 사실을 알면서도 말하지 않았어요.",
+    "uz": "U haqiqatni bilsa ham, aytmadi.",
+    "note": "알고서도 yaqin. Bir vaqtdalikni bildiruvchi A16 dagi -(으)면서 bu guruhdan farq qiladi."
+  },
+  {
+    "id": "C28",
+    "form": "-(으)ㄴ/는데도",
+    "meaning": "Kutilgan natijaga zid holat: «…bo‘lsa-da».",
+    "syntax": "-지만",
+    "ko": "열심히 연습하는데도 아직 어려워요.",
+    "uz": "Astoydil mashq qilsam-da, hali qiyin.",
+    "note": "-는데도 kutilmaga zidlikni, -지만 esa umumiy qarama-qarshilikni bildiradi. Ot bilan -인데도."
+  },
+  {
+    "id": "C29",
+    "form": "-(으)ㄴ/는가 하면",
+    "meaning": "Bir tomoni shunday bo‘lsa, boshqa tomoni boshqacha ekanini aytish.",
+    "syntax": "-기는 하지만 (qarama-qarshi kontekstda)",
+    "ko": "재미있는 부분이 있는가 하면 지루한 부분도 있어요.",
+    "uz": "Qiziqarli qismlari bo‘lsa, zerikarli qismlari ham bor.",
+    "note": "Qo‘shimcha tur yoki parallel hodisani ham ko‘rsatadi. Har safar -기는 하지만 bilan almashmaydi."
+  },
+  {
+    "id": "C30",
+    "form": "-든지",
+    "meaning": "Qanday tanlov bo‘lishidan qat’i nazar.",
+    "syntax": "-더라도 (erkin tanlovli kontekstda)",
+    "ko": "무슨 일을 하든지 끝까지 하세요.",
+    "uz": "Qanday ish qilsangiz ham, oxirigacha bajaring.",
+    "note": "무슨 일을 하더라도 yaqin. -든지 tanlovga, -더라도 yon berilgan farazga urg‘u beradi."
+  },
+  {
+    "id": "C31",
+    "form": "-도록",
+    "meaning": "Bir vaqt chegarasigacha davom etish.",
+    "syntax": "-(으)ㄹ 때까지",
+    "ko": "밤이 늦도록 이야기를 나눴어요.",
+    "uz": "Kech bo‘lguncha suhbatlashdik.",
+    "note": "밤이 늦을 때까지 yaqin. Maqsad bildiruvchi -도록 bilan aralashtirmang."
+  },
+  {
+    "id": "C32",
+    "form": "-(ㄴ/는)다기에 / -다길래",
+    "meaning": "Eshitilgan ma’lumot asosida ish qilish.",
+    "syntax": "-(ㄴ/는)다고 해서",
+    "ko": "이 책이 좋다길래 샀어요.",
+    "uz": "Bu kitob yaxshi deb eshitib, sotib oldim.",
+    "note": "Fe’l: 간다기에, 먹는다길래; sifat: 좋다기에; ot: 학생이라기에. Buyruq va taklif xabarlari boshqa shaklda keladi."
+  },
+  {
+    "id": "C33",
+    "form": "-(으)려면",
+    "meaning": "Niyatni amalga oshirish uchun kerakli shart.",
+    "syntax": "-기 위해서는",
+    "ko": "한국어를 잘하려면 꾸준히 연습해야 해요.",
+    "uz": "Koreys tilini yaxshi bilish uchun muntazam mashq qilish kerak.",
+    "note": "-기 위해서는 maqsadni, -려면 esa maqsad bilan shartni birlashtiradi. Keyingi gap shartni ko‘rsatadi."
+  },
+  {
+    "id": "C34",
+    "form": "-아/어 보이다",
+    "meaning": "Ko‘rinishdan chiqarilgan subyektiv baho.",
+    "syntax": "-(으)ㄴ 것 같다",
+    "ko": "이 음식은 맛있어 보여요.",
+    "uz": "Bu taom mazali ko‘rinadi.",
+    "note": "맛있는 것 같다 mazmunan yaqin, ammo ko‘rishdan boshqa dalilga ham tayanishi mumkin."
+  },
+  {
+    "id": "C35",
+    "form": "-(으)ㄹ 리가 없다",
+    "meaning": "Bir hodisani juda kuchli ishonch bilan inkor qilish.",
+    "syntax": "-지 않을 것이다 / -지 않았을 것이다",
+    "ko": "그 사람이 약속을 잊었을 리가 없어요.",
+    "uz": "U odam va’dani unutgan bo‘lishi mumkin emas.",
+    "note": "잊지 않았을 것이다 yaqin mazmun beradi, lekin 리가 없다 inkori odatda kuchliroq."
+  },
+  {
+    "id": "C36",
+    "form": "-기만 하다 / -기만 하면",
+    "meaning": "Asosiy shakl «faqat …qilish»; shartli shakl «har …ganda».",
+    "syntax": "-기만 하면 ≈ -(으)ㄹ 때마다",
+    "ko": "버스를 타기만 하면 졸려요.",
+    "uz": "Avtobusga har chiqqanimda uyqum keladi.",
+    "note": "Faqat -기만 하면 ushbu takroriy vaziyatda 때마다 bilan yaqin. -기만 하다 yakka holda «har safar» degani emas."
+  },
+  {
+    "id": "C37",
+    "form": "-(으)ㄴ 채(로)",
+    "meaning": "Oldingi holat saqlangan holda boshqa ish qilish.",
+    "syntax": "-고 (holat saqlanishi aniq bo‘lsa)",
+    "ko": "모자를 쓴 채로 사진을 찍었어요.",
+    "uz": "Bosh kiyimini kiygan holda suratga tushdim.",
+    "note": "모자를 쓰고 사진을 찍었다 yaqin. Oddiy -고 har doim saqlanayotgan holatni bildirmaydi."
+  },
+  {
+    "id": "C38",
+    "form": "-고도",
+    "meaning": "Bir ish bo‘lgandan keyin ham kutilgan natija chiqmasligi.",
+    "syntax": "-았/었는데도",
+    "ko": "설명을 듣고도 이해하지 못했어요.",
+    "uz": "Tushuntirishni eshitsam ham, tushunmadim.",
+    "note": "설명을 들었는데도 yaqin. «Bajarildi, lekin natija boshqacha» ma’nosi saqlanadi."
+  },
+  {
+    "id": "C39",
+    "form": "-(으)ㄴ/는 줄 몰랐다",
+    "meaning": "Bir faktni bilmagan bo‘lish yoki aksincha deb o‘ylagan bo‘lish.",
+    "syntax": "Qarama-qarshi mazmun + -다고 생각했다",
+    "ko": "오늘 수업이 있는 줄 몰랐어요.",
+    "uz": "Bugun dars borligini bilmagan edim.",
+    "note": "수업이 없다고 생각했다 kitobdagi vaziyatda yaqin. 줄 몰랐다 ba’zan shunchaki xabarsizlikni bildiradi; har doim teskari ishonch emas."
+  },
+  {
+    "id": "C40",
+    "form": "-(으)ㄴ 나머지",
+    "meaning": "Bir holat haddan oshishi natijasida ko‘pincha salbiy oqibat.",
+    "syntax": "-(으)ㄴ/는 탓에",
+    "ko": "너무 긴장한 나머지 이름을 잊었어요.",
+    "uz": "Juda hayajonlanganimdan ismni unutdim.",
+    "note": "긴장한 탓에 yaqin, ammo 나머지 kuchli darajani ham ta’kidlaydi. Oddiy sababga ko‘r-ko‘rona almashtirmang."
+  },
+  {
+    "id": "D01",
+    "form": "-(으)ㄴ/는지",
+    "meaning": "Bir faktni bilish, bilmaslik yoki tekshirish.",
+    "syntax": "V-는지 · A-(으)ㄴ지 · N-인지",
+    "ko": "어디에 사는지 알아요?",
+    "uz": "Qayerda yashashini bilasizmi?",
+    "note": "Kitobdagi 16-bet eslatmasi. -(으)ㄹ지 ko‘pincha kelajakdagi tanlov/noaniqlikni bildiradi."
+  },
+  {
+    "id": "D02",
+    "form": "-고서",
+    "meaning": "Bir ishni tugatgach keyingi ishni bajarish.",
+    "syntax": "V + 고서",
+    "ko": "손을 씻고서 밥을 먹었어요.",
+    "uz": "Qo‘limni yuvib, ovqat yedim.",
+    "note": "14-bet test varianti. -고 나서 bilan ketma-ketlik ma’nosida yaqin."
+  },
+  {
+    "id": "D03",
+    "form": "-아/어도 되다",
+    "meaning": "Ruxsat: «…sa bo‘ladi».",
+    "syntax": "V + 아/어도 되다",
+    "ko": "여기에 앉아도 돼요.",
+    "uz": "Bu yerga o‘tirsangiz bo‘ladi.",
+    "note": "14-bet test varianti. -(으)면 되다 «shuni qilsa kifoya» ma’nosini ham beradi."
+  },
+  {
+    "id": "D04",
+    "form": "-도록 하다",
+    "meaning": "Bajarishni buyurish, tavsiya qilish yoki o‘ziga vazifa belgilash.",
+    "syntax": "V + 도록 하다",
+    "ko": "내일까지 제출하도록 하세요.",
+    "uz": "Ertagacha topshiring.",
+    "note": "14-bet test varianti. Faqat maqsad bildiruvchi -도록 dan tuzilishi kengroq."
+  },
+  {
+    "id": "D05",
+    "form": "-아/어야 하다",
+    "meaning": "Zarurat yoki majburiyat: «…ishi kerak».",
+    "syntax": "V/A + 아/어야 하다",
+    "ko": "약속을 지켜야 해요.",
+    "uz": "Va’daga amal qilish kerak.",
+    "note": "14 va 19-betlardagi variantlar. -아/어야 되다 ham keng ishlatiladi."
+  },
+  {
+    "id": "D06",
+    "form": "-던데",
+    "meaning": "O‘tmishda ko‘rilgan holatni keyingi gapga asos yoki qarama-qarshi fon qilish.",
+    "syntax": "V/A + 던데",
+    "ko": "그 식당은 맛있던데 같이 갈까요?",
+    "uz": "U oshxonaning taomi mazali ekan, birga boramizmi?",
+    "note": "18-bet test varianti. So‘zlovchining o‘z tajribasi/kuzatuvi seziladi."
+  },
+  {
+    "id": "D07",
+    "form": "-기에는",
+    "meaning": "Bir ish nuqtayi nazaridan baholash: «…ish uchun».",
+    "syntax": "V + 기에는",
+    "ko": "이 옷은 여름에 입기에는 두꺼워요.",
+    "uz": "Bu kiyim yozda kiyish uchun qalin.",
+    "note": "18-bet test varianti. Odatda moslik, qiyinlik yoki daraja bahosi keladi."
+  },
+  {
+    "id": "D08",
+    "form": "-(으)ㄹ 테니까",
+    "meaning": "So‘zlovchining niyati yoki kuchli taxmini keyingi gapga asos bo‘ladi.",
+    "syntax": "V/A + (으)ㄹ 테니까",
+    "ko": "제가 도와줄 테니까 걱정하지 마세요.",
+    "uz": "Men yordam beraman, shuning uchun xavotir olmang.",
+    "note": "18-bet test varianti. Niyatda ko‘pincha birinchi shaxs; taxminda boshqa egalar ham keladi."
+  },
+  {
+    "id": "D09",
+    "form": "-(으)ㄹ 겸(해서)",
+    "meaning": "Bir yoki bir necha maqsadni birga ko‘zlash.",
+    "syntax": "V + (으)ㄹ 겸(해서)",
+    "ko": "운동도 할 겸 걸어서 갔어요.",
+    "uz": "Mashq ham bo‘lsin deb, piyoda bordim.",
+    "note": "18-bet test varianti. Ko‘pincha -도 va ikki maqsad bilan ishlatiladi."
+  },
+  {
+    "id": "D10",
+    "form": "-(ㄴ/는)다면",
+    "meaning": "Faraz qilingan shart: «agar …bo‘lsa».",
+    "syntax": "V-ㄴ/는다면 · A-다면 · N-(이)라면",
+    "ko": "시간이 있다면 여행을 가고 싶어요.",
+    "uz": "Vaqtim bo‘lsa, sayohatga borishni xohlardim.",
+    "note": "18-bet test varianti. Oddiy -(으)면 ga nisbatan faraziylik ko‘proq sezilishi mumkin."
+  },
+  {
+    "id": "D11",
+    "form": "-고 있다",
+    "meaning": "Harakatning davom etishi; ayrim fe’llarda saqlanayotgan holat.",
+    "syntax": "V + 고 있다",
+    "ko": "지금 책을 읽고 있어요.",
+    "uz": "Hozir kitob o‘qiyapman.",
+    "note": "19-bet test varianti. 입고 있다 kiyib turgan holatni ham bildiradi; faqat jarayon bilan cheklanmaydi."
+  },
+  {
+    "id": "D12",
+    "form": "-곤 하다",
+    "meaning": "Odatda yoki vaqti-vaqti bilan takrorlanadigan harakat.",
+    "syntax": "V + 곤 하다",
+    "ko": "어릴 때 이 공원에서 놀곤 했어요.",
+    "uz": "Bolaligimda bu bog‘da o‘ynab turardim.",
+    "note": "19-bet test varianti. -곤 했다 o‘tmishdagi odatni ko‘rsatadi."
+  },
+  {
+    "id": "D13",
+    "form": "-기 쉽다",
+    "meaning": "Bir ishning osonligi yoki holatning tez yuz berish ehtimoli.",
+    "syntax": "V/A + 기 쉽다",
+    "ko": "이 단어는 틀리기 쉬워요.",
+    "uz": "Bu so‘zda xato qilish oson.",
+    "note": "19-bet test varianti. Kontekstga qarab «oson» yoki «moyil» ma’nosi."
+  },
+  {
+    "id": "D14",
+    "form": "-는 중이다",
+    "meaning": "Ish ayni bajarilish jarayonida ekanini bildirish.",
+    "syntax": "V-는 중이다 · N 중이다",
+    "ko": "지금 회의하는 중이에요.",
+    "uz": "Hozir majlis o‘tkazyapmiz.",
+    "note": "19-bet test varianti. Jarayon markazda; sifatga odatda qo‘shilmaydi."
+  },
+  {
+    "id": "D15",
+    "form": "-(으)면 좋겠다",
+    "meaning": "Istak yoki umid: «…sa yaxshi bo‘lardi».",
+    "syntax": "V/A + (으)면 좋겠다",
+    "ko": "내일 날씨가 좋으면 좋겠어요.",
+    "uz": "Ertaga ob-havo yaxshi bo‘lsa edi.",
+    "note": "19-bet test varianti. -았/었으면 좋겠다 istakni kuchliroq yoki faraziyroq ifodalashi mumkin."
+  },
+  {
+    "id": "D16",
+    "form": "-기 십상이다",
+    "meaning": "Noxush holat yuz berish ehtimoli juda yuqori.",
+    "syntax": "V/A + 기 십상이다",
+    "ko": "서두르면 실수하기 십상이에요.",
+    "uz": "Shoshilsa, xato qilish hech gap emas.",
+    "note": "19-bet test varianti. Odatda salbiy natija; -기 마련이다 esa umumiy qonuniyat."
+  },
+  {
+    "id": "D17",
+    "form": "-(으)ㄹ 텐데",
+    "meaning": "Taxmin yoki niyatni fon qilib, keyingi gapga ulash.",
+    "syntax": "V/A + (으)ㄹ 텐데",
+    "ko": "밖이 추울 텐데 따뜻하게 입으세요.",
+    "uz": "Tashqari sovuq bo‘lsa kerak, issiqroq kiying.",
+    "note": "25-bet test varianti. Taxminiy fonni -(으)ㄹ 테니까 dagi aniq sabab ta’kididan farqlang."
+  },
+  {
+    "id": "D18",
+    "form": "-(으)ㄴ/는 이상",
+    "meaning": "Bir holat haqiqat ekan, undan tabiiy majburiyat yoki xulosa chiqarish.",
+    "syntax": "V-는/(으)ㄴ 이상 · A-(으)ㄴ 이상",
+    "ko": "약속한 이상 꼭 지켜야 해요.",
+    "uz": "Va’da bergan ekansiz, albatta unga amal qilishingiz kerak.",
+    "note": "25-bet test varianti. «Modomiki…», «…ekan» ma’nosi."
+  },
+  {
+    "id": "D19",
+    "form": "-(으)ㄴ/는 데 비해",
+    "meaning": "Bir holat bilan taqqoslash: «…ga nisbatan».",
+    "syntax": "V-는 데 비해 · A-(으)ㄴ 데 비해",
+    "ko": "가격이 싼 데 비해 품질이 좋아요.",
+    "uz": "Narxi arzonligiga nisbatan sifati yaxshi.",
+    "note": "25-bet test varianti. -는 데 반해 qarama-qarshilikni kuchliroq ta’kidlaydi."
+  },
+  {
+    "id": "D20",
+    "form": "-(으)ㄴ/는 셈 치고",
+    "meaning": "Haqiqat boshqacha bo‘lsa ham, shunday deb hisoblab ish tutish.",
+    "syntax": "V-(으)ㄴ/는 셈 치고 · N-인 셈 치고",
+    "ko": "경험을 산 셈 치고 잊어버리세요.",
+    "uz": "Buni tajriba orttirgan hisoblab, unuting.",
+    "note": "25-bet test varianti. 셈이다 vaziyatga baho; 셈 치고 esa faraz qilib qabul qilish."
+  },
+  {
+    "id": "D21",
+    "form": "-는 것보다",
+    "meaning": "Bir harakatni boshqasi bilan taqqoslash.",
+    "syntax": "V + 는 것보다",
+    "ko": "혼자 하는 것보다 같이 하는 게 좋아요.",
+    "uz": "Yolg‘iz qilgandan ko‘ra, birga qilgan yaxshi.",
+    "note": "25-bet test varianti. Taqqoslash uchun ikkala tomon bir xil mezonda olinadi."
+  }
+]

@@ -1,0 +1,711 @@
+{
+  "exam": 96,
+  "section": "reading",
+  "sourceExam": "96_2교시_읽기.pdf — TOPIK II B-홀수형",
+  "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+  "answerKeySha256": "1bafde011f5c95ea7bb8cf1a444737292c20bdf635f1f482333d181610254c5d",
+  "answerKeyPage": 3,
+  "provenance": "Reproduction of the document titled 제96회 한국어능력시험 정답 및 배점표, hosted by trilingual.jp. Exam title was visually checked on page 1 and reading table on page 3. All 48 disclosed reading questions were independently solved against the supplied exam text; all answers agree. This is a mirrored document, not a direct download from the issuing government site. Questions42–43 were not reconstructed.",
+  "questions": {
+    "1": {
+      "answer1based": 4,
+      "mirroredAnswer1based": 4,
+      "explanationUz": "Dorini ichgandan keyin isitma tushgan. -고 나서 bir ish tugagach keyingi holat yuz berishini bildiradi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          5
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "2": {
+      "answer1based": 1,
+      "mirroredAnswer1based": 1,
+      "explanationUz": "Ertaga kimbap tayyorlash uchun masalliqlar oldindan tayyorlab qo‘yilgan. -아/어 놓다 bajarilgan ish natijasini keyingi maqsad uchun saqlashni bildiradi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          5
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "3": {
+      "answer1based": 1,
+      "mirroredAnswer1based": 1,
+      "explanationUz": "Noto‘g‘ri avtobusga chiqish darsga kechikishga sabab bo‘lgan. 타는 바람에 va 탄 탓에 bu gapda salbiy natijaning sababini bildiradi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          5
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "4": {
+      "answer1based": 4,
+      "mirroredAnswer1based": 4,
+      "explanationUz": "Yig‘ilish cho‘zilgani uchun uchrashuvni kechiktirishdan boshqa chora qolmagan. -아/어야만 하다 ma’nosi bu yerda -(으)ㄹ 수밖에 없다 bilan mos.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          5
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "5": {
+      "answer1based": 2,
+      "mirroredAnswer1based": 2,
+      "explanationUz": "Yopiniboq uyquga ketish, ertalabgacha iliq va yumshoq bo‘lish tasvirlangan. Bu 이불 — ko‘rpa haqidagi reklama.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          6
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "6": {
+      "answer1based": 4,
+      "mirroredAnswer1based": 4,
+      "explanationUz": "Bugungi xotirani bir suratda saqlash taklif qilinyapti. Demak, matn 사진관 — fotostudiya haqida.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          6
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "7": {
+      "answer1based": 1,
+      "mirroredAnswer1based": 1,
+      "explanationUz": "Maktab oldida sekin yurish va bolalar bor-yo‘qligini yana tekshirish so‘ralgan. Mavzu 안전 운전 — xavfsiz haydash.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          6
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "8": {
+      "answer1based": 1,
+      "mirroredAnswer1based": 1,
+      "explanationUz": "Ovqatlanish sanasi, vaqti, odamlar soni va aloqa ma’lumotlarini kiritish bosqichlari berilgan. Bu 예약 방법 — band qilish tartibi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          6
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "9": {
+      "answer1based": 3,
+      "mirroredAnswer1based": 3,
+      "explanationUz": "E’londa ariza blankini shahar hokimiyati saytining e’lonlar bo‘limidan yuklab olish mumkinligi yozilgan. Natija emailda emas, saytda chiqadi; topshirish muddati 15-noyabr.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          7
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "10": {
+      "answer1based": 2,
+      "mirroredAnswer1based": 2,
+      "explanationUz": "Diagrammada kosmetika 19%, oziq-ovqat 31%: kosmetika ulushi oziq-ovqatnikidan kichik. Qolgan variantlar ulushlar va tartibga mos kelmaydi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          7
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "11": {
+      "answer1based": 4,
+      "mirroredAnswer1based": 4,
+      "explanationUz": "Matnda dastur ayniqsa robot olimi bo‘lishni istagan o‘quvchilarga yoqishi aytilgan. Dastur avvalgi yili ham o‘tkazilgan va bolalar institutga boradi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          8
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "12": {
+      "answer1based": 4,
+      "mirroredAnswer1based": 4,
+      "explanationUz": "Qishloq aholisi itning ortidan borib jarohatlangan haydovchini topgan. Shunday qilib ular avariya bo‘lganini bilishgan.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          8
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "13": {
+      "answer1based": 2,
+      "mirroredAnswer1based": 2,
+      "explanationUz": "Avval ilk xorij safari (가), keyin sovg‘aga pul yetmasligi (다), so‘ng otkritka yuborish (라), oxirida oilaning taassuroti (나) keladi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          9
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "14": {
+      "answer1based": 3,
+      "mirroredAnswer1based": 3,
+      "explanationUz": "Avval do‘nadning dastlabki tayyorlanishi (다), keyin o‘rtasi pishmasligi (나), uni halqa shakliga keltirish (라), oxirida bir tekis pishish natijasi (가) keladi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          9
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "15": {
+      "answer1based": 1,
+      "mirroredAnswer1based": 1,
+      "explanationUz": "Avval mushukning devor ustida yurishi (나), uning sababi (다), mo‘ylovning yana bir vazifasi (가), so‘ng kayfiyatni ko‘rsatuvchi misollar (라) beriladi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          9
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "16": {
+      "answer1based": 1,
+      "mirroredAnswer1based": 1,
+      "explanationUz": "Haqiqiy telefon raqami filmda ko‘rinsa egasiga begona qo‘ng‘iroqlar keladi. Maxsus raqamlar ana shu zararning oldini olish uchun beriladi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          10
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "17": {
+      "answer1based": 3,
+      "mirroredAnswer1based": 3,
+      "explanationUz": "Ilgari neft tezroq tugashi taxmin qilingan, hozir esa uzoqroq foydalanish mumkinligi aytilmoqda. Yangi qidiruv texnologiyasi foydalanish mumkin bo‘lgan davrni uzaytirgan.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          10
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "18": {
+      "answer1based": 1,
+      "mirroredAnswer1based": 1,
+      "explanationUz": "Ko‘prik ustunidagi belgilar daryo suvining qanchaga ko‘tarilganini o‘lchashga xizmat qiladi. Demak, ular suv balandligidagi o‘zgarishni ko‘rsatadi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          10
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "19": {
+      "answer1based": 4,
+      "mirroredAnswer1based": 4,
+      "explanationUz": "Mavhum savol javob topishni qiyinlashtiradi; buning aksiga, aniq savol foydali javob beradi. Ikki holatni qarama-qarshi qo‘yish uchun 반면 mos.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          11
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "20": {
+      "answer1based": 2,
+      "mirroredAnswer1based": 2,
+      "explanationUz": "Butun matn foydali va aniq javob olish uchun savolni to‘g‘ri shakllantirish zarurligini ko‘rsatadi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          11
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "21": {
+      "answer1based": 2,
+      "mirroredAnswer1based": 2,
+      "explanationUz": "O‘qituvchilar maktabni saqlash yo‘lini birgalikda o‘ylashgan. 머리를 맞대다 bir muammoni birga muhokama qilib yechim izlash degani.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          12
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "22": {
+      "answer1based": 3,
+      "mirroredAnswer1based": 3,
+      "explanationUz": "Matnda korxona yordami bilan mashhur musiqachilar qatnashgan konsert tashkil qilingani ochiq aytilgan.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          12
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "23": {
+      "answer1based": 2,
+      "mirroredAnswer1based": 2,
+      "explanationUz": "Qahramon rulni mahkam ushlab faqat oldinga qaragan, oyoqlari qaltiragan. Bu 긴장되다 — asabiylashish, hayajon va taranglik holatini bildiradi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          13
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "24": {
+      "answer1based": 1,
+      "mirroredAnswer1based": 1,
+      "explanationUz": "Qahramon yangi mashina sotib olish o‘rniga vaqtincha otasining mashinasini olib, ishga o‘zi haydab borgan.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          13
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "25": {
+      "answer1based": 3,
+      "mirroredAnswer1based": 3,
+      "explanationUz": "모처럼의 황금연휴 uzoq vaqtdan keyin kelgan uzun ta’tilni, 껑충 esa keskin ortishni bildiradi. Sayohatni band qilish bo‘yicha murojaatlar ko‘paygan.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          14
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "26": {
+      "answer1based": 3,
+      "mirroredAnswer1based": 3,
+      "explanationUz": "수상 유력 mukofot olish ehtimoli yuqoriligini, 기대 고조 esa muxlislar kutishi kuchayganini bildiradi. Mukofot hali berilmagan.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          14
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "27": {
+      "answer1based": 4,
+      "mirroredAnswer1based": 4,
+      "explanationUz": "지지부진하다 ishning sust va oldinga siljimasdan ketishi; 속 터지다 esa bundan toqatsizlanishdir. Aholi tiklash ishlari sekinligidan norozi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          14
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "28": {
+      "answer1based": 4,
+      "mirroredAnswer1based": 4,
+      "explanationUz": "Jonli efir manzarani tahrirsiz va ayni damda ko‘rsatgani uchun tomoshabin o‘zi o‘sha joyga borib tomosha qilayotgandek his qiladi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          15
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "29": {
+      "answer1based": 2,
+      "mirroredAnswer1based": 2,
+      "explanationUz": "Sanjo ijrochisi nota bo‘yicha bir xil kuy chalmaydi: har sahnada muhitga mos turli o‘zgarishlar kiritadi. Shu bois har ijro yangicha ta’sir beradi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          15
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "30": {
+      "answer1based": 4,
+      "mirroredAnswer1based": 4,
+      "explanationUz": "Yupqa polietilen qo‘lqopga yog‘ singadi. Uning juda yupqaligi yog‘ning qo‘lqopdan yanada oson o‘tishiga sabab bo‘ladi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          16
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "31": {
+      "answer1based": 3,
+      "mirroredAnswer1based": 3,
+      "explanationUz": "Xaridorlar taniqli shaxs tavsiya qilgan narsani ortiqcha o‘ylamay oladi. Ularning ishonchi — ta’sirli odam tanloviga ergashib eng yaxshi tanlovni tez qilish mumkinligi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          16
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "32": {
+      "answer1based": 3,
+      "mirroredAnswer1based": 3,
+      "explanationUz": "Matnda urg‘ochi jirafaning bo‘yni homilador bo‘lish yoshida, ya’ni 4–5 yoshda uzayishi aytilgan; bunga yuqoriroq barglardan ko‘proq oziqa olish zarurati bog‘langan.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          17
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "33": {
+      "answer1based": 1,
+      "mirroredAnswer1based": 1,
+      "explanationUz": "Naytingeyl o‘lim sabablarini yozib, statistik dalillarni diagrammaga aylantirgan va shu dalillar yordamida mas’ullarni ishontirgan.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          17
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "34": {
+      "answer1based": 2,
+      "mirroredAnswer1based": 2,
+      "explanationUz": "Figurali uchish konkining old qismi tishli bo‘lib, sportchi sakrashda shu qism bilan muzga tiraladi va balandroq ko‘tariladi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          18
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "35": {
+      "answer1based": 3,
+      "mirroredAnswer1based": 3,
+      "explanationUz": "Daraxtning tez o‘sadigan ildizi devorlarni yorishi, baland shoxlari esa yorug‘likni to‘sishi mumkin. Asosiy fikr — uni mos joyga ekish kerak.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          18
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "36": {
+      "answer1based": 4,
+      "mirroredAnswer1based": 4,
+      "explanationUz": "Sun’iy yomg‘ir faqat bulut bor joyda qo‘llanadi va yog‘in hajmi kam. Shu cheklovlar tufayli u mayda chang muammosining to‘liq yechimi emas.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          19
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "37": {
+      "answer1based": 3,
+      "mirroredAnswer1based": 3,
+      "explanationUz": "Muallif sog‘liq solig‘i zararli mahsulot iste’molini kamaytirishi va sog‘liqni saqlash uchun mablag‘ berishini ta’kidlab, uni joriy etishni yoqlaydi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          19
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "38": {
+      "answer1based": 1,
+      "mirroredAnswer1based": 1,
+      "explanationUz": "Yoshlar yangi texnologiya va qadriyatlarni tez qabul qiladi, o‘z muammolarini yaxshi ifodalaydi. Shu sabab ularning parlamentga kirishi va siyosiy faoliyatini ta’minlash kerak.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          20
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "39": {
+      "answer1based": 1,
+      "mirroredAnswer1based": 1,
+      "explanationUz": "Berilgan gap qurish paytida qolgan izga “watermark” nomi berilganini tushuntiradi. U qog‘ozni qolipda quritish haqidagi birinchi gapdan keyin (ㄱ), “이후” bilan boshlanadigan keyingi bosqichdan oldin keladi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          20
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "40": {
+      "answer1based": 3,
+      "mirroredAnswer1based": 3,
+      "explanationUz": "Berilgan gap dengiz osti relyefi o‘zgarishini batafsil tushuntiradi. Shuning uchun u ortiqcha qum qazish relyefni o‘zgartirishi aytilgan gapdan keyin (ㄷ), cheklovlar haqidagi “이에” gapidan oldin keladi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          21
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "41": {
+      "answer1based": 2,
+      "mirroredAnswer1based": 2,
+      "explanationUz": "Avval Sangchol va do‘konga kelgan mijozlar tanishtiriladi, keyin uning mijozlarga iliq tasalli berishi aytilishi kerak. Keyingi “이 따뜻함” aynan shu iliqlikka ishora qiladi; mos o‘rin ㄴ.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          21
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "42": {
+      "answer1based": null,
+      "mirroredAnswer1based": 3,
+      "explanationUz": "Manba matni mualliflik huquqi sababli oshkor qilinmagan. Bu savol mashq va mock to‘plamlariga kiritilmaydi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          22
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "copyright-withheld-excluded"
+    },
+    "43": {
+      "answer1based": null,
+      "mirroredAnswer1based": 1,
+      "explanationUz": "Manba matni mualliflik huquqi sababli oshkor qilinmagan. Bu savol mashq va mock to‘plamlariga kiritilmaydi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          22
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "copyright-withheld-excluded"
+    },
+    "44": {
+      "answer1based": 2,
+      "mirroredAnswer1based": 2,
+      "explanationUz": "Graffiti ijtimoiy tanqid va kuchsiz guruhlar ovozini ifodalagan. Shuning uchun hokimiyatga nisbatan qarshilik ruhini namoyon etish ma’nosi mos.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          23
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "45": {
+      "answer1based": 4,
+      "mirroredAnswer1based": 4,
+      "explanationUz": "Ilgari chekka, qadrsizlangan madaniyat deb qaralgan graffiti bugun kundalik hayotga kirib, badiiy qadrini tan oldirmoqda. Matnning markaziy mavzusi shu o‘zgarish.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          23
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "46": {
+      "answer1based": 2,
+      "mirroredAnswer1based": 2,
+      "explanationUz": "Muallif o‘rganuvchilar kamayishi sabab nomoddiy meros uzilib qolishi mumkinligidan xavotir bildirgan. Bu munosabat 우려 — tashvishdir.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          24
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "47": {
+      "answer1based": 2,
+      "mirroredAnswer1based": 2,
+      "explanationUz": "Nomoddiy madaniy meros jismoniy shaklga ega emas, shuning uchun uni o‘sha mahorat egasi deb tan olingan insonlar saqlab, boshqalarga o‘rgatadi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          24
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "48": {
+      "answer1based": 3,
+      "mirroredAnswer1based": 3,
+      "explanationUz": "Muallif mavjud choralar yetarli emasligini aytib, bir nechta siyosatni birga qo‘llashni taklif qiladi. Maqsad — transport muammosini hal etish yo‘llarini xilma-xillashtirish.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          25
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "49": {
+      "answer1based": 4,
+      "mirroredAnswer1based": 4,
+      "explanationUz": "Bino va jamoat transporti bog‘lanishini yaxshilash odamlarni jamoat transportiga o‘tkazadi. Natijada atrofdagi avtomobil qatnovi kamayadi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          25
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    },
+    "50": {
+      "answer1based": 4,
+      "mirroredAnswer1based": 4,
+      "explanationUz": "Matnda tirbandlik keltirib chiqaruvchi inshoot egalariga transport yuklamasi to‘lovi belgilanishi aytilgan. Imtiyozlar esa amaldagi holat emas, muallifning keyingi taklifi.",
+      "source": {
+        "exam": 96,
+        "pages": [
+          25
+        ],
+        "answerKeyUrl": "https://trilingual.jp/wp-content/uploads/TOPIK/96_TOPIK2/96_TOPIK2_%E8%A7%A3%E7%AD%94%E5%8F%8A%E3%81%B3%E9%85%8D%E7%82%B9%E8%A1%A8.pdf",
+        "answerKeyPage": 3
+      },
+      "verification": "independently-solved-and-matched-mirrored-answer-document"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+services:
+  app:
+    env_file: !override [.env.docker-test]
+    ports: !override ["127.0.0.1:3200:3000"]
+  worker:
+    env_file: !override [.env.docker-test]
+  backup:
+    env_file: !override [.env.docker-test]

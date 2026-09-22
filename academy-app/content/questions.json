@@ -1,0 +1,1487 @@
+[
+  {
+    "id": "V01-1",
+    "kind": "vocabulary",
+    "topic_id": "V01",
+    "prompt": "‘약속’ so‘zining ma’nosini toping.",
+    "options": [
+      "va’da; uchrashuv kelishuvi",
+      "qaror qilmoq",
+      "ariza bermoq",
+      "tushuntirmoq"
+    ],
+    "answer": 0,
+    "explanation": "약속 — va’da; uchrashuv kelishuvi. Misol: 내일 친구와 약속이 있어요. Ertaga do‘stim bilan uchrashuvim bor.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V02-1",
+    "kind": "vocabulary",
+    "topic_id": "V02",
+    "prompt": "‘준비하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "tajriba",
+      "natija",
+      "tayyorlamoq",
+      "kamchilik"
+    ],
+    "answer": 2,
+    "explanation": "준비하다 — tayyorlamoq. Misol: 시험을 준비하고 있어요. Imtihonga tayyorlanyapman.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V03-1",
+    "kind": "vocabulary",
+    "topic_id": "V03",
+    "prompt": "‘복습하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "takrorlamoq",
+      "tanlamoq",
+      "odat",
+      "imkoniyat"
+    ],
+    "answer": 0,
+    "explanation": "복습하다 — takrorlamoq. Misol: 수업 후에 꼭 복습해요. Darsdan keyin albatta takrorlayman.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V04-1",
+    "kind": "vocabulary",
+    "topic_id": "V04",
+    "prompt": "‘신청하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "ariza bermoq",
+      "fikr; mulohaza",
+      "yetishmaslik",
+      "transport qatnovi"
+    ],
+    "answer": 0,
+    "explanation": "신청하다 — ariza bermoq. Misol: 한국어 수업을 신청했어요. Koreys tili darsiga yozildim.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V05-1",
+    "kind": "vocabulary",
+    "topic_id": "V05",
+    "prompt": "‘기회’ so‘zining ma’nosini toping.",
+    "options": [
+      "ma’lumot",
+      "imkoniyat",
+      "transport qatnovi",
+      "salomatlik"
+    ],
+    "answer": 1,
+    "explanation": "기회 — imkoniyat. Misol: 좋은 기회를 놓치지 마세요. Yaxshi imkoniyatni qo‘ldan boy bermang.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V06-1",
+    "kind": "vocabulary",
+    "topic_id": "V06",
+    "prompt": "‘경험’ so‘zining ma’nosini toping.",
+    "options": [
+      "boshqa transportga o‘tirmoq",
+      "muvaffaqiyatsizlikka uchramoq",
+      "maqsad",
+      "tajriba"
+    ],
+    "answer": 3,
+    "explanation": "경험 — tajriba. Misol: 다양한 경험이 도움이 돼요. Turli tajribalar yordam beradi.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V07-1",
+    "kind": "vocabulary",
+    "topic_id": "V07",
+    "prompt": "‘습관’ so‘zining ma’nosini toping.",
+    "options": [
+      "kamchilik",
+      "muhim bo‘lmoq",
+      "odat",
+      "tajriba"
+    ],
+    "answer": 2,
+    "explanation": "습관 — odat. Misol: 일찍 일어나는 습관이 있어요. Erta turish odatim bor.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V08-1",
+    "kind": "vocabulary",
+    "topic_id": "V08",
+    "prompt": "‘건강’ so‘zining ma’nosini toping.",
+    "options": [
+      "munosabat; aloqa",
+      "talaffuz",
+      "tushunmoq",
+      "salomatlik"
+    ],
+    "answer": 3,
+    "explanation": "건강 — salomatlik. Misol: 건강을 위해 운동해요. Salomatlik uchun mashq qilaman.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V09-1",
+    "kind": "vocabulary",
+    "topic_id": "V09",
+    "prompt": "‘노력하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "qaror qilmoq",
+      "tanlamoq",
+      "harakat qilmoq",
+      "yo‘lga chiqmoq"
+    ],
+    "answer": 2,
+    "explanation": "노력하다 — harakat qilmoq. Misol: 목표를 위해 노력해요. Maqsadim uchun harakat qilaman.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V10-1",
+    "kind": "vocabulary",
+    "topic_id": "V10",
+    "prompt": "‘결과’ so‘zining ma’nosini toping.",
+    "options": [
+      "qulay bo‘lmoq",
+      "tanlamoq",
+      "natija",
+      "maqsad"
+    ],
+    "answer": 2,
+    "explanation": "결과 — natija. Misol: 시험 결과가 나왔어요. Imtihon natijasi chiqdi.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V11-1",
+    "kind": "vocabulary",
+    "topic_id": "V11",
+    "prompt": "‘발음’ so‘zining ma’nosini toping.",
+    "options": [
+      "kamchilik",
+      "talaffuz",
+      "takrorlamoq",
+      "eslamoq; yodda tutmoq"
+    ],
+    "answer": 1,
+    "explanation": "발음 — talaffuz. Misol: 매일 발음을 연습해요. Har kuni talaffuzni mashq qilaman.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V12-1",
+    "kind": "vocabulary",
+    "topic_id": "V12",
+    "prompt": "‘실수’ so‘zining ma’nosini toping.",
+    "options": [
+      "unutib yubormoq",
+      "xato",
+      "afzallik",
+      "qulay bo‘lmoq"
+    ],
+    "answer": 1,
+    "explanation": "실수 — xato. Misol: 누구나 실수를 해요. Hamma xato qiladi.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V13-1",
+    "kind": "vocabulary",
+    "topic_id": "V13",
+    "prompt": "‘주문하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "qatnashmoq",
+      "noqulay bo‘lmoq",
+      "buyurtma bermoq",
+      "madaniyat"
+    ],
+    "answer": 2,
+    "explanation": "주문하다 — buyurtma bermoq. Misol: 커피를 주문했어요. Qahva buyurtma qildim.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V14-1",
+    "kind": "vocabulary",
+    "topic_id": "V14",
+    "prompt": "‘예약하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "kech qolmoq",
+      "oldindan band qilmoq",
+      "atrof-muhit",
+      "boshqa transportga o‘tirmoq"
+    ],
+    "answer": 1,
+    "explanation": "예약하다 — oldindan band qilmoq. Misol: 호텔을 예약했어요. Mehmonxonani band qildim.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V15-1",
+    "kind": "vocabulary",
+    "topic_id": "V15",
+    "prompt": "‘도착하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "yetib kelmoq",
+      "maqsad",
+      "bog‘lanmoq; xabar bermoq",
+      "odat"
+    ],
+    "answer": 0,
+    "explanation": "도착하다 — yetib kelmoq. Misol: 기차가 역에 도착했어요. Poyezd bekatga yetib keldi.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V16-1",
+    "kind": "vocabulary",
+    "topic_id": "V16",
+    "prompt": "‘출발하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "oldindan band qilmoq",
+      "va’da; uchrashuv kelishuvi",
+      "yetarli bo‘lmoq",
+      "yo‘lga chiqmoq"
+    ],
+    "answer": 3,
+    "explanation": "출발하다 — yo‘lga chiqmoq. Misol: 아침 일찍 출발해요. Ertalab erta yo‘lga chiqamiz.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V17-1",
+    "kind": "vocabulary",
+    "topic_id": "V17",
+    "prompt": "‘교통’ so‘zining ma’nosini toping.",
+    "options": [
+      "noqulay bo‘lmoq",
+      "tanlamoq",
+      "transport qatnovi",
+      "atrof-muhit"
+    ],
+    "answer": 2,
+    "explanation": "교통 — transport qatnovi. Misol: 이 동네는 교통이 편리해요. Bu mahallada transport qatnovi qulay.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V18-1",
+    "kind": "vocabulary",
+    "topic_id": "V18",
+    "prompt": "‘환승하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "ma’lumot",
+      "boshqa transportga o‘tirmoq",
+      "yetarli bo‘lmoq",
+      "tushuntirmoq"
+    ],
+    "answer": 1,
+    "explanation": "환승하다 — boshqa transportga o‘tirmoq. Misol: 다음 역에서 환승하세요. Keyingi bekatda boshqa yo‘nalishga o‘ting.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V19-1",
+    "kind": "vocabulary",
+    "topic_id": "V19",
+    "prompt": "‘문화’ so‘zining ma’nosini toping.",
+    "options": [
+      "salomatlik",
+      "madaniyat",
+      "xato",
+      "qatnashmoq"
+    ],
+    "answer": 1,
+    "explanation": "문화 — madaniyat. Misol: 한국 문화에 관심이 있어요. Koreya madaniyatiga qiziqaman.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V20-1",
+    "kind": "vocabulary",
+    "topic_id": "V20",
+    "prompt": "‘환경’ so‘zining ma’nosini toping.",
+    "options": [
+      "kech qolmoq",
+      "yetarli bo‘lmoq",
+      "takrorlamoq",
+      "atrof-muhit"
+    ],
+    "answer": 3,
+    "explanation": "환경 — atrof-muhit. Misol: 환경을 보호해야 해요. Atrof-muhitni himoya qilish kerak.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V21-1",
+    "kind": "vocabulary",
+    "topic_id": "V21",
+    "prompt": "‘정보’ so‘zining ma’nosini toping.",
+    "options": [
+      "muntazam ravishda",
+      "ma’lumot",
+      "natija",
+      "kech qolmoq"
+    ],
+    "answer": 1,
+    "explanation": "정보 — ma’lumot. Misol: 필요한 정보를 찾았어요. Kerakli ma’lumotni topdim.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V22-1",
+    "kind": "vocabulary",
+    "topic_id": "V22",
+    "prompt": "‘관계’ so‘zining ma’nosini toping.",
+    "options": [
+      "munosabat; aloqa",
+      "talaffuz",
+      "tushuntirmoq",
+      "bog‘lanmoq; xabar bermoq"
+    ],
+    "answer": 0,
+    "explanation": "관계 — munosabat; aloqa. Misol: 좋은 관계를 유지해요. Yaxshi munosabatni saqlaymiz.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V23-1",
+    "kind": "vocabulary",
+    "topic_id": "V23",
+    "prompt": "‘성공하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "harakat qilmoq",
+      "yo‘lga chiqmoq",
+      "muvaffaqiyatga erishmoq",
+      "tayyorlamoq"
+    ],
+    "answer": 2,
+    "explanation": "성공하다 — muvaffaqiyatga erishmoq. Misol: 꾸준히 노력하면 성공할 수 있어요. Muntazam harakat qilsangiz, muvaffaqiyatga erishishingiz mumkin.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V24-1",
+    "kind": "vocabulary",
+    "topic_id": "V24",
+    "prompt": "‘실패하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "muvaffaqiyatsizlikka uchramoq",
+      "tayyorlamoq",
+      "madaniyat",
+      "tajriba"
+    ],
+    "answer": 0,
+    "explanation": "실패하다 — muvaffaqiyatsizlikka uchramoq. Misol: 실패해도 다시 도전해요. Muvaffaqiyatsizlikdan keyin ham yana urinaman.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V25-1",
+    "kind": "vocabulary",
+    "topic_id": "V25",
+    "prompt": "‘선택하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "fikr; mulohaza",
+      "qaror qilmoq",
+      "tanlamoq",
+      "reja"
+    ],
+    "answer": 2,
+    "explanation": "선택하다 — tanlamoq. Misol: 원하는 색을 선택하세요. Istagan rangingizni tanlang.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V26-1",
+    "kind": "vocabulary",
+    "topic_id": "V26",
+    "prompt": "‘결정하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "qaror qilmoq",
+      "tanlamoq",
+      "oldindan band qilmoq",
+      "va’da; uchrashuv kelishuvi"
+    ],
+    "answer": 0,
+    "explanation": "결정하다 — qaror qilmoq. Misol: 아직 결정하지 못했어요. Hali qaror qila olmadim.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V27-1",
+    "kind": "vocabulary",
+    "topic_id": "V27",
+    "prompt": "‘이해하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "buyurtma bermoq",
+      "tushunmoq",
+      "qatnashmoq",
+      "oldindan band qilmoq"
+    ],
+    "answer": 1,
+    "explanation": "이해하다 — tushunmoq. Misol: 설명을 잘 이해했어요. Tushuntirishni yaxshi tushundim.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V28-1",
+    "kind": "vocabulary",
+    "topic_id": "V28",
+    "prompt": "‘설명하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "bog‘lanmoq; xabar bermoq",
+      "tushuntirmoq",
+      "topshirmoq",
+      "noqulay bo‘lmoq"
+    ],
+    "answer": 1,
+    "explanation": "설명하다 — tushuntirmoq. Misol: 다시 설명해 주세요. Qayta tushuntirib bering.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V29-1",
+    "kind": "vocabulary",
+    "topic_id": "V29",
+    "prompt": "‘기억하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "yetishmaslik",
+      "harakat qilmoq",
+      "eslamoq; yodda tutmoq",
+      "salomatlik"
+    ],
+    "answer": 2,
+    "explanation": "기억하다 — eslamoq; yodda tutmoq. Misol: 이 단어를 기억하세요. Bu so‘zni yodda tuting.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V30-1",
+    "kind": "vocabulary",
+    "topic_id": "V30",
+    "prompt": "‘잊어버리다’ so‘zining ma’nosini toping.",
+    "options": [
+      "muvaffaqiyatga erishmoq",
+      "afzallik",
+      "unutib yubormoq",
+      "imkoniyat"
+    ],
+    "answer": 2,
+    "explanation": "잊어버리다 — unutib yubormoq. Misol: 우산을 잊어버렸어요. Soyabonni unutib qoldirdim.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V31-1",
+    "kind": "vocabulary",
+    "topic_id": "V31",
+    "prompt": "‘편리하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "yetishmaslik",
+      "maqsad",
+      "madaniyat",
+      "qulay bo‘lmoq"
+    ],
+    "answer": 3,
+    "explanation": "편리하다 — qulay bo‘lmoq. Misol: 지하철이 편리해요. Metro qulay.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V32-1",
+    "kind": "vocabulary",
+    "topic_id": "V32",
+    "prompt": "‘불편하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "va’da; uchrashuv kelishuvi",
+      "qulay bo‘lmoq",
+      "noqulay bo‘lmoq",
+      "salomatlik"
+    ],
+    "answer": 2,
+    "explanation": "불편하다 — noqulay bo‘lmoq. Misol: 이 의자는 조금 불편해요. Bu stul biroz noqulay.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V33-1",
+    "kind": "vocabulary",
+    "topic_id": "V33",
+    "prompt": "‘중요하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "imkoniyat",
+      "muhim bo‘lmoq",
+      "natija",
+      "oldindan band qilmoq"
+    ],
+    "answer": 1,
+    "explanation": "중요하다 — muhim bo‘lmoq. Misol: 시간을 지키는 것이 중요해요. Vaqtga rioya qilish muhim.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V34-1",
+    "kind": "vocabulary",
+    "topic_id": "V34",
+    "prompt": "‘필요하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "kerak bo‘lmoq",
+      "talaffuz",
+      "jadval; reja",
+      "kamchilik"
+    ],
+    "answer": 0,
+    "explanation": "필요하다 — kerak bo‘lmoq. Misol: 도움이 필요해요. Yordam kerak.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V35-1",
+    "kind": "vocabulary",
+    "topic_id": "V35",
+    "prompt": "‘충분하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "kerak bo‘lmoq",
+      "muvaffaqiyatga erishmoq",
+      "fikr; mulohaza",
+      "yetarli bo‘lmoq"
+    ],
+    "answer": 3,
+    "explanation": "충분하다 — yetarli bo‘lmoq. Misol: 시간이 충분해요. Vaqt yetarli.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V36-1",
+    "kind": "vocabulary",
+    "topic_id": "V36",
+    "prompt": "‘부족하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "harakat qilmoq",
+      "afzallik",
+      "yetishmaslik",
+      "munosabat; aloqa"
+    ],
+    "answer": 2,
+    "explanation": "부족하다 — yetishmaslik. Misol: 아직 경험이 부족해요. Hali tajribam yetishmaydi.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V37-1",
+    "kind": "vocabulary",
+    "topic_id": "V37",
+    "prompt": "‘장점’ so‘zining ma’nosini toping.",
+    "options": [
+      "munosabat; aloqa",
+      "tayyorlamoq",
+      "afzallik",
+      "ariza bermoq"
+    ],
+    "answer": 2,
+    "explanation": "장점 — afzallik. Misol: 이 방법의 장점은 무엇이에요? Bu usulning afzalligi nima?",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V38-1",
+    "kind": "vocabulary",
+    "topic_id": "V38",
+    "prompt": "‘단점’ so‘zining ma’nosini toping.",
+    "options": [
+      "tajriba",
+      "kech qolmoq",
+      "qiziqish; e’tibor",
+      "kamchilik"
+    ],
+    "answer": 3,
+    "explanation": "단점 — kamchilik. Misol: 누구에게나 단점이 있어요. Har kimning kamchiligi bor.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V39-1",
+    "kind": "vocabulary",
+    "topic_id": "V39",
+    "prompt": "‘의견’ so‘zining ma’nosini toping.",
+    "options": [
+      "tushunmoq",
+      "jadval; reja",
+      "tushuntirmoq",
+      "fikr; mulohaza"
+    ],
+    "answer": 3,
+    "explanation": "의견 — fikr; mulohaza. Misol: 여러분의 의견을 듣고 싶어요. Fikringizni eshitmoqchiman.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V40-1",
+    "kind": "vocabulary",
+    "topic_id": "V40",
+    "prompt": "‘관심’ so‘zining ma’nosini toping.",
+    "options": [
+      "oldindan band qilmoq",
+      "transport qatnovi",
+      "tanlamoq",
+      "qiziqish; e’tibor"
+    ],
+    "answer": 3,
+    "explanation": "관심 — qiziqish; e’tibor. Misol: 한국어에 관심이 많아요. Koreys tiliga qiziqishim katta.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V41-1",
+    "kind": "vocabulary",
+    "topic_id": "V41",
+    "prompt": "‘목표’ so‘zining ma’nosini toping.",
+    "options": [
+      "kamchilik",
+      "unutib yubormoq",
+      "kerak bo‘lmoq",
+      "maqsad"
+    ],
+    "answer": 3,
+    "explanation": "목표 — maqsad. Misol: 올해 목표는 합격이에요. Bu yilgi maqsadim imtihondan o‘tish.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V42-1",
+    "kind": "vocabulary",
+    "topic_id": "V42",
+    "prompt": "‘일정’ so‘zining ma’nosini toping.",
+    "options": [
+      "jadval; reja",
+      "munosabat; aloqa",
+      "yetib kelmoq",
+      "tanlamoq"
+    ],
+    "answer": 0,
+    "explanation": "일정 — jadval; reja. Misol: 다음 주 일정을 확인해요. Kelasi haftaning jadvalini tekshiraman.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V43-1",
+    "kind": "vocabulary",
+    "topic_id": "V43",
+    "prompt": "‘제출하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "maqsad",
+      "tayyorlamoq",
+      "topshirmoq",
+      "salomatlik"
+    ],
+    "answer": 2,
+    "explanation": "제출하다 — topshirmoq. Misol: 내일까지 과제를 제출하세요. Ertagacha vazifani topshiring.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V44-1",
+    "kind": "vocabulary",
+    "topic_id": "V44",
+    "prompt": "‘참석하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "qatnashmoq",
+      "madaniyat",
+      "bog‘lanmoq; xabar bermoq",
+      "takrorlamoq"
+    ],
+    "answer": 0,
+    "explanation": "참석하다 — qatnashmoq. Misol: 회의에 참석했어요. Majlisda qatnashdim.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V45-1",
+    "kind": "vocabulary",
+    "topic_id": "V45",
+    "prompt": "‘지각하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "kerak bo‘lmoq",
+      "tushunmoq",
+      "yetarli bo‘lmoq",
+      "kech qolmoq"
+    ],
+    "answer": 3,
+    "explanation": "지각하다 — kech qolmoq. Misol: 수업에 지각하지 마세요. Darsga kech qolmang.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V46-1",
+    "kind": "vocabulary",
+    "topic_id": "V46",
+    "prompt": "‘연락하다’ so‘zining ma’nosini toping.",
+    "options": [
+      "noqulay bo‘lmoq",
+      "boshqa transportga o‘tirmoq",
+      "bog‘lanmoq; xabar bermoq",
+      "tushunmoq"
+    ],
+    "answer": 2,
+    "explanation": "연락하다 — bog‘lanmoq; xabar bermoq. Misol: 도착하면 연락하세요. Yetib borganingizda xabar bering.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V47-1",
+    "kind": "vocabulary",
+    "topic_id": "V47",
+    "prompt": "‘계획’ so‘zining ma’nosini toping.",
+    "options": [
+      "takrorlamoq",
+      "reja",
+      "qaror qilmoq",
+      "imkoniyat"
+    ],
+    "answer": 1,
+    "explanation": "계획 — reja. Misol: 주말 계획이 있어요? Dam olish kunlariga rejangiz bormi?",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "V48-1",
+    "kind": "vocabulary",
+    "topic_id": "V48",
+    "prompt": "‘꾸준히’ so‘zining ma’nosini toping.",
+    "options": [
+      "muntazam ravishda",
+      "muvaffaqiyatga erishmoq",
+      "imkoniyat",
+      "tushuntirmoq"
+    ],
+    "answer": 0,
+    "explanation": "꾸준히 — muntazam ravishda. Misol: 매일 꾸준히 연습해요. Har kuni muntazam mashq qilaman.",
+    "translation": "Koreyscha → o‘zbekcha"
+  },
+  {
+    "id": "G001",
+    "kind": "grammar",
+    "topic_id": "A01",
+    "prompt": "Bir ish davomida yuz bergan hodisani ifodalang.\n길을 걷(   ) 친구를 우연히 만났어요.",
+    "options": [
+      "다가",
+      "으려고",
+      "자마자",
+      "느라고"
+    ],
+    "answer": 0,
+    "explanation": "Yurish davomida kutilmaganda uchrashuv sodir bo‘lgan: -다가.",
+    "translation": "Yo‘lda ketayotib tasodifan do‘stimni uchratdim."
+  },
+  {
+    "id": "G002",
+    "kind": "grammar",
+    "topic_id": "A01",
+    "prompt": "Bir ish davomida yuz bergan hodisani ifodalang.\n책을 읽(   ) 잠이 들었어요.",
+    "options": [
+      "다가",
+      "자마자",
+      "을수록",
+      "으려고"
+    ],
+    "answer": 0,
+    "explanation": "O‘qish davomida boshqa holatga, uyquga o‘tilgan.",
+    "translation": "Kitob o‘qiyotib uxlab qoldim."
+  },
+  {
+    "id": "G003",
+    "kind": "grammar",
+    "topic_id": "A01",
+    "prompt": "Bir ish davomida yuz bergan hodisani ifodalang.\n요리를 하(   ) 손을 다쳤어요.",
+    "options": [
+      "려고",
+      "다가",
+      "거나",
+      "고 나서도"
+    ],
+    "answer": 1,
+    "explanation": "Ovqat qilish paytida kutilmagan jarohat yuz bergan.",
+    "translation": "Ovqat qilayotib qo‘limni jarohatladim."
+  },
+  {
+    "id": "G004",
+    "kind": "grammar",
+    "topic_id": "A02",
+    "prompt": "숙제를 모두 끝내(   ) 영화를 봤어요.",
+    "options": [
+      "느라고",
+      "려고",
+      "을까 봐",
+      "고 나서"
+    ],
+    "answer": 3,
+    "explanation": "Birinchi ish tugagandan keyin ikkinchisi boshlangan.",
+    "translation": "Vazifani tugatib bo‘lgach kino ko‘rdim."
+  },
+  {
+    "id": "G005",
+    "kind": "grammar",
+    "topic_id": "A02",
+    "prompt": "손을 깨끗이 씻(   ) 밥을 먹으세요.",
+    "options": [
+      "느라고",
+      "고 나서",
+      "을까 봐",
+      "으려고"
+    ],
+    "answer": 1,
+    "explanation": "Avval qo‘lni yuvib tugatish, keyin ovqatlanish kerak.",
+    "translation": "Qo‘lingizni yaxshilab yuvgach ovqatlaning."
+  },
+  {
+    "id": "G006",
+    "kind": "grammar",
+    "topic_id": "A02",
+    "prompt": "설명을 다 듣(   ) 질문해 주세요.",
+    "options": [
+      "으려고",
+      "느라고",
+      "고 나서",
+      "을까 봐"
+    ],
+    "answer": 2,
+    "explanation": "Savol berishdan oldin tushuntirishni oxirigacha eshitish talab qilinyapti.",
+    "translation": "Tushuntirishni to‘liq tinglab bo‘lgach savol bering."
+  },
+  {
+    "id": "G007",
+    "kind": "grammar",
+    "topic_id": "A03",
+    "prompt": "이 가방은 예쁘(   ) 너무 비싸요.",
+    "options": [
+      "ㄴ데",
+      "느라고",
+      "자마자",
+      "려고"
+    ],
+    "answer": 0,
+    "explanation": "예쁘다 sifatiga -ㄴ데 qo‘shiladi: 예쁜데. Ikki baho qarama-qarshi.",
+    "translation": "Bu sumka chiroyli, lekin juda qimmat."
+  },
+  {
+    "id": "G008",
+    "kind": "grammar",
+    "topic_id": "A03",
+    "prompt": "지금 비가 오(   ) 우산 있어요?",
+    "options": [
+      "자마자",
+      "는데",
+      "려고",
+      "느라고"
+    ],
+    "answer": 1,
+    "explanation": "Yomg‘ir haqidagi vaziyat keyingi savolga fon bo‘lib turibdi.",
+    "translation": "Hozir yomg‘ir yog‘yapti, soyaboningiz bormi?"
+  },
+  {
+    "id": "G009",
+    "kind": "grammar",
+    "topic_id": "A03",
+    "prompt": "저는 학생이(   ) 동생은 회사원이에요.",
+    "options": [
+      "려고",
+      "느라고",
+      "ㄴ데",
+      "자마자"
+    ],
+    "answer": 2,
+    "explanation": "Ot + 인데: ikki kishining holati taqqoslanadi.",
+    "translation": "Men talabaman, ukam esa ofis xodimi."
+  },
+  {
+    "id": "G010",
+    "kind": "grammar",
+    "topic_id": "A04",
+    "prompt": "Maqsadni ifodalovchi variantni tanlang.\n한국에서 공부하(   ) 한국어를 배워요.",
+    "options": [
+      "다가",
+      "려고",
+      "느라고",
+      "자마자"
+    ],
+    "answer": 1,
+    "explanation": "Koreyada o‘qish — til o‘rganishdan ko‘zlangan maqsad.",
+    "translation": "Koreyada o‘qish uchun koreys tilini o‘rganyapman."
+  },
+  {
+    "id": "G011",
+    "kind": "grammar",
+    "topic_id": "A04",
+    "prompt": "Maqsadni ifodalovchi variantni tanlang.\n친구에게 주(   ) 선물을 샀어요.",
+    "options": [
+      "려고",
+      "거나",
+      "자마자",
+      "느라고"
+    ],
+    "answer": 0,
+    "explanation": "Sovg‘a olishning maqsadi uni do‘stga berish.",
+    "translation": "Do‘stimga berish uchun sovg‘a sotib oldim."
+  },
+  {
+    "id": "G012",
+    "kind": "grammar",
+    "topic_id": "A04",
+    "prompt": "Maqsadni ifodalovchi variantni tanlang.\n일찍 일어나(   ) 알람을 맞췄어요.",
+    "options": [
+      "려고",
+      "느라고",
+      "자마자",
+      "거나"
+    ],
+    "answer": 0,
+    "explanation": "Budilnikni sozlashdan maqsad — erta turish.",
+    "translation": "Erta turish uchun budilnikni sozladim."
+  },
+  {
+    "id": "G013",
+    "kind": "grammar",
+    "topic_id": "A05",
+    "prompt": "이 책을 빌리(   ) 회원 카드가 필요해요.",
+    "options": [
+      "자마자",
+      "느라고",
+      "거나",
+      "려면"
+    ],
+    "answer": 3,
+    "explanation": "Kitobni olmoqchi bo‘lganda kerak bo‘ladigan shart aytilgan.",
+    "translation": "Bu kitobni olmoqchi bo‘lsangiz, a’zolik kartasi kerak."
+  },
+  {
+    "id": "G014",
+    "kind": "grammar",
+    "topic_id": "A05",
+    "prompt": "건강해지(   ) 운동을 꾸준히 해야 해요.",
+    "options": [
+      "자마자",
+      "려면",
+      "다가",
+      "느라고"
+    ],
+    "answer": 1,
+    "explanation": "Maqsadga erishishning zarur sharti: -(으)려면.",
+    "translation": "Sog‘lom bo‘lish uchun muntazam mashq qilish kerak."
+  },
+  {
+    "id": "G015",
+    "kind": "grammar",
+    "topic_id": "A05",
+    "prompt": "늦지 않(   ) 지금 출발해야 해요.",
+    "options": [
+      "느라고",
+      "자마자",
+      "으려면",
+      "다가"
+    ],
+    "answer": 2,
+    "explanation": "Kech qolmaslik maqsadi va buning sharti bog‘langan.",
+    "translation": "Kech qolmaslik uchun hozir yo‘lga chiqish kerak."
+  },
+  {
+    "id": "G016",
+    "kind": "grammar",
+    "topic_id": "A06",
+    "prompt": "Bir ish bilan band bo‘lib boshqa ishni bajara olmaslikni ifodalang.\n보고서를 쓰(   ) 점심도 못 먹었어요.",
+    "options": [
+      "려고",
+      "거나",
+      "느라고",
+      "자마자"
+    ],
+    "answer": 2,
+    "explanation": "Hisobot bilan bandlik sabab boshqa ish bajarilmagan.",
+    "translation": "Hisobot yozish bilan band bo‘lib, tushlik ham qila olmadim."
+  },
+  {
+    "id": "G017",
+    "kind": "grammar",
+    "topic_id": "A06",
+    "prompt": "Bir ish bilan band bo‘lib boshqa ishni bajara olmaslikni ifodalang.\n전화를 하(   ) 설명을 못 들었어요.",
+    "options": [
+      "거나",
+      "자마자",
+      "느라고",
+      "려고"
+    ],
+    "answer": 2,
+    "explanation": "Bir ish bilan band bo‘lish salbiy natijaga olib kelgan.",
+    "translation": "Telefonlashayotib tushuntirishni eshitmay qoldim."
+  },
+  {
+    "id": "G018",
+    "kind": "grammar",
+    "topic_id": "A06",
+    "prompt": "Bir ish bilan band bo‘lib boshqa ishni bajara olmaslikni ifodalang.\n시험공부를 하(   ) 친구를 못 만났어요.",
+    "options": [
+      "자마자",
+      "느라고",
+      "거나",
+      "려고"
+    ],
+    "answer": 1,
+    "explanation": "O‘qish bilan bandlik uchrashishga to‘sqinlik qilgan.",
+    "translation": "Imtihonga tayyorlanib, do‘stim bilan uchrasha olmadim."
+  },
+  {
+    "id": "G019",
+    "kind": "grammar",
+    "topic_id": "A07",
+    "prompt": "표가 있(   ) 입장할 수 있어요.",
+    "options": [
+      "자마자",
+      "으려고",
+      "어야",
+      "느라고"
+    ],
+    "answer": 2,
+    "explanation": "Kirish imkoniyati uchun chiptaning borligi zarur shart.",
+    "translation": "Faqat chipta bo‘lsagina kirish mumkin."
+  },
+  {
+    "id": "G020",
+    "kind": "grammar",
+    "topic_id": "A07",
+    "prompt": "직접 해 봐(   ) 얼마나 어려운지 알 수 있어요.",
+    "options": [
+      "려고",
+      "거나",
+      "야",
+      "느라고"
+    ],
+    "answer": 2,
+    "explanation": "Qiyinligini bilish uchun o‘zi qilib ko‘rish kerak.",
+    "translation": "O‘zingiz qilib ko‘rsangizgina qanchalik qiyinligini bilasiz."
+  },
+  {
+    "id": "G021",
+    "kind": "grammar",
+    "topic_id": "A07",
+    "prompt": "비밀번호를 알아(   ) 문을 열 수 있어요.",
+    "options": [
+      "려고",
+      "느라고",
+      "자마자",
+      "야"
+    ],
+    "answer": 3,
+    "explanation": "Eshikni ochish uchun parolni bilish shart.",
+    "translation": "Parolni bilsangizgina eshikni ocha olasiz."
+  },
+  {
+    "id": "G022",
+    "kind": "grammar",
+    "topic_id": "A08",
+    "prompt": "기차를 놓칠(   ) 일찍 나왔어요.",
+    "options": [
+      "까 봐",
+      "때마다",
+      "뿐이라",
+      "수록"
+    ],
+    "answer": 0,
+    "explanation": "Poyezdni o‘tkazib yuborishdan xavotir ehtiyot chorasiga sabab bo‘lgan.",
+    "translation": "Poyezdga ulgurmay qolishdan qo‘rqib erta chiqdim."
+  },
+  {
+    "id": "G023",
+    "kind": "grammar",
+    "topic_id": "A08",
+    "prompt": "주소를 잊어버릴(   ) 적어 두었어요.",
+    "options": [
+      "때마다",
+      "뿐이라",
+      "수록",
+      "까 봐"
+    ],
+    "answer": 3,
+    "explanation": "Unutishdan xavotirlanib yozib qo‘ygan.",
+    "translation": "Manzilni unutib qo‘yishdan xavotirlanib yozib oldim."
+  },
+  {
+    "id": "G024",
+    "kind": "grammar",
+    "topic_id": "A08",
+    "prompt": "아이가 다칠(   ) 걱정돼요.",
+    "options": [
+      "수록",
+      "까 봐",
+      "뿐이라",
+      "때마다"
+    ],
+    "answer": 1,
+    "explanation": "Xavotir qilinayotgan hodisa -(으)ㄹ까 봐 bilan ifodalanadi.",
+    "translation": "Bola jarohatlanishidan xavotirdaman."
+  },
+  {
+    "id": "G025",
+    "kind": "grammar",
+    "topic_id": "A09",
+    "prompt": "Ikki variantdan birini tanlash ma’nosini ifodalang.\n주말에는 영화를 보(   ) 책을 읽어요.",
+    "options": [
+      "려고",
+      "자마자",
+      "거나",
+      "느라고"
+    ],
+    "answer": 2,
+    "explanation": "Ikki mashg‘ulotdan birini tanlash: yoki.",
+    "translation": "Dam olish kunlari kino ko‘raman yoki kitob o‘qiyman."
+  },
+  {
+    "id": "G026",
+    "kind": "grammar",
+    "topic_id": "A09",
+    "prompt": "Ikki variantdan birini tanlash ma’nosini ifodalang.\n모르는 단어는 사전을 찾(   ) 선생님께 물어보세요.",
+    "options": [
+      "을까 봐",
+      "느라고",
+      "으려고",
+      "거나"
+    ],
+    "answer": 3,
+    "explanation": "So‘zni bilishning ikki muqobil usuli taklif qilinyapti.",
+    "translation": "Notanish so‘zni lug‘atdan toping yoki ustozdan so‘rang."
+  },
+  {
+    "id": "G027",
+    "kind": "grammar",
+    "topic_id": "A09",
+    "prompt": "Ikki variantdan birini tanlash ma’nosini ifodalang.\n신청서는 이메일로 보내(   ) 직접 내면 돼요.",
+    "options": [
+      "느라고",
+      "자마자",
+      "려고",
+      "거나"
+    ],
+    "answer": 3,
+    "explanation": "Topshirishning ikki muqobil yo‘li bor.",
+    "translation": "Arizani elektron pochta orqali yoki shaxsan topshirish mumkin."
+  },
+  {
+    "id": "G028",
+    "kind": "grammar",
+    "topic_id": "A10",
+    "prompt": "Darhol keyin sodir bo‘lishni ifodalang.\n문을 열(   ) 고양이가 뛰어나왔어요.",
+    "options": [
+      "자마자",
+      "느라고",
+      "을수록",
+      "려고"
+    ],
+    "answer": 0,
+    "explanation": "Birinchi hodisadan darhol keyingi hodisa sodir bo‘lgan.",
+    "translation": "Eshik ochilishi bilanoq mushuk yugurib chiqdi."
+  },
+  {
+    "id": "G029",
+    "kind": "grammar",
+    "topic_id": "A10",
+    "prompt": "Darhol keyin sodir bo‘lishni ifodalang.\n수업이 끝나(   ) 집으로 갔어요.",
+    "options": [
+      "더라도",
+      "려고",
+      "자마자",
+      "느라고"
+    ],
+    "answer": 2,
+    "explanation": "Dars tugashi bilan darhol ketish ta’kidlangan.",
+    "translation": "Dars tugashi bilanoq uyga ketdim."
+  },
+  {
+    "id": "G030",
+    "kind": "grammar",
+    "topic_id": "A10",
+    "prompt": "Darhol keyin sodir bo‘lishni ifodalang.\n집에 도착하(   ) 전화해 주세요.",
+    "options": [
+      "자마자",
+      "느라고",
+      "려고",
+      "거나"
+    ],
+    "answer": 0,
+    "explanation": "Kelgandan keyin kechiktirmay telefon qilish so‘ralgan.",
+    "translation": "Uyga yetishingiz bilanoq telefon qiling."
+  },
+  {
+    "id": "G031",
+    "kind": "grammar",
+    "topic_id": "A11",
+    "prompt": "연습할(   ) 발음이 좋아져요.",
+    "options": [
+      "뻔해서",
+      "수록",
+      "까 봐",
+      "뿐이라"
+    ],
+    "answer": 1,
+    "explanation": "Mashq ko‘paygani sari talaffuz ham yaxshilanadi.",
+    "translation": "Mashq qilgan sari talaffuz yaxshilanadi."
+  },
+  {
+    "id": "G032",
+    "kind": "grammar",
+    "topic_id": "A11",
+    "prompt": "생각할(   ) 더 궁금해져요.",
+    "options": [
+      "뿐이라",
+      "까 봐",
+      "수록",
+      "뻔해서"
+    ],
+    "answer": 2,
+    "explanation": "O‘ylash darajasi ortgan sari qiziqish ham ortadi.",
+    "translation": "O‘ylagan sari yanada qiziqib boryapman."
+  },
+  {
+    "id": "G033",
+    "kind": "grammar",
+    "topic_id": "A11",
+    "prompt": "높이 올라갈(   ) 경치가 더 잘 보여요.",
+    "options": [
+      "수록",
+      "뿐이라",
+      "까 봐",
+      "뻔해서"
+    ],
+    "answer": 0,
+    "explanation": "Ikki o‘zgarish bir-biriga mutanosib.",
+    "translation": "Yuqoriga ko‘tarilgan sari manzara yaxshiroq ko‘rinadi."
+  },
+  {
+    "id": "G034",
+    "kind": "grammar",
+    "topic_id": "A12",
+    "prompt": "Sabab ma’nosini ifodalovchi variantni tanlang.\n배가 아파(   ) 병원에 갔어요.",
+    "options": [
+      "도",
+      "서",
+      "야",
+      "보려고"
+    ],
+    "answer": 1,
+    "explanation": "Qorin og‘rig‘i shifoxonaga borish sababi.",
+    "translation": "Qornim og‘rigani uchun shifoxonaga bordim."
+  },
+  {
+    "id": "G035",
+    "kind": "grammar",
+    "topic_id": "A12",
+    "prompt": "Sabab ma’nosini ifodalovchi variantni tanlang.\n날씨가 좋아(   ) 산책했어요.",
+    "options": [
+      "서",
+      "야",
+      "놓고",
+      "보려고"
+    ],
+    "answer": 0,
+    "explanation": "Yaxshi ob-havo sayr qilishning sababi sifatida aytilgan.",
+    "translation": "Ob-havo yaxshi bo‘lgani uchun sayr qildim."
+  },
+  {
+    "id": "G036",
+    "kind": "grammar",
+    "topic_id": "A12",
+    "prompt": "Sabab ma’nosini ifodalovchi variantni tanlang.\n늦게 일어나(   ) 지각했어요.",
+    "options": [
+      "도",
+      "서",
+      "야",
+      "보려고"
+    ],
+    "answer": 1,
+    "explanation": "Kech turishning natijasi — kechikish.",
+    "translation": "Kech turganim uchun kech qoldim."
+  },
+  {
+    "id": "G037",
+    "kind": "grammar",
+    "topic_id": "A13",
+    "prompt": "많이 걸어서 (   ) 다리가 아파요.",
+    "options": [
+      "놓아서",
+      "되려고",
+      "있다가",
+      "그런지"
+    ],
+    "answer": 3,
+    "explanation": "Sabab taxmin qilinyapti: ko‘p yurganim uchun bo‘lsa kerak.",
+    "translation": "Ko‘p yurganim uchun bo‘lsa kerak, oyoqlarim og‘riyapti."
+  },
+  {
+    "id": "G038",
+    "kind": "grammar",
+    "topic_id": "A13",
+    "prompt": "휴일이라서 (   ) 거리가 조용해요.",
+    "options": [
+      "그런지",
+      "놓아서",
+      "있다가",
+      "되려고"
+    ],
+    "answer": 0,
+    "explanation": "Bayram kuni ekanligi sabab sifatida taxmin qilinyapti.",
+    "translation": "Dam olish kuni bo‘lgani uchun bo‘lsa kerak, ko‘cha tinch."
+  },
+  {
+    "id": "G039",
+    "kind": "grammar",
+    "topic_id": "A13",
+    "prompt": "긴장해서 (   ) 손이 떨려요.",
+    "options": [
+      "있다가",
+      "되려고",
+      "놓아서",
+      "그런지"
+    ],
+    "answer": 3,
+    "explanation": "Qo‘l titrashining sababi taxmin bilan berilgan.",
+    "translation": "Hayajonlanganim uchun bo‘lsa kerak, qo‘lim titrayapti."
+  },
+  {
+    "id": "G040",
+    "kind": "grammar",
+    "topic_id": "A14",
+    "prompt": "아침에는 비가 오더니 지금은 맑아요. ‘-더니’의 의미는?",
+    "options": [
+      "Ikki erkin tanlov",
+      "Kelajak uchun maqsad",
+      "Ruxsat so‘rash",
+      "Oldingi kuzatuv va keyingi o‘zgarish"
+    ],
+    "answer": 3,
+    "explanation": "Avval yomg‘ir kuzatilgan, keyin ob-havo o‘zgargan.",
+    "translation": "Ertalab yomg‘ir yog‘ayotgan edi, hozir havo ochiq."
+  },
+  {
+    "id": "G041",
+    "kind": "grammar",
+    "topic_id": "A14",
+    "prompt": "아이가 울(   ) 이제 웃어요.",
+    "options": [
+      "을까 봐",
+      "려고",
+      "느라고",
+      "더니"
+    ],
+    "answer": 3,
+    "explanation": "Oldin kuzatilgan yig‘lash keyin kulishga o‘zgargan.",
+    "translation": "Bola yig‘layotgan edi, endi kulyapti."
+  },
+  {
+    "id": "G042",
+    "kind": "grammar",
+    "topic_id": "A14",
+    "prompt": "작년에는 작(   ) 많이 컸네요.",
+    "options": [
+      "느라고",
+      "으려고",
+      "더니",
+      "자마자"
+    ],
+    "answer": 2,
+    "explanation": "Avvalgi kuzatuv bilan hozirgi o‘zgarish taqqoslangan.",
+    "translation": "O‘tgan yili kichkina edi, ancha katta bo‘libdi."
+  },
+  {
+    "id": "G043",
+    "kind": "grammar",
+    "topic_id": "A15",
+    "prompt": "무엇을 먹(   ) 아직 못 정했어요.",
+    "options": [
+      "으려고",
+      "자마자",
+      "을지",
+      "느라고"
+    ],
+    "answer": 2,
+    "explanation": "Nima yeyishni tanlash bo‘yicha noaniqlik bor.",
+    "translation": "Nima yeyishni hali tanlamadim."
+  },
+  {
+    "id": "G044",
+    "kind": "grammar",
+    "topic_id": "A15",
+    "prompt": "어디로 가(   ) 함께 생각해 봅시다.",
+    "options": [
+      "자마자",
+      "느라고",
+      "ㄹ지",
+      "려고"
+    ],
+    "answer": 2,
+    "explanation": "Birgalikda kelajakdagi yo‘nalishni tanlash muhokama qilinyapti.",
+    "translation": "Qayerga borishni birga o‘ylab ko‘raylik."
+  },
+  {
+    "id": "G045",
+    "kind": "grammar",
+    "topic_id": "A15",
+    "prompt": "어떤 옷을 입(   ) 고민 중이에요.",
+    "options": [
+      "느라고",
+      "을지",
+      "자마자",
+      "으려고"
+    ],
+    "answer": 1,
+    "explanation": "Variantlar orasidagi tanlov va o‘ylanish -을지 bilan ifodalanadi.",
+    "translation": "Qaysi kiyimni kiyish haqida o‘ylayapman."
+  },
+  {
+    "id": "G046",
+    "kind": "grammar",
+    "topic_id": "A04",
+    "prompt": "Ajratilgan ifodaga eng yaqin ma’noni tanlang.\n한국에서 공부하려고 한국어를 배웁니다.\n【공부하려고】",
+    "options": [
+      "공부하기 위해서",
+      "공부한 적이 있어서",
+      "공부할지도 몰라서",
+      "공부하는 척해서"
+    ],
+    "answer": 0,
+    "explanation": "-(으)려고 va -기 위해서 bu gapda bir xil maqsadni ifodalaydi.",
+    "translation": "Koreyada o‘qish uchun koreys tilini o‘rganyapman."
+  },
+  {
+    "id": "G047",
+    "kind": "grammar",
+    "topic_id": "A10",
+    "prompt": "Ajratilgan ifodaga eng yaqin ma’noni tanlang.\n집에 도착하자마자 잠이 들었어요.\n【도착하자마자】",
+    "options": [
+      "도착할 때까지",
+      "도착하기 전에",
+      "도착한 직후에",
+      "도착할 때마다"
+    ],
+    "answer": 2,
+    "explanation": "-자마자 va -(으)ㄴ 직후에 bir ish tugagandan darhol keyingi vaqtni bildiradi.",
+    "translation": "Uyga kelishim bilan uxlab qoldim."
+  },
+  {
+    "id": "G048",
+    "kind": "grammar",
+    "topic_id": "A02",
+    "prompt": "Ajratilgan ifodaga eng yaqin ma’noni tanlang.\n숙제를 끝내고 나서 영화를 봤어요.\n【끝내고 나서】",
+    "options": [
+      "끝내는 대신에",
+      "끝내기 전에",
+      "끝내는 동안에",
+      "끝낸 후에"
+    ],
+    "answer": 3,
+    "explanation": "-고 나서 va -(으)ㄴ 후에 bu gapda ish tugagandan keyingi ketma-ketlikni bildiradi.",
+    "translation": "Vazifani tugatgach film ko‘rdim."
+  },
+  {
+    "id": "G049",
+    "kind": "grammar",
+    "topic_id": "A07",
+    "prompt": "Ajratilgan ifodaga eng yaqin ma’noni tanlang.\n여권이 있어야 비행기를 탈 수 있어요.\n【있어야】",
+    "options": [
+      "있기는 하지만",
+      "없는 대신에",
+      "있는 경우에만",
+      "있는 것처럼"
+    ],
+    "answer": 2,
+    "explanation": "-아/어야 bu gapda zarur shart. 있는 경우에만 — faqat mavjud bo‘lgan holdagina.",
+    "translation": "Faqat pasport bo‘lsagina samolyotga chiqa olasiz."
+  },
+  {
+    "id": "G050",
+    "kind": "grammar",
+    "topic_id": "A11",
+    "prompt": "Ajratilgan ifodaga eng yaqin ma’noni tanlang.\n한국어는 공부할수록 재미있어요.\n【공부할수록】",
+    "options": [
+      "공부하면 할수록",
+      "공부하기 전에",
+      "공부하는 대신에",
+      "공부한 적이 있어서"
+    ],
+    "answer": 0,
+    "explanation": "-(으)ㄹ수록 va -(으)면 -(으)ㄹ수록 kuchayib boradigan bog‘liqlikni bildiradi.",
+    "translation": "Koreys tili o‘rgangan sari qiziqarliroq bo‘ladi."
+  },
+  {
+    "id": "G051",
+    "kind": "grammar",
+    "topic_id": "A09",
+    "prompt": "Ajratilgan ifodaga eng yaqin ma’noni tanlang.\n주말에 영화를 보거나 책을 읽어요.\n【영화를 보거나】",
+    "options": [
+      "영화를 보는 바람에",
+      "영화를 보는 대신에만",
+      "영화를 보면 반드시",
+      "영화를 보든지"
+    ],
+    "answer": 3,
+    "explanation": "-거나 va -든지 bu tanlov gapida variantlardan birini ifodalaydi.",
+    "translation": "Dam olish kunlari film ko‘raman yoki kitob o‘qiyman."
+  }
+]

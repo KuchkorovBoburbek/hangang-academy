@@ -1,0 +1,3665 @@
+[
+  {
+    "id": "hangang-grammar-a01",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a01",
+        "number": 1,
+        "prompt": "집에 (          ) 길에서 우연히 친구를 만났어요.",
+        "options": [
+          "가다가",
+          "가든지",
+          "가려고",
+          "가도록"
+        ],
+        "answer": 0,
+        "explanation": "-다가 — Bir ish davomida boshqa ishga o‘tish yoki kutilmagan hodisa yuz berishi. Birinchi harakat davomida o‘zgarish sodir bo‘ladi. Tugagan ish uchun ko‘pincha -았/었다가 ishlatiladi. To‘g‘ri ifoda: 가다가.",
+        "translation": "Asosiy gapning ma’nosi: Uyga ketayotib do‘stimni uchratdim.",
+        "grammarIds": [
+          "A01"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a02",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a02",
+        "number": 2,
+        "prompt": "숙제를 (          ) 영화를 봤어요.",
+        "options": [
+          "하든지",
+          "하려면",
+          "하고 나서",
+          "할까 봐"
+        ],
+        "answer": 2,
+        "explanation": "-고 나서 — Bir ish to‘liq tugagandan keyin boshqa ishni bajarish. Oddiy -고 dan farqli ravishda, birinchi ishning tugaganini ta’kidlaydi. To‘g‘ri ifoda: 하고 나서.",
+        "translation": "Vazifani bajarib bo‘lgach, kino ko‘rdim.",
+        "grammarIds": [
+          "A02"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a03",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a03",
+        "number": 1,
+        "prompt": "이 가방은 (          ) 조금 비싸요.",
+        "options": [
+          "예쁘자마자",
+          "예쁘려고",
+          "예쁜데",
+          "예쁘느라고"
+        ],
+        "answer": 2,
+        "explanation": "-(으)ㄴ/는데 — Vaziyatni tanishtirish, keyingi gapga fon yaratish yoki qarama-qarshilik. 있다/없다 bilan -는데: 있는데, 없는데. O‘tgan zamonda -았/었는데. To‘g‘ri ifoda: 예쁜데.",
+        "translation": "Bu sumka chiroyli, lekin biroz qimmat.",
+        "grammarIds": [
+          "A03"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a04",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a04",
+        "number": 2,
+        "prompt": "한국어를 (          ) 학원에 다녀요.",
+        "options": [
+          "배우더라도",
+          "배우든지",
+          "배우자마자",
+          "배우려고"
+        ],
+        "answer": 3,
+        "explanation": "-(으)려고 — Biror ishni bajarish maqsadi: «…moqchi bo‘lib», «…ish uchun». Odatda oldingi va keyingi harakatning bajaruvchisi bir xil bo‘ladi. To‘g‘ri ifoda: 배우려고.",
+        "translation": "Koreys tilini o‘rganish uchun o‘quv markaziga qatnayman.",
+        "grammarIds": [
+          "A04"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a05",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a05",
+        "number": 1,
+        "prompt": "(          ) 매일 복습해야 해요.",
+        "options": [
+          "합격하려면",
+          "합격하자마자",
+          "합격하느라고",
+          "합격하는 대신에"
+        ],
+        "answer": 0,
+        "explanation": "-(으)려면 — Ko‘zlangan ishni qilish uchun bajarilishi kerak bo‘lgan shart. «A qilmoqchi bo‘lsangiz, B zarur» tuzilishi. C33 bilan solishtiring. To‘g‘ri ifoda: 합격하려면.",
+        "translation": "Imtihondan o‘tmoqchi bo‘lsangiz, har kuni takrorlashingiz kerak.",
+        "grammarIds": [
+          "A05"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a06",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a06",
+        "number": 2,
+        "prompt": "어제 숙제를 (          ) 걸려 온 전화를 못 받았어요.",
+        "options": [
+          "하고 나서",
+          "하든지",
+          "하느라고",
+          "하려면"
+        ],
+        "answer": 2,
+        "explanation": "-느라고 — Bir ish bilan band bo‘lish oqibatida boshqa ish bajarilmasligi. Odatda bir xil ega va salbiy natija keladi. Sifatga qo‘shilmaydi; oldiga -았/었- qo‘yilmaydi. To‘g‘ri ifoda: 하느라고.",
+        "translation": "Asosiy gapning ma’nosi: Vazifa qilayotganim uchun telefonga javob bera olmadim.",
+        "grammarIds": [
+          "A06"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a07",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a07",
+        "number": 1,
+        "prompt": "표가 (          ) 들어갈 수 있어요.",
+        "options": [
+          "있느라고",
+          "있으려고",
+          "있어야",
+          "있자마자"
+        ],
+        "answer": 2,
+        "explanation": "-아/어야 — Keyingi natija uchun zarur shart: «faqat …sagina». -아/어야 하다 majburiyatni, bu bog‘lovchi esa natijaning shartini bildiradi. To‘g‘ri ifoda: 있어야.",
+        "translation": "Faqat chipta bo‘lsagina kirish mumkin.",
+        "grammarIds": [
+          "A07"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a08",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a08",
+        "number": 2,
+        "prompt": "지각할까 걱정이 됐어요. (          ) 평소보다 일찍 출발했어요.",
+        "options": [
+          "늦고 나서",
+          "늦자마자",
+          "늦을까 봐",
+          "늦는 대신에"
+        ],
+        "answer": 2,
+        "explanation": "-(으)ㄹ까 봐(서) — Noxush holat bo‘lishidan xavotirlanib biror chora ko‘rish. Oddiy taxmindan farqli ravishda, xavotir yoki ehtiyot chorasi seziladi. To‘g‘ri ifoda: 늦을까 봐.",
+        "translation": "Asosiy gapning ma’nosi: Kech qolishdan xavotirlanib, erta yo‘lga chiqdim.",
+        "grammarIds": [
+          "A08"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a09",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a09",
+        "number": 1,
+        "prompt": "주말에는 (          ) 친구를 만나요.",
+        "options": [
+          "쉴수록",
+          "쉬느라고",
+          "쉬도록",
+          "쉬거나"
+        ],
+        "answer": 3,
+        "explanation": "-거나 — Ikki yoki undan ko‘p variantdan birini tanlash: «yoki». Otlar orasidagi «yoki» uchun N-(이)나 ishlatiladi. To‘g‘ri ifoda: 쉬거나.",
+        "translation": "Dam olish kunlari dam olaman yoki do‘stim bilan uchrashaman.",
+        "grammarIds": [
+          "A09"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a10",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a10",
+        "number": 2,
+        "prompt": "집에 (          ) 다른 일은 하지 않고 바로 손부터 씻었어요.",
+        "options": [
+          "오든지",
+          "오자마자",
+          "오는 대신에",
+          "오려면"
+        ],
+        "answer": 1,
+        "explanation": "-자마자 — Birinchi hodisadan darhol keyin ikkinchisi sodir bo‘lishi. Zamon odatda keyingi gapda ko‘rsatiladi. C08 dagi yaqin shakllar bilan solishtiring. To‘g‘ri ifoda: 오자마자.",
+        "translation": "Asosiy gapning ma’nosi: Uyga kelishim bilanoq qo‘limni yuvdim.",
+        "grammarIds": [
+          "A10"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a11",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a11",
+        "number": 1,
+        "prompt": "(          ) 발음이 좋아져요.",
+        "options": [
+          "연습할수록",
+          "연습하든지",
+          "연습하는 대신에",
+          "연습할까 봐"
+        ],
+        "answer": 0,
+        "explanation": "-(으)ㄹ수록 — Bir holat kuchaygani sari boshqasining ham o‘zgarishi. «Borgan sari» ma’nosi. -면 -을수록 shakli ta’kidni kuchaytiradi. To‘g‘ri ifoda: 연습할수록.",
+        "translation": "Mashq qilgan sari talaffuz yaxshilanadi.",
+        "grammarIds": [
+          "A11"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a12",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a12",
+        "number": 2,
+        "prompt": "비가 (          ) 집에 있었어요.",
+        "options": [
+          "와서",
+          "오려고",
+          "오는 대신에",
+          "오려면"
+        ],
+        "answer": 0,
+        "explanation": "-아/어서 — Sababni yoki o‘zaro bog‘liq harakatlar ketma-ketligini ifodalaydi. Ketma-ketlik: 친구를 만나서 같이 갔어요. Sabab ma’nosida buyruq/taklif bilan odatda -(으)니까 tanlanadi. To‘g‘ri ifoda: 와서.",
+        "translation": "Yomg‘ir yog‘gani uchun uyda qoldim.",
+        "grammarIds": [
+          "A12"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a13",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a13",
+        "number": 1,
+        "prompt": "(          ) 사람이 많아요.",
+        "options": [
+          "주말이 될까 봐",
+          "주말이라서 그런지",
+          "주말인 척해서",
+          "주말이 되려고"
+        ],
+        "answer": 1,
+        "explanation": "-아/어서 그런지 — Taxmin qilinayotgan sabab: «…gani uchun bo‘lsa kerak». Sabab aniq tasdiqlanmaydi; gapiruvchi taxmin qiladi. To‘g‘ri ifoda: 주말이라서 그런지.",
+        "translation": "Dam olish kuni bo‘lgani uchun bo‘lsa kerak, odam ko‘p.",
+        "grammarIds": [
+          "A13"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a14",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a14",
+        "number": 2,
+        "prompt": "아침에는 (          ) 지금은 따뜻해요.",
+        "options": [
+          "춥느라고",
+          "춥더니",
+          "추우려고",
+          "춥자마자"
+        ],
+        "answer": 1,
+        "explanation": "-더니 — Avval kuzatilgan holat bilan keyingi o‘zgarish yoki natijani bog‘laydi. Ko‘pincha bevosita kuzatuvga tayanadi. O‘zining tugagan harakati va natijasida -았/었더니 ko‘p qo‘llanadi. To‘g‘ri ifoda: 춥더니.",
+        "translation": "Ertalab sovuq edi, hozir esa iliq.",
+        "grammarIds": [
+          "A14"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a15",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a15",
+        "number": 1,
+        "prompt": "무엇을 (          ) 아직 못 정했어요.",
+        "options": [
+          "먹느라고",
+          "먹을지",
+          "먹다가",
+          "먹도록"
+        ],
+        "answer": 1,
+        "explanation": "-(으)ㄹ지 — Qaysi ishni qilishni bilmaslik, tanlash yoki o‘ylash. Ko‘pincha 모르다, 고민하다, 정하다 bilan keladi; kelajakdagi noaniqlikni ham bildiradi. To‘g‘ri ifoda: 먹을지.",
+        "translation": "Nima yeyishni hali tanlamadim.",
+        "grammarIds": [
+          "A15"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a16",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a16",
+        "number": 2,
+        "prompt": "저는 두 가지 일을 동시에 해요. 음악을 (          ) 공부해요.",
+        "options": [
+          "들을까 봐",
+          "듣든지",
+          "들으려면",
+          "들으면서"
+        ],
+        "answer": 3,
+        "explanation": "-(으)면서 — Bir paytda bajariladigan ikki harakat: «…ib turib». Bir vaqtdagi harakatlarda ega odatda bir xil. «…bo‘lsa-da» ma’nosi C27 da. To‘g‘ri ifoda: 들으면서.",
+        "translation": "Asosiy gapning ma’nosi: Musiqa tinglab dars qilaman.",
+        "grammarIds": [
+          "A16"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a17",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a17",
+        "number": 1,
+        "prompt": "집에 (          ) 택배가 이미 와 있었어요.",
+        "options": [
+          "오더라도",
+          "오려고",
+          "오니까",
+          "오든지"
+        ],
+        "answer": 2,
+        "explanation": "-(으)니까 — Sababni yoki bir ish ortidan aniqlangan vaziyatni ko‘rsatadi. Sabab ma’nosi ham bor: 추우니까 창문을 닫으세요. Kitobda kuzatib aniqlash vazifasi ta’kidlangan. To‘g‘ri ifoda: 오니까.",
+        "translation": "Asosiy gapning ma’nosi: Uyga kelganimda, jo‘natma kelib turgan ekan.",
+        "grammarIds": [
+          "A17"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a18",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a18",
+        "number": 2,
+        "prompt": "시간이 (          ) 도와주세요.",
+        "options": [
+          "있으려고",
+          "있느라고",
+          "있자마자",
+          "있으면"
+        ],
+        "answer": 3,
+        "explanation": "-(으)면 — Shart yoki takroriy vaziyat: «agar …sa», «…ganda». Haqiqiy yoki faraziy shart bo‘lishi mumkin; niyat shartini bildiruvchi -(으)려면 bilan farqlang. To‘g‘ri ifoda: 있으면.",
+        "translation": "Vaqtingiz bo‘lsa, yordam bering.",
+        "grammarIds": [
+          "A18"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a19",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a19",
+        "number": 1,
+        "prompt": "어디에 (          ) 연락하세요.",
+        "options": [
+          "가자마자",
+          "갈수록",
+          "가든지",
+          "가느라고"
+        ],
+        "answer": 2,
+        "explanation": "-든지 — Qaysi variant bo‘lishidan qat’i nazar; erkin tanlov. -든지 tanlovga, -던 esa o‘tgan tajriba yoki davom etgan holatga aloqador. To‘g‘ri ifoda: 가든지.",
+        "translation": "Qayerga borsangiz ham, xabar bering.",
+        "grammarIds": [
+          "A19"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a20",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a20",
+        "number": 2,
+        "prompt": "이 식당은 (          ) 맛도 좋아요.",
+        "options": [
+          "싸느라고",
+          "싼 데다가",
+          "싸려고",
+          "싸는 김에"
+        ],
+        "answer": 1,
+        "explanation": "-(으)ㄴ/는 데다가 — Bir xususiyatga yana boshqasini qo‘shish: «ustiga-ustak». Odatda bir yo‘nalishdagi ikki baho yoki holat qo‘shiladi. To‘g‘ri ifoda: 싼 데다가.",
+        "translation": "Bu oshxona arzon, ustiga-ustak taomi ham mazali.",
+        "grammarIds": [
+          "A20"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a21",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a21",
+        "number": 1,
+        "prompt": "의사가 커피를 끊으라고 했어요. 요즘은 커피를 (          ) 차를 마셔요.",
+        "options": [
+          "마시는 대신에",
+          "마시자마자",
+          "마실수록",
+          "마시느라고"
+        ],
+        "answer": 0,
+        "explanation": "-(으)ㄴ/는 대신에 — Bir ishning o‘rniga boshqasi; bir narsaga evaz yoki muvozanat. Qarama-qarshi baho ham mumkin: 비싼 대신에 품질이 좋아요. To‘g‘ri ifoda: 마시는 대신에.",
+        "translation": "Asosiy gapning ma’nosi: Qahva o‘rniga choy ichaman.",
+        "grammarIds": [
+          "A21"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a22",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a22",
+        "number": 2,
+        "prompt": "(          ) 아침은 꼭 먹어요.",
+        "options": [
+          "바쁘느라고",
+          "바쁘려고",
+          "바빠도",
+          "바쁘자마자"
+        ],
+        "answer": 2,
+        "explanation": "-아/어도 — Shart yoki holatga qaramay natija o‘zgarmasligi: «…sa ham». Haqiqiy holatda ham, farazda ham keladi. -아/어도 되다 esa ruxsat bildiradi. To‘g‘ri ifoda: 바빠도.",
+        "translation": "Band bo‘lsam ham, albatta nonushta qilaman.",
+        "grammarIds": [
+          "A22"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a23",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a23",
+        "number": 1,
+        "prompt": "내일 은행에 가야 해요. 은행에 (          ) 바로 옆 우체국에도 들를게요.",
+        "options": [
+          "가는 김에",
+          "가느라고",
+          "갈까 봐",
+          "가더라도"
+        ],
+        "answer": 0,
+        "explanation": "-는 김에 — Bir ishga kirishilgan imkoniyatdan foydalanib yana ish qilish. Oddiy bir vaqtdalik emas: birinchi ish ikkinchisiga qulay imkoniyat yaratadi. To‘g‘ri ifoda: 가는 김에.",
+        "translation": "Asosiy gapning ma’nosi: Bankka borayotganimda, fursatdan foydalanib pochtaga ham kiraman.",
+        "grammarIds": [
+          "A23"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a24",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a24",
+        "number": 2,
+        "prompt": "버스가 늦게 (          ) 지각했어요.",
+        "options": [
+          "오든지",
+          "오는 바람에",
+          "오려고",
+          "오더라도"
+        ],
+        "answer": 1,
+        "explanation": "-는 바람에 — Kutilmagan sabab tufayli ko‘pincha salbiy natija yuz berishi. Ko‘pincha nazoratdan tashqari hodisa. Barcha sabab gaplarida -느라고 bilan almashmaydi. To‘g‘ri ifoda: 오는 바람에.",
+        "translation": "Avtobus kech kelgani sababli kech qoldim.",
+        "grammarIds": [
+          "A24"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a25",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a25",
+        "number": 1,
+        "prompt": "안경을 (          ) 잠들었어요.",
+        "options": [
+          "쓰든지",
+          "쓰려면",
+          "쓸수록",
+          "쓴 채로"
+        ],
+        "answer": 3,
+        "explanation": "-(으)ㄴ 채(로) — Bir holatni o‘zgartirmay boshqa harakatni bajarish. Natijaviy holat saqlanadi. Ikki faol harakatning bir vaqtdaligi bilan farqlang. To‘g‘ri ifoda: 쓴 채로.",
+        "translation": "Ko‘zoynagimni taqqan holda uxlab qolibman.",
+        "grammarIds": [
+          "A25"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a26",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a26",
+        "number": 2,
+        "prompt": "선생님이 (          ) 합격했어요.",
+        "options": [
+          "도와주시려면",
+          "도와주시든지",
+          "도와주시는 대신에",
+          "도와주신 덕분에"
+        ],
+        "answer": 3,
+        "explanation": "-(으)ㄴ/는 덕분에 — Yaxshi natijaga olib kelgan sabab: «…sharofati bilan». Odatda ijobiy natija; salbiy sabab uchun ko‘pincha 탓에 yoki 바람에 keladi. To‘g‘ri ifoda: 도와주신 덕분에.",
+        "translation": "Ustozim yordam bergani sharofati bilan imtihondan o‘tdim.",
+        "grammarIds": [
+          "A26"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a27",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a27",
+        "number": 1,
+        "prompt": "잊지 (          ) 메모해 두세요.",
+        "options": [
+          "않은 채로",
+          "않도록",
+          "않더니",
+          "않느라고"
+        ],
+        "answer": 1,
+        "explanation": "-도록 — Maqsad, ko‘zlangan natija yoki vaqt/daraja chegarasi. Vaqt/daraja: 밤새도록 공부했어요. C11 va C31 vazifalarini solishtiring. To‘g‘ri ifoda: 않도록.",
+        "translation": "Unutmaslik uchun yozib qo‘ying.",
+        "grammarIds": [
+          "A27"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a28",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a28",
+        "number": 2,
+        "prompt": "과일이 (          ) 많이 샀어요.",
+        "options": [
+          "싸려고",
+          "싸느라고",
+          "싸길래",
+          "싸자마자"
+        ],
+        "answer": 2,
+        "explanation": "-기에 / -길래 — Ko‘rilgan yoki ma’lum bo‘lgan holat asosida ish qilish sababi. -기에 yozma nutqda, -길래 og‘zaki nutqda ko‘proq uchraydi. Eshitilgan xabar uchun C32 ga qarang. To‘g‘ri ifoda: 싸길래.",
+        "translation": "Meva arzon ekan, ko‘proq sotib oldim.",
+        "grammarIds": [
+          "A28"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a29",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a29",
+        "number": 1,
+        "prompt": "(          ) 포기하지 않겠어요.",
+        "options": [
+          "힘들려고",
+          "힘들느라고",
+          "힘들더라도",
+          "힘들자마자"
+        ],
+        "answer": 2,
+        "explanation": "-더라도 — Kuchli farazga qaramay natija yoki qaror o‘zgarmasligi. Ko‘pincha -아/어도 ga nisbatan kuchliroq faraz yoki qat’iylik seziladi. To‘g‘ri ifoda: 힘들더라도.",
+        "translation": "Qiyin bo‘lsa ham, taslim bo‘lmayman.",
+        "grammarIds": [
+          "A29"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-a30",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-a30",
+        "number": 2,
+        "prompt": "매일 (          ) 속도가 빨라져요.",
+        "options": [
+          "읽는 대신에",
+          "읽을까 봐",
+          "읽다 보면",
+          "읽든지"
+        ],
+        "answer": 2,
+        "explanation": "-다가 보면 / -다 보면 — Ish takrorlanishi yoki davom etishi natijasida bir holat yuz berishi. Umumiy yoki kutiladigan natija. Allaqachon aniqlangan natija uchun C24 dagi -다 보니까 bilan farqlang. To‘g‘ri ifoda: 읽다 보면.",
+        "translation": "Har kuni o‘qiyversangiz, tezligingiz oshadi.",
+        "grammarIds": [
+          "A30"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-b01",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-b01",
+        "number": 1,
+        "prompt": "환기를 하려고 아까 창문을 (          ). 지금도 열린 상태예요.",
+        "options": [
+          "열 리가 없어요",
+          "여는 척했어요",
+          "열어 놓았어요",
+          "열 뻔했어요"
+        ],
+        "answer": 2,
+        "explanation": "-아/어 놓다 — Ishni bajarib, uning natijasini saqlab qo‘yish. Natija saqlanadi; oldindan tayyorgarlik ma’nosi ham bo‘lishi mumkin. B19 bilan yaqin. To‘g‘ri ifoda: 열어 놓았어요.",
+        "translation": "Asosiy gapning ma’nosi: Derazani ochib qo‘ydim.",
+        "grammarIds": [
+          "B01"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-b02",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-b02",
+        "number": 2,
+        "prompt": "아직 친구를 만나지 않았어요. 방금 통화해서 친구와 내일 (          ).",
+        "options": [
+          "만나고 말았어요",
+          "만나기로 했어요",
+          "만난 적이 있어요",
+          "만날 뻔했어요"
+        ],
+        "answer": 1,
+        "explanation": "-기로 하다 — Bir ishni qilishga qaror qilish yoki kelishish. -기로 했다 shakli qaror yoki kelishuv allaqachon qilinganini ko‘rsatadi. To‘g‘ri ifoda: 만나기로 했어요.",
+        "translation": "Asosiy gapning ma’nosi: Do‘stim bilan ertaga uchrashishga kelishdik.",
+        "grammarIds": [
+          "B02"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-b03",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-b03",
+        "number": 1,
+        "prompt": "신청 방법은 간단해요. 여기에 이름을 (          ).",
+        "options": [
+          "쓸 뻔했어요",
+          "쓴 적이 있어요",
+          "쓰면 돼요",
+          "쓸 리가 없어요"
+        ],
+        "answer": 2,
+        "explanation": "-(으)면 되다 — Shartni bajarsa kifoya: «…sa bo‘ladi», «…sa yetadi». Zarur ishning yetarli shartini bildiradi. Ruxsat ma’nosidagi -아/어도 되다 bilan aynan bir xil emas. To‘g‘ri ifoda: 쓰면 돼요.",
+        "translation": "Asosiy gapning ma’nosi: Bu yerga ismingizni yozsangiz bo‘ladi.",
+        "grammarIds": [
+          "B03"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-b04",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-b04",
+        "number": 2,
+        "prompt": "학생들이 잘못 읽자 선생님은 학생들에게 다시 (          ).",
+        "options": [
+          "읽게 했어요",
+          "읽을 뻔했어요",
+          "읽은 적이 있어요",
+          "읽을 리가 없어요"
+        ],
+        "answer": 0,
+        "explanation": "-게 하다 — Boshqasiga ish qildirish yoki bir holatga sabab bo‘lish. Sababchi shaxs bor; majburlash yoki imkon berish ma’nosi vaziyatga bog‘liq. To‘g‘ri ifoda: 읽게 했어요.",
+        "translation": "Asosiy gapning ma’nosi: Ustoz o‘quvchilarga qayta o‘qitdi.",
+        "grammarIds": [
+          "B04"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-b05",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-b05",
+        "number": 1,
+        "prompt": "취업에 성공해서 지난달부터 한국 회사에서 (          ).",
+        "options": [
+          "일하는 척했어요",
+          "일할 리가 없어요",
+          "일할 뻔했어요",
+          "일하게 됐어요"
+        ],
+        "answer": 3,
+        "explanation": "-게 되다 — Vaziyat, jarayon yoki tashqi omil natijasida o‘zgarish yuz berishi. Faqat shaxsiy qaror emas, ishning qanday holatga kelib qolganini ta’kidlaydi. To‘g‘ri ifoda: 일하게 됐어요.",
+        "translation": "Asosiy gapning ma’nosi: Koreya kompaniyasida ishlaydigan bo‘ldim.",
+        "grammarIds": [
+          "B05"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-b06",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-b06",
+        "number": 2,
+        "prompt": "예전에 한 번 제주도에 (          ). 그때 찍은 사진도 있어요.",
+        "options": [
+          "가고 있어요",
+          "가게 해요",
+          "갈 뻔했어요",
+          "간 적이 있어요"
+        ],
+        "answer": 3,
+        "explanation": "-(으)ㄴ 적이 있다 — Oldin bir ishni qilib ko‘rganlik, hayotiy tajriba. «Qachondir shunday tajriba bo‘lgan» ma’nosi; aniq bir o‘tgan voqeani aytishdan farqlanadi. To‘g‘ri ifoda: 간 적이 있어요.",
+        "translation": "Asosiy gapning ma’nosi: Jejuga borganman.",
+        "grammarIds": [
+          "B06"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-b07",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-b07",
+        "number": 1,
+        "prompt": "문이 (          ).",
+        "options": [
+          "열 뻔해요",
+          "열려고 해요",
+          "열려 있어요",
+          "열기로 해요"
+        ],
+        "answer": 2,
+        "explanation": "-아/어 있다 — Harakat tugagach hosil bo‘lgan holatning saqlanishi. Ko‘pincha holat o‘zgarishi fe’llari bilan: 앉아 있다, 서 있다. Davom etayotgan jarayon -고 있다 bilan farqlanadi. To‘g‘ri ifoda: 열려 있어요.",
+        "translation": "Eshik ochiq turibdi.",
+        "grammarIds": [
+          "B07"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-b08",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-b08",
+        "number": 2,
+        "prompt": "일이 거의 (          ). 조금만 더 하면 전부 마칠 수 있어요.",
+        "options": [
+          "끝내게 해요",
+          "끝나 가요",
+          "끝날 리가 없어요",
+          "끝난 적이 있어요"
+        ],
+        "answer": 1,
+        "explanation": "-아/어 가다 — Hozirdan keyinga tomon davom etish yoki yakuniga yaqinlashish. Jarayonning oldinga rivojlanishi. O‘tmishdan hozirgacha davom uchun B10. To‘g‘ri ifoda: 끝나 가요.",
+        "translation": "Asosiy gapning ma’nosi: Ish deyarli tugab boryapti.",
+        "grammarIds": [
+          "B08"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-b09",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-b09",
+        "number": 1,
+        "prompt": "열 문제 중 아홉 문제를 맞혔으니 거의 다 (          ).",
+        "options": [
+          "맞히는 척했어요",
+          "맞힌 셈이에요",
+          "맞힐 리가 없어요",
+          "맞힐 뻔했어요"
+        ],
+        "answer": 1,
+        "explanation": "-(으)ㄴ/는 셈이다 — Hisoblab yoki taqqoslab qaraganda, amalda shunday deb baholash. To‘g‘ridan-to‘g‘ri fakt emas, vaziyatdan chiqarilgan baho. C09 ga qarang. To‘g‘ri ifoda: 맞힌 셈이에요.",
+        "translation": "O‘nta savoldan to‘qqiztasi to‘g‘ri: deyarli hammasini topgan hisoblanaman.",
+        "grammarIds": [
+          "B09"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-b10",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-b10",
+        "number": 2,
+        "prompt": "삼 년 전부터 지금까지 쉬지 않고 한국어를 (          ).",
+        "options": [
+          "공부할 뻔했어요",
+          "공부하기로 했어요",
+          "공부해 왔어요",
+          "공부할 리가 없어요"
+        ],
+        "answer": 2,
+        "explanation": "-아/어 오다 — O‘tmishda boshlangan ishning hozirgacha davom etishi. Boshlanish nuqtasi o‘tmishda, yo‘nalish hozirga tomon. B08 bilan solishtiring. To‘g‘ri ifoda: 공부해 왔어요.",
+        "translation": "Asosiy gapning ma’nosi: Uch yildan beri koreys tilini o‘rganib kelyapman.",
+        "grammarIds": [
+          "B10"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-b11",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-b11",
+        "number": 1,
+        "prompt": "계단에서 발을 헛디뎌 (          ). 다행히 난간을 잡아서 넘어지지는 않았어요.",
+        "options": [
+          "넘어지기로 했어요",
+          "넘어져 있어요",
+          "넘어지게 했어요",
+          "넘어질 뻔했어요"
+        ],
+        "answer": 3,
+        "explanation": "-(으)ㄹ 뻔하다 — Bir hodisa deyarli yuz berishi, ammo aslida yuz bermasligi. Ko‘pincha -을 뻔했다 va 하마터면 bilan keladi; hodisa sodir bo‘lmagan. To‘g‘ri ifoda: 넘어질 뻔했어요.",
+        "translation": "Asosiy gapning ma’nosi: Zinada yiqilib tushay dedim.",
+        "grammarIds": [
+          "B11"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-b12",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-b12",
+        "number": 2,
+        "prompt": "불이 꺼진 걸 보니 모두 (          ).",
+        "options": [
+          "나갔나 봐요",
+          "나가려고 해요",
+          "나가게 해요",
+          "나가기로 해요"
+        ],
+        "answer": 0,
+        "explanation": "-나 보다 — Ko‘rinayotgan belgilar asosidagi taxmin. 있다/없다: 있나 보다, 없나 보다. O‘tgan zamon: -았/었나 보다. To‘g‘ri ifoda: 나갔나 봐요.",
+        "translation": "Chiroq o‘chiqligiga qaraganda, hamma chiqib ketgan shekilli.",
+        "grammarIds": [
+          "B12"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-b13",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-b13",
+        "number": 1,
+        "prompt": "처음에는 누구나 (          ).",
+        "options": [
+          "실수하기로 해요",
+          "실수할 리가 없어요",
+          "실수해 놓아요",
+          "실수하기 마련이에요"
+        ],
+        "answer": 3,
+        "explanation": "-기 마련이다 — Tabiiy, odatiy yoki muqarrar deb qaraladigan natija. Majburiyat yoki buyruq emas; umumiy qonuniyatni bildiradi. C03 bilan bog‘liq. To‘g‘ri ifoda: 실수하기 마련이에요.",
+        "translation": "Boshida hamma xato qilishi tabiiy.",
+        "grammarIds": [
+          "B13"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-b14",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-b14",
+        "number": 2,
+        "prompt": "길이 젖은 걸 보니 비가 (          ).",
+        "options": [
+          "올 리가 없어요",
+          "오게 했어요",
+          "오기로 했어요",
+          "온 모양이에요"
+        ],
+        "answer": 3,
+        "explanation": "-(으)ㄴ/는 모양이다 — Vaziyat yoki dalildan taxminiy xulosa chiqarish. Kelajak taxmini: -(으)ㄹ 모양이다; ot bilan N-인 모양이다. To‘g‘ri ifoda: 온 모양이에요.",
+        "translation": "Yo‘l ho‘lligiga qaraganda, yomg‘ir yog‘gan ko‘rinadi.",
+        "grammarIds": [
+          "B14"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-b15",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-b15",
+        "number": 1,
+        "prompt": "실수로 중요한 파일을 (          ). 복구할 수 없어서 걱정이에요.",
+        "options": [
+          "지우기로 했어요",
+          "지울 리가 없어요",
+          "지우는 척했어요",
+          "지워 버렸어요"
+        ],
+        "answer": 3,
+        "explanation": "-아/어 버리다 — Harakatning butunlay tugashi; afsus yoki yengillik hissi. Oddiy tugallanishdan tashqari so‘zlovchining hissiy munosabati ham sezilishi mumkin. To‘g‘ri ifoda: 지워 버렸어요.",
+        "translation": "Asosiy gapning ma’nosi: Muhim faylni o‘chirib yubordim.",
+        "grammarIds": [
+          "B15"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-b16",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-b16",
+        "number": 2,
+        "prompt": "얼굴을 보니 오늘은 좀 (          ). 어제 잠을 못 잤어요?",
+        "options": [
+          "피곤할 리가 없어요",
+          "피곤하기로 해요",
+          "피곤해 보여요",
+          "피곤한 척하세요"
+        ],
+        "answer": 2,
+        "explanation": "-아/어 보이다 — Tashqi ko‘rinishdan shunday taassurot uyg‘otish. Ko‘pincha sifat bilan keladi. «Sinab ko‘rish» ma’nosidagi V-아/어 보다 bilan adashtirmang. To‘g‘ri ifoda: 피곤해 보여요.",
+        "translation": "Asosiy gapning ma’nosi: Bugun biroz charchagan ko‘rinasiz.",
+        "grammarIds": [
+          "B16"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-b17",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-b17",
+        "number": 1,
+        "prompt": "동생은 깨어 있었지만 엄마가 들어오자 눈을 감고 (          ).",
+        "options": [
+          "자고 있었어요",
+          "자 버렸어요",
+          "자게 됐어요",
+          "자는 척했어요"
+        ],
+        "answer": 3,
+        "explanation": "-(으)ㄴ/는 척하다 — Aslida unday bo‘lmasa-da, o‘zini shunday tutish. -는 척: hozir qilayotgandek; -(으)ㄴ 척: bajargandek ko‘rsatish. To‘g‘ri ifoda: 자는 척했어요.",
+        "translation": "Asosiy gapning ma’nosi: Ukam o‘zini uxlayotgandek tutdi.",
+        "grammarIds": [
+          "B17"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-b18",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-b18",
+        "number": 2,
+        "prompt": "일기 예보도 아직 확실하지 않지만 오후에 비가 (          ).",
+        "options": [
+          "와 있었어요",
+          "온 적이 있어요",
+          "오게 했어요",
+          "올지도 몰라요"
+        ],
+        "answer": 3,
+        "explanation": "-(으)ㄹ지도 모르다 — Noaniq ehtimol: «balki …ar», «…ishi mumkin». Taxmin aniq emas. O‘tgan voqea uchun -았/었을지도 모르다. To‘g‘ri ifoda: 올지도 몰라요.",
+        "translation": "Asosiy gapning ma’nosi: Tushdan keyin yomg‘ir yog‘ishi mumkin.",
+        "grammarIds": [
+          "B18"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-b19",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-b19",
+        "number": 1,
+        "prompt": "잊지 않으려고 아까 수첩에 시험 날짜를 (          ).",
+        "options": [
+          "적을 리가 없어요",
+          "적어 두었어요",
+          "적는 척했어요",
+          "적을 뻔했어요"
+        ],
+        "answer": 1,
+        "explanation": "-아/어 두다 — Kelgusida kerak bo‘lishi uchun oldindan bajarib qo‘yish. Natijani keyin foydalanish uchun saqlash ta’kidlanadi. -아/어 놓다 bilan ko‘p vaziyatda yaqin. To‘g‘ri ifoda: 적어 두었어요.",
+        "translation": "Asosiy gapning ma’nosi: Imtihon sanasini yozib qo‘ydim.",
+        "grammarIds": [
+          "B19"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-b20",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-b20",
+        "number": 2,
+        "prompt": "그 사람은 지금 해외 출장 중이니까 지금 집에 (          ).",
+        "options": [
+          "있는 척했어요",
+          "있고 싶어요",
+          "있을 리가 없어요",
+          "있기로 했어요"
+        ],
+        "answer": 2,
+        "explanation": "-(으)ㄹ 리가 없다 — Bir holatni mantiqan imkonsiz deb qat’iy inkor qilish. Oddiy bilmaslik emas, kuchli ishonch. O‘tgan zamon: -았/었을 리가 없다. To‘g‘ri ifoda: 있을 리가 없어요.",
+        "translation": "Asosiy gapning ma’nosi: Hozir uyda bo‘lishi mumkin emas.",
+        "grammarIds": [
+          "B20"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-d01",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-d01",
+        "number": 1,
+        "prompt": "어디에 (          ) 알아요?",
+        "options": [
+          "사는지",
+          "살까 봐",
+          "살수록",
+          "살도록"
+        ],
+        "answer": 0,
+        "explanation": "-(으)ㄴ/는지 — Bir faktni bilish, bilmaslik yoki tekshirish. Kitobdagi 16-bet eslatmasi. -(으)ㄹ지 ko‘pincha kelajakdagi tanlov/noaniqlikni bildiradi. To‘g‘ri ifoda: 사는지.",
+        "translation": "Qayerda yashashini bilasizmi?",
+        "grammarIds": [
+          "D01"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-d02",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-d02",
+        "number": 2,
+        "prompt": "손을 (          ) 밥을 먹었어요.",
+        "options": [
+          "씻든지",
+          "씻고서",
+          "씻을까 봐",
+          "씻으려면"
+        ],
+        "answer": 1,
+        "explanation": "-고서 — Bir ishni tugatgach keyingi ishni bajarish. 14-bet test varianti. -고 나서 bilan ketma-ketlik ma’nosida yaqin. To‘g‘ri ifoda: 씻고서.",
+        "translation": "Qo‘limni yuvib, ovqat yedim.",
+        "grammarIds": [
+          "D02"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-d03",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-d03",
+        "number": 1,
+        "prompt": "이 자리는 비어 있으니 여기에 (          ).",
+        "options": [
+          "앉아도 돼요",
+          "앉은 적이 있어요",
+          "앉아 버렸어요",
+          "앉을 뻔했어요"
+        ],
+        "answer": 0,
+        "explanation": "-아/어도 되다 — Ruxsat: «…sa bo‘ladi». 14-bet test varianti. -(으)면 되다 «shuni qilsa kifoya» ma’nosini ham beradi. To‘g‘ri ifoda: 앉아도 돼요.",
+        "translation": "Asosiy gapning ma’nosi: Bu yerga o‘tirsangiz bo‘ladi.",
+        "grammarIds": [
+          "D03"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-d04",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-d04",
+        "number": 2,
+        "prompt": "내일까지 (          ).",
+        "options": [
+          "제출해 버렸어요",
+          "제출하도록 하세요",
+          "제출한 적이 있으세요",
+          "제출할 뻔하세요"
+        ],
+        "answer": 1,
+        "explanation": "-도록 하다 — Bajarishni buyurish, tavsiya qilish yoki o‘ziga vazifa belgilash. 14-bet test varianti. Faqat maqsad bildiruvchi -도록 dan tuzilishi kengroq. To‘g‘ri ifoda: 제출하도록 하세요.",
+        "translation": "Ertagacha topshiring.",
+        "grammarIds": [
+          "D04"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-d05",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-d05",
+        "number": 1,
+        "prompt": "한 번 한 약속은 반드시 (          ).",
+        "options": [
+          "지킬 뻔했어요",
+          "지키는 척해요",
+          "지킨 적이 없어요",
+          "지켜야 해요"
+        ],
+        "answer": 3,
+        "explanation": "-아/어야 하다 — Zarurat yoki majburiyat: «…ishi kerak». 14 va 19-betlardagi variantlar. -아/어야 되다 ham keng ishlatiladi. To‘g‘ri ifoda: 지켜야 해요.",
+        "translation": "Asosiy gapning ma’nosi: Va’daga amal qilish kerak.",
+        "grammarIds": [
+          "D05"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-d06",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-d06",
+        "number": 2,
+        "prompt": "그 식당은 (          ) 같이 갈까요?",
+        "options": [
+          "맛있으려고",
+          "맛있느라고",
+          "맛있자마자",
+          "맛있던데"
+        ],
+        "answer": 3,
+        "explanation": "-던데 — O‘tmishda ko‘rilgan holatni keyingi gapga asos yoki qarama-qarshi fon qilish. 18-bet test varianti. So‘zlovchining o‘z tajribasi/kuzatuvi seziladi. To‘g‘ri ifoda: 맛있던데.",
+        "translation": "U oshxonaning taomi mazali ekan, birga boramizmi?",
+        "grammarIds": [
+          "D06"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-d07",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-d07",
+        "number": 1,
+        "prompt": "이 옷은 털이 많아서 여름에 (          ) 너무 두꺼워요.",
+        "options": [
+          "입든지",
+          "입느라고",
+          "입자마자",
+          "입기에는"
+        ],
+        "answer": 3,
+        "explanation": "-기에는 — Bir ish nuqtayi nazaridan baholash: «…ish uchun». 18-bet test varianti. Odatda moslik, qiyinlik yoki daraja bahosi keladi. To‘g‘ri ifoda: 입기에는.",
+        "translation": "Asosiy gapning ma’nosi: Bu kiyim yozda kiyish uchun qalin.",
+        "grammarIds": [
+          "D07"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-d08",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-d08",
+        "number": 2,
+        "prompt": "제가 (          ) 걱정하지 마세요.",
+        "options": [
+          "도와줄까 봐",
+          "도와주는 대신에",
+          "도와줄 테니까",
+          "도와주든지"
+        ],
+        "answer": 2,
+        "explanation": "-(으)ㄹ 테니까 — So‘zlovchining niyati yoki kuchli taxmini keyingi gapga asos bo‘ladi. 18-bet test varianti. Niyatda ko‘pincha birinchi shaxs; taxminda boshqa egalar ham keladi. To‘g‘ri ifoda: 도와줄 테니까.",
+        "translation": "Men yordam beraman, shuning uchun xavotir olmang.",
+        "grammarIds": [
+          "D08"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-d09",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-d09",
+        "number": 1,
+        "prompt": "운동도 (          ) 걸어서 갔어요.",
+        "options": [
+          "하느라고",
+          "하든지",
+          "할 겸",
+          "할까 봐"
+        ],
+        "answer": 2,
+        "explanation": "-(으)ㄹ 겸(해서) — Bir yoki bir necha maqsadni birga ko‘zlash. 18-bet test varianti. Ko‘pincha -도 va ikki maqsad bilan ishlatiladi. To‘g‘ri ifoda: 할 겸.",
+        "translation": "Mashq ham bo‘lsin deb, piyoda bordim.",
+        "grammarIds": [
+          "D09"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-d10",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-d10",
+        "number": 2,
+        "prompt": "시간이 (          ) 여행을 가고 싶어요.",
+        "options": [
+          "있자마자",
+          "있느라고",
+          "있으려고",
+          "있다면"
+        ],
+        "answer": 3,
+        "explanation": "-(ㄴ/는)다면 — Faraz qilingan shart: «agar …bo‘lsa». 18-bet test varianti. Oddiy -(으)면 ga nisbatan faraziylik ko‘proq sezilishi mumkin. To‘g‘ri ifoda: 있다면.",
+        "translation": "Vaqtim bo‘lsa, sayohatga borishni xohlardim.",
+        "grammarIds": [
+          "D10"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-d11",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-d11",
+        "number": 1,
+        "prompt": "전화 소리도 못 들을 만큼 지금 책을 (          ).",
+        "options": [
+          "읽고 있어요",
+          "읽은 적이 있어요",
+          "읽을 뻔했어요",
+          "읽어 두었어요"
+        ],
+        "answer": 0,
+        "explanation": "-고 있다 — Harakatning davom etishi; ayrim fe’llarda saqlanayotgan holat. 19-bet test varianti. 입고 있다 kiyib turgan holatni ham bildiradi; faqat jarayon bilan cheklanmaydi. To‘g‘ri ifoda: 읽고 있어요.",
+        "translation": "Asosiy gapning ma’nosi: Hozir kitob o‘qiyapman.",
+        "grammarIds": [
+          "D11"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-d12",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-d12",
+        "number": 2,
+        "prompt": "어릴 때 매주 일요일이면 이 공원에서 (          ).",
+        "options": [
+          "놀게 할 거예요",
+          "놀기로 했어요",
+          "놀 리가 없어요",
+          "놀곤 했어요"
+        ],
+        "answer": 3,
+        "explanation": "-곤 하다 — Odatda yoki vaqti-vaqti bilan takrorlanadigan harakat. 19-bet test varianti. -곤 했다 o‘tmishdagi odatni ko‘rsatadi. To‘g‘ri ifoda: 놀곤 했어요.",
+        "translation": "Asosiy gapning ma’nosi: Bolaligimda bu bog‘da o‘ynab turardim.",
+        "grammarIds": [
+          "D12"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-d13",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-d13",
+        "number": 1,
+        "prompt": "모양이 비슷한 글자가 많아서 이 단어는 (          ).",
+        "options": [
+          "틀리고 싶어요",
+          "틀리기로 했어요",
+          "틀릴 리가 없어요",
+          "틀리기 쉬워요"
+        ],
+        "answer": 3,
+        "explanation": "-기 쉽다 — Bir ishning osonligi yoki holatning tez yuz berish ehtimoli. 19-bet test varianti. Kontekstga qarab «oson» yoki «moyil» ma’nosi. To‘g‘ri ifoda: 틀리기 쉬워요.",
+        "translation": "Asosiy gapning ma’nosi: Bu so‘zda xato qilish oson.",
+        "grammarIds": [
+          "D13"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-d14",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-d14",
+        "number": 2,
+        "prompt": "지금 (          ). 회의가 끝나면 전화할게요.",
+        "options": [
+          "회의해 두었어요",
+          "회의하는 중이에요",
+          "회의할 뻔했어요",
+          "회의한 적이 있어요"
+        ],
+        "answer": 1,
+        "explanation": "-는 중이다 — Ish ayni bajarilish jarayonida ekanini bildirish. 19-bet test varianti. Jarayon markazda; sifatga odatda qo‘shilmaydi. To‘g‘ri ifoda: 회의하는 중이에요.",
+        "translation": "Asosiy gapning ma’nosi: Hozir majlis o‘tkazyapmiz.",
+        "grammarIds": [
+          "D14"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-d15",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-d15",
+        "number": 1,
+        "prompt": "내일 소풍을 가니까 내일 날씨가 (          ).",
+        "options": [
+          "좋으면 좋겠어요",
+          "좋은 적이 있어요",
+          "좋아 버렸어요",
+          "좋아 놓았어요"
+        ],
+        "answer": 0,
+        "explanation": "-(으)면 좋겠다 — Istak yoki umid: «…sa yaxshi bo‘lardi». 19-bet test varianti. -았/었으면 좋겠다 istakni kuchliroq yoki faraziyroq ifodalashi mumkin. To‘g‘ri ifoda: 좋으면 좋겠어요.",
+        "translation": "Asosiy gapning ma’nosi: Ertaga ob-havo yaxshi bo‘lsa edi.",
+        "grammarIds": [
+          "D15"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-d16",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-d16",
+        "number": 2,
+        "prompt": "서두르면 (          ).",
+        "options": [
+          "실수할 리가 없어요",
+          "실수해 놓아요",
+          "실수하기 십상이에요",
+          "실수하고 싶어요"
+        ],
+        "answer": 2,
+        "explanation": "-기 십상이다 — Noxush holat yuz berish ehtimoli juda yuqori. 19-bet test varianti. Odatda salbiy natija; -기 마련이다 esa umumiy qonuniyat. To‘g‘ri ifoda: 실수하기 십상이에요.",
+        "translation": "Shoshilsa, xato qilish hech gap emas.",
+        "grammarIds": [
+          "D16"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-d17",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-d17",
+        "number": 1,
+        "prompt": "밖이 (          ) 따뜻하게 입으세요.",
+        "options": [
+          "춥자마자",
+          "춥느라고",
+          "추우려고",
+          "추울 텐데"
+        ],
+        "answer": 3,
+        "explanation": "-(으)ㄹ 텐데 — Taxmin yoki niyatni fon qilib, keyingi gapga ulash. 25-bet test varianti. Taxminiy fonni -(으)ㄹ 테니까 dagi aniq sabab ta’kididan farqlang. To‘g‘ri ifoda: 추울 텐데.",
+        "translation": "Tashqari sovuq bo‘lsa kerak, issiqroq kiying.",
+        "grammarIds": [
+          "D17"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-d18",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-d18",
+        "number": 2,
+        "prompt": "(          ) 꼭 지켜야 해요.",
+        "options": [
+          "약속하는 대신에",
+          "약속한 이상",
+          "약속하든지",
+          "약속할까 봐"
+        ],
+        "answer": 1,
+        "explanation": "-(으)ㄴ/는 이상 — Bir holat haqiqat ekan, undan tabiiy majburiyat yoki xulosa chiqarish. 25-bet test varianti. «Modomiki…», «…ekan» ma’nosi. To‘g‘ri ifoda: 약속한 이상.",
+        "translation": "Va’da bergan ekansiz, albatta unga amal qilishingiz kerak.",
+        "grammarIds": [
+          "D18"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-d19",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-d19",
+        "number": 1,
+        "prompt": "가격이 (          ) 품질이 좋아요.",
+        "options": [
+          "싸자마자",
+          "싸려고",
+          "싼 데 비해",
+          "싸느라고"
+        ],
+        "answer": 2,
+        "explanation": "-(으)ㄴ/는 데 비해 — Bir holat bilan taqqoslash: «…ga nisbatan». 25-bet test varianti. -는 데 반해 qarama-qarshilikni kuchliroq ta’kidlaydi. To‘g‘ri ifoda: 싼 데 비해.",
+        "translation": "Narxi arzonligiga nisbatan sifati yaxshi.",
+        "grammarIds": [
+          "D19"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-d20",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-d20",
+        "number": 2,
+        "prompt": "경험을 (          ) 잊어버리세요.",
+        "options": [
+          "산 셈 치고",
+          "살까 봐",
+          "사든지",
+          "사려면"
+        ],
+        "answer": 0,
+        "explanation": "-(으)ㄴ/는 셈 치고 — Haqiqat boshqacha bo‘lsa ham, shunday deb hisoblab ish tutish. 25-bet test varianti. 셈이다 vaziyatga baho; 셈 치고 esa faraz qilib qabul qilish. To‘g‘ri ifoda: 산 셈 치고.",
+        "translation": "Buni tajriba orttirgan hisoblab, unuting.",
+        "grammarIds": [
+          "D20"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-d21",
+    "category": "1-2",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 (          )에 들어갈 말로 가장 알맞은 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-d21",
+        "number": 1,
+        "prompt": "혼자 (          ) 같이 하는 게 좋아요.",
+        "options": [
+          "하려면",
+          "하느라고",
+          "할까 봐",
+          "하는 것보다"
+        ],
+        "answer": 3,
+        "explanation": "-는 것보다 — Bir harakatni boshqasi bilan taqqoslash. 25-bet test varianti. Taqqoslash uchun ikkala tomon bir xil mezonda olinadi. To‘g‘ri ifoda: 하는 것보다.",
+        "translation": "Yolg‘iz qilgandan ko‘ra, birga qilgan yaxshi.",
+        "grammarIds": [
+          "D21"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c01",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c01",
+        "number": 3,
+        "prompt": "옆집이 이사를 <u>가는 것 같아요</u>.",
+        "options": [
+          "가는 척해요",
+          "가게 해요",
+          "갈 리가 없어요",
+          "가는 모양이에요"
+        ],
+        "answer": 3,
+        "explanation": "-(으)ㄴ/는 것 같다 — Taxmin: «shekilli», «o‘xshaydi», «…deb o‘ylayman». Yaqin shakllar dalilga tayangan taxminda mos keladi. 것 같다 shaxsiy fikrda ham keng ishlatiladi; kelajak: -(으)ㄹ 것 같다. To‘g‘ri ifoda: 가는 모양이에요.",
+        "translation": "Qo‘shnilar ko‘chib ketayotganga o‘xshaydi.",
+        "grammarIds": [
+          "C01"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c02",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c02",
+        "number": 4,
+        "prompt": "목이 <u>아플 정도로</u> 많이 웃었어요.",
+        "options": [
+          "아픈 대신에",
+          "아프기 전에",
+          "아플 만큼",
+          "아파도"
+        ],
+        "answer": 2,
+        "explanation": "-(으)ㄹ 정도로 — Harakat yoki holatning darajasi: «…darajada». Daraja ifodalanganda 만큼 va -게 yaqin. Har bir -게 yoki 만큼 aynan shu ma’noda bo‘lavermaydi. To‘g‘ri ifoda: 아플 만큼.",
+        "translation": "Tomog‘im og‘rigudek darajada ko‘p kuldim.",
+        "grammarIds": [
+          "C02"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c03",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c03",
+        "number": 3,
+        "prompt": "오래 쓰면 물건은 <u>낡기 마련이에요</u>.",
+        "options": [
+          "낡는 법이에요",
+          "낡을 뻔했어요",
+          "낡는 척해요",
+          "낡을 리가 없어요"
+        ],
+        "answer": 0,
+        "explanation": "-기 마련이다 — Tabiiy va kutiladigan qonuniyat. -게 되어 있다 bu yerda tabiiy natija; boshqa vaziyatlarda reja, qoida yoki tuzilishni ham bildiradi. To‘g‘ri ifoda: 낡는 법이에요.",
+        "translation": "Uzoq ishlatilsa, buyum eskirishi tabiiy.",
+        "grammarIds": [
+          "C03"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c04",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c04",
+        "number": 4,
+        "prompt": "막차를 놓쳐서 택시를 <u>탈 수밖에 없었어요</u>.",
+        "options": [
+          "타야만 했어요",
+          "탄 적이 없었어요",
+          "타지 않아도 됐어요",
+          "탈 뻔했어요"
+        ],
+        "answer": 0,
+        "explanation": "-(으)ㄹ 수밖에 없다 — Boshqa yo‘l qolmagani sababli majbur bo‘lish. 수밖에 없다 boshqa muqobil yo‘qligini, -아/어야 하다 esa zaruratni bildiradi. To‘g‘ri ifoda: 타야만 했어요.",
+        "translation": "Oxirgi avtobusni o‘tkazib yuborib, taksiga chiqishga majbur bo‘ldim.",
+        "grammarIds": [
+          "C04"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c05",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c05",
+        "number": 3,
+        "prompt": "이 방은 <u>넓을 뿐만 아니라</u> 밝아요.",
+        "options": [
+          "넓을까 봐",
+          "넓은 데다가",
+          "넓은 대신에",
+          "넓든지"
+        ],
+        "answer": 1,
+        "explanation": "-(으)ㄹ 뿐만 아니라 — Bir xususiyatga yana birini qo‘shish: «nafaqat …, balki». Qo‘shilish shakliga e’tibor bering: 넓을 뿐만 아니라 / 넓은 데다가 / 넓은 것은 물론이고. To‘g‘ri ifoda: 넓은 데다가.",
+        "translation": "Bu xona nafaqat keng, balki yorug‘ ham.",
+        "grammarIds": [
+          "C05"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c06",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c06",
+        "number": 4,
+        "prompt": "밖이 <u>시끄러운 탓에</u> 잠을 못 잤어요.",
+        "options": [
+          "시끄러운 대신에",
+          "시끄럽더라도",
+          "시끄럽든지",
+          "시끄러운 바람에"
+        ],
+        "answer": 3,
+        "explanation": "-는 바람에 — Salbiy natijaga olib keluvchi sabab. Kitobdagi ikki vaziyatda turli shakllar solishtiriladi. -느라고 bir ish bilan bandlikni talab qiladi; hammasi erkin almashmaydi. To‘g‘ri ifoda: 시끄러운 바람에.",
+        "translation": "Tashqari shovqin bo‘lgani sababli uxlay olmadim.",
+        "grammarIds": [
+          "C06"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c07",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c07",
+        "number": 3,
+        "prompt": "비가 <u>올까 봐</u> 우산을 챙겼어요.",
+        "options": [
+          "오자마자",
+          "오는 대신에",
+          "올 것이 걱정되어서",
+          "와도"
+        ],
+        "answer": 2,
+        "explanation": "-(으)ㄹ까 봐(서) — Yuz berishi mumkin bo‘lgan hodisadan xavotir. Keyingi gap xavotir yoki ehtiyot chorasi bo‘lsa yaqin. Oddiy taxminning o‘zi xavotirni anglatmaydi. To‘g‘ri ifoda: 올 것이 걱정되어서.",
+        "translation": "Yomg‘ir yog‘ishidan xavotirlanib, soyabon oldim.",
+        "grammarIds": [
+          "C07"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c08",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c08",
+        "number": 4,
+        "prompt": "수업이 <u>끝나자마자</u> 도서관에 갈 거예요.",
+        "options": [
+          "끝나는 즉시",
+          "끝나기 전에",
+          "끝날까 봐",
+          "끝나는 동안"
+        ],
+        "answer": 0,
+        "explanation": "-자마자 — Bir hodisa ortidan darhol ikkinchisi. -는 대로 reja/buyruqda juda mos; -기가 무섭게 tez va keskin ketma-ketlikni kuchliroq ta’kidlaydi. To‘g‘ri ifoda: 끝나는 즉시.",
+        "translation": "Dars tugashi bilanoq kutubxonaga boraman.",
+        "grammarIds": [
+          "C08"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c09",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c09",
+        "number": 3,
+        "prompt": "친구가 다 했으니 저는 <u>구경만 한 셈이에요</u>.",
+        "options": [
+          "구경할 뻔했어요",
+          "구경하고 싶어요",
+          "구경할 리가 없어요",
+          "구경만 한 것이나 마찬가지예요"
+        ],
+        "answer": 3,
+        "explanation": "-(으)ㄴ/는 셈이다 — Vaziyat amalda boshqa holat bilan teng deb baholanadi. To‘liq shakllar: 구경만 한 거나 같다 / 마찬가지이다 / 다름없다. Baho yoki taqqoslash saqlanishi kerak. To‘g‘ri ifoda: 구경만 한 것이나 마찬가지예요.",
+        "translation": "Hammasini do‘stim qildi, men esa faqat tomosha qilgan hisoblanaman.",
+        "grammarIds": [
+          "C09"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c10",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c10",
+        "number": 4,
+        "prompt": "<u>물어보나 마나</u> 대답은 같을 거예요.",
+        "options": [
+          "물어본 덕분에",
+          "물어봐도 소용없이",
+          "물어보기 전에",
+          "물어보는 대신에"
+        ],
+        "answer": 1,
+        "explanation": "-(으)나 마나 — Ishni qilish-qilmaslik natijaga ta’sir qilmaydi. Natija oldindan ayon. -아/어도 yakka o‘zi «foydasiz» degani emas; buni gapning mazmuni beradi. To‘g‘ri ifoda: 물어봐도 소용없이.",
+        "translation": "So‘rasam ham, so‘ramasam ham, javob bir xil bo‘ladi.",
+        "grammarIds": [
+          "C10"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c11",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c11",
+        "number": 3,
+        "prompt": "잊지 <u>않게</u> 휴대 전화에 메모했어요.",
+        "options": [
+          "않더니",
+          "않는 대신에",
+          "않도록",
+          "않은 채로"
+        ],
+        "answer": 2,
+        "explanation": "-게 — Maqsad yoki ko‘zlangan natija. Bu yerda maqsad bildiruvchi -게 nazarda tutilgan. 예쁘게 dagi ravish yasovchi vazifa boshqa. To‘g‘ri ifoda: 않도록.",
+        "translation": "Unutmaslik uchun telefonimga yozib qo‘ydim.",
+        "grammarIds": [
+          "C11"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c12",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c12",
+        "number": 4,
+        "prompt": "학교에 <u>가는 길에</u> 친구를 만났어요.",
+        "options": [
+          "갈까 봐",
+          "가려면",
+          "갈수록",
+          "가던 도중에"
+        ],
+        "answer": 3,
+        "explanation": "-는 길에 — Bir joyga ketayotgan yoki qaytayotgan yo‘lda. Harakat yo‘nalishi bo‘lsa 가다가 bilan yaqin. -다가 ning barcha ishlatilishi «yo‘lda» degani emas. To‘g‘ri ifoda: 가던 도중에.",
+        "translation": "Maktabga ketayotib do‘stimni uchratdim.",
+        "grammarIds": [
+          "C12"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c13",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c13",
+        "number": 3,
+        "prompt": "지금 <u>출발해 봐야</u> 제시간에 도착하기 어려워요.",
+        "options": [
+          "출발할까 봐",
+          "출발하기 전에",
+          "출발해도",
+          "출발하는 대신에"
+        ],
+        "answer": 2,
+        "explanation": "-아/어 봐야 — Urinishning foydasi yoki natijasi cheklangan. Keyingi gap foydasizlik yoki cheklovni ko‘rsatadi. 해 봐야 ning taxminiy miqdor ma’nosi ham mavjud. To‘g‘ri ifoda: 출발해도.",
+        "translation": "Hozir yo‘lga chiqqanimiz bilan, vaqtida yetib borish qiyin.",
+        "grammarIds": [
+          "C13"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c14",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c14",
+        "number": 4,
+        "prompt": "그 말은 <u>변명일 뿐이에요</u>.",
+        "options": [
+          "변명인 척해요",
+          "변명에 불과해요",
+          "변명이면 돼요",
+          "변명일 리가 없어요"
+        ],
+        "answer": 1,
+        "explanation": "-(으)ㄹ 뿐이다 — Faqat shu holat yoki ish bilan cheklanish. Otli shakl: 변명에 불과하다/지나지 않다. Holat-hisda: 미안할 뿐이다 → 미안할 따름이다. To‘g‘ri ifoda: 변명에 불과해요.",
+        "translation": "Bu gap shunchaki bahona, xolos.",
+        "grammarIds": [
+          "C14"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c15",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c15",
+        "number": 3,
+        "prompt": "미리 <u>예약했어야 했는데</u> 잊었어요.",
+        "options": [
+          "예약한 적이 없는데",
+          "예약하는 것이 옳았는데",
+          "예약할 필요가 없었는데",
+          "예약할까 봐"
+        ],
+        "answer": 1,
+        "explanation": "-았/었어야 했는데 — Bajarilmagan kerakli ishga afsuslanish. 예약할걸 그랬어요 «band qilsam bo‘larkan» degan afsus. -았/었어야 했다 ayrim gaplarda zaruratning o‘zi bo‘lishi mumkin. To‘g‘ri ifoda: 예약하는 것이 옳았는데.",
+        "translation": "Oldindan band qilishim kerak edi, lekin unutdim.",
+        "grammarIds": [
+          "C15"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c16",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c16",
+        "number": 4,
+        "prompt": "저도 지금 <u>전화하려던 참이었어요</u>.",
+        "options": [
+          "이미 전화를 끝냈어요",
+          "전화할 리가 없었어요",
+          "막 전화하려고 했어요",
+          "전화하는 척했어요"
+        ],
+        "answer": 2,
+        "explanation": "-(으)려던 참이다 — Ayni hozir bir ishni boshlamoqchi bo‘lib turish. -려고 하다 umumiy niyat; -려던 참이다 juda yaqin paytdagi tayyor niyatni bildiradi. To‘g‘ri ifoda: 막 전화하려고 했어요.",
+        "translation": "Men ham ayni hozir telefon qilmoqchi bo‘lib turgandim.",
+        "grammarIds": [
+          "C16"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c17",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c17",
+        "number": 3,
+        "prompt": "장학금을 <u>받기 위해서</u> 열심히 공부해요.",
+        "options": [
+          "받을까 봐",
+          "받는 대신에",
+          "받더라도",
+          "받으려고"
+        ],
+        "answer": 3,
+        "explanation": "-기 위해서 — Maqsad: «…ish uchun». -고자 rasmiyroq. Maqsadli harakatlarda mos; N을/를 위해서 esa otga qo‘shiladi. To‘g‘ri ifoda: 받으려고.",
+        "translation": "Stipendiya olish uchun qattiq o‘qiyman.",
+        "grammarIds": [
+          "C17"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c18",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c18",
+        "number": 4,
+        "prompt": "제가 <u>하는 대로</u> 따라 하세요.",
+        "options": [
+          "하기 전에",
+          "할까 봐",
+          "하는 것과 똑같이",
+          "하는 것과 반대로"
+        ],
+        "answer": 2,
+        "explanation": "-는 대로 — Ko‘rsatilgan usul yoki namuna bo‘yicha aynan bajarish. Bu «…bilanoq» ma’nosidagi -는 대로 emas. C08 bilan vazifasini solishtiring. To‘g‘ri ifoda: 하는 것과 똑같이.",
+        "translation": "Men qilganimdek takrorlang.",
+        "grammarIds": [
+          "C18"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c19",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c19",
+        "number": 3,
+        "prompt": "결과는 얼마나 <u>노력하느냐에 달려 있어요</u>.",
+        "options": [
+          "노력한 적이 없어요",
+          "노력하는지에 따라 달라져요",
+          "노력하는 것과 관계가 없어요",
+          "노력하는 척해요"
+        ],
+        "answer": 1,
+        "explanation": "-에 달려 있다 — Natijaning omil yoki usulga bog‘liqligi. Natija bajarish usuliga bog‘liq bo‘lsa yaqin: 노력하기 나름이다. N에 달려 있다 kengroq qo‘llanadi. To‘g‘ri ifoda: 노력하는지에 따라 달라져요.",
+        "translation": "Natija qancha harakat qilishingizga bog‘liq.",
+        "grammarIds": [
+          "C19"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c20",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c20",
+        "number": 4,
+        "prompt": "내일은 길이 <u>막힐지도 몰라요</u>.",
+        "options": [
+          "막힐 리가 없어요",
+          "막히게 하세요",
+          "막힐 수도 있어요",
+          "막힐 뻔했어요"
+        ],
+        "answer": 2,
+        "explanation": "-(으)ㄹ지도 모르다 — Bir hodisaning yuz berish ehtimoli. -을 수도 있다 bu yerda ehtimol; boshqa gaplarda qobiliyat yoki variantni ham ko‘rsatishi mumkin. To‘g‘ri ifoda: 막힐 수도 있어요.",
+        "translation": "Ertaga yo‘lda tirbandlik bo‘lishi mumkin.",
+        "grammarIds": [
+          "C20"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c21",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c21",
+        "number": 3,
+        "prompt": "근처에 아이들과 <u>놀 만한</u> 공원이 있어요.",
+        "options": [
+          "놀기로 한",
+          "놀기에 괜찮은",
+          "놀 수 없는",
+          "놀았던"
+        ],
+        "answer": 1,
+        "explanation": "-(으)ㄹ 만하다 — Bir ishga arzirli, yaroqli yoki bajarishga yetarli bo‘lish. 놀 수 있는 bog‘da o‘ynash mumkinligini, 놀 만한 esa yaroqliligini ham bildiradi; doim aynan teng emas. To‘g‘ri ifoda: 놀기에 괜찮은.",
+        "translation": "Yaqinda bolalar bilan o‘ynashga qulay bog‘ bor.",
+        "grammarIds": [
+          "C21"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c22",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c22",
+        "number": 4,
+        "prompt": "너무 바빠서 <u>여행은커녕</u> 산책도 못 해요.",
+        "options": [
+          "여행을 한 덕분에",
+          "여행을 하려고",
+          "여행은 말할 것도 없고",
+          "여행을 하는 대신에"
+        ],
+        "answer": 2,
+        "explanation": "-은/는커녕 — Katta kutilmani chetga qo‘yib, hatto kichigi ham bajarilmasligi. Yaqin shakllar keyingi qism salbiy bo‘lgandagina shu ma’noni beradi. 밥은커녕 / 커피는커녕. To‘g‘ri ifoda: 여행은 말할 것도 없고.",
+        "translation": "Juda bandman: sayohat u yoqda tursin, sayr ham qila olmayman.",
+        "grammarIds": [
+          "C22"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c23",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c23",
+        "number": 3,
+        "prompt": "그는 <u>모르는 척했어요</u>.",
+        "options": [
+          "알고 싶어 했어요",
+          "정말 몰랐어요",
+          "알게 됐어요",
+          "모르는 것처럼 행동했어요"
+        ],
+        "answer": 3,
+        "explanation": "-(으)ㄴ/는 척하다 — O‘zini haqiqatga mos bo‘lmagan tarzda ko‘rsatish. 모르는 체했다 / 모르는 것처럼 행동했다. Oddiy o‘xshashlikdan farqli ravishda atayin qiyofa ko‘rsatish bor. To‘g‘ri ifoda: 모르는 것처럼 행동했어요.",
+        "translation": "U o‘zini bilmagandek tutdi.",
+        "grammarIds": [
+          "C23"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c24",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c24",
+        "number": 4,
+        "prompt": "잠을 적게 <u>자다 보니까</u> 자주 피곤해요.",
+        "options": [
+          "자려고",
+          "자든지",
+          "자더라도",
+          "계속 자다 보니"
+        ],
+        "answer": 3,
+        "explanation": "-다가 보니까 / -다 보니까 — Davomli tajriba ortidan aniqlangan natija yoki sabab. 자주 자지 못하는 탓에 kabi sabab shakli salbiy vaziyatda yaqin. Ijobiy natijada 탓에 bilan almashmaydi. To‘g‘ri ifoda: 계속 자다 보니.",
+        "translation": "Kam uxlayverganim uchun tez-tez charchayman.",
+        "grammarIds": [
+          "C24"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c25",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c25",
+        "number": 3,
+        "prompt": "사람마다 취향이 <u>다르듯이</u> 생각도 달라요.",
+        "options": [
+          "다르든지",
+          "다를까 봐",
+          "다른 탓에",
+          "다른 것처럼"
+        ],
+        "answer": 3,
+        "explanation": "-듯이 — Ikki holatni o‘xshatish: «xuddi …dek». 다른 것처럼 yaqin. Taxmin bildiruvchi -는 듯하다 bilan vazifasi boshqa. To‘g‘ri ifoda: 다른 것처럼.",
+        "translation": "Odamlarning didi turlicha bo‘lganidek, fikri ham turlicha.",
+        "grammarIds": [
+          "C25"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c26",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c26",
+        "number": 4,
+        "prompt": "이 집은 <u>넓은 반면에</u> 교통이 불편해요.",
+        "options": [
+          "넓든지",
+          "넓기 때문에",
+          "넓기는 하지만",
+          "넓을까 봐"
+        ],
+        "answer": 2,
+        "explanation": "-(으)ㄴ/는 반면에 — Ikki xususiyat yoki tomonning qarama-qarshiligi. 넓은 데 반해 bilan yaqin. Taqqoslanayotgan tomon yoki mezon aniq bo‘lishi kerak. To‘g‘ri ifoda: 넓기는 하지만.",
+        "translation": "Bu uy keng, ammo transport qatnovi noqulay.",
+        "grammarIds": [
+          "C26"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c27",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c27",
+        "number": 3,
+        "prompt": "그는 사실을 <u>알면서도</u> 말하지 않았어요.",
+        "options": [
+          "아는데도",
+          "알기 전에",
+          "알기 때문에",
+          "알기 위해서"
+        ],
+        "answer": 0,
+        "explanation": "-(으)면서(도) — Bir holat mavjud bo‘la turib, unga zid ish qilish. 알고서도 yaqin. Bir vaqtdalikni bildiruvchi A16 dagi -(으)면서 bu guruhdan farq qiladi. To‘g‘ri ifoda: 아는데도.",
+        "translation": "U haqiqatni bilsa ham, aytmadi.",
+        "grammarIds": [
+          "C27"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c28",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c28",
+        "number": 4,
+        "prompt": "열심히 <u>연습하는데도</u> 아직 어려워요.",
+        "options": [
+          "연습할까 봐",
+          "연습하지만",
+          "연습하기 전에",
+          "연습하려고"
+        ],
+        "answer": 1,
+        "explanation": "-(으)ㄴ/는데도 — Kutilgan natijaga zid holat: «…bo‘lsa-da». -는데도 kutilmaga zidlikni, -지만 esa umumiy qarama-qarshilikni bildiradi. Ot bilan -인데도. To‘g‘ri ifoda: 연습하지만.",
+        "translation": "Astoydil mashq qilsam-da, hali qiyin.",
+        "grammarIds": [
+          "C28"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c29",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c29",
+        "number": 3,
+        "prompt": "재미있는 부분이 <u>있는가 하면</u> 지루한 부분도 있어요.",
+        "options": [
+          "있을까 봐",
+          "있기도 하고",
+          "있으려면",
+          "있기 때문에"
+        ],
+        "answer": 1,
+        "explanation": "-(으)ㄴ/는가 하면 — Bir tomoni shunday bo‘lsa, boshqa tomoni boshqacha ekanini aytish. Qo‘shimcha tur yoki parallel hodisani ham ko‘rsatadi. Har safar -기는 하지만 bilan almashmaydi. To‘g‘ri ifoda: 있기도 하고.",
+        "translation": "Qiziqarli qismlari bo‘lsa, zerikarli qismlari ham bor.",
+        "grammarIds": [
+          "C29"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c30",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c30",
+        "number": 4,
+        "prompt": "무슨 일을 <u>하든지</u> 끝까지 하세요.",
+        "options": [
+          "하더라도",
+          "하느라고",
+          "하기 전에",
+          "할까 봐"
+        ],
+        "answer": 0,
+        "explanation": "-든지 — Qanday tanlov bo‘lishidan qat’i nazar. 무슨 일을 하더라도 yaqin. -든지 tanlovga, -더라도 yon berilgan farazga urg‘u beradi. To‘g‘ri ifoda: 하더라도.",
+        "translation": "Qanday ish qilsangiz ham, oxirigacha bajaring.",
+        "grammarIds": [
+          "C30"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c31",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c31",
+        "number": 3,
+        "prompt": "밤이 <u>늦도록</u> 이야기를 나눴어요.",
+        "options": [
+          "늦을 때까지",
+          "늦을까 봐",
+          "늦은 대신에",
+          "늦기 전에만"
+        ],
+        "answer": 0,
+        "explanation": "-도록 — Bir vaqt chegarasigacha davom etish. 밤이 늦을 때까지 yaqin. Maqsad bildiruvchi -도록 bilan aralashtirmang. To‘g‘ri ifoda: 늦을 때까지.",
+        "translation": "Kech bo‘lguncha suhbatlashdik.",
+        "grammarIds": [
+          "C31"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c32",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c32",
+        "number": 4,
+        "prompt": "이 책이 <u>좋다길래</u> 샀어요.",
+        "options": [
+          "좋더라도",
+          "좋다고 해서",
+          "좋을까 봐",
+          "좋은 척해서"
+        ],
+        "answer": 1,
+        "explanation": "-(ㄴ/는)다기에 / -다길래 — Eshitilgan ma’lumot asosida ish qilish. Fe’l: 간다기에, 먹는다길래; sifat: 좋다기에; ot: 학생이라기에. Buyruq va taklif xabarlari boshqa shaklda keladi. To‘g‘ri ifoda: 좋다고 해서.",
+        "translation": "Bu kitob yaxshi deb eshitib, sotib oldim.",
+        "grammarIds": [
+          "C32"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c33",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c33",
+        "number": 3,
+        "prompt": "한국어를 <u>잘하려면</u> 꾸준히 연습해야 해요.",
+        "options": [
+          "잘하자마자",
+          "잘하고 싶으면",
+          "잘하느라고",
+          "잘할수록"
+        ],
+        "answer": 1,
+        "explanation": "-(으)려면 — Niyatni amalga oshirish uchun kerakli shart. -기 위해서는 maqsadni, -려면 esa maqsad bilan shartni birlashtiradi. Keyingi gap shartni ko‘rsatadi. To‘g‘ri ifoda: 잘하고 싶으면.",
+        "translation": "Koreys tilini yaxshi bilish uchun muntazam mashq qilish kerak.",
+        "grammarIds": [
+          "C33"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c34",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c34",
+        "number": 4,
+        "prompt": "이 음식은 <u>맛있어 보여요</u>.",
+        "options": [
+          "맛있을 리가 없어요",
+          "맛있기로 했어요",
+          "맛있게 하세요",
+          "맛있을 것 같아요"
+        ],
+        "answer": 3,
+        "explanation": "-아/어 보이다 — Ko‘rinishdan chiqarilgan subyektiv baho. 맛있는 것 같다 mazmunan yaqin, ammo ko‘rishdan boshqa dalilga ham tayanishi mumkin. To‘g‘ri ifoda: 맛있을 것 같아요.",
+        "translation": "Bu taom mazali ko‘rinadi.",
+        "grammarIds": [
+          "C34"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c35",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c35",
+        "number": 3,
+        "prompt": "그 사람이 약속을 <u>잊었을 리가 없어요</u>.",
+        "options": [
+          "잊은 것이 틀림없어요",
+          "잊었을 수도 있어요",
+          "잊은 척했어요",
+          "잊었을 가능성이 없어요"
+        ],
+        "answer": 3,
+        "explanation": "-(으)ㄹ 리가 없다 — Bir hodisani juda kuchli ishonch bilan inkor qilish. 잊지 않았을 것이다 yaqin mazmun beradi, lekin 리가 없다 inkori odatda kuchliroq. To‘g‘ri ifoda: 잊었을 가능성이 없어요.",
+        "translation": "U odam va’dani unutgan bo‘lishi mumkin emas.",
+        "grammarIds": [
+          "C35"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c36",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c36",
+        "number": 4,
+        "prompt": "버스를 <u>타기만 하면</u> 졸려요.",
+        "options": [
+          "탈 때마다",
+          "타려고",
+          "타기 전에",
+          "탄 대신에"
+        ],
+        "answer": 0,
+        "explanation": "-기만 하다 / -기만 하면 — Asosiy shakl «faqat …qilish»; shartli shakl «har …ganda». Faqat -기만 하면 ushbu takroriy vaziyatda 때마다 bilan yaqin. -기만 하다 yakka holda «har safar» degani emas. To‘g‘ri ifoda: 탈 때마다.",
+        "translation": "Avtobusga har chiqqanimda uyqum keladi.",
+        "grammarIds": [
+          "C36"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c37",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c37",
+        "number": 3,
+        "prompt": "모자를 <u>쓴 채로</u> 사진을 찍었어요.",
+        "options": [
+          "벗고 나서",
+          "쓰고 있는 상태로",
+          "쓰기 전에",
+          "쓰려고"
+        ],
+        "answer": 1,
+        "explanation": "-(으)ㄴ 채(로) — Oldingi holat saqlangan holda boshqa ish qilish. 모자를 쓰고 사진을 찍었다 yaqin. Oddiy -고 har doim saqlanayotgan holatni bildirmaydi. To‘g‘ri ifoda: 쓰고 있는 상태로.",
+        "translation": "Bosh kiyimini kiygan holda suratga tushdim.",
+        "grammarIds": [
+          "C37"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c38",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c38",
+        "number": 4,
+        "prompt": "설명을 <u>듣고도</u> 이해하지 못했어요.",
+        "options": [
+          "듣는 대신에",
+          "들을까 봐",
+          "들었는데도",
+          "들으려고"
+        ],
+        "answer": 2,
+        "explanation": "-고도 — Bir ish bo‘lgandan keyin ham kutilgan natija chiqmasligi. 설명을 들었는데도 yaqin. «Bajarildi, lekin natija boshqacha» ma’nosi saqlanadi. To‘g‘ri ifoda: 들었는데도.",
+        "translation": "Tushuntirishni eshitsam ham, tushunmadim.",
+        "grammarIds": [
+          "C38"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c39",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c39",
+        "number": 3,
+        "prompt": "오늘 수업이 <u>있는 줄 몰랐어요</u>.",
+        "options": [
+          "있을 리가 없어요",
+          "있는 척했어요",
+          "있다는 사실을 알았어요",
+          "있다는 사실을 몰랐어요"
+        ],
+        "answer": 3,
+        "explanation": "-(으)ㄴ/는 줄 몰랐다 — Bir faktni bilmagan bo‘lish yoki aksincha deb o‘ylagan bo‘lish. 수업이 없다고 생각했다 kitobdagi vaziyatda yaqin. 줄 몰랐다 ba’zan shunchaki xabarsizlikni bildiradi; har doim teskari ishonch emas. To‘g‘ri ifoda: 있다는 사실을 몰랐어요.",
+        "translation": "Bugun dars borligini bilmagan edim.",
+        "grammarIds": [
+          "C39"
+        ],
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": "hangang-grammar-c40",
+    "category": "3-4",
+    "origin": "generated",
+    "source": {
+      "exam": null,
+      "file": "TOPIK_II_Grammatika_1-4.pdf",
+      "pages": []
+    },
+    "instruction": "다음 밑줄 친 부분과 의미가 가장 비슷한 것을 고르십시오.",
+    "passage": "",
+    "blocks": [],
+    "questions": [
+      {
+        "id": "hangang-grammar-c40",
+        "number": 4,
+        "prompt": "발표할 때 <u>긴장한 나머지</u> 이름을 잊었어요.",
+        "options": [
+          "너무 긴장해서",
+          "긴장하더라도",
+          "긴장하기 전에",
+          "긴장할까 봐"
+        ],
+        "answer": 0,
+        "explanation": "-(으)ㄴ 나머지 — Bir holat haddan oshishi natijasida ko‘pincha salbiy oqibat. 긴장한 탓에 yaqin, ammo 나머지 kuchli darajani ham ta’kidlaydi. Oddiy sababga ko‘r-ko‘rona almashtirmang. To‘g‘ri ifoda: 너무 긴장해서.",
+        "translation": "Asosiy gapning ma’nosi: Juda hayajonlanganimdan ismni unutdim.",
+        "grammarIds": [
+          "C40"
+        ],
+        "verified": true
+      }
+    ]
+  }
+]

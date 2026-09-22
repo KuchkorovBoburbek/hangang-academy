@@ -1,0 +1,240 @@
+{
+  "reviewScope": {
+    "groups": 13,
+    "questions": 26,
+    "categories": {
+      "42-43": 12,
+      "23-24": 1
+    }
+  },
+  "status": "draft-review-complete-awaiting-user-approval",
+  "promotionPerformed": false,
+  "translationScope": "Only Uzbek question explanations exist in the reviewed file. No passage/prompt/option translation fields were present.",
+  "changes": [
+    {
+      "group": "hangang-original-r42-01",
+      "field": "passage and blocks",
+      "before": "나는 수첩을 버릴 물건 상자에서 꺼내 가방 안쪽에 넣었다.",
+      "after": "나는 버릴 물건 상자를 밀어 놓고 수첩을 가방 안쪽에 넣었다.",
+      "reason": "The notebook was still being read; the original introduced an unstated prior placement in a discard box."
+    },
+    {
+      "group": "hangang-original-r42-02",
+      "question": 43,
+      "field": "options",
+      "before": [
+        "선배는 작업이 멈춘 이유를 끝내 알아차리지 못했다.",
+        "나는 실수한 사실을 감추려고 일찍 출근했다.",
+        "나는 한 번 성공한 뒤 점검 메모가 필요 없다고 여겼다.",
+        "나는 일을 익힌 뒤에도 확인하는 습관을 유지하려 한다."
+      ],
+      "after": [
+        "선배는 작업이 멈춘 이유를 끝내 알아차리지 못했다.",
+        "나는 실수한 사실을 감추려고 일찍 출근했다.",
+        "나는 한 번 성공한 뒤 점검 메모를 버리고 더 이상 확인하지 않았다.",
+        "나는 일을 익힌 뒤에도 확인하는 습관을 유지하려 한다."
+      ],
+      "reason": "Original distractor 3 could also be true: the narrator briefly considers the memo unnecessary. New distractor contradicts the explicit decision to retain and annotate it."
+    },
+    {
+      "group": "hangang-original-r42-02",
+      "question": 42,
+      "field": "explanation",
+      "before": "Qahramon ish yana topshirilishidan xavotirda edi. Boshliq tushdan keyin ham shu ishni ishonib topshirgach ko‘ksidagi tugun yechilgandek bo‘ladi: xavotirdan keyingi yengillik.",
+      "after": "Qahramon ertasi kuni unga yana shu ish topshirilarmikan, deb xavotirlangan edi. Tajribaliroq hamkasbi tushdan keyin ham ishlashni so‘ragach, ko‘ksidagi tugun yechilgandek bo‘ladi. Bu xavotirdan keyingi yengillik va xotirjamlikni bildiradi.",
+      "reason": "선배 is a more experienced colleague, not necessarily a boss; clarified the direction of the narrator’s worry."
+    },
+    {
+      "group": "hangang-original-r42-03",
+      "field": "passage and blocks",
+      "before": "가게에 남겨 둘 이유 하나는 분명해졌다.",
+      "after": "가게를 이어 갈 이유 하나는 분명해졌다.",
+      "reason": "Corrects an incomplete object relation and makes the intended continuation of the shop explicit."
+    },
+    {
+      "group": "hangang-original-r42-03",
+      "question": 43,
+      "field": "explanation",
+      "before": "Eski surat va otaning noni buvi xotirasini uyg‘otadi. Qahramon shu bog‘lanishni ko‘rib eski nonlarning hikoyasini narxnomaga qo‘shadi.",
+      "after": "Eski surat va otasi tayyorlagan non buvining xotiralarini uyg‘otadi. Qahramon shu bog‘lanishni anglab, eski nonlarning nomi va hikoyasini yozib, narx yorlig‘i yoniga qo‘yadi.",
+      "reason": "The story note is placed beside the price tag, not added to the price list."
+    },
+    {
+      "group": "hangang-original-r42-04",
+      "field": "passage and blocks",
+      "before": "동료는 별일 없으면 연락하겠다며 가방을 들었다.",
+      "after": "동료는 틈이 나면 연락하겠다며 가방을 들었다.",
+      "reason": "Natural farewell wording; the original condition was awkward."
+    },
+    {
+      "group": "hangang-original-r42-06",
+      "field": "passage and blocks",
+      "before": "나는 도서관을 책을 빌려주는 곳으로만 계산하고 있었다는 것을 깨달았다.",
+      "after": "나는 도서관을 책을 빌려주는 곳으로만 여기고 있었다는 것을 깨달았다.",
+      "reason": "Natural verb for a limited understanding of the library’s role."
+    },
+    {
+      "group": "hangang-original-r42-08",
+      "field": "passage and blocks",
+      "before": "의자 아래에는 연필로 그은 짧은 선들이 여러 개 있었다. 손님은 아이가 자라는 동안 키를 재던 자리라고 설명했다. 바닥에서 잴 곳이 마땅치 않아 아이를 의자 옆에 세우고 표시했다는 것이었다. 다리 하나를 새것으로 바꾸면 그 선들이 사라질 수 있었다.",
+      "after": "의자 다리에는 서툰 글씨와 작은 그림이 여러 개 남아 있었다. 손님은 아이가 어릴 때 의자 밑에 앉아 그려 놓은 것들이라고 설명했다. 처음에는 알아보기 힘든 그림뿐이었는데, 나중에는 자기 이름까지 쓸 줄 알게 되었다는 것이었다. 다리 하나를 새것으로 바꾸면 그 흔적이 사라질 수 있었다.",
+      "reason": "A chair leg/underside cannot credibly record several years of a standing child’s height. Childhood drawings and improving handwriting preserve the same memory theme and answer evidence."
+    },
+    {
+      "group": "hangang-original-r42-08",
+      "field": "passage and blocks",
+      "before": "그는 의자를 뒤집어 마지막 선을 한참 바라보다가 조심스럽게 손바닥으로 쓸었다.",
+      "after": "그는 의자를 뒤집어 아이의 이름을 한참 바라보다가 조심스럽게 손바닥으로 쓸었다.",
+      "reason": "Aligns the later detail with the corrected childhood-mark premise."
+    },
+    {
+      "group": "hangang-original-r42-09",
+      "field": "passage and blocks",
+      "before": "힘없이 굳어 있던 어깨가 내려가고",
+      "after": "잔뜩 굳어 있던 어깨가 내려가고",
+      "reason": "Natural Korean description of tense shoulders relaxing."
+    },
+    {
+      "group": "hangang-original-r42-12",
+      "field": "passage and blocks",
+      "before": "여자는 소리가 덜 나도록 바닥에 깔 것을 알아보겠다고 덧붙였다.",
+      "after": "여자는 소리가 덜 나도록 매트를 마련해 두었는데 아직 깔지 못했다고 덧붙였다.",
+      "reason": "Resolves contradiction between promising to look for a floor covering and having already prepared the mat."
+    },
+    {
+      "group": "hangang-original-r23-01",
+      "field": "passage and blocks",
+      "before": "동생은 학교 발표회에서 읽을 글을 내게 보여 주었다. 나는 어색한 문장을 고쳐 주겠다며 종이를 받아 들었다. 처음에는 조사 몇 개만 바꿀 생각이었지만 점점 내 표현으로 문장을 다시 썼다. 동생은 완성된 글을 받아 조용히 읽더니 원래 종이도 돌려 달라고 했다. 발표회 날, 동생은 내가 고친 글 대신 처음 쓴 글을 읽었다. 문장은 조금 서툴렀지만 방 안에서 혼자 기다리던 저녁 이야기는 또렷하게 전해졌다. 내가 지워 버린 짧은 문장에서 관객 몇 사람이 고개를 끄덕였다. 나는 그 문장을 왜 지웠는지 떠올렸다. 같은 말이 반복된다는 이유였지만, 동생에게는 꼭 두 번 말하고 싶은 마음이 있었던 것이다. <u>도와준다고 믿었던 내 손이 오히려 동생의 목소리를 가리고 있었던 것 같아 얼굴이 뜨거워졌다.</u> 집에 돌아오는 길에 동생은 글을 다시 봐 줄 수 있느냐고 물었다. 나는 이번에는 먼저 어떤 부분이 걱정되는지 물었다. 동생이 말을 시작하자 종이에 손을 대지 않고 끝까지 들었다. 문장을 고치는 일보다 그 문장을 쓴 마음을 알아보는 일이 먼저라는 것을 조금은 알 것 같았다.",
+      "after": "동생은 학교 발표회에서 읽을 글을 내게 보여 주었다. 나는 어색한 문장을 고쳐 주겠다며 종이를 받아 들었다. 처음에는 조사 몇 개만 바꾸려 했지만 점점 내 표현으로 문장을 다시 썼다. 발표회 날, 동생은 내가 고친 글 대신 처음 쓴 글을 읽었다. 문장은 서툴렀지만 혼자 기다리던 저녁 이야기는 또렷하게 전해졌다. 내가 지워 버린 짧은 문장에서 관객 몇 사람이 고개를 끄덕였다. 같은 말이 반복된다고 지웠지만, 동생에게는 꼭 두 번 말하고 싶은 마음이 있었던 것이다. <u>도와준다고 믿었던 내 손이 오히려 동생의 목소리를 가리고 있었던 것 같아 얼굴이 뜨거워졌다.</u> 집에 돌아오는 길에 동생은 글을 다시 봐 줄 수 있느냐고 물었다. 나는 먼저 어떤 부분이 걱정되는지 물었다. 이번에는 종이에 손을 대지 않고 동생의 말을 끝까지 들었다.",
+      "reason": "Shortens the 23–24 passage toward the supplied official examples while preserving all question evidence and the underline."
+    },
+    {
+      "group": "hangang-original-r23-01",
+      "question": 23,
+      "field": "explanation",
+      "before": "Qahramon yordam deb o‘ylagan tahriri ukasining o‘z ovozini to‘sib qo‘yganini sezib yuzi qiziydi. Bu ukasining niyatini tinglamasdan o‘zgartirganidan uyalishdir.",
+      "after": "Qahramon yordam deb o‘ylagan tahriri ukasi yoki singlisining o‘z ovozini to‘sib qo‘yganini sezib, yuzi qiziydi. Bu uning niyatini yetarlicha tinglamasdan matnni o‘zgartirganidan uyalishdir.",
+      "reason": "동생 does not identify gender; avoids silently translating it as a younger brother only."
+    },
+    {
+      "group": "hangang-original-r23-01",
+      "question": 24,
+      "field": "explanation",
+      "before": "Uyga qaytishda darhol tahrir qilmay, avval ukasini nima tashvishlantirishini so‘raydi va oxirigacha tinglaydi. So‘ng ma’noni tushunish tahrirdan oldin kelishini anglaydi.",
+      "after": "Uyga qaytishda qahramon darhol tahrir qilish o‘rniga, avval ukasi yoki singlisini qaysi jihat tashvishlantirishini so‘raydi va oxirigacha tinglaydi. Bu matnni o‘zgartirishdan oldin muallifning niyatini tushunishga intilayotganini ko‘rsatadi.",
+      "reason": "Preserves gender neutrality and matches the revised passage evidence."
+    }
+  ],
+  "assessment": {
+    "answerUniqueness": "All 26 keyed answers are supported and uniquely best after the r42-02 distractor correction.",
+    "underlines": "All 13 passages have exactly one balanced nonempty underline span matching the emotion question.",
+    "style": "Original narrative passages and emotion/content-comprehension pairs fit the requested exercise types. Distractors generally provide moderate practice difficulty; these are not official or empirically calibrated TOPIK items.",
+    "knownLimitations": [
+      "This review does not confer official TOPIK provenance or difficulty calibration.",
+      "Full Uzbek translations are absent from this file."
+    ]
+  },
+  "validation": {
+    "groupCount": 13,
+    "questionCount": 26,
+    "allRemainUnverified": true,
+    "allRemainGenerated": true,
+    "blockPassageMatches": 13,
+    "balancedUnderlines": 13,
+    "validUniqueOptionSets": 26,
+    "r23PassageCharacterCount": 407
+  },
+  "answerEvidence": [
+    {
+      "group": "hangang-original-r42-01",
+      "emotionAnswer": 1,
+      "emotionEvidence": "글씨를 손끝으로 더듬는데 목 안쪽이 뜨거워져 한동안 고개를 들 수 없었다.",
+      "contentAnswer": 3,
+      "contentEvidence": "수첩의 도움 목록과 학생의 이야기는 아버지가 이웃을 꾸준히 도왔다는 근거이다."
+    },
+    {
+      "group": "hangang-original-r42-02",
+      "emotionAnswer": 2,
+      "emotionEvidence": "그 말을 듣고 나니 단단히 묶여 있던 가슴속 매듭이 조금씩 풀리는 것 같았다.",
+      "contentAnswer": 4,
+      "contentEvidence": "성공한 뒤에도 메모에 표시를 더 하고 다음 날 같은 순서를 지키려 한다."
+    },
+    {
+      "group": "hangang-original-r42-03",
+      "emotionAnswer": 3,
+      "emotionEvidence": "닫힌 줄로만 알았던 창문이 열려 바람이 들어오는 듯, 마음 한쪽이 환해졌다.",
+      "contentAnswer": 1,
+      "contentEvidence": "할머니의 기억을 계기로 오래된 빵의 이름과 이야기를 가격표 옆에 놓는다."
+    },
+    {
+      "group": "hangang-original-r42-04",
+      "emotionAnswer": 4,
+      "emotionEvidence": "의자 하나가 빠졌을 뿐인데 방 안에 자꾸 찬바람이 도는 것 같았다.",
+      "contentAnswer": 2,
+      "contentEvidence": "떠나는 날 하지 못한 말을 다음 날 메모로 써서 사진을 보낸다."
+    },
+    {
+      "group": "hangang-original-r42-05",
+      "emotionAnswer": 1,
+      "emotionEvidence": "꽃다발을 쥔 손에 힘이 들어갔고, 자꾸 올라가는 입꼬리를 감출 수가 없었다.",
+      "contentAnswer": 3,
+      "contentEvidence": "처음에는 전시가 이르다고 의심했지만 나중에는 사진을 가게에 걸고 다음 작업을 알고 싶어 한다."
+    },
+    {
+      "group": "hangang-original-r42-06",
+      "emotionAnswer": 2,
+      "emotionEvidence": "아무것도 해 보지 않고 고개부터 돌렸던 내 모습이 떠올라 얼굴이 화끈거렸다.",
+      "contentAnswer": 4,
+      "contentEvidence": "도서관을 책 대출 장소로만 보다가 주민들의 경험을 듣기 위해 회의에 참여하려 한다."
+    },
+    {
+      "group": "hangang-original-r42-07",
+      "emotionAnswer": 3,
+      "emotionEvidence": "나는 웃고 있었지만 조금 전까지 쉽게 꺼내던 말들이 가슴을 따끔하게 찔렀다.",
+      "contentAnswer": 1,
+      "contentEvidence": "어머니가 직접 사진을 보낼 때까지 기다리고 긴 답장을 기다리는 시간도 아깝지 않다고 한다."
+    },
+    {
+      "group": "hangang-original-r42-08",
+      "emotionAnswer": 4,
+      "emotionEvidence": "나는 다리 한쪽만 고친 줄 알았는데, 손님이 잃을 뻔한 시간을 돌려준 것 같아 가슴이 따뜻해졌다.",
+      "contentAnswer": 2,
+      "contentEvidence": "새 주문서에 남겨야 할 부분을 추가하고 주인이 간직하려는 것을 먼저 물으려 한다."
+    },
+    {
+      "group": "hangang-original-r42-09",
+      "emotionAnswer": 1,
+      "emotionEvidence": "글씨가 빼곡한 첫 장을 보는 순간, 잔뜩 굳어 있던 어깨가 내려가고 숨이 길게 나왔다.",
+      "contentAnswer": 3,
+      "contentEvidence": "도움을 받은 뒤 내릴 때 옆자리도 살펴 다른 사람의 불안을 줄이고자 한다."
+    },
+    {
+      "group": "hangang-original-r42-10",
+      "emotionAnswer": 2,
+      "emotionEvidence": "빈 마당을 한 바퀴 돌고 나오는데, 내 안의 작은 방 하나가 조용히 닫히는 것 같았다.",
+      "contentAnswer": 4,
+      "contentEvidence": "철거를 막는 대신 친구들의 기억을 문서에 모아 남기려 한다."
+    },
+    {
+      "group": "hangang-original-r42-11",
+      "emotionAnswer": 3,
+      "emotionEvidence": "몇 군데 틀렸다는 사실보다 끝까지 내 목소리로 노래했다는 사실이 크게 다가와 발걸음이 가벼워졌다.",
+      "contentAnswer": 1,
+      "contentEvidence": "실수했지만 끝까지 노래한 경험을 실패로 여기지 않고 다음 모임에 다시 참여하려 한다."
+    },
+    {
+      "group": "hangang-original-r42-12",
+      "emotionAnswer": 4,
+      "emotionEvidence": "상대의 사정도 모르고 마음속으로 쏟아 냈던 말들이 떠올라 눈을 어디에 두어야 할지 몰랐다.",
+      "contentAnswer": 2,
+      "contentEvidence": "상대의 사정을 안 뒤 다음에는 메모 전에 대화하기로 한다."
+    },
+    {
+      "group": "hangang-original-r23-01",
+      "emotionAnswer": 1,
+      "emotionEvidence": "도와준다고 믿었던 내 손이 오히려 동생의 목소리를 가리고 있었던 것 같아 얼굴이 뜨거워졌다.",
+      "contentAnswer": 2,
+      "contentEvidence": "다시 글을 봐 달라는 부탁에 즉시 고치지 않고 어떤 부분이 걱정되는지 먼저 물어 끝까지 듣는다."
+    }
+  ]
+}

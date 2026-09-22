@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "extractionVersion": 2,
+  "exam": 91,
+  "kind": "reading",
+  "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/91/91_읽기.pdf",
+  "sourceName": "91_읽기.pdf",
+  "sourceSha256": "d292904c86bb5dd64c81e788a5c3056e52cf949e57aeab1d76fb5a4a7e29f906",
+  "pdfPage": 2,
+  "sourcePageCount": 25,
+  "sectionPage": null,
+  "isFrontMatter": true,
+  "isBlank": true,
+  "imagePath": "tmp/topik-pages/91/reading/page-002.png",
+  "width": 1786,
+  "height": 2526,
+  "bboxConvention": "normalized top-left x,y,width,height",
+  "nativeText": "",
+  "engine": "Apple Vision",
+  "languages": [
+    "ko-KR",
+    "en-US"
+  ],
+  "text": "",
+  "lines": []
+}

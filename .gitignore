@@ -1,0 +1,36 @@
+# Local credentials and keys
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+credentials*.json
+ACCESS.txt
+
+# User data and private deployment snapshots
+.deploy/
+data/
+uploads/
+backups/
+exported-backups/
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+
+# Dependencies, generated builds, and temporary files
+node_modules/
+.next/
+coverage/
+playwright-report/
+test-results/
+tmp/
+*.tsbuildinfo
+*.log
+__pycache__/
+*.pyc
+.DS_Store
+._*

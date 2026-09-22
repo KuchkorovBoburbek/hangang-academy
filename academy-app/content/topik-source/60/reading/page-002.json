@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "extractionVersion": 2,
+  "exam": 60,
+  "kind": "reading",
+  "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/60/60회_읽기.pdf",
+  "sourceName": "60회_읽기.pdf",
+  "sourceSha256": "a97be0758a3005eaaf86d533e239cb44e9aea573a678967613e5db6515c249fa",
+  "pdfPage": 2,
+  "sourcePageCount": 25,
+  "sectionPage": null,
+  "isFrontMatter": true,
+  "isBlank": true,
+  "imagePath": "tmp/topik-pages/60/reading/page-002.png",
+  "width": 1786,
+  "height": 2526,
+  "bboxConvention": "normalized top-left x,y,width,height",
+  "nativeText": "",
+  "engine": "Apple Vision",
+  "languages": [
+    "ko-KR",
+    "en-US"
+  ],
+  "text": "",
+  "lines": []
+}

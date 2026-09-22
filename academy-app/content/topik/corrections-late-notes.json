@@ -1,0 +1,140 @@
+[
+  {
+    "group": "topik-91-r-8",
+    "sourcePdfPages": [
+      6
+    ],
+    "changes": [
+      [
+        "쵤영",
+        "촬영"
+      ]
+    ],
+    "verification": "Compared directly with source PDF page image; all 150 questions in exams 91,96,102 read during QA."
+  },
+  {
+    "group": "topik-91-r-30",
+    "sourcePdfPages": [
+      16
+    ],
+    "changes": [
+      [
+        "있음에도 )",
+        "있음에도 (          )"
+      ]
+    ],
+    "verification": "Compared directly with source PDF page image; all 150 questions in exams 91,96,102 read during QA."
+  },
+  {
+    "group": "topik-96-r-8",
+    "sourcePdfPages": [
+      6
+    ],
+    "changes": [
+      [
+        "연락 반을",
+        "연락 받을"
+      ]
+    ],
+    "verification": "Compared directly with source PDF page image; all 150 questions in exams 91,96,102 read during QA."
+  },
+  {
+    "group": "topik-96-r-10",
+    "sourcePdfPages": [
+      7
+    ],
+    "changes": [
+      [
+        " 영이",
+        ""
+      ],
+      [
+        "19% .",
+        "19%"
+      ]
+    ],
+    "verification": "Compared directly with source PDF page image; all 150 questions in exams 91,96,102 read during QA."
+  },
+  {
+    "group": "topik-96-r-31",
+    "sourcePdfPages": [
+      16
+    ],
+    "changes": [
+      [
+        "구매를 려는",
+        "구매를 하려는"
+      ]
+    ],
+    "verification": "Compared directly with source PDF page image; all 150 questions in exams 91,96,102 read during QA."
+  },
+  {
+    "group": "topik-96-r-35",
+    "sourcePdfPages": [
+      18
+    ],
+    "changes": [
+      [
+        "메타세퀴이아",
+        "메타세쿼이아"
+      ]
+    ],
+    "verification": "Compared directly with source PDF page image; all 150 questions in exams 91,96,102 read during QA."
+  },
+  {
+    "group": "topik-96-r-48-49-50",
+    "sourcePdfPages": [
+      25
+    ],
+    "changes": [
+      [
+        "나설립 필요",
+        "나설 필요"
+      ]
+    ],
+    "verification": "Compared directly with source PDF page image; all 150 questions in exams 91,96,102 read during QA."
+  },
+  {
+    "group": "topik-102-r-16",
+    "sourcePdfPages": [
+      10
+    ],
+    "changes": [
+      [
+        "색갈",
+        "색깔"
+      ]
+    ],
+    "verification": "Compared directly with source PDF page image; all 150 questions in exams 91,96,102 read during QA."
+  },
+  {
+    "group": "topik-102-r-34",
+    "sourcePdfPages": [
+      18
+    ],
+    "changes": [
+      [
+        "페플라스틱",
+        "폐플라스틱"
+      ],
+      [
+        "기대하고 있다",
+        "기대하고 있다."
+      ]
+    ],
+    "verification": "Compared directly with source PDF page image; all 150 questions in exams 91,96,102 read during QA."
+  },
+  {
+    "group": "topik-102-r-44-45",
+    "sourcePdfPages": [
+      23
+    ],
+    "changes": [
+      [
+        "의학분만",
+        "의학뿐만"
+      ]
+    ],
+    "verification": "Compared directly with source PDF page image; all 150 questions in exams 91,96,102 read during QA."
+  }
+]

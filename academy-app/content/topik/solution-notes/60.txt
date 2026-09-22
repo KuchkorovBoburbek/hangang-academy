@@ -1,0 +1,48 @@
+1|2|보다가 — telefonga qarab turib bekatdan o‘tib ketgan; davomdagi ish paytida boshqa hodisa.|① Tanlov, ③ shart, ④ tugagandan keyin; bu voqea davomida sodir bo‘lgan.
+2|1|알게 되었다 — do‘sti sabab madaniyatni biladigan bo‘lib qolgan, bilimda o‘zgarish yuz bergan.|② Majburlash, ③ ruxsat, ④ majburiyat ma’nolari natijaga mos emas.
+3|3|타기만 하면 — har gal minsa ko‘ngli ayniydi; 탈 때마다 aynan takroriy holat.|① Yetarli daraja, ② sabab, ④ davomiy vaqt har gal shartini bermaydi.
+4|4|수리해 봐야 — ta’mirlasa ham uzoq ishlamaydi; 수리한다고 해도 shu cheklovni beradi.|① Kuzatilgan natija, ② darhol, ③ salbiy sabab boshqa munosabatlar.
+5|3|Ertalab ichiladigan oziqali, yangi mahsulot — sut.|① Pechenye ichilmaydi; ② ko‘zoynak, ④ poyabzal oziq emas.
+6|4|Katta ko‘rpani yuvish va quritish bir joyda — kir yuvish maskani.|① Pochta, ② sayohat, ③ oddiy savdo xizmatiga to‘g‘ri kelmaydi.
+7|3|Tog‘ga sigaret va zajigalka olib bormaslik o‘rmon yong‘inini oldini oladi.|① Umumiy salomatlik, ② elektr, ④ yo‘l xavfsizligi emas.
+8|2|Tekshiruv oldidan ovqat va alkogol cheklovi — ehtiyot ko‘rsatmalari.|① Mahsulot, ③ foydalanish ketma-ketligi, ④ joy so‘rovi emas.
+9|1|Dam olish kuni 35 000, ish kuni 30 000 von: hafta oxiri qimmatroq.|② Faqat mart–noyabr; ③ o‘sha kun band qilib bo‘lmaydi; ④ parking narxga kiradi.
+10|1|Ayollarda hobbi 42%, ko‘ngillilik 16%: hobbi yuqori.|② Diniy ish 4% < 6%; ③ ayollar 35%; ④ erkaklarda 58% iqtisodiy ish, 9% ko‘ngillilik.
+11|4|Eski kiyim noqulayligi haqidagi o‘quvchi fikri qabul qilinib, yangi forma joriy etilgan.|① Ota-onaga yangisi yoqadi; ② arzonroq; ③ qulayroq.
+12|1|Avval befarq bo‘lgan aholi endi ichimlik va yegulik olib kelib yordam beryapti.|② Boshlanishda yordam faol emas; ③ kafe bepul; ④ kuryerlar boshqaruvi aytilmagan.
+13|2|가 qadoqsiz do‘kon → 라 katta idishdagi mahsulot → 나 bo‘sh idish olib kelish → 다 ijarasi.|① 용기 hali tushuntirilmagan; ③④ do‘kon tanishtirilmasdan xarid sharti boshlanadi.
+14|3|다 avtobusga chiqish → 가 hamyon yo‘qligi → 라 ayol to‘lashi → 나 minnatdorchilik.|①② To‘lovdan avval chiqish kechikadi; ④ yordamdan oldin rahmat aytiladi.
+15|4|라 titrash tajribasi → 나 dam olish → 가 davom etsa boshqa sabab → 다 shunga mos tavsiya.|①② Kirish kechikadi; ③ 쉬어도 uchun dam olish tavsiyasi hali berilmagan.
+16|1|Bo‘sh qo‘lni ko‘rsatish qurol ishlatish, ya’ni jang qilish niyati yo‘qligini bildirgan.|② Yordam, ③ uzr, ④ qurol olishga ehtiyoj tasvirlanmagan.
+17|2|Oddiy takroriy hayot filmi baxtni kundalik kichik hodisalardan topish mumkinligini ko‘rsatadi.|① Inkor etilgan, ③④ kam yoki qiyin bajariladigan ishlar mazmunga zid.
+18|3|Olimlar urug‘ni baholash uchun joylarga borib izlaydi: saqlashdan tashqari yig‘ishadi.|① Targ‘ibot, ② ta’lim, ④ bino boshqaruvi keyingi safar misoliga mos emas.
+19|3|다가간다면 shartiga 만약 — agar mos: it odamga yaqinlashsa egasi xavfda bo‘lishi mumkin.|① Garchi, ② albatta, ④ haqiqatan shartni ochmaydi.
+20|3|Matnda yordamchi it egasida muammo bo‘lsa boshqa odamlardan yordam so‘rashga o‘rgatilgani aytilgan.|① Zaruratda ketadi; ② markazga odam qo‘ng‘iroq qiladi; ④ odatda begonalarga qiziqmaydi.
+21|4|열을 올리다 — kuchli ishtiyoq bilan berilmoq; ota-onalar erta savodga zo‘r bermoqda.|① Voz kechish, ② alam bilan tish qayrash, ③ uzoqlashish vaziyatga zid.
+22|3|Juda erta o‘qishga zo‘r berish boshqa sezgilar ishlashini kamaytirib, muvozanatli rivojlanishni to‘sishi mumkin.|① Usul xilma-xilligi emas; ② aksincha xavf; ④ tengdoshlar bilan bir vaqt talabi yo‘q.
+23|4|Otasining xohishini so‘ramay hukm qilganini anglagach, qiz o‘zini aybdor va uzrli his qiladi.|① Yuk, ② norozilik, ③ jahl emas; xato munosabatini anglash.
+24|2|Kinoga borishni so‘raganda otasi jim turgan.|① Birga tez-tez bormagan; ③ tashrif sababi kino emas; ④ tayyorgarligidan ranjimagan.
+25|1|Choralar ko‘rilgan bo‘lsa-da, tug‘ilish yana pasaygan: samara bo‘lmagan.|② Samarali bo‘lganiga zid; ③ zarur islohot xulosasi qo‘shilgan; ④ yordam qisqarishi aytilmagan.
+26|3|치중 — faqat daromadga e’tibor; 뒷전 — xavfsizlikni chetga surish.|① Talab, ② xavfsizlikdan foyda, ④ daromad pasayishi haqida ma’lumot yo‘q.
+27|2|미지수 — noma’lum. Zavod ishlayotgan bo‘lsa ham ta’minot barqarorligi hali aniq emas.|①④ Barqarorlashgan deb aytadi; ③ ishga tushishni yagona zarur shart qiladi.
+28|2|Qiziqarli savollar va tezkor ball o‘quvchini bilim olish jarayoniga diqqat bilan jalb qiladi.|① Sinfxona, ④ muloqot haqida dalil yo‘q; ③ maqsad o‘yinning o‘zi emas, dars.
+29|4|Ijtimoiy xabarli buyumni ishlatish odamning o‘z qarashi va qadriyatini ko‘rsatadi.|① Faqat dizayn, ② tabiiy material, ③ gavdani tuzatish xarid sababi emas.
+30|2|Qurigan eritma pardasi singan oynani tutib qolgan; himoya qatlamli shisha shu asosda yaratilgan.|① Sinig‘ini yopishtirish emas; ③ qatlam-qatlam oyna aytilmagan; ④ umuman sinmaydigan emas.
+31|1|Odatda tushuncha avval, belgi keyin; cheksizlikda buning teskarisi — belgi avval yaratilgan.|② Ma’no almashishi, ③ faol tadqiqot, ④ qarshi nazariya aytilmagan.
+32|3|Voyaga yetganda og‘iz ishlamaydi, shuning uchun lichinkalikda to‘plangan oziqa sarflanadi.|① Bir kundan ko‘p; ② lichinkalik bir yil; ④ og‘iz rivojlanmay, zaiflashadi.
+33|3|Matnda qayg‘u yoshida stress tufayli yig‘ilgan zararli moddalar ham bo‘lishi aytilgan.|① Oqsil himoya qiladi; ② antibakterial modda ham bor; ④ xilma-xillik teskari berilgan.
+34|1|Hududlar va poyezd soati farqi temiryo‘l sohasida standart vaqt ehtiyojini tug‘dirgan.|② Mahalliy vaqtni quyosh belgilagan; ③ keyin taklif etilgan; ④ standart vaqt noqulaylikni kamaytirgan.
+35|3|Yashirin tasvirga olishni to‘sish uchun kichik kameralar savdosida ro‘yxat va nazorat taklif qilinadi.|①② Foydalanishni kengaytirish emas; ④ tartibni yengillashtirishga teskari.
+36|2|Faqat qisqa xulosalarni olish uzoq tahlil va tanqidiy fikrlash qobiliyatini susaytirishi mumkin.|①④ Faqat foyda; ③ kirish holati, muallifning ogohlantirishi emas.
+37|4|Video asar talabiga mos yozish sof adabiyotning o‘ziga xos jihatlarini yo‘qotishi mumkin.|① Mukofot, ② reklama, ③ ko‘proq ekran asari chiqarish tavsiya qilinmagan.
+38|4|Yangi shakl va tekstura, saqlangan ta’m hamda qiziqish molekulyar oshpazlikning istiqbolini ochadi.|① Fan ko‘lami, ② faqat talab, ③ rivojlanish to‘xtashi bosh fikr emas.
+39|1|Do‘konlarga to‘la ko‘chaga salbiy qarashdan keyin 하지만 ularning foydasini qarshi qo‘yadi.|②③④ Salbiy fikr foydalar ichiga kech kirib, 하지만 manbasiz qoladi.
+40|1|Savol-javob usuli avval tanishtiriladi; keyingi ‘nega kvartira...?’ savollari uning misoli.|② Misollardan keyin kechikadi; ③④ mavzu allaqachon ijtimoiy bahoga o‘tgan.
+41|4|Tishli chet chorasidan keyin uning tez samara bergani, so‘ng chunki odamlar shikast pulni olmagani keladi.|①②③ Chora aytilmasdan 그 효과 uning samarasiga ishora qilolmaydi.
+44|4|Vaqt tanqisligi bir vazifaga qaratib, boshqa xavfsizlik ishlarini unutishga olib kelishi mumkin.|①② Boshlang‘ich qarash; ③ faqat foyda, xavf haqidagi xulosani yo‘qotadi.
+45|2|Vaqt bosimida samarali bo‘laman deb ishni atay kechiktirish tanqid qilinadi.|① Shoshilish oqibat; ③ qiziqishni oshirish emas; ④ umumiy berilish vaqtni qisqartirish sababini bermaydi.
+46|1|Nayza usuli tanishtirilgach, uning chiqindini itarib yuborish xavfi; 이 때문에 yopishqoq usulga o‘tish keladi.|②③④ Bu xavf nayzadan uzilib, keyingi usullarga noto‘g‘ri bog‘lanadi.
+47|1|Keskin kosmik harorat lentaning yopishqoqligini saqlashga imkon bermagan.|② Nayza xavfli; ③ Yer usuli mos kelmaydi; ④ kaltakesakdan olingan usul muvaffaqiyatli.
+48|2|Muallif soliq yordamining shartlari faqat yirik korxonalarga qulayligini ko‘rsatib, yumshatishni taklif qiladi.|① Tartibsizlik, ③ soha tanishtirish, ④ tadqiqot ahamiyati asosiy maqsad emas.
+49|1|Yordam katta bo‘lgani uchun hukumat muayyan cheklov qo‘yishini muallif tushunadi.|② Institut soni, ③ qamrov kengayishi aytilmagan; ④ bosqichlash hukumat sharti emas, muallif taklifi.
+50|4|고무적인 일이다 yangi texnologiya tadqiqotiga soliq yengilligini ijobiy baholaydi.|① Sanoat tuzilishi emas; ② sarmoya kamayishi yo‘q; ③ shu jumlada tanqid yo‘q.

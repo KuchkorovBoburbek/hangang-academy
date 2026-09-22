@@ -1,0 +1,48 @@
+1|3|내일 kelajak rejasi: 가기로 했다 — borishga kelishdik yoki qaror qildik.|① Odat, ② hozirgi jarayon, ④ o‘tgan tajriba ertangi reja emas.
+2|4|지날수록 — vaqt o‘tgan sari sog‘inch kuchayadi; ikki o‘zgarish mutanosib.|① Tanlov, ② muddat chegarasi, ③ shart o‘sib borishni bermaydi.
+3|1|Kech turish poyezdni o‘tkazishga sabab: -는 바람에 va -(으)ㄴ 탓에 salbiy sabab.|② Fursat, ③ almashish, ④ darhol ketma-ketlik emas.
+4|3|연습하기에 달려 있다 = 연습하기 나름이다: natija mashqqa bog‘liq.|① Faqat mashq, ② taxmin, ④ moyillik; bog‘liqlik ma’nosi yo‘q.
+5|1|Sabzavot va vitaminlar bir shishada bo‘lishi sabzavot sharbatini bildiradi.|② Kola, ③ sut, ④ qahva sabzavotli ichimlik emas.
+6|2|Suv o‘yinlari buyumlari savdosi va chegirma — supermarket e’loni.|① Dars, ③ fotosurat, ④ kir yuvish xizmatlari emas.
+7|4|Yashirin va o‘chgan cho‘g‘ni qayta tekshirish yong‘inni oldini oladi.|① Elektr tejash, ② ob-havo, ③ salomatlik bosh mavzu emas.
+8|2|Muddat, hujjatlar va elektron yuborish manzili ariza topshirish tartibini beradi.|① Xarid emas; ③ murojaat emas, amaliy topshirish; ④ umumiy ogohlantirish emas.
+9|2|20-avgust shanbadan 21-avgust yakshanbagacha — ikki dam olish kuni.|① 8-festival; ③ joyida yoziladi; ④ tatib ko‘rish bepul.
+10|3|60 yoshlilarda gazeta ustuni 40 yoshlilardagidan past.|① 20 va 60 yosh ulushlari teng emas; ② TV yuqori; ④ 40 yosh TV ulushi kattaroq.
+11|4|Manga kafesida o‘qish bilan birga ovqat-ichimlik ham bor.|① Muhit boshqacha; ② yosh ayollarga mashhur; ③ faqat qahva ichish joyi emas.
+12|1|Matnda kakaoning diqqatni yaxshilashga ta’siri borligi aytilgan.|② Shirin shokoladni ko‘p yeyish tavsiya etilmagan; ③ foydalilik ustunligi yo‘q; ④ yangilik tarkib haqida emas.
+13|1|가 gul choyi ommalashishi → 나 sabab → 라 yo‘l chetidagi guldan ogohlantirish → 다 toza gul tavsiyasi.|② Sabab ogohlantirishga noto‘g‘ri ulanadi; ③④ asosiy mavzu kechikadi.
+14|2|가 ko‘rpa yoyildi → 다 yomg‘ir sabab qaytdi → 라 xat topdi → 나 qo‘shni olgani izohlanadi.|① Xat topilishidan oldin izoh; ③④ ko‘rpa tashqariga qo‘yilmasdan tashvish boshlanadi.
+15|3|나 yig‘ilish → 가 qaror → 라 qaror sababi → 다 aholining e’tirozi.|①② Natija yig‘ilishdan oldin; ④ manzil yozish qarori sababidan keyin qolgan.
+16|2|Ba’zilar yodlash o‘rniga ifodani yaxshilash deydi; muallif yodlashning o‘zi ifodani boyitishini javob qiladi.|① An’ana, ③ konsert rejasi, ④ afzallik izohi keyingi qarshi dalilga mos emas.
+17|3|Yaroqli buyumni ajratishga xarajat ketishi ko‘p xayriya buyumlari qayta ishlatishga yaramasligini ko‘rsatadi.|① Sotib olish, ② saqlash, ④ ko‘p vazifalilik muammo emas.
+18|4|Qo‘l olinganda oyoqchasi chiqadigan dazmol kiyim kuyishini yangi g‘oya bilan hal qilgan.|① Narx kamayishi, ② faqat shakl, ③ izohlash usuli muvaffaqiyat sababi emas.
+19|2|물론 yosh bolaga do‘stona ota kerakligini tan oladi; 그런데 bilan keyin cheklov qo‘yiladi.|① Zidlik hali yo‘q; ③ yaxshiroq muqobil, ④ natija munosabati emas.
+20|4|Otaning obro‘li gapi va xulqi o‘smirga hayotiy qaror mezonini beradi.|① O‘z-o‘zidan shakllanish emas; ② o‘smirlikda obro‘ ham muhim; ③ to‘g‘ri yo‘l obro‘li otaga bog‘langan.
+21|1|담을 쌓다 — aloqani uzib, yiroq yashamoq; qo‘shnilar bilan yaqin bo‘lmaslik yolg‘izlikka mos.|② Qat’iy belgilash, ③ birga maslahat, ④ bosh egish boshqa ma’nolar.
+22|2|O‘simliklar parvarishi oson va ruhiy hamroh bo‘lgani uchun ularni tanlovchilar ko‘paygan.|①③ alohida sabablar; ④ hayvon tavsiyasi matn yo‘nalishini almashtiradi.
+23|4|Birinchi kundagi mijozlar oqimi va tajribasizlik kassirni sarosimaga solgan.|① Jahllanish, ② hafsalasi pir bo‘lish, ③ norozilik emas, hayajon va dovdirash.
+24|3|Qirqdan oshganiga qaramay, eri ruhlantirgach ish boshlagan.|① Hisoblash mahorati oshgani yo‘q; ② mijoz koreyscha gapirgan; ④ daftar yo‘qolmagan.
+25|4|인기 폭발 — katta mashhurlik; 줄 이어 — reklama takliflari ketma-ket kelmoqda.|① Mashhurlik pasaymagan; ② maslahat emas; ③ mashhurlik bilan bog‘lanish bor.
+26|1|Uzoq bayram ta’tili turizm sohasini uzoq vaqtdan keyin jonlantirgan.|②③ Ta’til qisqa emas; ④ mahsulot tayyorlash haqida xabar yo‘q.
+27|4|과잉 — ortiqcha ishlab chiqarish; 한숨 — dehqonlarning qiynalishi.|①③ Hosil kam emas; ② xursandlik kayfiyatiga zid.
+28|3|Tortinchoqqa iliq, tajovuzkorga tinch yashil rang: tanlov bolaning fe’liga mos.|① Xona tuzilishi, ② bezak turi, ④ rasm xususiyati mezon emas.
+29|1|Mutaxassisning bilim va tajribasidan ‘tirik kitob’ sifatida foydalaniladi.|② Mutaxassis tayyorlash, ③ texnikni o‘qitish, ④ ishga yuborish emas.
+30|2|Kaloriyani 9 km yugurish kabi zarur harakat miqdoriga aylantirish uni his qilishga yordam beradi.|① Taom tanlovi, ③ ehtiyotkor xulq, ④ qachon e’tibor berish so‘ralmagan.
+31|1|Muddati o‘tgach ishlatib bo‘lmaydigan chiptaning qiymati yo‘qoladi.|② Narx oshmaydi; ③ talab ko‘paymaydi; ④ ishlab chiqarish hajmi bilan bog‘liq emas.
+32|4|Tor joyga ko‘p hayvon to‘planishi stressni oshiradi; almashinuv shuni kamaytirgan.|① Ko‘payish nazoratni qiyinlashtiradi; ②③ maqsad hayvon sonini umumiy ko‘paytirish emas.
+33|4|Odamlar sifatli dam uchun mehmonxona yoki hammomini qayta jihozlamoqda.|① Sifat ham muhim; ② safar o‘rniga uy; ③ qimmat mebelga pul ayalmaydi.
+34|3|Fuqarolar tarixiy-madaniy mulkni saqlash uchun o‘z ixtiyori bilan mablag‘ yig‘ishni boshlagan.|① Davlat yordami yo‘q; ② faqat davlat yeri emas; ④ noyob o‘simlikni asrash natijasi bor.
+35|1|Olov va tutun cheklovlariga qaramay favqulodda xabar yetkazishning muhim vositasi bo‘lgan.|② Faqat kamchilik; ③ daraja ob-havoga emas, xavfga oid; ④ yakuniy bahoga zid.
+36|4|Raqamli dalillar ishonch va raqobat ustunligi beradi; biznes uchun shu ko‘nikmani rivojlantirish kerak.|① Qayerda o‘rganish aytilmagan; ②③ tor amaliy misollar.
+37|3|Yolg‘izlikni yengishning boshlanishi — undan qo‘rqmay, uni qabul qilishni mashq qilish.|①④ oqibatlar bilan cheklangan; ② yolg‘iz yashashning o‘zi ijodkorlik bermaydi.
+38|2|Bepul sovg‘a qadrsiz ko‘rinib, asosiy mahsulot narxiga shubha tug‘dirishi va sotuvga zarar berishi mumkin.|① Sifatga ishonmaslik mutlaq emas; ③ boshlang‘ich umumiy qarash; ④ narx haqiqatan noto‘g‘ri deyilmagan.
+39|3|Yakka o‘qish o‘zgarishidan keyin 또한 ikkinchi o‘zgarish — ketma-ket o‘qishdan qidiruvga o‘tishni ochadi.|①② Birinchi o‘zgarish hali tugamagan; ④ misoldan keyin tanishtirish kechikadi.
+40|3|Avval o‘zidan uyalish, keyin 그리고 yana yurishga jur’at; so‘ng kitobni o‘qish tavsiyasi.|①② Shaxsiy ta’sir hali tasvirlanmagan; ④ tavsiya bilan bog‘lanish sustlashadi.
+41|2|Gap tarixni qiziqarli hikoya qilish mashhurlik sababini ochadi; keyin 그런데 bilan xavotir keladi.|① Ommalashish hali aytilmagan; ③④ tanqid sababini uzib qo‘yadi.
+44|1|Buqa rasmlaridagi soddalashish haqiqiy shaklni kuzatishga tayangan; abstraksiya shu mohiyatni ajratadi.|② Faqat boshlanish; ③ misolni mavzu qiladi; ④ yangi xususiyat emas, mavjud mohiyat.
+45|3|Mayda qismlar olib tashlanib, oz chiziqda asosiy belgi saqlanadi: shakliy soddalashtirish.|① Mohiyat buzilmaydi; ② jismning o‘zi kuchaytirilmaydi; ④ batafsil realizm kamayadi.
+46|3|Avval qo‘llanish istiqbollari, keyin ilgari xavf sabab to‘siqlar; 그러나 bilan yangi investitsiya qarshi qo‘yiladi.|①② Istiqbollar hali ochilmagan; ④ yangi qo‘llab-quvvatlashdan keyin mantiq kechikadi.
+47|2|Xavfsizlik masalalari ilgari qayta-qayta ko‘tarilib, rivojlanishga to‘siq bo‘lgan.|① Himoya investitsiyasi tavsiya, amaldagi fakt emas; ③ bahs davom etadi; ④ tezlashish kutilmoqda.
+48|4|Mahalliy sharoitga mos ijodiy biznes muhiti yaratish zarurati yakuniy xulosa.|① Silikon vodiysi fon; ② ayrim choralar; ③ texnopark misoli asosiy maqsad emas.
+49|4|Yangi g‘oyalar va texnik yangiliklar uchun eng mos muhit — ijodkorlikni namoyon etish muhiti.|① Madaniyat, ② xatoni kechirish, ③ kapital yig‘ish matnning bevosita markazi emas.
+50|1|고무적이다 — ruhlantiruvchi: muallif turli mahalliy tajribalarni ijobiy baholaydi.|② Ogohlantirmaydi; ③ xorijdan izlashning o‘zi emas; ④ tanqid yo‘q.

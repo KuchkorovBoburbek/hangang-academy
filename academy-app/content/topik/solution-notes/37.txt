@@ -1,0 +1,48 @@
+1|1|일어나야 — erta turish yettidagi samolyotga ulgurishning zarur sharti.|② Maqsad, ③ parallel ish, ④ kuzatilgan o‘zgarish; zarur shartni bermaydi.
+2|1|Uyga kelib qarasa, ukasi allaqachon qaytgan holatda: 돌아와 있었다.|② Jarayon natijasi, ③ istak, ④ buyurtirish emas, mavjud holat kuzatilgan.
+3|3|Shoshilib chiqish hamyonni unutishga sabab; -는 바람에 salbiy natija sababini bildiradi.|① Fursatdan foydalanish, ② vaqt oralig‘i, ④ o‘rniga bajarish boshqa ma’nolar.
+4|1|Bilsa-da bilmagandek tutish: 모르는 척하다 = 모르는 체하다.|② Taxminiy ko‘rinish; ③ moyillik; ④ tabiiy qonuniyat, atay ko‘rsatish emas.
+5|2|Oson o‘ralib ochilishi va artishi rulonli qog‘ozga xos.|① Qalam, ③ stol, ④ ko‘zgu bilan bunday artish mumkin emas.
+6|4|Buyumni avaylab yetkazish — pochta xizmati.|① Ovqatlanish, ② moliya, ③ eshittirish buyum tashish xizmati emas.
+7|1|Vaqt va iste’dodni qo‘shnilarga bag‘ishlash — ko‘ngilli yordam.|② Daromadli kasb, ③ sport, ④ iqtisodiy faoliyat maqsadi aytilmagan.
+8|1|Salqin saqlash va qopqoqni yopish — mahsulotga oid ehtiyot shartlari.|② Tarkib, ③ xarid, ④ murojaat yo‘li haqida ma’lumot yo‘q.
+9|3|Ariza telefon orqali qabul qilinishi aniq yozilgan.|① Shanba kechasi; ② oilalar qatnashadi; ④ mahalliy aholi uchun bepul.
+10|2|Erkak va ayollarda eng baland ustun — uyqu vaqti.|① Ayollarda uyqu sportdan yuqori; ③ nonushta ayollarda ko‘proq; ④ erkaklarda nonushta ko‘rikdan yuqori.
+11|3|Finalga chiqqanlar ro‘yxati saytda e’lon qilinadi.|① Taxminan 10 varaq; ② Koreyada yashovchilar; ④ matn elektron pochta bilan yuboriladi.
+12|2|Shisha oshxona tufayli mijozlar taom tayyorlanishini ko‘ra oladi.|① Butun bino emas; ③ shisha bilan ajratilgan; ④ har kuni boshqa tomosha deyilmagan.
+13|2|나 usul tanishtiriladi → 다 video usuli → 라 ulashish → 가 takrorlanib reklama bo‘lish.|① 과정 hali yo‘q; ③④ video yangi usuldan oldin tushuntiriladi.
+14|4|라 yong‘in xavfi → 다 idish nurni yig‘adi → 나 uchqun → 가 olov tarqalishi.|①② sabab tanishtirishdan oldin; ③ olov paydo bo‘lishidan oldin tarqaladi.
+15|3|라 damda ijod paydo bo‘lishi → 나 shunchaki bekorlik yetmasligi → 가 bilim → 다 bilimlar bog‘lanishi.|① Asosiy da’vo kechikadi; ②④ 하지만 kerakli qarashdan uzoqlashadi.
+16|4|Qorani yana oq qilish qiyinligi shubha tushgan munosabatni tiklash qiyinligiga o‘xshatilgan.|① Ishonch o‘ziga qaratilmagan; ②③ tashvish va muammo tahlili o‘xshatishning xulosasi emas.
+17|1|So‘lish — suv yo‘qotish; suv singgach sabzavot yana tetiklashishi buni tasdiqlaydi.|② Bakteriya, ③ nafas haqida dalil yo‘q; ④ issiq suv matnda yechim.
+18|3|Qishda o‘qish, yozda she’r, bahor-kuzda yozish: ta’lim usuli mavsumga moslangan.|① Qabul, ② vaqt va ④ faqat fasl haqidagi she’r bilan cheklanmagan.
+19|2|상황이라면 shart shakliga 만약 — agar mos keladi.|① Rostdan, ③ ehtimol, ④ aynan degan urg‘u shartni belgilamaydi.
+20|4|Asl san’at asarini aniqlashda mutaxassis fikri bilan ilmiy tahlil birga ishlatiladi.|① Imzo ham tekshiriladi; ② zamonaviy asarlar ham kiradi; ③ maxsus raqam yo‘q.
+21|1|입 밖에 내다 — og‘zidan chiqarmoq. Murabbiy xatoni eslatadigan gapni aytmasligi kerak.|② Ko‘z yumish, ③ oshirib yuborish, ④ quloq solmaslik mazmunga mos emas.
+22|2|‘Yiqilma’ o‘rniga ‘muvozanatni saqla’ deyish — murabbiy so‘zini ehtiyotkor tanlashi kerak.|① Umumiy natija; ③④ sportchining vazifasiga buriladi, matn murabbiy nutqi haqida.
+23|3|Qizining kutilmagan shikoyati onani birdan hayrat va sarosimaga soladi.|① Siqilish, ② ranjish, ④ norozilikdan ko‘ra kutilmagan anglash tasvirlangan.
+24|2|To‘ng‘ich qiz cho‘miltirish va kiyintirishda doim kichiklarni kutgan.|① Kichikdan boshlangan; ③ tez-tez aytmagan; ④ ona jahl qilmay, muloyim undagan.
+25|4|오락가락 — yomg‘irning yog‘ib-to‘xtab turishi; bu ertagacha davom etadi.|①③ uzluksiz yog‘ish emas; ② faqat ertaga qayta boshlash emas.
+26|3|Katta kutish fonida ilk kuni tomoshabinlar 50 mingdan oshgan.|①④ Salbiy baho yo‘q; ② film allaqachon chiqarilganini bermaydi.
+27|4|Yirik do‘konlar qiynalayotgan paytda an’anaviy bozor savdosi oshgan.|①② Ikkalasida o‘sish emas; ③ savdo o‘zgarishsiz qolmagan.
+28|3|‘Sizga pul tushsa?’ sarlavhasi o‘quvchiga voqeani o‘zinikidek his qildiradi.|① Ishonch, ② yangi axborot, ④ mazmunni oldindan topish asosiy usul emas.
+29|2|Qulay sharoitda harakat qilmagan qush misoli boriga qanoatlanib, rivojlanmaslik xavfini ko‘rsatadi.|① Reja, ③ taqqoslash, ④ munosabatlardan qochish haqida gap yo‘q.
+30|4|Sudya ko‘zidan hissiyoti bilinmasligi uchun ko‘zoynak taqqan: ruhiy holatini yashirish.|① Mavqe emas; ② tuyg‘uni kuchaytirish teskari; ③ hukm aniqligini isbotlash deyilmagan.
+31|1|Tanish ta’m xaridorgir bo‘lgani uchun kompaniya allaqachon muvaffaqiyatli mahsulotni ilgari suradi.|② Yangi mahsulot qarama-qarshi; ③④ tadqiqot va ishlab chiqish asosiy yo‘l emas.
+32|3|Kompaniya nogironlar tashkilotiga topshirilgan biznesni kengaytirishni rejalashtirgan.|① Ijobiy baholanadi; ② tashkilot ishchilari; ④ o‘qitishni kompaniya emas, tashkilot bergan.
+33|4|Hukumat safar yo‘nalishiga mos koreys madaniyati tadbirlarini o‘tkazadi.|① Hamkorlik zarurati oldindan maqsad; ② oddiy fuqarolar; ③ energetika loyihasi keyingi hukumat rejasi.
+34|1|동경 qadimda Gyeongju hududining nomi bo‘lgan; it nomi shu joydan olingan.|② Ilgari zarar ko‘rgan; ③ dumi sabab salbiy baholangan; ④ yodgorlik maqomi itga berilgan.
+35|4|Kassetani sotib olish sevimli ijodkor albomini uzoq saqlash istagidan keladi.|① Bozor kengayishi, ② musiqa rivoji, ③ eski qo‘shiqqa qiziqish asosiy sabab emas.
+36|2|Tahrirlangan tasvir ishtirokchini noto‘g‘ri ko‘rsatishi mumkin; ishlab chiqaruvchi uning sha’nini hisobga olsin.|① Yangi format, ③ talabga bo‘ysunish, ④ tomoshabin ishtiroki yechim sifatida berilmagan.
+37|1|Texnik aktivlarni baholash uchun moliyada tabiiy fan va muhandislik mutaxassislari ulushi oshishi kerak.|②④ Qayta o‘qitish aytilmagan; ③ mablag‘ allaqachon kengaymoqda, asosiy talab kadrlar.
+38|4|Ajratilgan budjetga tayangan holda Antarktida tadqiqotini tizimli kuchaytirish talab qilinadi.|① Mablag‘ allaqachon ajratilgan; ② tartibsiz qazish, ③ xalqaro hamkorlik bosh mavzu emas.
+39|2|Gap gulga salbiy qarash sababini aytadi; keyin issiq iqlim bilan ilmiy izoh keladi.|① Salbiy qarash hali yo‘q; ③④ sabab bilan undan oldingi fikr uzoqlashadi.
+40|4|이처럼 rasmli yo‘riqnomaning avval sanalgan foydalarini yakunlaydi; demak oxirgi ㄹ.|①② Tizim hali tanishtirilmagan; ③ uning ishlash tavsifi oldidan xulosa keladi.
+41|3|이는 yangi kitobdagi sodda tilga ishora qilib, o‘quvchiga yaqinlashish maqsadini izohlaydi.|①② o‘zgarish hali yo‘q; ④ keyingi asar haqidagi umidni noto‘g‘ri izohlaydi.
+44|1|O‘rta rahbar axborot tashishdan tashqari muvofiqlashtiradi; tarmoq uni to‘liq almashtirolmaydi.|② Faqat suhbat emas; ③ vazifa almashishi, ④ ierarxiya yo‘qolishi da’vo qilinmagan.
+45|3|Yo‘qoladi degan taxmin rahbarni faqat xabar yetkazuvchi deb, vazifasini bir tomonlama tushunishdan keladi.|① Tarmoqni kam baholash emas; ② bozor prognozi emas; ④ gorizontal rolni aynan e’tiborsiz qoldirgan.
+46|2|Oldingi iqtisodga ustuvorlikdan keyin yangi hayot sifati siyosatiga o‘tish tushuntiriladi.|① Eski yo‘nalish hali aytilmagan; ③④ jamoatchilik ishtiroki izohini uzadi.
+47|3|Ko‘rsatkichlar fuqarolar fikri va ijtimoiy kelishuv asosida qo‘shilishi yoki yaxshilanishi mumkin.|① Bir tomonlama qaror emas; ② majburiy maqsadlar emas; ④ eski iqtisodiy ustuvorlik saqlanishi aytilmagan.
+48|2|Muallif yangi davrda bir xillik o‘rniga farqlilikni qadrlashga o‘tishni talab qiladi.|①③ muammoning bir qismi; ④ betaraf tarixiy tavsif emas, qadriyat o‘zgarishiga da’vat.
+49|4|Bir xillik kuchli ta’kidlanganda boshqacha bo‘lganlarga dushmanlik kuchayib, to‘qnashuv tug‘diradi.|① Qiziqish, ② mustaqillikka havas, ③ farqlilikka yopishish mantiqqa mos emas.
+50|4|Muallif bir xillikni ulug‘lash boshqalarni chetlatib, butun dunyoga zarar yetkazishidan xavotirda.|① Farqlar yo‘qolishi emas; ② birga yashash tanqid qilinmagan; ③ hozirgi holatdan ko‘ra ehtimoliy oqibat.

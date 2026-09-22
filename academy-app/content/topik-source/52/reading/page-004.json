@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "extractionVersion": 2,
+  "exam": 52,
+  "kind": "reading",
+  "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/52/52회_읽기.pdf",
+  "sourceName": "52회_읽기.pdf",
+  "sourceSha256": "a5e4deaa70af8f2ad9a87cb4222d10fd730d731d972f1f30b8fe8c211ad45474",
+  "pdfPage": 4,
+  "sourcePageCount": 25,
+  "sectionPage": null,
+  "isFrontMatter": true,
+  "isBlank": true,
+  "imagePath": "tmp/topik-pages/52/reading/page-004.png",
+  "width": 1785,
+  "height": 2523,
+  "bboxConvention": "normalized top-left x,y,width,height",
+  "nativeText": "",
+  "engine": "Apple Vision",
+  "languages": [
+    "ko-KR",
+    "en-US"
+  ],
+  "text": "",
+  "lines": []
+}

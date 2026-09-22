@@ -1,0 +1,48 @@
+1|2|하는데 futbol o‘ynash fonida ustozning chaqirganini bog‘laydi.|①④ tanlov emas; ③ -면서 odatda bir bajaruvchining parallel ishlarini bog‘laydi.
+2|4|졸업하자마자 — universitetni bitirishi bilanoq ishga kirgan.|①③ qarama-qarshilik, ② shart; bu yerda tez ketma-ketlik kerak.
+3|2|Qora bulutga qarab yomg‘ir taxmin qilinmoqda; 올 것만 같다 ham taxmin bildiradi.|① takroriy holat; ③ imkonsizlik; ④ oldingi tajriba yo‘qligi.
+4|1|가 봐야 — borgan taqdirda ham natija o‘zgarmaydi; 간다고 해도 shu mazmunda.|② farazni boshlaydi; ③ ehtimol sababini, ④ haqiqiy zid holatni bildiradi.
+5|2|Yangi saqlash va haroratni avtomatik boshqarish sovitkichga xos.|① Kompyuter, ③ ventilyator, ④ kir mashinasi mahsulot yangiligini saqlamaydi.
+6|4|Yozuv xira ko‘rinsa kirish taklifi ko‘rishni tuzatadigan ko‘zoynak do‘koniga ishora.|① Tish, ② kitob va ③ san’at xizmatida ko‘rish muammosi yechilmaydi.
+7|1|Jamoat joyida suhbatdosh ovozigacha eshitilishi telefonni past ovozda ishlatishga chaqiradi.|② Ovqatlanish, ③ salomatlik va ④ xavfsizlik emas, telefon odobi.
+8|2|Bir kishi bir kupon, qaytarilmaslik va boshqa kupon bilan qo‘shmaslik — foydalanish shartlari.|① Almashtirish tartibi, ③ sotuv joyi, ④ mahsulot xususiyati berilmagan.
+9|3|Oilaviy surat olib kelganlar bepul kiradi.|① Mualliflar mahalliy; ② mavzu oila; ④ uchrashuv faqat dam olish kunlari.
+10|1|Do‘stlar: yigitlar 43%, qizlar 46%; ikkalasida ham ota-onadan yuqori.|② Aka-uka eng kam; ③ yolg‘iz hal qilish yigitlarda ko‘proq; ④ ota-onaga qizlar ko‘proq murojaat qiladi.
+11|3|Tomoshabin bo‘lish uchun dastur sayti orqali ro‘yxatdan o‘tiladi.|① Yakshanba; ② ilk efir keyingi hafta; ④ har safar bitta xonanda.
+12|4|Bu safar ham o‘tgan yil qatnashgan xonadonlarga telefon qilingan.|① Shaxsan bormagan; ② internet kamaymagan; ③ gazeta oluvchilar yarmi emas, beshdan biri.
+13|1|나 ona xotirasini ochadi → 다 odat → 라 besh farzand sabab ko‘p yeyish → 가 yoqtirmaslik.|②③ 그 때문에ning sababi hali yo‘q; ④ ona xotirasi sabab-natijani uzadi.
+14|4|라 jarima ballari → 다 samarasizlik → 가 yangi tizim → 나 uning izohi.|①② yangi tizim muammosiz tanishtiriladi; ③ 하지만 avvalgi tizimdan uzilib qoladi.
+15|3|다 chiroqlarni olib tashlash fikri → 가 sabab → 라 e’tiroz → 나 muqobil izlash.|①② sabab taklifdan oldin; ④ muqobil e’tirozdan oldin keladi.
+16|1|Teri ostidan ko‘proq qon o‘tishi terining qizarishini tushuntiradi.|② Ega va mazmun mos emas; ③ holsizlik, ④ yengillik haqida dalil yo‘q.
+17|1|Barmoq harakati so‘zlarni eslashni faollashtiradi; shu sabab gapirganda qo‘l harakati tavsiya qilinadi.|② Barmoqni o‘ylash emas, ishlatish kerak; ③④ harakat bilan sababiy bog‘lanishni bermaydi.
+18|2|Shaxsiy qoniqish ustuvor bo‘lsa, kasbning o‘z qobiliyatiga mosligi tanlanadi.|① Umrbod ish, ③ mavqe, ④ boshqalar bahosi eski yoki tashqi mezonlar.
+19|2|Kutilganidan aksincha, eng kichik guruh kuchini ko‘proq sarflagan; 오히려 — aksincha.|① Nihoyat, ③ balki, ④ albatta kutilmagan teskari natijani bildirmaydi.
+20|1|A’zolar soni bilan sarflangan kuch teskari mutanosib: guruh kattalashganda shaxsiy hissa kamaygan.|② Natija kutilganga zid; ③ tadqiqot yo‘nalishi teskari; ④ juftlik ko‘proq kuch sarflagan.
+21|2|천리 길도 한 걸음부터 — katta ish kichik qadamdan boshlanadi.|① Bittadan xulosa chiqarish; ③ kechikkan chora; ④ yuqoridagilardan namuna olish boshqa ma’nolar.
+22|4|Muallif xavotir bilan cheklanmay, suv ifloslanishiga qarshi amaliy ishni boshlashga chaqiradi.|①② muammo tavsifi; ③ oqibat. Asosiy urg‘u hozir harakat qilishda.
+23|2|Onasining tashvishini ko‘paytirganini o‘ylab ko‘ngli og‘rib, ko‘ziga yosh keladi.|① Mushkul qaror, ③ ilojsizlik, ④ nohaqlikdan ranjish asosiy hissiyot emas.
+24|4|Seulda yashash orzusi uchun viloyat universitetining to‘liq stipendiyasidan voz kechgan.|① Pul yetmagan; ② avval Seulda yashamagan; ③ katta pul yuborilgani aytilmagan.
+25|3|드라마ni 뮤지컬 orqali ko‘rish — serial sahna musiqiy asariga aylantirilgan.|① Birgalikda tomosha emas; ② yo‘nalish teskari; ④ bir vaqtda yaratish deyilmagan.
+26|3|젊은 옷 — yosh tarkib; 훨훨 날다 — natijalar yaxshilanishining ko‘chma ifodasi.|①④ oddiy kiyim emas; ② o‘yin boshlanishi muvaffaqiyat ma’nosini yo‘qotadi.
+27|4|의견 엇갈려 — yangi siyosat samarasiga qarashlar bir-biridan farq qilmoqda.|① Faqat e’tibor; ② bir xil umid; ③ siyosat tuzish sababi emas.
+28|2|Yutganlar tanlovini saqlaydi, yutqazganlar o‘zgartiradi: kuzatiladigan barqaror moyillik bor.|① Turlar, ③ teng takrorlanish, ④ zarur shartlar tushuntirilmagan.
+29|1|Muzqaymoq yumshoqligini havo ta’minlaydi; eriganda havo chiqib, qayta muzlatilganda qotadi.|② Havo ko‘payishi yumshatadi; ③ noto‘g‘ri nisbat aybi yo‘q; ④ yumshash natijaga zid.
+30|1|Ajralish, soch va homiladorlik misollarida odam voqeani o‘z holati orqali qabul qiladi.|②③ tashqi voqealar markaz emas; ④ boshqalardan ko‘ra o‘zlik asosiy nuqta.
+31|4|Bu avlod urush va iqtisodiy o‘sishni boshdan kechirgan; xotiralari zamonaviy tarix manbasi.|①②③ shaxsiy hayot doirasida qolib, umumiy tarixiy qiymatni bermaydi.
+32|3|Kosmik texnologiyalar suv tozalagich va tez tayyorlanadigan ovqat kabi qulayliklarga aylangan.|① Rivojlanish yo‘nalishi teskari; ② dastlab astronavtlar uchun; ④ texnologiya kosmosdan kundalik hayotga kelgan.
+33|4|Matoga suv o‘tkazmaydigan silikon qoplangani sabab suyuqlik singmaydi.|① Ter ham chiqolmaydi; ② yuvib bo‘lmasligi aytilmagan; ③ ko‘rinishi oddiy futbolkadek.
+34|3|Qarash burchagiga qarab harflar rangi o‘zgarishi qalbakilashtirishni qiyinlashtiradi.|① Raqam o‘zgarmaydi; ② rasm bazaga ro‘yxatlanadi; ④ asosiy maqsad bezak emas, himoya.
+35|2|Foydalar, yangi ichimliklar va ko‘p foydalanish birgalikda sirka bozori o‘sishini tushuntiradi.|①③④ o‘sishga sabab bo‘lgan alohida jihatlar, butun matnning mavzusi emas.
+36|4|Yoshlar eski qo‘shiqlarni, kattalar yoshlar madaniyatini yoqtirmoqda: avlod chegarasi susaygan.|① Teskari; ②③ faqat bitta avlodga oid misolni oladi.
+37|2|Tashqi ma’ruzalarga berilmay, o‘zini tiklaydigan ichki kuchni topish kerakligi aytilgan.|① Fon ma’lumoti; ③ ma’ruza samarasi kafolatlanmagan; ④ yana tashqi ma’ruzaga tayanadi.
+38|4|Narxni yashirin sahifa yoki majburiy a’zolik ortiga qo‘yish ishonchni yo‘qotadi; halol ochiqlik kerak.|①② umumiy foyda; ③ e’lon qilish allaqachon majburiy, muammo uning bajarilishida.
+39|3|Yo‘l berishga chaqiriqdan keyingi 이러한 배려 aynan shu harakatni anglatadi; joy ㄷ.|①② hamkorlik talabi hali ochilmagan; ④ ko‘rsatish olmoshidan keyin kechikadi.
+40|3|Ismning shaxsiy mas’uliyatni anglatishi keyingi tarixiy kishilarning nomini asrashiga sabab bo‘ladi.|①② nomsizlik misolini bo‘ladi; ④ 그래서ning sababi undan keyinda qoladi.
+41|3|Avval muzokarachilar nima qilardi, degan savol; keyin kitob shu qiziqishni qondirishi; so‘ng mashhurlik sababi.|①② savoldan oldin javob keladi; ④ 바로 여기ga ishora kechikadi.
+44|4|Matn fuqarolar siyosatni taklif qilib, muhokama orqali tanlaydigan boshqaruv tajribasini tushuntiradi.|① 12 loyiha, ② qatnashchilar, ③ munosabat — umumiy tizimning bo‘laklari.
+45|3|Davom ettiriladigan tajriba — fuqarolarning bevosita ishtiroki va boshqaruvdagi yangilik.|① Taklifni fuqarolar beradi; ② budjet bilan cheklanmaydi; ④ vakil saylash emas.
+46|3|이렇게 보완한 avvalgi sovitish va shamollatish yaxshilanishlariga qaytadi; keyin iqtisodiy foyda boshlanadi.|①② yaxshilanishlar hali sanalmagan; ④ iqtisodiy izoh uziladi.
+47|2|Hojatxona boshpanasi alohida xavfsizlik qavatining o‘rnini bossa, iqtisodiy foyda katta bo‘ladi.|① Havo eshikdan emas, ventilyatsiyadan; ③ amalda keng joriy qilinmagan; ④ me’yor o‘zgargani yo‘q.
+48|4|Yakuniy jumla o‘sish va taqsimot muvozanatiga qaratilgan yangi siyosatni o‘z vaqtida deb ma’qullaydi.|① Faqat talab emas, qo‘llab-quvvatlash; ②③ eski siyosat fon sifatida muhokama qilinadi.
+49|1|Oldingi davrda ayrim davlatlarda yuqori o‘sish bilan tengsizlik kamaygani misol keltirilgan.|②④ matnda asos yo‘q; ③ o‘sish va taqsimot muvozanatini sabab o‘rniga takrorlaydi.
+50|3|Muallif hozirgi yirik korxonalar tuzilmasida o‘sishning foydasi o‘z-o‘zidan taqsimlanmasligini qat’iy aytadi.|① Faraz emas; ② usullar ro‘yxati yo‘q; ④ o‘sish pasayishi bashorat qilinmaydi.

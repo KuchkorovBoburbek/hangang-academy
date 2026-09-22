@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "withheldPassages": [
+    {
+      "exam": 35,
+      "questionNumbers": [
+        42,
+        43
+      ],
+      "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/35/35회 TOPIK 2_2교시(읽기).pdf",
+      "pdfPage": 20,
+      "reason": "The provided PDF explicitly withholds the passage; this is not an OCR failure."
+    },
+    {
+      "exam": 36,
+      "questionNumbers": [
+        42,
+        43
+      ],
+      "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/36/36회 TOPIK 2_(듣기쓰기읽기)_B형.pdf",
+      "pdfPage": 37,
+      "reason": "The provided PDF explicitly withholds the passage; this is not an OCR failure."
+    },
+    {
+      "exam": 37,
+      "questionNumbers": [
+        42,
+        43
+      ],
+      "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/37/37회TOPIK2(듣기쓰기읽기)_B형.pdf",
+      "pdfPage": 37,
+      "reason": "The provided PDF explicitly withholds the passage; this is not an OCR failure."
+    },
+    {
+      "exam": 41,
+      "questionNumbers": [
+        42,
+        43
+      ],
+      "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/41/41회_읽기.pdf",
+      "pdfPage": 20,
+      "reason": "The provided PDF explicitly withholds the passage; this is not an OCR failure."
+    },
+    {
+      "exam": 47,
+      "questionNumbers": [
+        42,
+        43
+      ],
+      "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/47/47회_읽기.pdf",
+      "pdfPage": 22,
+      "reason": "The provided PDF explicitly withholds the passage; this is not an OCR failure."
+    },
+    {
+      "exam": 52,
+      "questionNumbers": [
+        42,
+        43
+      ],
+      "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/52/52회_읽기.pdf",
+      "pdfPage": 22,
+      "reason": "The provided PDF explicitly withholds the passage; this is not an OCR failure."
+    },
+    {
+      "exam": 60,
+      "questionNumbers": [
+        42,
+        43
+      ],
+      "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/60/60회_읽기.pdf",
+      "pdfPage": 22,
+      "reason": "The provided PDF explicitly withholds the passage; this is not an OCR failure."
+    },
+    {
+      "exam": 64,
+      "questionNumbers": [
+        42,
+        43
+      ],
+      "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/64/64회_읽기.pdf",
+      "pdfPage": 22,
+      "reason": "The provided PDF explicitly withholds the passage; this is not an OCR failure."
+    },
+    {
+      "exam": 83,
+      "questionNumbers": [
+        42,
+        43
+      ],
+      "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/83/83_읽기.pdf",
+      "pdfPage": 22,
+      "reason": "The provided PDF explicitly withholds the passage; this is not an OCR failure."
+    },
+    {
+      "exam": 91,
+      "questionNumbers": [
+        42,
+        43
+      ],
+      "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/91/91_읽기.pdf",
+      "pdfPage": 22,
+      "reason": "The provided PDF explicitly withholds the passage; this is not an OCR failure."
+    },
+    {
+      "exam": 96,
+      "questionNumbers": [
+        42,
+        43
+      ],
+      "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/96/96_2교시_읽기.pdf",
+      "pdfPage": 22,
+      "reason": "The provided PDF explicitly withholds the passage; this is not an OCR failure."
+    },
+    {
+      "exam": 102,
+      "questionNumbers": [
+        23,
+        24
+      ],
+      "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/102/102_2교시_읽기.pdf",
+      "pdfPage": 13,
+      "reason": "The provided PDF explicitly withholds the passage; this is not an OCR failure."
+    },
+    {
+      "exam": 102,
+      "questionNumbers": [
+        42,
+        43
+      ],
+      "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/102/102_2교시_읽기.pdf",
+      "pdfPage": 22,
+      "reason": "The provided PDF explicitly withholds the passage; this is not an OCR failure."
+    }
+  ]
+}

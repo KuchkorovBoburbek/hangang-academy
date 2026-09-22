@@ -1,0 +1,79 @@
+{
+  "exams": [
+    {
+      "exam": 35,
+      "anchors": 50,
+      "groups": 42,
+      "missing": []
+    },
+    {
+      "exam": 36,
+      "anchors": 50,
+      "groups": 42,
+      "missing": []
+    },
+    {
+      "exam": 37,
+      "anchors": 50,
+      "groups": 42,
+      "missing": []
+    },
+    {
+      "exam": 41,
+      "anchors": 50,
+      "groups": 42,
+      "missing": []
+    },
+    {
+      "exam": 47,
+      "anchors": 50,
+      "groups": 42,
+      "missing": []
+    },
+    {
+      "exam": 52,
+      "anchors": 50,
+      "groups": 42,
+      "missing": []
+    },
+    {
+      "exam": 60,
+      "anchors": 50,
+      "groups": 42,
+      "missing": []
+    },
+    {
+      "exam": 64,
+      "anchors": 50,
+      "groups": 42,
+      "missing": []
+    },
+    {
+      "exam": 83,
+      "anchors": 50,
+      "groups": 42,
+      "missing": []
+    },
+    {
+      "exam": 91,
+      "anchors": 50,
+      "groups": 42,
+      "missing": []
+    },
+    {
+      "exam": 96,
+      "anchors": 50,
+      "groups": 42,
+      "missing": []
+    },
+    {
+      "exam": 102,
+      "anchors": 50,
+      "groups": 42,
+      "missing": []
+    }
+  ],
+  "officialQuestions": 600,
+  "generatedQuestions": 111,
+  "issues": []
+}

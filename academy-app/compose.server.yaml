@@ -1,0 +1,56 @@
+# Uses the existing Coolify Traefik proxy on this server.
+# Run together with compose.yaml; secrets remain in the server's private .env.
+x-server: &server
+  image: ${HANGANG_IMAGE:?HANGANG_IMAGE is required}
+  pull_policy: never
+  logging:
+    driver: json-file
+    options:
+      max-size: '10m'
+      max-file: '3'
+services:
+  app:
+    <<: *server
+    ports: !reset []
+    mem_limit: 512m
+    environment:
+      NODE_OPTIONS: --max-old-space-size=384
+    networks:
+      - default
+      - academy-proxy
+    labels:
+      traefik.enable: 'true'
+      traefik.docker.network: coolify
+      traefik.http.routers.hangang-http.rule: Host(`${ACADEMY_HOST:?ACADEMY_HOST is required}`)
+      traefik.http.routers.hangang-http.entrypoints: http
+      traefik.http.routers.hangang-http.service: hangang
+      traefik.http.routers.hangang-http.middlewares: hangang-redirect
+      traefik.http.middlewares.hangang-redirect.redirectscheme.scheme: https
+      traefik.http.middlewares.hangang-redirect.redirectscheme.permanent: 'true'
+      traefik.http.routers.hangang-https.rule: Host(`${ACADEMY_HOST:?ACADEMY_HOST is required}`)
+      traefik.http.routers.hangang-https.entrypoints: https
+      traefik.http.routers.hangang-https.tls: 'true'
+      traefik.http.routers.hangang-https.tls.certresolver: letsencrypt
+      traefik.http.routers.hangang-https.service: hangang
+      traefik.http.routers.hangang-https.middlewares: hangang-compress,hangang-headers
+      traefik.http.middlewares.hangang-compress.compress: 'true'
+      traefik.http.middlewares.hangang-headers.headers.stsseconds: '604800'
+      traefik.http.services.hangang.loadbalancer.server.port: '3000'
+  worker:
+    <<: *server
+    mem_limit: 384m
+    environment:
+      NODE_OPTIONS: --max-old-space-size=256
+    labels:
+      traefik.enable: 'false'
+  backup:
+    <<: *server
+    mem_limit: 128m
+    environment:
+      NODE_OPTIONS: --max-old-space-size=96
+    labels:
+      traefik.enable: 'false'
+networks:
+  academy-proxy:
+    name: coolify
+    external: true

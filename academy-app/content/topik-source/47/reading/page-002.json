@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "extractionVersion": 2,
+  "exam": 47,
+  "kind": "reading",
+  "sourceFile": "/Users/boburbek/Desktop/TOPIK_2/47/47회_읽기.pdf",
+  "sourceName": "47회_읽기.pdf",
+  "sourceSha256": "1206ff5d46c44137a2cde52e8533b13ba0fac9f707fb3e1179d921b9d6ecb101",
+  "pdfPage": 2,
+  "sourcePageCount": 25,
+  "sectionPage": null,
+  "isFrontMatter": true,
+  "isBlank": true,
+  "imagePath": "tmp/topik-pages/47/reading/page-002.png",
+  "width": 1785,
+  "height": 2523,
+  "bboxConvention": "normalized top-left x,y,width,height",
+  "nativeText": "",
+  "engine": "Apple Vision",
+  "languages": [
+    "ko-KR",
+    "en-US"
+  ],
+  "text": "",
+  "lines": []
+}

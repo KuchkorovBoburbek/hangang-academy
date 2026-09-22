@@ -1,0 +1,249 @@
+{
+  "scope": {
+    "exams": [
+      35,
+      36,
+      37,
+      41
+    ],
+    "questionCount": 200,
+    "sourceReadingContentPages": 84,
+    "figureCrops": 24
+  },
+  "method": [
+    "Read all 200 assembled question prompts, options, and passages.",
+    "Compared OCR source line coverage against assembled output; differences restricted to normalized option/slot markers.",
+    "Ran independent local Korean-only OCR with language correction on all 84 source content pages to flag suspects; did not apply these guesses automatically.",
+    "Visually confirmed every recorded correction against the original rendered source page.",
+    "Visually inspected all 24 assembled image crops; required figure content complete.",
+    "Compared every answer against the manually transcribed source reading answer key."
+  ],
+  "results": {
+    "questionNumbersComplete": true,
+    "fourOptionsPerQuestion": true,
+    "answerKeyMatches": 200,
+    "missingQuestionOrPassageLines": 0,
+    "correctionGroupCount": 17,
+    "correctedFragments": 20,
+    "sourceWithheldPassages": "Questions 42–43 in each of these four exams are expressly withheld in the source PDF. No passage was invented.",
+    "cosmeticFigureNote": "Exam 36 q5–10 crops include original printed question numbers; q5 also retains a tiny sliver of instruction above. Required figure content is intact."
+  },
+  "corrections": [
+    {
+      "group": "topik-35-r-9",
+      "sourcePdfPage": 5,
+      "field": "passage and corresponding block text/alt",
+      "changes": [
+        {
+          "before": "입창료",
+          "after": "입장료"
+        }
+      ],
+      "verification": "Read directly from rendered source crop."
+    },
+    {
+      "group": "topik-35-r-29",
+      "sourcePdfPage": 13,
+      "field": "question 29, option 4",
+      "changes": [
+        {
+          "before": "짧은 시간 동안 부담 없이 즐길 수 있는즁",
+          "after": "짧은 시간 동안 부담 없이 즐길 수 있는"
+        }
+      ],
+      "verification": "Read directly from rendered source crop."
+    },
+    {
+      "group": "topik-35-r-37",
+      "sourcePdfPage": 17,
+      "field": "passage and corresponding block text/alt",
+      "changes": [
+        {
+          "before": "중후군",
+          "after": "증후군"
+        },
+        {
+          "before": "중상으로는",
+          "after": "증상으로는"
+        }
+      ],
+      "verification": "Read directly from rendered source crop."
+    },
+    {
+      "group": "topik-35-r-38",
+      "sourcePdfPage": 18,
+      "field": "question 38, option 2",
+      "changes": [
+        {
+          "before": "로봇의 등장으로 인간은 육체노동의 시간을 출일 수 있을 것이다.",
+          "after": "로봇의 등장으로 인간은 육체노동의 시간을 줄일 수 있을 것이다."
+        }
+      ],
+      "verification": "Read directly from rendered source crop."
+    },
+    {
+      "group": "topik-35-r-42-43",
+      "sourcePdfPage": 20,
+      "field": "question 43, option 3",
+      "changes": [
+        {
+          "before": "방송을 통해 아이의 부모가 아이에게 내려오라고 소리첬다.",
+          "after": "방송을 통해 아이의 부모가 아이에게 내려오라고 소리쳤다."
+        }
+      ],
+      "verification": "Read directly from rendered source crop."
+    },
+    {
+      "group": "topik-36-r-6",
+      "sourcePdfPage": 21,
+      "field": "question 6, option 1",
+      "changes": [
+        {
+          "before": "1 치과",
+          "after": "치과"
+        }
+      ],
+      "verification": "Read directly from rendered source crop."
+    },
+    {
+      "group": "topik-36-r-21-22",
+      "sourcePdfPage": 27,
+      "field": "passage and corresponding block text/alt",
+      "changes": [
+        {
+          "before": "위해서는 )라는",
+          "after": "위해서는 (          )라는"
+        }
+      ],
+      "verification": "Read directly from rendered source crop."
+    },
+    {
+      "group": "topik-36-r-36",
+      "sourcePdfPage": 34,
+      "field": "question 36, option 2",
+      "changes": [
+        {
+          "before": "대중문화에 대한 중년증의 관심이 높아지고 있다.",
+          "after": "대중문화에 대한 중년층의 관심이 높아지고 있다."
+        }
+      ],
+      "verification": "Read directly from rendered source crop."
+    },
+    {
+      "group": "topik-36-r-41",
+      "sourcePdfPage": 36,
+      "field": "passage and corresponding block text/alt",
+      "changes": [
+        {
+          "before": "역사 속으",
+          "after": "역사 속의"
+        }
+      ],
+      "verification": "Read directly from rendered source crop."
+    },
+    {
+      "group": "topik-36-r-48-49-50",
+      "sourcePdfPage": 40,
+      "field": "passage and corresponding block text/alt",
+      "changes": [
+        {
+          "before": "날 듯물 중",
+          "after": "날 듯 둘 중"
+        },
+        {
+          "before": "목표를 문",
+          "after": "목표를 둔"
+        }
+      ],
+      "verification": "Read directly from rendered source crop."
+    },
+    {
+      "group": "topik-37-r-8",
+      "sourcePdfPage": 21,
+      "field": "question 8, option 3",
+      "changes": [
+        {
+          "before": "구입 방법 1",
+          "after": "구입 방법"
+        }
+      ],
+      "verification": "Read directly from rendered source crop."
+    },
+    {
+      "group": "topik-37-r-9",
+      "sourcePdfPage": 22,
+      "field": "passage and corresponding block text/alt",
+      "changes": [
+        {
+          "before": "(미 033",
+          "after": "(☎ 033"
+        }
+      ],
+      "verification": "Read directly from rendered source crop."
+    },
+    {
+      "group": "topik-37-r-36",
+      "sourcePdfPage": 34,
+      "field": "passage and corresponding block text/alt",
+      "changes": [
+        {
+          "before": "되는답 경우도",
+          "after": "되는 경우도"
+        }
+      ],
+      "verification": "Read directly from rendered source crop."
+    },
+    {
+      "group": "topik-37-r-48-49-50",
+      "sourcePdfPage": 40,
+      "field": "question 48, option 1",
+      "changes": [
+        {
+          "before": "l 인류에 잔재하는 반문명적 요소를 고발하기 위해",
+          "after": "인류에 잔재하는 반문명적 요소를 고발하기 위해"
+        }
+      ],
+      "verification": "Read directly from rendered source crop."
+    },
+    {
+      "group": "topik-41-r-7",
+      "sourcePdfPage": 4,
+      "field": "passage and corresponding block text/alt",
+      "changes": [
+        {
+          "before": "한마대!",
+          "after": "한마디!"
+        }
+      ],
+      "verification": "Read directly from rendered source crop."
+    },
+    {
+      "group": "topik-41-r-12",
+      "sourcePdfPage": 6,
+      "field": "passage and corresponding block text/alt",
+      "changes": [
+        {
+          "before": "움직이면 노 기능",
+          "after": "움직이면 뇌 기능"
+        }
+      ],
+      "verification": "Read directly from rendered source crop."
+    },
+    {
+      "group": "topik-41-r-41",
+      "sourcePdfPage": 19,
+      "field": "passage and corresponding block text/alt",
+      "changes": [
+        {
+          "before": "홍미진진하게",
+          "after": "흥미진진하게"
+        },
+        {
+          "before": "홍미롭게",
+          "after": "흥미롭게"
+        }
+      ],
+      "verification": "Read directly from rendered source crop."
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+1|2|Quyosh chiqishini ko‘rish uchun erta turilgan: 보려고 maqsadni bildiradi.|① Zarur shart, ③ tanlov, ④ fon; turish maqsadini bermaydi.
+2|1|무슨 일을 하든지 — qanday ish qilmasin, mehnat qilish muhim.|② Maqsad, ③ uzilish, ④ kuzatish; istalgan holat ma’nosiga mos emas.
+3|4|Doim kulishini ko‘rib yaxshi voqeani taxmin qilish: 있나 보다 = 있는 모양이다.|① O‘zini ko‘rsatish, ② faqatlik, ③ keskin daraja; taxmin emas.
+4|1|Dars yaqinligi uchun ta’til amalda tugagan hisob: 끝난 셈이다.|② Ayb-sabab, ③ tabiiy qonuniyat, ④ shartga bog‘liqlik boshqa ma’nolar.
+5|2|Yotgan zahoti uyqu va tonggacha qulaylik — yotoq reklamasining belgisi.|① Sochiq, ③ soat, ④ poyabzal yotish joyi emas.
+6|2|Yangi masalliq, maqbul narx va oilaviy davralar — restoran xizmati.|① Bank, ③ kir yuvish, ④ oddiy do‘kon davra taomini taklif qilmayapti.
+7|1|O‘rmon va daryoni birgalikda asrash — tabiat muhofazasi.|② Vaqt, ③ joy berish, ④ xavfsizlik asosiy mavzu emas.
+8|2|Soat birgacha buyurtmani o‘sha kuni olib borish — yetkazib berish sharti.|① Ishlatish, ③ foydalanish bosqichlari, ④ almashtirish tartibi yo‘q.
+9|1|잡지, 어학 교재 제외 — jurnal va til darsliklarini buyurtma qilib bo‘lmaydi.|② Xabar emailda; ③ faqat 17–30-aprel; ④ ariza saytda.
+10|3|Maosh 12%, shaxsiy rivojlanish 7%: maoshni ustun qo‘yuvchilar ko‘proq.|① Barqarorlik eng kam emas; ② 12% va 13% teng emas; ④ 48% yarmidan kam.
+11|1|Politsiya hamyoni topilishiga yordam bergach, sayyoh minnatdorchilik xati yuborgan.|② Topilmagan deyilmagan; ③ xatni sayyoh yozgan; ④ lug‘at va imo yordam bergan.
+12|2|Yolg‘iz tomosha qiluvchi hamrohni o‘ylamay, spektaklga to‘liq diqqat qiladi.|① Ilgari juftlik janri hisoblangan; ③ barcha odamlar emas; ④ yolg‘izlar ko‘paygan.
+13|1|가 kelishmovchilik → 라 ifoda farqi → 나 itning ishorasi → 다 mushukning xato talqini.|② Sabab misol orasiga tushadi; ③④ mavzu misoldan keyin tanishtiriladi.
+14|2|나 tadbir maqsadi → 다 avvalgi ichkilik → 라 hozirgi madaniy tadbir → 가 o‘zgarish xulosasi.|① Xulosa dalildan oldin; ③④ umumiy kirish eski-yangi qarama-qarshiligini uzadi.
+15|3|다 ota vasiyati → 가 yer kavlash → 나 urug‘ sepish → 라 hosil va ma’noni anglash.|①② Otaning gapi kech; ④ yerni kavlashdan oldin uning bekor ketgani aytiladi.
+16|2|Achchiq zaharli o‘simlikdan qochish organizmni himoyalash instinkti sifatida izohlangan.|① Ortiqcha yeyish, ③ faqat yoqimsiz ta’m, ④ did o‘zgarishi emas.
+17|2|Boshni yuqoriga-pastga qimirlatish — bosh irg‘ash; tinglash va rozilikni ko‘rsatadi.|① Qarsak, ③ savol, ④ yozib olish keyingi jismoniy ta’rifga mos emas.
+18|3|Matn buyumni tashlay olmay uyga yig‘ish holatini tasvirlaydi; munosabatdagi barqarorlik shuni kamaytirishi mumkin.|① Odamdan qochish, ② faqat xarid, ④ tartibsiz tashlash emas.
+19|2|Murakkab paroldan tashqari muntazam almashtirish talabi qo‘shilgan: 게다가.|① Natija, ③ zidlik, ④ umumlashtirish emas; qo‘shimcha yuk sanaladi.
+20|1|Tez o‘zgaradigan parolni eslolmaslik foydalanuvchini stressga tushiradi.|② Dastlab to‘rt raqam yetgan; ③ talab yo‘nalishi teskari; ④ bittasini tanlash emas.
+21|4|앞뒤를 가리지 않다 — oqibatni o‘ylamasdan; 무조건 muxlislikning tanqidiy tasviriga mos.|① Hisoblash teskari; ② chekinmaslik, ③ qadamni moslash aniq mazmun emas.
+22|4|Muallif muxlislikning do‘stlik va bosimdan yengillik foydalarini ko‘rsatib, yoshlarni tushunishga chaqiradi.|①③ yordamchi foydalar; ② baholar haqidagi taqiq muallif xulosasi emas.
+23|3|Otasining jarohatini kech payqab, jahl bilan aytgan gapidan pushaymon bo‘ladi.|① Nohaqlik, ② bo‘shliq hissi, ④ majburiyat og‘irligi emas.
+24|2|Ota shikastlangan katta nevarasini shoshilinch yordamga olib borgan.|① Ota mehmon bo‘lib kelgan; ③ qo‘ng‘iroqni uyda olgan; ④ har kuni emas.
+25|1|봄바람 va 기지개 xarid istagi jonlanishi hamda savdo oshishining ko‘chma ifodalari.|② Ob-havo sababi emas; ③ aksiya, ④ maxsus strategiya tilga olinmagan.
+26|3|몸살 앓아 yo‘lning mashinalar ko‘pligidan qattiq tirband bo‘lishini ifodalaydi.|① Avariya, ② qurilish, ④ kengaytirish ishlari aytilmagan.
+27|4|Yoqimli serial musiqasi tomoshabinni jalb qilib, reyting oshishiga hissa qo‘shgan.|① Faqat niyat emas, natija; ② talab va ③ birga yaratish yo‘q.
+28|3|Klaviatura bosish kabi barmoq uchini rag‘batlantiruvchi harakatlar hujayra faolligi bilan bog‘langan.|① Tozalash, ② o‘rash, ④ nam saqlash tadqiqotdagi sabab emas.
+29|2|Ildiz — ajdod, poya — ota-ona, barg — avlod: uch taom nasllar bog‘liqligini ifodalaydi.|① O‘simlik ko‘payishi emas; ③ inson-tabiat, ④ ovqat ulashish ramzi emas.
+30|3|Matnning mantiqida issiqlik molekula harakatidan chiqadi; muzdagi molekulalar erkin harakat qilolmaydi.|① Hajm, ② birikmaslik, ④ barcha issiqlikni qaytarish izohda yo‘q.
+31|4|Kompaniyani bo‘lish yakuniy qarorni kichik kompaniyalarga beradi va tasdiqlash bosqichlarini qisqartiradi.|① Obraz, ② bozorni o‘zgartirish, ③ ma’lumot almashish asosiy niyat emas.
+32|1|Nuqtali tasvir aralashtirilgan bo‘yoqqa nisbatan tiniq va yumshoq ko‘rinadi.|② Hozir ham qo‘llanadi; ③ uzoqroqdan qo‘shilib ko‘rinadi; ④ nuqtalar zich.
+33|3|Turli baliqlar turli suv sifatida yashashi orqali ifloslikni aniqlash mumkin.|① O‘simlik havoni ko‘rsatadi; ② loybaliq 3-darajali suvda; ④ gulda kattalik emas, oq dog‘.
+34|4|Tizim takror yoki birga ichish mumkin bo‘lmagan dori yozilishining oldini olish uchun ishlatiladi.|① Allaqachon onlayn; ② tekshiruvchi tibbiy muassasa; ③ masofaviy retsept xizmati emas.
+35|4|Bir xil 2 000 von narx 1 000 ga nisbatan oshish, 3 000 ga nisbatan pasayish: mezon talqinni o‘zgartiradi.|① Mutlaq ishonch yo‘q; ② statistika foydasiz deyilmagan; ③ faqat misolga torayadi.
+36|2|Qushlar yetakchisi xavfsiz yo‘lni bilishi va favqulodda vaziyatda tez qaror qilishi kerak.|① Umumiy harakat; ③ to‘planish sababi; ④ oldinda uchishning o‘zi yetarli emas.
+37|3|Zerikish baxtli hayotga zarar va og‘ir oqibat keltirishi mumkin; uni arzimas sanamaslik kerak.|① Kirish holati; ② aksincha boylar ham qiynaladi; ④ faqat bitta oqibat.
+38|1|Niyat yaxshi bo‘lsa ham yetkazilgan og‘riq oqibatini zimmasiga olish haqiqiy uzrdir.|② Niyat bilan oqlash rad etilgan; ③ takrorlamaslik va ④ yomon niyatdan saqlanish asosiy ta’rif emas.
+39|4|Avval hidni yo‘qotish texnologiyasi, keyin uning aniq maqsadi, so‘ng foydasi keladi.|①② Texnologiya hali yo‘q; ③ tadqiqot tanishtirilishidan oldin maqsad tushadi.
+40|4|Ovqat va uni yetishtirib-tayyorlagan odamlar sanalgach, muallif niyati umumlashtiriladi.|①② Insonlar mavzusi hali ochilmagan; ③ umumiy gap bilan misollar ajraladi.
+41|3|Sanoat o‘zgarishi → ish o‘rinlari o‘zgarishi → bugungi bolalarning yangi kasblari: sababiy zanjir.|①② Sanoat dalili hali yo‘q; ④ 그래서 uchun sabab kechikadi.
+44|3|Universal dizayn yosh, jins va imkoniyatlardan qat’i nazar turli odamlarga qulaylik beradi.|① Faqat yangilik emas; ② ommaviy ishlab chiqarish eski yondashuv; ④ samaradorlik yagona mezon emas.
+45|4|Eski dizayn standart deb olingan ko‘pchilikka moslangan, shu bois qolganlar qiynalgan.|① Mahsulot xususiyati sababni bermaydi; ② hamma uchun qulaylik yangi yondashuv; ③ moda aytilmagan.
+46|1|Ikki qarashning bozor va davlat roli bilan ajralishi avval aytilib, keyin har biri tushuntiriladi.|②③ Ta’rif ikki qarash orasini bo‘ladi; ④ umumiy mezon xulosadan keyin qoladi.
+47|4|O‘sishdan kelib chiqqan tengsizlikni yumshatishda taraqqiyparvar siyosat zarurligi aytilgan.|① Faqat davlat boshqaruvi emas; ② davlat ham ta’sir qiladi; ③ erkinlik konservativ qarashda ustuvor.
+48|4|Muallif tayyor texnologiyasiz huquqni band qilish haqiqiy ixtirochilarni to‘sishini tanqid qiladi.|① Tartib izohi emas; ②③ yordamchi fon, asosiy masala patentdan suiiste’mol.
+49|3|Avval huquqni egallab, keyin ishlab chiqishga kirishish — texnologiya hali mukammal tayyor emas.|① Muddati, ② tan olingani, ④ farqni tekshirish muammo sababi emas.
+50|4|Tagi chizilgan jumla patent tizimining innovatsiya va sanoatga katta hissasini maqtaydi.|① Kamayish xavfi yo‘q; ② monopoliyani mutlaq himoya emas; ③ aynan bu jumlada islohot talabi yo‘q.

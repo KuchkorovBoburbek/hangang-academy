@@ -1,0 +1,48 @@
+1|1|보여도 — sovuq ko‘rinsa ham; tashqi ko‘rinish bilan iliq qalb qarama-qarshi.|② Zarur shart, ③ o‘zgarish, ④ tanlov bu zidlikka mos emas.
+2|2|도착하니까 — yetib kelganida yomg‘ir boshlangan; sodir bo‘lgan voqea bog‘langan.|① Tanlov, ③ kelajak sharti, ④ maqsad; o‘tgan voqeaga mos kelmaydi.
+3|2|깨지 않게 va 깨지 않도록 — chaqaloq uyg‘onmasligi uchun.|① Bilvosita savol, ③ kuzatilgan o‘zgarish, ④ sabab; maqsadni bermaydi.
+4|1|늘리고자 — oshirish maqsadida; 늘리기 위해서 bilan ma’nodosh.|② Darhol keyin, ③ o‘rniga, ④ aksincha degan ma’nolar.
+5|2|Salqin shamol beruvchi buyum — ventilyator.|① Changyutkich, ③ kir mashinasi, ④ telefon shamol bilan salqinlatmaydi.
+6|2|Kelajak moliyaviy barqarorligi va mijoz hamyoni bank xizmatiga ishora qiladi.|① Davolash, ③ savdo, ④ ta’lim asosiy mavzu emas.
+7|1|Bolaning maktabga qatnash yo‘lini asrash — yo‘l harakati xavfsizligi.|② Elektr tejash, ③ salomlashish ta’limi, ④ tabiatni asrash emas.
+8|1|Kompaniya bilan birga o‘sadigan kishilarni kutish — yangi xodim chaqiruvi.|② Sayohat, ③ mahsulot tavsifi, ④ sotuv haqida ma’lumot yo‘q.
+9|3|최대 200만 원 — yordamning yuqori chegarasi ikki million von.|① Olti oy; ② o‘rta maktab o‘quvchilari ham; ④ kamida besh o‘quvchi kerak.
+10|3|Ikkala yilda ham kosmetika ustuni eng baland.|① Oziq-ovqat kamaygan; ② sumkalar ko‘paygan; ④ 2014-yilda kiyim oziq-ovqatdan kam.
+11|4|Matnda quyoshda o‘sgan yashil nihollar sariqlaridan oziqaliroq ekani aytilgan.|① Sariq qorong‘ida; ② yashil yopilmaydi; ③ yashili charchoq uchun foydaliroq deb berilgan.
+12|4|Kam ishlatiladigan qo‘l harakati miyani kuchliroq rag‘batlantirishi aytilgan.|① Aloqa bor; ② oddiy ish ham ta’sir qiladi; ③ odatlanmagan qo‘l tavsiya qilingan.
+13|3|나 omija tanishtiriladi → 가 yozgi choy → 다 foydasi → 라 qo‘shimcha foyda.|①② 이것ning manbasi yo‘q; ④ sabab yozgi foyda haqidagi gapdan oldin keladi.
+14|1|다 baxt → 가 qiyinchilik → 나 shunga qaramay vakillik hissi → 라 buning sababi.|② 하지만ning qarama-qarshiligi uziladi; ③④ 그들 oldindan tanishtirilmagan.
+15|3|다 eski nog‘ora → 나 zamonaviy internet → 가 qo‘llanishi → 라 umumiy davomiylik.|①② 이러한ning manbasi yo‘q; ④ ikki davr misollarisiz xulosa qiladi.
+16|4|Ismlarni tasodifiy tortish tortinchoq o‘quvchiga ham gapirish imkonini beradi.|① Ism yodlash, ② bosqich tenglashishi, ③ silliq olib borish asosiy maqsad emas.
+17|4|Yangilikdan ortda qolish qo‘rquvi yangi qurilmani sotib ololmaganda xavotirga olib keladi.|① Ota-ona, ② baho, ③ begonaning ma’lumoti bilan bog‘lanmagan.
+18|1|Matndagi tushuntirishga ko‘ra, igna to‘silgan 기 oqimini yaxshilash uchun ishlatiladi.|② Yo‘nalishni aniqlash, ③ oldini olish, ④ tashxis emas, davolash mexanizmi so‘ralgan.
+19|1|특히 avvalgi ‘eng muhim lahza’ ichida aynan otish vaqtini tanlashni urg‘ulaydi.|② Muqobil yo‘q; ③ kutilgan o‘xshashlik emas; ④ tekshirish yoki hayrat emas.
+20|1|Otish vaqtini tanlash talab qilingani uchun kamonchilik qaror qobiliyatini rivojlantiradi.|② Asosiy nuqta vaqtni tanlash; ③ sabrni oshiradi; ④ oddiyligi sabab mashhurlashmagan.
+21|4|티끌 모아 태산 — oz-ozdan yig‘ilgan pul katta summaga aylangan.|① Did farqi, ② qaytmas hodisa, ③ arzonning sifati boshqa ma’nolar.
+22|3|Haqiqiy ehson miqdorga emas, boshqaga mehr va g‘amxo‘rlikka bog‘liq.|① Tanga ishlatish, ② katta pul sharti, ④ jamg‘arish odati asosiy fikr emas.
+23|1|Qancha aytsa ham buvisi quloq solmagani nabirani ichidan siqadi: 답답하다.|② Yengillik, ③ uyat, ④ ortiqcha ovora bo‘lish asosiy hissiyot emas.
+24|2|Buvisi bozorga borib yiqilgan va oyog‘iga bog‘lam qo‘yilgan.|① Gapini tinglamagan; ③ ishlarni o‘zi qilgan; ④ nabirasi uchun kelgan.
+25|3|화창 — ochiq; 곳에 따라 — ayrim joylarda. Kunduzi ochiq, kechasi ayrim hududda yomg‘ir.|①④ Kunduzi bulutli emas; ② butun mamlakat bo‘ylab deyilmagan.
+26|4|껑충 iste’molning keskin o‘sishi, 불붙은 esa savdo raqobatining kuchayishini bildiradi.|① Sabab-natija teskari; ② savdo pasaymagan; ③ ta’minot o‘sishi aytilmagan.
+27|3|Qariyalar mahalla qo‘riqlovchisi vazifasini yaxshi bajargani aholiga xotirjamlik bergan.|①② Yordam yo‘nalishi teskari; ④ umumiy ish, ammo xavfsizlik mazmuni yo‘qolgan.
+28|2|Ertaklar eski xotiralarni uyg‘otib, kattalarni bolalik olamiga qaytaradi.|① Bola tarbiyasi, ③ oila mehri, ④ ertak yozish maqsad emas.
+29|3|Qo‘l titrashi — jismoniy to‘siq; materialga pul yetmasligi — og‘ir sharoit. Ikkalasi ijodga turtki.|① Qiziqish, ② san’atkorlik, ④ ruhiy azob misollarning umumiy omili emas.
+30|1|Kimyoviy modda plastikka o‘tgach rezina unga yopishadi; keyingi jumla shu natijani tasdiqlaydi.|② Qotish aytilmagan; ③④ yopishmaslik yoki tegmaslik natijaga zid.
+31|2|Birgalikda kuylash, tasalli va o‘z qadrini anglash hip-hopni jamoaviy marosimga aylantiradi.|① Shunchaki rasmiy harakat emas; ③ juda umumiy; ④ kelajak shakli emas.
+32|4|Parchali mato tikishda foydalanuvchiga baxt tilash niyati bor.|① Amaliylikdan ustun deyilmagan; ② qoldiq mato; ③ ranglar ham har xil.
+33|3|Mustaqil qayd etilish qirolni o‘z gapi va harakatini ehtiyot qilishga majbur qilgan.|① Tarixchi ismi yozilmagan; ② qirol o‘qiy olmagan; ④ muntazam hisobot deyilmagan.
+34|1|Matnga ko‘ra, yog‘ni filtrlovchi gen yurak-qon tomir xavfidan himoyalaydi.|② Yog‘li ovqat yeydi; ③ tana 50%, sut 27%; ④ davolash hali kutilayotgan foyda.
+35|2|Ifodalar rivojlanib, hislarni bildiradigan mustaqil til vositasiga aylangan.|① Boshlang‘ich tarix; ③ qarshi fikr; ④ mutlaq zarurat qilib oshirib yuboradi.
+36|2|Qush misoli noto‘g‘ri g‘amxo‘rlik zarar berishini ko‘rsatadi; avval shu xavfni anglash kerak.|① Yordamchi dalil; ③ hikoyaga torayadi; ④ boshqa nuqtayi nazarni hisobga olishni rad etadi.
+37|3|Matn asal haqidagi barcha foydali tasavvurlar isbotlangan emasligini aytadi.|①② Muallif rad etgan qarashlar; ④ barcha ta’sirlar isbotlangan deyilmagan.
+38|3|Shartlarni tushunish bilan birga adolatli va oqilona ekanini baholash ham kerak.|①② Talabning faqat yarmini oladi; ④ shaxsiy ma’lumot berish asosiy xulosa emas.
+39|4|나아가 avvalgi joriy qilish rejasidan yanada kengroq tashkiliy o‘zgarishlarga o‘tadi.|①② Ta’rifni bo‘ladi; ③ sinov va uning yakunini ajratadi.
+40|2|Atama ta’rifidan keyin nomning kelib chiqishi, so‘ng 당시 orqali o‘sha davr izohi keladi.|① 이 용어 manbasiz; ③④ 당시ga kerakli davr izohi kechikadi.
+41|3|이러한 소재들 aynan ko‘rinmas odam va sun’iy intellekt robotiga ishora qiladi.|①② Misollar hali berilmagan; ④ foyda haqidagi ikki gapni ajratadi.
+44|4|Tezkorlik o‘zgaruvchan bozorda tez moslashish orqali korxona ustunligiga aylanishi mumkin.|① Umumiy vaziyat; ② faqat xoslik; ③ kamchilikni yashirish aytilmagan.
+45|3|O‘ziga xos kuchlarni oshirish va zaiflikni tuzatish — boshqalardan ajraladigan raqobat kuchi yaratish.|① Ramz yaratish emas; ② faqat tasavvurni o‘zgartirish tor; ④ umumiy rahbarlikka o‘tish emas.
+46|4|Avval to‘p yuqorilayotgandek tuyulishi, so‘ng aslida ko‘tarilmasligi, keyin 착각 sababi keladi.|①②③ Hali xayoliy ko‘tarilish aytilmagani uchun qarshi izoh o‘rinsiz.
+47|4|To‘pga aylanish berish uning yo‘nalishi va tushish darajasini o‘zgartirib, turli otishlarni yaratadi.|① Aylanish yo‘nalishini otuvchi belgilaydi; ② ko‘tarilish illyuziya; ③ oldindan bilish qiyin.
+48|1|Butun matn ijtimoiy nizolarni hal qilishning hamma tan oladigan tamoyillarini taklif qiladi.|② Davlat emas, xalq manfaati; ③ faqat tavsif emas; ④ tamoyillardan bittasi.
+49|1|Erkin muloqot va tomonlarning o‘z muzokarasi 자율적으로 — mustaqil kelishishni anglatadi.|② Betaraf hakam, ③ o‘ziga xoslik, ④ ijodkorlik bu izohning markazi emas.
+50|4|Murosali hal qilingan nizo jamiyatni birlashtiruvchi kuch bo‘lishi mumkinligi tan olinadi.|① Faqat ogohlantirish emas; ② shubha emas; ③ qiyinchilikka hamdardlik emas.

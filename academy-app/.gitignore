@@ -1,0 +1,16 @@
+node_modules/
+.next/
+data/*
+!data/.gitkeep
+.env
+.env.local
+playwright-report/
+test-results/
+*.tsbuildinfo
+
+backups/
+
+.env.*
+!.env.example
+.deploy/
+tmp/

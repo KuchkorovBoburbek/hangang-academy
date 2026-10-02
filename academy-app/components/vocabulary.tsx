@@ -450,16 +450,18 @@ function GroupPicker({
   groups,
   selected,
   onChange,
+  emptyMessage,
 }: {
   groups: Group[];
   selected: string[];
   onChange: (groups: string[]) => void;
+  emptyMessage?: string;
 }) {
   return (
     <fieldset className="vocab-groups">
       <legend>So‘zlar va bildirishnoma qaysi guruhlarga?</legend>
       {!groups.length ? (
-        <p>Avval «Guruhlar va vazifalar» bo‘limida guruh yarating.</p>
+        <p>{emptyMessage || 'Avval «Guruhlar va vazifalar» bo‘limida guruh yarating.'}</p>
       ) : (
         groups.map((g) => (
           <label key={g.id}>
@@ -510,6 +512,14 @@ function WordEditor({
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (busy) return;
+    if (!word && !groupIds.length) {
+      setError(
+        eligibleGroups.length
+          ? 'So‘z qo‘shiladigan guruhni belgilang.'
+          : `${VOCABULARY_LEVELS.find((l) => l.id === scope.level)?.label} darajasiga mos guruh yo‘q. Avval «Guruhlar va vazifalar» bo‘limida mos guruh yarating.`,
+      );
+      return;
+    }
     setBusy(true);
     setError('');
     const form = new FormData(event.currentTarget);
@@ -605,9 +615,11 @@ function WordEditor({
         <ScopePicker
           value={scope}
           onChange={(s) => {
+            const matching = groups.filter((g) => vocabularyLevel(g.level) === s.level);
             setScope(s);
             setCategories([vocabularyTopics(s)[0].id]);
-            setGroupIds([]);
+            setGroupIds(matching.length === 1 ? [matching[0].id] : []);
+            setError('');
           }}
         />
         <fieldset className="vocab-bands-field">
@@ -631,9 +643,10 @@ function WordEditor({
         </fieldset>
         {!word && (
           <GroupPicker
-            groups={groups.filter((g) => vocabularyLevel(g.level) === scope.level)}
+            groups={eligibleGroups}
             selected={groupIds}
             onChange={setGroupIds}
+            emptyMessage={`${VOCABULARY_LEVELS.find((l) => l.id === scope.level)?.label} darajasiga mos guruh yo‘q. Avval «Guruhlar va vazifalar» bo‘limida shu darajadagi guruh yarating.`}
           />
         )}
         {!word && (
@@ -721,9 +734,11 @@ function AssistantForm({
         <ScopePicker
           value={scope}
           onChange={(s) => {
+            const matching = groups.filter((g) => vocabularyLevel(g.level) === s.level);
             setScope(s);
             setCategory(vocabularyTopics(s)[0].id);
-            setGroupIds([]);
+            setGroupIds(matching.length === 1 ? [matching[0].id] : []);
+            setError('');
           }}
         />
         <div className="vocab-form-columns">
@@ -789,9 +804,10 @@ function AssistantForm({
           </div>
         )}
         <GroupPicker
-          groups={groups.filter((g) => vocabularyLevel(g.level) === scope.level)}
+          groups={eligibleGroups}
           selected={groupIds}
           onChange={setGroupIds}
+          emptyMessage={`${VOCABULARY_LEVELS.find((l) => l.id === scope.level)?.label} darajasiga mos guruh yo‘q. Avval «Guruhlar va vazifalar» bo‘limida shu darajadagi guruh yarating.`}
         />
         <p className="vocab-form-note">
           Bir so‘rovda 40 tagacha so‘z. Takrorlar o‘zgartirilmaydi; aniq o‘qilmagan so‘zlar natijada

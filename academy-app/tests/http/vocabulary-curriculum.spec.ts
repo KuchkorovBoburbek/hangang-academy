@@ -122,6 +122,23 @@ test('teacher book access, invite link, topic selection and repeatable vocabular
     page.locator('.vocab-topic').filter({ hasText: '1-mavzu' }).getByRole('button'),
   ).toBeDisabled();
   await expect(page.getByRole('button', { name: 'Quizni boshlash', exact: true })).toBeDisabled();
+
+  await editor.getByRole('button', { name: 'Qo‘lda qo‘shish', exact: true }).click();
+  const wordForm = editor.getByRole('dialog');
+  await wordForm.getByLabel('Lug‘at darajasi').selectOption('topik56');
+  await expect(wordForm.locator('.vocab-groups')).toContainText(
+    'TOPIK 5/6 darajasiga mos guruh yo‘q',
+  );
+  await wordForm.getByLabel('Lug‘at darajasi').selectOption('hangul');
+  await expect(wordForm.getByLabel('Seoulte curriculum QA', { exact: true })).toBeChecked();
+  await wordForm.getByLabel('Koreyscha so‘z').fill('교실');
+  await wordForm.getByLabel('O‘zbekcha ma’nosi').fill('sinfxona');
+  await wordForm.getByLabel('So‘z turkumi').fill('Ot');
+  await wordForm.getByLabel('Koreyscha misol').fill('교실에서 공부합니다.');
+  await wordForm.getByLabel('Misol tarjimasi').fill('Sinfxonada o‘qiymiz.');
+  await wordForm.getByRole('button', { name: 'Saqlash', exact: true }).click();
+  await expect(wordForm).toHaveCount(0);
+  await expect(editor.locator('.topik-word-card').filter({ hasText: '교실' })).toBeVisible();
   expect(errors).toEqual([]);
   await learner.close();
   await staff.close();

@@ -83,6 +83,9 @@ it('starts groups closed and gives beginners four books with eight distinct topi
 });
 
 it('separates books, topics and groups, including the same word repeated in another topic', () => {
+  expect(() => createVocabularyWord(teacher, input('교실', 'unit-1'), [], id())).toThrow(
+    'Seoulte 1A',
+  );
   createVocabularyWord(teacher, input('학교', 'unit-1'), [hangul], id());
   createVocabularyWord(teacher, input('학생', 'unit-1'), [hangul], id());
   createVocabularyWord(teacher, input('학교', 'unit-2'), [hangul], id());

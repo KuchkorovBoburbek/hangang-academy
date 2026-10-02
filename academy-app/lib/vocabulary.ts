@@ -72,7 +72,13 @@ export const normalizedWord = (s: string) =>
   s.normalize('NFKC').trim().replace(/\s+/g, ' ').toLowerCase();
 export function validateVocabularyGroups(user: User, groupIds: string[], scope?: VocabularyScope) {
   requireTeacher(user);
-  if (!groupIds.length) throw new AppError(400, 'Kamida bitta guruhni tanlang.');
+  if (!groupIds.length)
+    throw new AppError(
+      400,
+      scope
+        ? `${scopeLabel(scope)} uchun shu darajaga mos guruhni tanlang.`
+        : 'Kamida bitta guruhni tanlang.',
+    );
   for (const groupId of new Set(groupIds)) {
     teacherGroup(user, groupId);
     if (
@@ -217,7 +223,7 @@ export function createVocabularyWord(
 ) {
   requireTeacher(user);
   const word = vocabularyInputSchema.parse(input);
-  validateVocabularyGroups(user, groupIds);
+  validateVocabularyGroups(user, groupIds, word);
   return transaction(() => {
     const result = insertWords(
       user,

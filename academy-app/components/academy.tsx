@@ -19,17 +19,13 @@ import {
   Check,
   Link2,
   LoaderCircle,
+  Grid2X2,
+  RotateCcw,
 } from 'lucide-react';
 import type { User, Submission } from '@/lib/types';
-import { Brand, Loading, api, errorText, Badge, SubmitButton } from './ui';
-import {
-  StudentHome,
-  PracticeLibrary,
-  Writing,
-  Notebook,
-  type StudentData,
-  type StartQuiz,
-} from './student';
+import { Brand, Loading, api, errorText, Badge, SubmitButton, Modal } from './ui';
+import { PracticeLibrary, Writing, Notebook, type StudentData, type StartQuiz } from './student';
+import StudentHome from './student-home';
 import {
   TeacherHome,
   Groups,
@@ -57,6 +53,7 @@ const studentNav = [
   { path: '/topik', label: 'TOPIK 읽기', icon: ClipboardCheck },
   { path: '/writing', label: 'Yozma vazifalar', icon: PenLine },
   { path: '/notebook', label: 'Mening daftarim', icon: NotebookPen },
+  { path: '/daily', label: 'Kunlik takrorlash', icon: RotateCcw },
 ];
 const teacherNav = [
   { path: '/', label: 'Umumiy ko‘rinish', icon: LayoutDashboard },
@@ -82,6 +79,7 @@ export default function Academy() {
   const [quiz, setQuiz] = useState<SessionView | null>(null);
   const [starting, setStarting] = useState(false);
   const [submission, setSubmission] = useState<Submission | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const refresh = useCallback(async () => {
     try {
       const result = await api<State>('state');
@@ -121,7 +119,10 @@ export default function Academy() {
     await api('logout', { method: 'POST', body: '{}' });
     router.replace('/login');
   }
-  const go = (p: string) => router.push(p);
+  const go = (p: string) => {
+    setMenuOpen(false);
+    router.push(p);
+  };
   if (!state)
     return error ? (
       <div className="loading">
@@ -151,7 +152,8 @@ export default function Academy() {
           ...studentNav.filter(
             (n) =>
               n.path !== '/' &&
-              (n.path !== '/topik' || (state as State & StudentData).access.topik),
+              (!['/topik', '/daily'].includes(n.path) ||
+                (state as State & StudentData).access.topik),
           ),
         ]
       : studentNav;
@@ -165,8 +167,22 @@ export default function Academy() {
   const title = pathname === '/settings' ? 'Sozlamalar' : page?.label || 'HangangAcademy';
   const student = state as State & StudentData;
   const teacher = state as State & TeacherData;
+  const mobileNav = isTeacher
+    ? nav
+    : [
+        { path: '/', label: 'Bosh sahifa', icon: LayoutDashboard },
+        student.courses.managed
+          ? { path: '/lessons', label: 'Darslar', icon: BookOpen }
+          : { path: '/writing', label: 'Vazifalar', icon: PenLine },
+        { path: '/vocabulary', label: 'Lug‘at', icon: Languages },
+        student.courses.managed
+          ? { path: '/my-group', label: 'Guruhim', icon: Users }
+          : { path: '/grammar', label: 'Grammatika', icon: BookOpen },
+      ];
   return (
-    <div className="app-shell">
+    <div
+      className={`app-shell ${!isTeacher ? 'student-shell' : ''} ${!isTeacher && pathname === '/' ? 'student-home-shell' : ''}`}
+    >
       <aside className="sidebar">
         <Brand />
         <div className="workspace-label">{isTeacher ? 'O‘QITUVCHI PANELI' : 'O‘QUVCHI MAKONI'}</div>
@@ -287,7 +303,7 @@ export default function Academy() {
             </>
           ) : (
             <>
-              {(pathname === '/' && student.courses?.managed) || pathname === '/lessons' ? (
+              {pathname === '/lessons' ? (
                 <CourseHome data={student.courses} name={state.user.name} go={go} />
               ) : pathname.startsWith('/lessons/') ? (
                 <StudentLesson
@@ -339,7 +355,7 @@ export default function Academy() {
         </main>
       </div>
       <nav className="mobile-nav topik-student-nav" aria-label="Telefon menyusi">
-        {nav.map((n) => (
+        {mobileNav.map((n) => (
           <button
             key={n.path}
             className={
@@ -368,7 +384,42 @@ export default function Academy() {
             </span>
           </button>
         ))}
+        {!isTeacher && (
+          <button
+            className={
+              menuOpen ||
+              !mobileNav.some(
+                (n) => n.path === pathname || (n.path !== '/' && pathname.startsWith(n.path + '/')),
+              )
+                ? 'active'
+                : ''
+            }
+            aria-expanded={menuOpen}
+            aria-haspopup="dialog"
+            onClick={() => setMenuOpen(true)}
+          >
+            <Grid2X2 size={21} />
+            <span>Yana</span>
+          </button>
+        )}
       </nav>
+      {menuOpen && !isTeacher && (
+        <Modal title="Barcha bo‘limlar" onClose={() => setMenuOpen(false)}>
+          <div className="student-menu-links">
+            {[...nav, { path: '/settings', label: 'Sozlamalar', icon: Settings }].map((n) => (
+              <button
+                key={n.path}
+                className={pathname === n.path ? 'active' : ''}
+                onClick={() => go(n.path)}
+              >
+                <n.icon size={21} />
+                <span>{n.label}</span>
+                <ChevronRight size={18} />
+              </button>
+            ))}
+          </div>
+        </Modal>
+      )}
       {notice && (
         <div className="toast" role="status">
           <Check size={18} />

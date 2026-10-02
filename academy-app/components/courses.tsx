@@ -1578,6 +1578,10 @@ export function StudentLesson({
   useEffect(() => {
     load();
   }, [load]);
+  useEffect(() => {
+    if (!lesson || !window.location.hash.startsWith('#material-')) return;
+    document.getElementById(window.location.hash.slice(1))?.scrollIntoView({ block: 'start' });
+  }, [lesson]);
   if (!lesson)
     return (
       <div className="panel course-editor-meta">
@@ -1603,7 +1607,12 @@ export function StudentLesson({
       </div>
       <LiveQuiz releaseId={releaseId} teacher={false} notify={notify} />
       {lesson.snapshot.materials.map((m) => (
-        <section className="panel course-student-material" key={m.id}>
+        <section
+          className="panel course-student-material"
+          id={`material-${m.id}`}
+          style={{ scrollMarginTop: 20 }}
+          key={m.id}
+        >
           <MaterialReading material={m} files={lesson.files} grammars={lesson.grammars} />
           {m.task !== 'none' && (
             <MaterialTask

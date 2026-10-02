@@ -385,6 +385,7 @@ export function studentCourses(user: User): CourseStudentState {
     return {
       ...summary,
       tasks: releaseTasks(user, r),
+      materials: snapshot.materials.map(({ id, kind, title }) => ({ id, kind, title })),
       liveQuiz: !!one("SELECT id FROM course_live WHERE release_id=? AND status='open'", r.id),
     };
   });

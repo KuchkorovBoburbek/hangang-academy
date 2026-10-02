@@ -87,7 +87,11 @@ export type CourseStudentState = {
   managed: boolean;
   level: CourseLevel | null;
   groupName: string;
-  releases: (Omit<LessonRelease, 'snapshot'> & { tasks: TaskStatus[]; liveQuiz: boolean })[];
+  releases: (Omit<LessonRelease, 'snapshot'> & {
+    tasks: TaskStatus[];
+    materials: Pick<LessonMaterial, 'id' | 'kind' | 'title'>[];
+    liveQuiz: boolean;
+  })[];
   points: number;
   gifts: number;
 };

@@ -83,6 +83,21 @@ beforeAll(() => {
       new Date().toISOString(),
     );
   importTopikCorpus(full, words);
+  run(
+    "INSERT INTO users(id,name,email,password_hash,role,created_at) VALUES('vocab-teacher','Teacher','vocab@test.local','unused','teacher',?)",
+    new Date().toISOString(),
+  );
+  run(
+    "INSERT INTO groups(id,name,level,invite_code,teacher_id,created_at) VALUES('vocab-group','TOPIK','TOPIK 3/4','TOPIKTEST','vocab-teacher',?)",
+    new Date().toISOString(),
+  );
+  run(
+    "INSERT INTO vocabulary_access(group_id,level,book,section,categories) VALUES('vocab-group','topik34','','reading','[\"all\"]')",
+  );
+  for (const user of [student, other, bulkReviewer, retiredReviewer]) {
+    run("UPDATE users SET group_id='vocab-group' WHERE id=?", user.id);
+    Object.assign(user, one<User>('SELECT * FROM users WHERE id=?', user.id));
+  }
 });
 afterAll(() => {
   resetDbForTests();

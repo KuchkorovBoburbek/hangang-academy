@@ -278,7 +278,6 @@ export default function Academy() {
               go={go}
               notify={setNotice}
               refresh={refresh}
-              startQuiz={isTeacher ? undefined : () => start('vocabulary')}
               aiEnabled={state.integrations.ai}
             />
           ) : isTeacher ? (

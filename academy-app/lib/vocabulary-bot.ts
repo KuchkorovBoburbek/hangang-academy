@@ -5,10 +5,14 @@ import { sendTelegram } from './telegram';
 import { queueVocabularyJob, vocabularyNotification, validateVocabularyGroups } from './vocabulary';
 import {
   VOCABULARY_SECTIONS,
-  VOCABULARY_BANDS,
   bandLabel,
-  sectionLabel,
   type VocabularySection,
+  VOCABULARY_LEVELS,
+  SEOULTE_BOOKS,
+  vocabularyTopics,
+  scopeLabel,
+  vocabularyLevel,
+  type VocabularyScope,
 } from './vocabulary-types';
 import type { User } from './types';
 
@@ -48,8 +52,10 @@ type BotState = {
   section: VocabularySection;
   category: string;
   group_ids: string;
-  stage: 'section' | 'category' | 'groups' | 'ready';
+  stage: 'level' | 'book' | 'section' | 'category' | 'groups' | 'ready';
   updated_at: string;
+  level: VocabularyScope['level'];
+  book: VocabularyScope['book'];
 };
 type Button = { text: string; callback_data: string };
 const rows = (buttons: Button[], width = 3) =>
@@ -60,7 +66,22 @@ function menu(user: User, state: BotState, key: string) {
   const cancel = [{ text: 'Bekor qilish', callback_data: 'v:cancel' }];
   let text = '',
     buttons: Button[][] = [];
-  if (state.stage === 'section') {
+  if (state.stage === 'level') {
+    text = 'Lug‘at yordamchisi 🌿\nQaysi darajaga so‘z qo‘shamiz?';
+    buttons = [
+      ...rows(
+        VOCABULARY_LEVELS.map((l) => ({ text: l.label, callback_data: `v:level:${l.id}` })),
+        1,
+      ),
+      cancel,
+    ];
+  } else if (state.stage === 'book') {
+    text = 'Seoulte kitobini tanlang:';
+    buttons = [
+      SEOULTE_BOOKS.map((b) => ({ text: `Seoulte ${b}`, callback_data: `v:book:${b}` })),
+      cancel,
+    ];
+  } else if (state.stage === 'section') {
     text = 'Lug‘at yordamchisi 🌿\nQaysi TOPIK bo‘limiga so‘z qo‘shamiz?';
     buttons = [
       VOCABULARY_SECTIONS.map((s) => ({
@@ -70,12 +91,12 @@ function menu(user: User, state: BotState, key: string) {
       cancel,
     ];
   } else if (state.stage === 'category') {
-    text = `${sectionLabel(state.section)} · Qaysi savollar uchun?`;
+    text = `${scopeLabel(state)} · Qaysi mavzu uchun?`;
     buttons = [
       ...rows(
-        VOCABULARY_BANDS[state.section].map((b) => ({
-          text: bandLabel(b),
-          callback_data: `v:band:${b}`,
+        vocabularyTopics(state).map((b) => ({
+          text: b.label,
+          callback_data: `v:band:${b.id}`,
         })),
       ),
       [{ text: '← Bo‘lim', callback_data: 'v:back' }],
@@ -83,16 +104,18 @@ function menu(user: User, state: BotState, key: string) {
     ];
   } else if (state.stage === 'groups') {
     const selected: string[] = JSON.parse(state.group_ids);
-    text = `${sectionLabel(state.section)} · ${bandLabel(state.category)}\nSo‘zlar qaysi guruhlarga qo‘shilsin? Bir nechtasini tanlashingiz mumkin. Yangi so‘zlar saqlangach, ularga bildirishnoma boradi.`;
-    buttons = many<{ id: string; name: string }>(
-      'SELECT id,name FROM groups WHERE teacher_id=? ORDER BY name',
+    text = `${scopeLabel(state)} · ${bandLabel(state.category)}\nSo‘zlar qaysi guruhlarga qo‘shilsin? Bir nechtasini tanlashingiz mumkin. Yangi so‘zlar saqlangach, ularga bildirishnoma boradi.`;
+    buttons = many<{ id: string; name: string; level: string }>(
+      'SELECT id,name,level FROM groups WHERE teacher_id=? ORDER BY name',
       user.id,
-    ).map((g) => [
-      {
-        text: `${selected.includes(g.id) ? '✓ ' : ''}${g.name}`.slice(0, 60),
-        callback_data: `v:group:${g.id}`,
-      },
-    ]);
+    )
+      .filter((g) => vocabularyLevel(g.level) === state.level)
+      .map((g) => [
+        {
+          text: `${selected.includes(g.id) ? '✓ ' : ''}${g.name}`.slice(0, 60),
+          callback_data: `v:group:${g.id}`,
+        },
+      ]);
     buttons.push([{ text: 'Tanlov tayyor →', callback_data: 'v:ready' }], cancel);
   } else {
     const groupNames = many<{ id: string; name: string }>(
@@ -101,7 +124,7 @@ function menu(user: User, state: BotState, key: string) {
     )
       .filter((g) => JSON.parse(state.group_ids).includes(g.id))
       .map((g) => g.name);
-    text = `Tayyor! ${sectionLabel(state.section)} · ${bandLabel(state.category)}\nGuruhlar: ${groupNames.join(', ')}\n\nKoreyscha so‘zlarni yozing yoki bitta rasm yuboring (5 MB gacha). Bir so‘rovda 40 tagacha so‘z. Aniq o‘qilgan so‘zlar tarjima va misol bilan avtomatik saqlanadi; takrorlari o‘zgartirilmaydi.\n\nBu tanlov 24 soat amal qiladi. Boshqa bo‘lim yoki guruh: /lugat. Tugatish: /bekor.`;
+    text = `Tayyor! ${scopeLabel(state)} · ${bandLabel(state.category)}\nGuruhlar: ${groupNames.join(', ')}\n\nKoreyscha so‘zlarni yozing yoki bitta rasm yuboring (5 MB gacha). Bir so‘rovda 40 tagacha so‘z. Aniq o‘qilgan so‘zlar tarjima va misol bilan avtomatik saqlanadi; takrorlari o‘zgartirilmaydi.\n\nBu tanlov 24 soat amal qiladi. Boshqa bo‘lim yoki guruh: /lugat. Tugatish: /bekor.`;
     buttons = [[{ text: 'Tanlovni o‘zgartirish', callback_data: 'v:back' }], cancel];
   }
   vocabularyNotification(user.id, text, key, { inline_keyboard: buttons });
@@ -189,18 +212,37 @@ export async function handleVocabularyBot(raw: unknown): Promise<boolean> {
           group_ids: '[]',
           stage: 'section',
           updated_at: now(),
+          level: 'topik34',
+          book: null,
         };
         const action = callback?.data || '';
         if (command === '/lugat' || command === '/vocabulary' || action === 'v:back')
-          next = { ...next, stage: 'section' };
-        else if (action.startsWith('v:section:')) {
+          next = { ...next, stage: 'level' };
+        else if (action.startsWith('v:level:')) {
+          const level = action.slice('v:level:'.length) as VocabularyScope['level'];
+          if (!VOCABULARY_LEVELS.some((l) => l.id === level))
+            throw new AppError(400, 'Darajani qayta tanlang.');
+          next = {
+            ...next,
+            level,
+            book: null,
+            section: 'reading',
+            group_ids: '[]',
+            stage: level === 'hangul' ? 'book' : 'section',
+          };
+        } else if (action.startsWith('v:book:') && next.level === 'hangul') {
+          const book = action.slice('v:book:'.length) as VocabularyScope['book'];
+          if (!book || !SEOULTE_BOOKS.includes(book))
+            throw new AppError(400, 'Kitobni qayta tanlang.');
+          next = { ...next, book, section: 'reading', category: 'unit-1', stage: 'category' };
+        } else if (action.startsWith('v:section:')) {
           const section = action.slice('v:section:'.length) as VocabularySection;
           if (!VOCABULARY_SECTIONS.some((s) => s.id === section))
             throw new AppError(400, 'Bo‘limni qayta tanlang.');
           next = { ...next, section, category: 'general', stage: 'category' };
         } else if (action.startsWith('v:band:') && next.stage === 'category') {
           const category = action.slice('v:band:'.length);
-          if (!VOCABULARY_BANDS[next.section].includes(category))
+          if (!vocabularyTopics(next).some((t) => t.id === category))
             throw new AppError(400, 'Diapazonni qayta tanlang.');
           next = { ...next, category, group_ids: '[]', stage: 'groups' };
         } else if (action.startsWith('v:group:') && next.stage === 'groups') {
@@ -214,17 +256,19 @@ export async function handleVocabularyBot(raw: unknown): Promise<boolean> {
             ),
           };
         } else if (action === 'v:ready' && next.stage === 'groups') {
-          validateVocabularyGroups(user, JSON.parse(next.group_ids));
+          validateVocabularyGroups(user, JSON.parse(next.group_ids), next);
           next = { ...next, stage: 'ready' };
         }
         run(
-          'INSERT INTO vocabulary_bot_state(user_id,section,category,group_ids,stage,updated_at) VALUES(?,?,?,?,?,?) ON CONFLICT(user_id) DO UPDATE SET section=excluded.section,category=excluded.category,group_ids=excluded.group_ids,stage=excluded.stage,updated_at=excluded.updated_at',
+          'INSERT INTO vocabulary_bot_state(user_id,section,category,group_ids,stage,updated_at,level,book) VALUES(?,?,?,?,?,?,?,?) ON CONFLICT(user_id) DO UPDATE SET section=excluded.section,category=excluded.category,group_ids=excluded.group_ids,stage=excluded.stage,updated_at=excluded.updated_at,level=excluded.level,book=excluded.book',
           user.id,
           next.section,
           next.category,
           next.group_ids,
           next.stage,
           now(),
+          next.level,
+          next.book,
         );
         menu(user, next, key);
         run(
@@ -254,7 +298,13 @@ export async function handleVocabularyBot(raw: unknown): Promise<boolean> {
         throw new AppError(400, 'JPG, PNG yoki WebP rasm yuboring.');
       const queued = queueVocabularyJob(
         user,
-        { section: state.section, category: state.category, groupIds: JSON.parse(state.group_ids) },
+        {
+          section: state.section,
+          level: state.level,
+          book: state.book,
+          category: state.category,
+          groupIds: JSON.parse(state.group_ids),
+        },
         {
           text: msg?.text || msg?.caption || '',
           telegramFileId: file?.file_id,
@@ -264,7 +314,7 @@ export async function handleVocabularyBot(raw: unknown): Promise<boolean> {
       );
       vocabularyNotification(
         user.id,
-        `So‘zlar qabul qilindi ⏳\n${sectionLabel(queued.section)} · ${bandLabel(queued.category)}\nTarjima, misol va saqlash tugagach, natijani shu yerga yuboraman.`,
+        `So‘zlar qabul qilindi ⏳\n${scopeLabel(queued)} · ${bandLabel(queued.category)}\nTarjima, misol va saqlash tugagach, natijani shu yerga yuboraman.`,
         key,
       );
     }

@@ -901,7 +901,10 @@ export function topikVocabulary(
   return scopeVocabulary(
     readingWords().filter((w) => w.section === 'reading' && w.kind === kind),
     category,
-  ).map(({ section, origin, groupIds, revision, edited, label, ...word }) => word);
+  ).map(
+    ({ section, origin, groupIds, revision, edited, label, level, book, createdBy, ...word }) =>
+      word,
+  );
 }
 
 export function markTopikUncertain(

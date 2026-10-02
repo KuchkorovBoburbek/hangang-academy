@@ -5,15 +5,20 @@ import { aiConfig } from './ai-config';
 import { validateFile } from './files';
 import { allVocabulary, visibleVocabularyWord } from './vocabulary-data';
 import {
-  VOCABULARY_BANDS,
-  sectionLabel,
   bandLabel,
   type VocabularyInput,
   type VocabularyImportResult,
   type VocabularyJobView,
   type VocabularySection,
 } from './vocabulary-types';
-import type { User } from './types';
+import type { User, Group } from './types';
+import {
+  scopeSchema,
+  validateCategories,
+  groupVocabularyLevel,
+  openVocabularyTopics,
+} from './vocabulary-access';
+import { sameScope, scopeLabel, type VocabularyScope } from './vocabulary-types';
 
 const text = (max: number) => z.string().trim().min(1).max(max);
 export const vocabularySectionSchema = z.enum(['reading', 'writing', 'listening']);
@@ -27,42 +32,55 @@ export const vocabularyInputSchema = z
     kind: z.enum(['word', 'idiom']),
     section: vocabularySectionSchema,
     categories: z.array(text(20)).min(1).max(20),
+    level: z.enum(['hangul', 'topik34', 'topik56']).default('topik34'),
+    book: z.enum(['1A', '1B', '2A', '2B']).nullable().default(null),
   })
   .superRefine((w, ctx) => {
-    if (
-      w.categories.some(
-        (c) =>
-          !VOCABULARY_BANDS[w.section].includes(c) &&
-          !(w.section === 'reading' && ['1-2', '3-4'].includes(c)),
-      )
-    )
+    try {
+      scopeSchema.parse(w);
+      validateCategories(w, w.categories);
+    } catch {
       ctx.addIssue({
         code: 'custom',
         message: 'Savollar diapazoni bo‘limga mos emas.',
         path: ['categories'],
       });
+    }
   });
 export const importSettingsSchema = z
   .object({
     section: vocabularySectionSchema,
     category: text(20),
     groupIds: z.array(z.uuid()).min(1).max(100),
+    level: z.enum(['hangul', 'topik34', 'topik56']).default('topik34'),
+    book: z.enum(['1A', '1B', '2A', '2B']).nullable().default(null),
   })
   .superRefine((v, ctx) => {
-    if (!VOCABULARY_BANDS[v.section].includes(v.category))
+    try {
+      scopeSchema.parse(v);
+      validateCategories(v, [v.category]);
+    } catch {
       ctx.addIssue({
         code: 'custom',
         message: 'Savollar diapazonini tanlang.',
         path: ['category'],
       });
+    }
   });
 export type ImportSettings = z.infer<typeof importSettingsSchema>;
 export const normalizedWord = (s: string) =>
   s.normalize('NFKC').trim().replace(/\s+/g, ' ').toLowerCase();
-export function validateVocabularyGroups(user: User, groupIds: string[]) {
+export function validateVocabularyGroups(user: User, groupIds: string[], scope?: VocabularyScope) {
   requireTeacher(user);
   if (!groupIds.length) throw new AppError(400, 'Kamida bitta guruhni tanlang.');
-  for (const groupId of new Set(groupIds)) teacherGroup(user, groupId);
+  for (const groupId of new Set(groupIds)) {
+    teacherGroup(user, groupId);
+    if (
+      scope &&
+      groupVocabularyLevel(one<Group>('SELECT * FROM groups WHERE id=?', groupId)!) !== scope.level
+    )
+      throw new AppError(400, 'Tanlangan guruhlar lug‘at darajasiga mos bo‘lishi kerak.');
+  }
 }
 export function vocabularyNotification(
   userId: string,
@@ -101,7 +119,7 @@ function notifyStudents(user: User, settings: ImportSettings, count: number, key
     if (settings.groupIds.includes(student.group_id))
       vocabularyNotification(
         student.id,
-        `${user.name} ${count} ta yangi so‘z qo‘shdi. O‘rganib oling! 🌱\nTOPIK ${sectionLabel(settings.section)} · ${bandLabel(settings.category)}\nLug‘at bo‘limida ma’no, misollar va mashq kartalari tayyor.`,
+        `${user.name} ${count} ta yangi so‘z qo‘shdi. O‘rganib oling! 🌱\n${scopeLabel(settings)} · ${bandLabel(settings.category)}\nLug‘at bo‘limida ma’no, misollar va mashq kartalari tayyor.`,
         `${key}:student:${student.id}`,
         undefined,
         settings.section,
@@ -145,16 +163,19 @@ function insertWords(
   key: string,
   skipped: string[] = [],
 ): VocabularyImportResult {
-  validateVocabularyGroups(user, settings.groupIds);
-  const all = allVocabulary();
+  validateVocabularyGroups(user, settings.groupIds, settings);
+  const all = allVocabulary(user);
+  for (const groupId of settings.groupIds)
+    openVocabularyTopics(groupId, settings, [settings.category]);
   const result: VocabularyImportResult = { added: 0, duplicates: 0, skipped, words: [] };
   for (const raw of inputs) {
     const word = vocabularyInputSchema.parse(raw);
     const exists = all.find(
       (w) =>
-        w.section === word.section &&
+        sameScope(w, word) &&
+        word.categories.every((c) => w.categories.includes(c)) &&
         normalizedWord(w.ko) === normalizedWord(word.ko) &&
-        (!w.groupIds.length || settings.groupIds.every((g) => w.groupIds.includes(g))),
+        (!w.createdBy || w.createdBy === user.id),
     );
     if (exists) {
       result.duplicates++;
@@ -180,6 +201,7 @@ function insertWords(
       edited: false,
       frequency: 0,
       sourceQuestionIds: [],
+      createdBy: user.id,
     });
     result.words.push({ id: wid, ko: word.ko, uz: word.uz });
     result.added++;
@@ -199,10 +221,17 @@ export function createVocabularyWord(
   return transaction(() => {
     const result = insertWords(
       user,
-      { section: word.section, category: word.categories[0], groupIds },
+      {
+        section: word.section,
+        level: word.level,
+        book: word.book,
+        category: word.categories[0],
+        groupIds,
+      },
       [word],
       `manual-word:${user.id}:${requestKey}`,
     );
+    for (const groupId of groupIds) openVocabularyTopics(groupId, word, word.categories);
     if (!result.added)
       throw new AppError(409, 'Bu so‘z shu bo‘limda mavjud. Uni tahrirlashingiz mumkin.');
     return { id: result.words[0].id };
@@ -227,6 +256,8 @@ export type VocabularyJob = {
   error: string | null;
   created_at: string;
   updated_at: string;
+  level: VocabularyScope['level'];
+  book: VocabularyScope['book'];
 };
 export function jobView(job: VocabularyJob): VocabularyJobView {
   return {
@@ -238,6 +269,8 @@ export function jobView(job: VocabularyJob): VocabularyJobView {
     result: job.result ? JSON.parse(job.result) : null,
     error: job.error,
     createdAt: job.created_at,
+    level: job.level,
+    book: job.book,
   };
 }
 export function vocabularyJobs(user: User) {
@@ -260,7 +293,7 @@ export function queueVocabularyJob(
 ) {
   requireTeacher(user);
   const settings = importSettingsSchema.parse(rawSettings);
-  validateVocabularyGroups(user, settings.groupIds);
+  validateVocabularyGroups(user, settings.groupIds, settings);
   const content = z.string().trim().max(10000).parse(input.text);
   const key = `${user.id}:${text(180).parse(input.requestKey)}`;
   const config = aiConfig();
@@ -291,7 +324,7 @@ export function queueVocabularyJob(
     const jid = id(),
       time = now();
     run(
-      'INSERT INTO vocabulary_jobs(id,requested_by,source,request_key,section,category,group_ids,input_text,image_data,image_mime,telegram_file_id,model,provider,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+      'INSERT INTO vocabulary_jobs(id,requested_by,source,request_key,section,category,group_ids,input_text,image_data,image_mime,telegram_file_id,model,provider,created_at,updated_at,level,book) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
       jid,
       user.id,
       input.source,
@@ -307,6 +340,8 @@ export function queueVocabularyJob(
       config.provider,
       time,
       time,
+      settings.level,
+      settings.book,
     );
     return jobView(one<VocabularyJob>('SELECT * FROM vocabulary_jobs WHERE id=?', jid)!);
   });
@@ -322,7 +357,7 @@ export function retryVocabularyJob(user: User, jobId: string) {
     if (!job) throw new AppError(404, 'So‘rov topilmadi.');
     if (job.status !== 'failed')
       throw new AppError(409, 'Faqat tugamagan so‘rovni qayta yuborish mumkin.');
-    validateVocabularyGroups(user, JSON.parse(job.group_ids));
+    validateVocabularyGroups(user, JSON.parse(job.group_ids), job);
     if (!job.input_text && !job.image_data && !job.telegram_file_id)
       throw new AppError(400, 'Rasm saqlash muddati tugagan. Qayta yuboring.');
     if (!aiConfig(job.provider).enabled) throw new AppError(503, 'AI kaliti sozlanmagan.');
@@ -356,8 +391,22 @@ export function completeVocabularyJob(
       section: job.section,
       category: job.category,
       groupIds: JSON.parse(job.group_ids),
+      level: job.level,
+      book: job.book,
     });
-    const result = insertWords(user, settings, inputs, `vocabulary-job:${job.id}`, skipped);
+    const result = insertWords(
+      user,
+      settings,
+      inputs.map((w) => ({
+        ...w,
+        level: settings.level,
+        book: settings.book,
+        section: settings.section,
+        categories: [settings.category],
+      })),
+      `vocabulary-job:${job.id}`,
+      skipped,
+    );
     run(
       "UPDATE vocabulary_jobs SET status='completed',result=?,error=NULL,image_data=NULL,telegram_file_id=NULL,updated_at=? WHERE id=?",
       JSON.stringify(result),
@@ -365,7 +414,7 @@ export function completeVocabularyJob(
       job.id,
     );
     const lines = [
-      `Lug‘at tayyor ✅\n${sectionLabel(job.section)} · ${bandLabel(job.category)}\n${result.added} ta yangi so‘z saqlandi. ${result.duplicates} ta mavjud so‘z o‘zgartirilmadi.`,
+      `Lug‘at tayyor ✅\n${scopeLabel(job)} · ${bandLabel(job.category)}\n${result.added} ta yangi so‘z saqlandi. ${result.duplicates} ta mavjud so‘z o‘zgartirilmadi.`,
       ...result.words.map((w) => `${w.ko} — ${w.uz}`),
       ...skipped.map((note) => `Aniqlashtirish kerak: ${note}`),
     ];

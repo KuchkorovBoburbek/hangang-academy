@@ -1,7 +1,18 @@
 import { courseAccess } from './course-access';
 import { many, one } from './db';
 import { WORDS } from './content';
-import type { User, Word } from './types';
+import type { User, Word, Group } from './types';
+import { grantedWord, groupVocabularyLevel, vocabularyGrants } from './vocabulary-access';
+import {
+  SEOULTE_BOOKS,
+  VOCABULARY_SECTIONS,
+  matchesCategory,
+  sameScope,
+  scopeLabel,
+  vocabularyTopics,
+  type VocabularyScope,
+  type VocabularyCatalog,
+} from './vocabulary-types';
 import type { TopikVocabulary } from './topik-types';
 import type { VocabularyEntry, VocabularyInput, VocabularySection } from './vocabulary-types';
 
@@ -43,6 +54,8 @@ export function readingWords(): VocabularyEntry[] {
       section: 'reading' as const,
       origin: 'topik' as const,
       groupIds: [] as string[],
+      level: 'topik34' as const,
+      book: null,
     })),
   ).map((word, index) => (word.ko === String(rows[index].ko) ? word : { ...word, matchForms: [] }));
 }
@@ -65,22 +78,38 @@ export function allVocabulary(user?: User): VocabularyEntry[] {
       frequency: 0,
       sourceQuestionIds: [],
       groupIds: [] as string[],
+      level: 'topik34' as const,
+      book: null,
     })),
   );
   const added = applyWordEdits(
-    many<{ id: string; body: string; group_ids: string }>(
-      'SELECT id,body,group_ids FROM vocabulary_entries ORDER BY created_at DESC',
+    many<{ id: string; body: string; group_ids: string; created_by: string }>(
+      'SELECT id,body,group_ids,created_by FROM vocabulary_entries ORDER BY created_at DESC',
     ).map((row) => ({
+      level: 'topik34' as const,
+      book: null,
       ...(JSON.parse(row.body) as VocabularyInput),
       id: row.id,
       groupIds: JSON.parse(row.group_ids) as string[],
       origin: 'teacher' as const,
       frequency: 0,
       sourceQuestionIds: [],
+      createdBy: row.created_by,
     })),
   );
-  const all = [...readingWords(), ...academy, ...added];
+  const all: VocabularyEntry[] = [...readingWords(), ...academy, ...added];
   if (user?.role === 'student') {
+    const group = one<Group>('SELECT * FROM groups WHERE id=?', user.group_id || '');
+    if (!group) return [];
+    const level = groupVocabularyLevel(group);
+    const grants = vocabularyGrants(group.id);
+    const explicitIds: string[] = JSON.parse(group.vocabulary_ids);
+    const permitted = all.filter(
+      (w) =>
+        w.level === level &&
+        (!w.createdBy || w.createdBy === group.teacher_id) &&
+        (grantedWord(w, grants) || explicitIds.includes(w.id)),
+    );
     const access = courseAccess(user);
     if (access.managed) {
       const seen = new Set<string>();
@@ -103,21 +132,14 @@ export function allVocabulary(user?: User): VocabularyEntry[] {
           sourceQuestionIds: [],
           revision: 0,
           edited: false,
+          level,
+          book: null,
         }));
-      return [
-        ...lessonWords,
-        ...added.filter(
-          (w) => !!user.group_id && w.groupIds.includes(user.group_id) && !seen.has(w.id),
-        ),
-      ];
+      return [...lessonWords, ...permitted.filter((w) => !seen.has(w.id))];
     }
+    return permitted;
   }
-
-  return user?.role === 'student'
-    ? all.filter(
-        (w) => !w.groupIds.length || (!!user.group_id && w.groupIds.includes(user.group_id)),
-      )
-    : all;
+  return user ? all.filter((w) => !w.createdBy || w.createdBy === user.id) : all;
 }
 export function visibleVocabularyWord(user: User, wordId: string) {
   return allVocabulary(user).find((w) => w.id === wordId);
@@ -146,9 +168,52 @@ export function vocabularyList(
   section: VocabularySection,
   category = 'all',
   kind: 'word' | 'idiom' = 'word',
+  scope?: VocabularyScope,
 ) {
   return scopeVocabulary(
-    allVocabulary(user).filter((w) => w.section === section && w.kind === kind),
+    allVocabulary(user).filter(
+      (w) => w.section === section && w.kind === kind && (!scope || sameScope(w, scope)),
+    ),
     category,
   );
+}
+
+export function vocabularyCatalog(user: User, groupId?: string): VocabularyCatalog {
+  const group = one<Group>(
+    'SELECT * FROM groups WHERE id=?',
+    user.role === 'student' ? user.group_id || '' : groupId || '',
+  );
+  const level = group ? groupVocabularyLevel(group) : 'topik34';
+  const levels = user.role === 'teacher' ? (['hangul', 'topik34', 'topik56'] as const) : [level];
+  const words = allVocabulary(user);
+  const grants = group ? vocabularyGrants(group.id) : [];
+  const scopes: VocabularyScope[] = levels.flatMap<VocabularyScope>((l) =>
+    l === 'hangul'
+      ? SEOULTE_BOOKS.map((book) => ({ level: l, book, section: 'reading' as const }))
+      : VOCABULARY_SECTIONS.map((s) => ({ level: l, book: null, section: s.id })),
+  );
+  return {
+    level,
+    scopes: scopes.map((scope) => ({
+      ...scope,
+      label: scopeLabel(scope),
+      topics: vocabularyTopics(scope).map((topic) => {
+        const count = words.filter(
+          (w) => sameScope(w, scope) && matchesCategory(w.categories, topic.id),
+        ).length;
+        return {
+          ...topic,
+          count,
+          open:
+            user.role === 'teacher' ||
+            count > 0 ||
+            grants.some(
+              (g) =>
+                sameScope(g, scope) &&
+                (g.categories.includes('all') || g.categories.includes(topic.id)),
+            ),
+        };
+      }),
+    })),
+  };
 }

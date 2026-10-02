@@ -23,7 +23,9 @@ export default function AuthPage({ register = false }: { register?: boolean }) {
   const [error, setError] = useState('');
   const [tg, setTg] = useState('');
   const [needsInvite, setNeedsInvite] = useState(false);
+  const [invite, setInvite] = useState('');
   useEffect(() => {
+    setInvite(new URLSearchParams(window.location.search).get('invite') || '');
     api<{ demo: boolean }>('config')
       .then((d) => setDemo(d.demo))
       .catch(() => {});
@@ -172,6 +174,8 @@ export default function AuthPage({ register = false }: { register?: boolean }) {
                 Guruh kodi
                 <input
                   name="invite"
+                  value={invite}
+                  onChange={(e) => setInvite(e.target.value)}
                   required
                   autoComplete="off"
                   placeholder="Ustozingiz bergan kod"

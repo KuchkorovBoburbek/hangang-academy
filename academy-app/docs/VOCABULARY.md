@@ -49,3 +49,24 @@ Schema 11 qo‘shimcha jadvallar yaratadi: `vocabulary_entries`, `vocabulary_edi
 Texnik manbalar: [Telegram Bot API](https://core.telegram.org/bots/api), [OpenRouter structured outputs](https://openrouter.ai/docs/guides/features/structured-outputs). Bu manbalar ulanish formatlari uchun tekshirildi; lug‘at mazmuni ulardan olinmadi.
 
 Docker image tayyor: `hangang-academy:20260922-vocabulary` (`linux/amd64`). Serverning avval olingan zaxira nusxasida yangi sxema va import sinaldi: eski jadvallardagi har bir yozuvning asl ustunlari o‘zgarmagan, SQLite yaxlitligi `ok`. Mahalliy bazaning qo‘shimcha zaxirasi: `backups/2026-09-22T08-46-39.683Z`.
+
+# Daraja, kitob va mavzu bo‘yicha lug‘at
+
+Lug‘at endi uch darajaga ajratilgan: **Boshlang‘ich · 한글**, **TOPIK 3/4** va **TOPIK 5/6**.
+
+- Boshlang‘ich: Seoulte **1A**, **1B**, **2A**, **2B**; har kitobda **1–8-mavzu**.
+- Har bir TOPIK darajasi: **읽기**, **쓰기**, **듣기**. Ichida savol diapazoni bo‘yicha mavzular.
+- Kitobdagi haqiqiy so‘zlar va mavzu nomlari bu yangilanish bilan avtomatik yaratilmaydi. Ustoz kitob materialidan tegishli mavzuga so‘z kiritadi; bo‘sh bo‘limlar ochiq ko‘rsatiladi.
+- Oldingi umumiy/TOPIK banki TOPIK 3/4 ichida saqlanadi. TOPIK 5/6 alohida to‘ldiriladi; so‘zlar darajalar o‘rtasida avtomatik ko‘chirilmaydi.
+
+Ustoz **Lug‘at → Guruhga lug‘at ochish** orqali guruh, daraja, kitob/bo‘lim va mavzularni tanlaydi. **Barchasi** butun kitob/bo‘limni, jumladan kelgusida qo‘shiladigan so‘zlarni ham ochadi. Belgilarni olib saqlash tegishli kirishni yopadi. Guruh darajasi mos kelishi shart; ustoz faqat o‘z guruhlarini boshqaradi.
+
+**Qo‘lda qo‘shish** va **AI bilan qo‘shish** shakllari kitob/mavzuni ham saqlaydi. Tanlangan mavzu ko‘rsatilgan guruhlarga avtomatik ochiladi. AI berilgan koreyscha so‘zlar yoki rasmdan tarjima va misollar tayyorlaydi; kitobning to‘liq lug‘atini taxmin qilib yaratmaydi. Bir so‘z boshqa kitob yoki mavzuda alohida uchrashi mumkin. Telegram `/lugat` menyusida ham daraja → kitob/bo‘lim → mavzu → guruh tanlanadi.
+
+**Guruhlar va vazifalar → Guruh havolasini nusxalash** tugmasi `/register?invite=...` havolasini beradi. Yangi o‘quvchi ro‘yxatdan o‘tganda guruh kodi oldindan to‘ldiriladi va server shu kodga tegishli guruhni biriktiradi.
+
+O‘quvchi faqat o‘z darajasidagi, ustoz ochgan so‘zlarni ko‘radi. Mavzu kartasini bosish bitta mavzuni ochadi; belgilash kataklari bir nechta mavzuni birlashtiradi. **Barchasini tanlash** barcha ochilgan mavzularni tanlaydi. Kartalar, jadval, qidiruv va takrorlash ishlaydi. **Quizni boshlash** tanlangan mavzulardan 10/20/50/100 tagacha savol tayyorlaydi; mavjud so‘zlar kam bo‘lsa shu miqdor ishlatiladi. Natija va takrorlash muddati saqlanadi; quizni istalgancha takrorlash mumkin.
+
+Ruxsatlar lug‘at, quiz boshlash, javob yuborish va takrorlashda serverda tekshiriladi. Ruxsati yopilgan so‘z qatnashgan davom etayotgan quiz ham bloklanadi. Avvalgi darslarda nashr etilgan lug‘atlar dars sahifalarida saqlanadi. Mavjud guruhlarning oldingi kirishi bir martalik migratsiya bilan saqlanadi; yangi guruhlar yopiq boshlanadi.
+
+Bu o‘zgarish kod va lokal nusxa uchun; serverga deploy alohida bajariladi.

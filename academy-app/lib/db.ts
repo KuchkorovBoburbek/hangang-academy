@@ -11,7 +11,7 @@ export const dataDir = () =>
 export const now = () => new Date().toISOString();
 export const id = () => randomUUID();
 export function db() {
-  if (globalDb.academyDb && globalDb.academySchemaVersion === 13) return globalDb.academyDb;
+  if (globalDb.academyDb && globalDb.academySchemaVersion === 14) return globalDb.academyDb;
   fs.mkdirSync(dataDir(), { recursive: true });
   const connection = globalDb.academyDb || new DatabaseSync(path.join(dataDir(), 'academy.sqlite'));
   connection.exec('PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON; PRAGMA busy_timeout=10000;');
@@ -63,6 +63,7 @@ export function db() {
  CREATE UNIQUE INDEX IF NOT EXISTS course_live_once ON course_live(release_id);
  CREATE TABLE IF NOT EXISTS course_live_attempts(live_id TEXT NOT NULL REFERENCES course_live(id),user_id TEXT NOT NULL REFERENCES users(id),started_at TEXT NOT NULL,completed_at TEXT,score INTEGER,elapsed_ms INTEGER,PRIMARY KEY(live_id,user_id));
  CREATE TABLE IF NOT EXISTS app_meta(key TEXT PRIMARY KEY,value TEXT NOT NULL);
+ CREATE TABLE IF NOT EXISTS vocabulary_access(group_id TEXT NOT NULL REFERENCES groups(id),level TEXT NOT NULL,book TEXT NOT NULL DEFAULT '',section TEXT NOT NULL,categories TEXT NOT NULL,PRIMARY KEY(group_id,level,book,section));
  CREATE TABLE IF NOT EXISTS topik_groups(id TEXT PRIMARY KEY,category TEXT NOT NULL,origin TEXT NOT NULL,source TEXT NOT NULL,instruction TEXT NOT NULL,passage TEXT NOT NULL,blocks TEXT NOT NULL,corpus_version TEXT NOT NULL,current INTEGER NOT NULL DEFAULT 1);
  CREATE TABLE IF NOT EXISTS topik_questions(id TEXT PRIMARY KEY,group_id TEXT NOT NULL REFERENCES topik_groups(id),number INTEGER NOT NULL,prompt TEXT NOT NULL,options TEXT NOT NULL,option_images TEXT NOT NULL DEFAULT '[]',answer INTEGER CHECK(answer BETWEEN 0 AND 3),explanation TEXT NOT NULL,translation TEXT NOT NULL DEFAULT '',grammar_ids TEXT NOT NULL DEFAULT '[]',servable INTEGER NOT NULL DEFAULT 0,corpus_version TEXT NOT NULL,current INTEGER NOT NULL DEFAULT 1);
  CREATE INDEX IF NOT EXISTS topik_question_group ON topik_questions(group_id,current,servable);
@@ -82,6 +83,46 @@ export function db() {
     if (!groupColumns.some((c) => c.name === 'course_id'))
       connection.exec('ALTER TABLE groups ADD COLUMN course_id TEXT REFERENCES courses(id)');
     const columns = connection.prepare('PRAGMA table_info(ai_jobs)').all() as { name: string }[];
+    for (const table of ['vocabulary_jobs', 'vocabulary_bot_state']) {
+      const fields = connection.prepare(`PRAGMA table_info(${table})`).all() as { name: string }[];
+      if (!fields.some((c) => c.name === 'level'))
+        connection.exec(`ALTER TABLE ${table} ADD COLUMN level TEXT NOT NULL DEFAULT 'topik34'`);
+      if (!fields.some((c) => c.name === 'book'))
+        connection.exec(`ALTER TABLE ${table} ADD COLUMN book TEXT`);
+    }
+    // Preserve the previous reading access of existing legacy groups once.
+    // Newly created groups start closed until their teacher grants access.
+    if (!connection.prepare("SELECT key FROM app_meta WHERE key='vocabulary-access-v1'").get()) {
+      connection.exec(`INSERT OR IGNORE INTO vocabulary_access(group_id,level,book,section,categories)
+        SELECT id,'topik34','','reading','["all"]' FROM groups WHERE course_id IS NULL;
+        INSERT INTO app_meta(key,value) VALUES('vocabulary-access-v1','1');`);
+      for (const row of connection
+        .prepare('SELECT body,group_ids FROM vocabulary_entries')
+        .all() as { body: string; group_ids: string }[]) {
+        const word = JSON.parse(row.body);
+        for (const groupId of JSON.parse(row.group_ids) as string[]) {
+          const previous = connection
+            .prepare(
+              "SELECT categories FROM vocabulary_access WHERE group_id=? AND level='topik34' AND book='' AND section=?",
+            )
+            .get(groupId, word.section) as { categories: string } | undefined;
+          connection
+            .prepare(
+              "INSERT INTO vocabulary_access(group_id,level,book,section,categories) VALUES(?,'topik34','',?,?) ON CONFLICT(group_id,level,book,section) DO UPDATE SET categories=excluded.categories",
+            )
+            .run(
+              groupId,
+              word.section,
+              JSON.stringify([
+                ...new Set([
+                  ...(previous ? JSON.parse(previous.categories) : []),
+                  ...word.categories,
+                ]),
+              ]),
+            );
+        }
+      }
+    }
     const notificationColumns = connection.prepare('PRAGMA table_info(notifications)').all() as {
       name: string;
     }[];
@@ -150,7 +191,7 @@ export function db() {
     throw error;
   }
   globalDb.academyDb = connection;
-  globalDb.academySchemaVersion = 13;
+  globalDb.academySchemaVersion = 14;
   return connection;
 }
 export function one<T = Record<string, unknown>>(

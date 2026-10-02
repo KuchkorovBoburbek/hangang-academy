@@ -13,15 +13,12 @@ import {
   LoaderCircle,
   ArrowRight,
   RotateCcw,
-  Pencil,
   Languages,
 } from 'lucide-react';
 import type { User, Group } from '@/lib/types';
 import {
   VOCABULARY_SECTIONS,
-  VOCABULARY_BANDS,
   bandLabel,
-  sectionLabel,
   type VocabularyEntry,
   type VocabularySection,
   type VocabularyJobView,
@@ -29,6 +26,18 @@ import {
 import VocabularyDeck from './vocabulary-deck';
 import { api, Modal, SubmitButton, errorText } from './ui';
 import '@/app/vocabulary.css';
+import { ScopePicker, VocabularyAccess } from './vocabulary-scope';
+import Quiz, { type SessionView } from './quiz';
+import {
+  VOCABULARY_LEVELS,
+  SEOULTE_BOOKS,
+  vocabularyTopics,
+  vocabularyLevel,
+  scopeLabel,
+  sameScope,
+  type VocabularyScope,
+  type VocabularyCatalog,
+} from '@/lib/vocabulary-types';
 const icons = [BookOpen, PenLine, Headphones];
 const jobLabel = {
   queued: 'Navbatda',
@@ -45,7 +54,6 @@ export default function VocabularyHub({
   go,
   notify,
   refresh,
-  startQuiz,
   aiEnabled,
 }: {
   user: User;
@@ -55,13 +63,26 @@ export default function VocabularyHub({
   go: (path: string) => void;
   notify: (message: string) => void;
   refresh: () => void;
-  startQuiz?: () => void;
   aiEnabled: boolean;
 }) {
-  const section: VocabularySection = VOCABULARY_SECTIONS.some((s) => s.id === initialSection)
-    ? (initialSection as VocabularySection)
-    : 'reading';
-  const kind = initialKind === 'idioms' ? 'idiom' : 'word';
+  const [section, setSection] = useState<VocabularySection>(
+    VOCABULARY_SECTIONS.some((s) => s.id === initialSection)
+      ? (initialSection as VocabularySection)
+      : 'reading',
+  );
+  const [kind, setKind] = useState<'word' | 'idiom'>(initialKind === 'idioms' ? 'idiom' : 'word');
+  const [level, setLevel] = useState<VocabularyScope['level']>('topik34');
+  const [book, setBook] = useState<VocabularyScope['book']>('1A');
+  const [catalog, setCatalog] = useState<VocabularyCatalog | null>(null);
+  const [catalogError, setCatalogError] = useState('');
+  const [accessOpen, setAccessOpen] = useState(false);
+  const [quiz, setQuiz] = useState<SessionView | null>(null);
+  const [quizBusy, setQuizBusy] = useState(false);
+  const scope: VocabularyScope = {
+    level,
+    book: level === 'hangul' ? book : null,
+    section: level === 'hangul' ? 'reading' : section,
+  };
   const teacher = user.role === 'teacher';
   const [editor, setEditor] = useState<VocabularyEntry | 'new' | null>(null);
   const [assistant, setAssistant] = useState(false);
@@ -71,6 +92,38 @@ export default function VocabularyHub({
   const [jobsError, setJobsError] = useState('');
   const [retrying, setRetrying] = useState('');
   const previousJobs = useRef<string | null>(null);
+  useEffect(() => {
+    let active = true;
+    api<VocabularyCatalog>('vocabulary/catalog')
+      .then((data) => {
+        if (!active) return;
+        setCatalog(data);
+        setCatalogError('');
+        if (!teacher) setLevel(data.level);
+      })
+      .catch((e) => {
+        if (active) setCatalogError(errorText(e));
+      });
+    return () => {
+      active = false;
+    };
+  }, [teacher, refreshKey]);
+  async function beginQuiz(categories: string[], count: number) {
+    if (quizBusy) return;
+    setQuizBusy(true);
+    try {
+      setQuiz(
+        await api<SessionView>('vocabulary/quiz', {
+          method: 'POST',
+          body: JSON.stringify({ scope, categories, kind, count }),
+        }),
+      );
+    } catch (e) {
+      notify(errorText(e));
+    } finally {
+      setQuizBusy(false);
+    }
+  }
   const loadJobs = useCallback(async () => {
     if (!teacher) return;
     try {
@@ -126,29 +179,67 @@ export default function VocabularyHub({
           <span>한 걸음 더</span>
         </div>
       </header>
-      <div className="vocab-section-tabs" role="tablist" aria-label="TOPIK lug‘at bo‘limi">
-        {VOCABULARY_SECTIONS.map((s, i) => {
-          const Icon = icons[i];
-          return (
-            <button
-              role="tab"
-              aria-selected={section === s.id}
-              aria-controls="vocabulary-content"
-              id={`vocab-tab-${s.id}`}
-              key={s.id}
-              onClick={() => go(`/vocabulary/${s.id}`)}
-              className={section === s.id ? 'active' : ''}
-            >
-              <Icon size={21} />
-              <span>
-                <strong lang="ko">TOPIK {s.ko}</strong>
-                <small>{s.label} lug‘ati</small>
-              </span>
-              <ArrowRight size={18} />
-            </button>
-          );
-        })}
+      {catalogError && <p className="alert error">{catalogError}</p>}
+      <div className="vocab-level-tabs" role="group" aria-label="Lug‘at darajasi">
+        {VOCABULARY_LEVELS.filter((l) => teacher || l.id === catalog?.level).map((l) => (
+          <button
+            key={l.id}
+            aria-pressed={level === l.id}
+            className={level === l.id ? 'active' : ''}
+            onClick={() => setLevel(l.id)}
+          >
+            {l.label}
+          </button>
+        ))}
       </div>
+      {level === 'hangul' ? (
+        <div className="vocab-book-grid" role="group" aria-label="Seoulte kitoblari">
+          {SEOULTE_BOOKS.map((b) => (
+            <button
+              key={b}
+              aria-pressed={book === b}
+              className={book === b ? 'active' : ''}
+              onClick={() => setBook(b)}
+            >
+              <BookOpen size={24} />
+              <strong>Seoulte {b}</strong>
+              <small>8 ta mavzu</small>
+            </button>
+          ))}
+        </div>
+      ) : (
+        <div className="vocab-section-tabs" role="tablist" aria-label="TOPIK lug‘at bo‘limi">
+          {VOCABULARY_SECTIONS.map((s, i) => {
+            const Icon = icons[i];
+            return (
+              <button
+                role="tab"
+                aria-selected={section === s.id}
+                aria-controls="vocabulary-content"
+                id={`vocab-tab-${s.id}`}
+                key={s.id}
+                onClick={() => setSection(s.id)}
+                className={section === s.id ? 'active' : ''}
+              >
+                <Icon size={21} />
+                <span>
+                  <strong lang="ko">TOPIK {s.ko}</strong>
+                  <small>{s.label} lug‘ati</small>
+                </span>
+                <ArrowRight size={18} />
+              </button>
+            );
+          })}
+        </div>
+      )}
+      {teacher && (
+        <button
+          className="button secondary vocab-access-button"
+          onClick={() => setAccessOpen(true)}
+        >
+          Guruhga lug‘at ochish
+        </button>
+      )}
       {teacher && (
         <section className="vocab-assistant-banner">
           <div className="vocab-assistant-icon">
@@ -213,7 +304,7 @@ export default function VocabularyHub({
                   {jobLabel[job.status]}
                 </span>
                 <small>
-                  {sectionLabel(job.section)} · {bandLabel(job.category)} ·{' '}
+                  {scopeLabel(job)} · {bandLabel(job.category)} ·{' '}
                   {job.source === 'telegram' ? 'Telegram' : 'Sayt'}
                 </small>
               </div>
@@ -254,39 +345,45 @@ export default function VocabularyHub({
           ))}
         </details>
       )}
-      <section id="vocabulary-content" role="tabpanel" aria-labelledby={`vocab-tab-${section}`}>
+      <section
+        id="vocabulary-content"
+        role={level === 'hangul' ? 'region' : 'tabpanel'}
+        aria-label={level === 'hangul' ? 'Kitob lug‘ati' : undefined}
+        aria-labelledby={level === 'hangul' ? undefined : `vocab-tab-${section}`}
+      >
         <div className="vocab-kind-row">
           <div className="vocab-kind-tabs" role="group" aria-label="So‘zlar va iboralar">
             <button
               aria-pressed={kind === 'word'}
               className={kind === 'word' ? 'active' : ''}
-              onClick={() => go(`/vocabulary/${section}`)}
+              onClick={() => setKind('word')}
             >
               So‘zlar
             </button>
             <button
               aria-pressed={kind === 'idiom'}
               className={kind === 'idiom' ? 'active' : ''}
-              onClick={() => go(`/vocabulary/${section}/idioms`)}
+              onClick={() => setKind('idiom')}
             >
               관용표현 · Iboralar
             </button>
           </div>
-          {startQuiz && section === 'reading' && (
-            <button className="text-button" onClick={startQuiz}>
-              Asosiy so‘zlardan quiz <ArrowRight size={16} />
-            </button>
-          )}
         </div>
-        <VocabularyDeck
-          key={`${section}:${kind}`}
-          section={section}
-          kind={kind}
-          teacher={teacher}
-          onEdit={setEditor}
-          onNote={setNoteWord}
-          refreshKey={refreshKey}
-        />
+        {catalog && (
+          <VocabularyDeck
+            key={`${level}:${book}:${section}:${kind}`}
+            section={scope.section}
+            scope={scope}
+            topics={catalog.scopes.find((s) => sameScope(s, scope))?.topics || []}
+            onQuiz={beginQuiz}
+            quizBusy={quizBusy}
+            kind={kind}
+            teacher={teacher}
+            onEdit={setEditor}
+            onNote={setNoteWord}
+            refreshKey={refreshKey}
+          />
+        )}
       </section>
       {noteWord && (
         <VocabularyNote
@@ -302,7 +399,7 @@ export default function VocabularyHub({
       {editor && (
         <WordEditor
           word={editor === 'new' ? null : editor}
-          section={section}
+          scope={scope}
           groups={groups}
           onClose={() => setEditor(null)}
           onSaved={saved}
@@ -310,7 +407,7 @@ export default function VocabularyHub({
       )}
       {assistant && (
         <AssistantForm
-          section={section}
+          scope={scope}
           groups={groups}
           enabled={aiEnabled}
           onClose={() => setAssistant(false)}
@@ -320,6 +417,29 @@ export default function VocabularyHub({
             notify(
               'So‘rov qabul qilindi. Natija shu sahifada va ulangan Telegram hisobingizda chiqadi.',
             );
+          }}
+        />
+      )}
+      {accessOpen && (
+        <VocabularyAccess
+          groups={groups}
+          initialScope={scope}
+          onClose={() => setAccessOpen(false)}
+          onSaved={() => {
+            setAccessOpen(false);
+            setRefreshKey((v) => v + 1);
+            notify('Guruh ruxsatlari saqlandi.');
+          }}
+        />
+      )}
+      {quiz && (
+        <Quiz
+          key={quiz.id}
+          initial={quiz}
+          onClose={() => setQuiz(null)}
+          onComplete={() => {
+            refresh();
+            setRefreshKey((v) => v + 1);
           }}
         />
       )}
@@ -361,24 +481,29 @@ function GroupPicker({
 }
 function WordEditor({
   word,
-  section: initialSection,
+  scope: initialScope,
   groups,
   onClose,
   onSaved,
 }: {
   word: VocabularyEntry | null;
-  section: VocabularySection;
+  scope: VocabularyScope;
   groups: Group[];
   onClose: () => void;
   onSaved: () => void;
 }) {
-  const [section, setSection] = useState(word?.section || initialSection);
+  const [scope, setScope] = useState<VocabularyScope>(
+    word ? { level: word.level, book: word.book, section: word.section } : initialScope,
+  );
   const [categories, setCategories] = useState(
     word?.categories
       .map((c) => (['1-2', '3-4'].includes(c) ? '1-4' : c))
-      .filter((c, i, a) => a.indexOf(c) === i) || ['general'],
+      .filter((c, i, a) => a.indexOf(c) === i) || [vocabularyTopics(scope)[0].id],
   );
-  const [groupIds, setGroupIds] = useState(groups.length === 1 ? [groups[0].id] : []);
+  const eligibleGroups = groups.filter((g) => vocabularyLevel(g.level) === scope.level);
+  const [groupIds, setGroupIds] = useState(
+    eligibleGroups.length === 1 ? [eligibleGroups[0].id] : [],
+  );
   const [busy, setBusy] = useState(false),
     [error, setError] = useState('');
   const requestKey = useRef(crypto.randomUUID());
@@ -396,7 +521,7 @@ function WordEditor({
           revision: word?.revision || 0,
           groupIds,
           requestKey: requestKey.current,
-          input: { ...Object.fromEntries(form), section, categories },
+          input: { ...Object.fromEntries(form), ...scope, categories },
         }),
       });
       onSaved();
@@ -477,41 +602,46 @@ function WordEditor({
             rows={2}
           />
         </label>
-        <label>
-          TOPIK bo‘limi
-          <select
-            aria-label="TOPIK bo‘limi"
-            value={section}
-            onChange={(e) => {
-              setSection(e.target.value as VocabularySection);
-              setCategories(['general']);
-            }}
-          >
-            {VOCABULARY_SECTIONS.map((s) => (
-              <option value={s.id} key={s.id}>
-                {s.ko} · {s.label}
-              </option>
-            ))}
-          </select>
-        </label>
+        <ScopePicker
+          value={scope}
+          onChange={(s) => {
+            setScope(s);
+            setCategories([vocabularyTopics(s)[0].id]);
+            setGroupIds([]);
+          }}
+        />
         <fieldset className="vocab-bands-field">
-          <legend>Savollar diapazoni</legend>
-          {VOCABULARY_BANDS[section].map((c) => (
-            <label key={c}>
+          <legend>{scope.level === 'hangul' ? 'Kitob mavzulari' : 'Savollar diapazoni'}</legend>
+          {vocabularyTopics(scope).map((topic) => (
+            <label key={topic.id}>
               <input
                 type="checkbox"
-                checked={categories.includes(c)}
+                checked={categories.includes(topic.id)}
                 onChange={(e) =>
                   setCategories(
-                    e.target.checked ? [...categories, c] : categories.filter((x) => x !== c),
+                    e.target.checked
+                      ? [...categories, topic.id]
+                      : categories.filter((x) => x !== topic.id),
                   )
                 }
               />
-              <span>{bandLabel(c)}</span>
+              <span>{topic.label}</span>
             </label>
           ))}
         </fieldset>
-        {!word && <GroupPicker groups={groups} selected={groupIds} onChange={setGroupIds} />}
+        {!word && (
+          <GroupPicker
+            groups={groups.filter((g) => vocabularyLevel(g.level) === scope.level)}
+            selected={groupIds}
+            onChange={setGroupIds}
+          />
+        )}
+        {!word && (
+          <p className="vocab-form-note">
+            Tanlangan mavzular shu guruhlarga avtomatik ochiladi. So‘zlar soni kitobning to‘liq
+            lug‘ati ekanini bildirmaydi.
+          </p>
+        )}
         {error && (
           <p className="alert error" role="alert">
             {error}
@@ -525,21 +655,24 @@ function WordEditor({
   );
 }
 function AssistantForm({
-  section: initialSection,
+  scope: initialScope,
   groups,
   enabled,
   onClose,
   onQueued,
 }: {
-  section: VocabularySection;
+  scope: VocabularyScope;
   groups: Group[];
   enabled: boolean;
   onClose: () => void;
   onQueued: () => void;
 }) {
-  const [section, setSection] = useState(initialSection),
-    [category, setCategory] = useState('general');
-  const [groupIds, setGroupIds] = useState(groups.length === 1 ? [groups[0].id] : []);
+  const [scope, setScope] = useState(initialScope),
+    [category, setCategory] = useState(vocabularyTopics(initialScope)[0].id);
+  const eligibleGroups = groups.filter((g) => vocabularyLevel(g.level) === scope.level);
+  const [groupIds, setGroupIds] = useState(
+    eligibleGroups.length === 1 ? [eligibleGroups[0].id] : [],
+  );
   const [image, setImage] = useState<File | null>(null),
     [preview, setPreview] = useState('');
   const [text, setText] = useState(''),
@@ -562,7 +695,9 @@ function AssistantForm({
     setError('');
     try {
       const form = new FormData();
-      form.set('section', section);
+      form.set('section', scope.section);
+      form.set('level', scope.level);
+      if (scope.book) form.set('book', scope.book);
       form.set('category', category);
       form.set('text', text);
       form.set('requestKey', requestKey.current);
@@ -583,34 +718,25 @@ function AssistantForm({
           Faqat koreyscha so‘zlarni kiriting. Yordamchi o‘zbekcha ma’no, so‘z turkumi, koreyscha
           misol va tarjimasini tayyorlab, avtomatik saqlaydi.
         </p>
+        <ScopePicker
+          value={scope}
+          onChange={(s) => {
+            setScope(s);
+            setCategory(vocabularyTopics(s)[0].id);
+            setGroupIds([]);
+          }}
+        />
         <div className="vocab-form-columns">
           <label>
-            TOPIK bo‘limi
-            <select
-              aria-label="TOPIK bo‘limi"
-              value={section}
-              onChange={(e) => {
-                setSection(e.target.value as VocabularySection);
-                setCategory('general');
-              }}
-            >
-              {VOCABULARY_SECTIONS.map((s) => (
-                <option key={s.id} value={s.id}>
-                  {s.ko} · {s.label}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label>
-            Savollar diapazoni
+            {scope.level === 'hangul' ? 'Kitob mavzusi' : 'Savollar diapazoni'}
             <select
               aria-label="Savollar diapazoni"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
             >
-              {VOCABULARY_BANDS[section].map((c) => (
-                <option key={c} value={c}>
-                  {bandLabel(c)}
+              {vocabularyTopics(scope).map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.label}
                 </option>
               ))}
             </select>
@@ -662,7 +788,11 @@ function AssistantForm({
             </button>
           </div>
         )}
-        <GroupPicker groups={groups} selected={groupIds} onChange={setGroupIds} />
+        <GroupPicker
+          groups={groups.filter((g) => vocabularyLevel(g.level) === scope.level)}
+          selected={groupIds}
+          onChange={setGroupIds}
+        />
         <p className="vocab-form-note">
           Bir so‘rovda 40 tagacha so‘z. Takrorlar o‘zgartirilmaydi; aniq o‘qilmagan so‘zlar natijada
           alohida ko‘rsatiladi. Saqlangach, tanlangan guruhlarning Telegram’i ulangan o‘quvchilariga

@@ -326,6 +326,20 @@ export function Groups({
                 <Copy size={18} />
               </button>
             </div>
+            <button
+              className="button secondary"
+              onClick={async () => {
+                const link = `${window.location.origin}/register?invite=${encodeURIComponent(g.invite_code)}`;
+                try {
+                  await navigator.clipboard.writeText(link);
+                  notify('Guruhga kirish havolasi nusxalandi.');
+                } catch {
+                  notify(link);
+                }
+              }}
+            >
+              Guruh havolasini nusxalash
+            </button>
           </article>
         ))}
       </div>

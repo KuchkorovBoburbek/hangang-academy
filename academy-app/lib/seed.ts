@@ -54,6 +54,10 @@ export function ensureSeed() {
         q.translation,
       );
     const due = new Date(Date.now() + 7 * 86400000).toISOString();
+    run(
+      "INSERT OR IGNORE INTO vocabulary_access(group_id,level,book,section,categories) VALUES(?,'topik34','','reading','[\"all\"]')",
+      group,
+    );
     const writing = id();
     run(
       'INSERT INTO assignments(id,group_id,title,kind,prompt,topic_ids,due_at,created_by,created_at) VALUES(?,?,?,?,?,?,?,?,?)',

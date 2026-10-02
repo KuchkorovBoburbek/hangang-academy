@@ -2,7 +2,7 @@ import { courseAccess } from './course-access';
 import { studentCourses } from './courses';
 import { assignmentComplete } from './topik-teaching';
 import { topikProgress, topikGrammarCoverage, grammarMastery } from './progress';
-import { studySummary } from './study';
+import { studySummary, recordStudy } from './study';
 import { randomInt, createHash } from 'node:crypto';
 import { many, one, run, transaction, id, now } from './db';
 import { AppError, teacherGroup } from './auth';
@@ -48,6 +48,14 @@ export function getSession(sid: string, user: User) {
   const s = one<QuizSession>('SELECT * FROM quiz_sessions WHERE id=? AND user_id=?', sid, user.id);
   if (!s) throw new AppError(404, 'Mashq topilmadi.');
   const access = courseAccess(user);
+  const visibleWords = new Set(vocabulary(user).map((w) => w.id));
+  if (
+    (JSON.parse(s.question_ids) as string[]).some((qid) => {
+      const q = getQuestion(qid);
+      return q.kind === 'vocabulary' && !visibleWords.has(q.topic_id);
+    })
+  )
+    throw new AppError(403, 'Bu lug‘at guruhingiz uchun ochilmagan.');
   if (access.managed) {
     const allowed = new Set([...access.grammarIds, ...vocabulary(user).map((w) => w.id)]);
     const topics = (JSON.parse(s.question_ids) as string[]).map((qid) => getQuestion(qid).topic_id);
@@ -113,7 +121,8 @@ export function startQuiz(
     'active',
     assignmentId || '',
   );
-  if (active && !topicId && !courseAccess(user).managed) return viewSession(active);
+  if (active && !topicId && !courseAccess(user).managed)
+    return viewSession(getSession(active.id, user));
   const access = courseAccess(user);
   const allowed = access.managed
     ? [...access.grammarIds, ...vocabulary(user).map((w) => w.id)]
@@ -199,6 +208,8 @@ export function answerQuiz(user: User, sid: string, qid: string, choice: number)
       throw new AppError(400, 'Javobni tanlang.');
     const correct = choice === q.answer;
     const t = now();
+    if (q.kind === 'vocabulary')
+      recordStudy(user.id, 'word', q.topic_id, correct, false, `quiz:${sid}:${qid}`, t);
     answers.push({ question_id: qid, choice, correct, at: t });
     const complete = answers.length === ids.length;
     const score = answers.filter((a) => a.correct).length;

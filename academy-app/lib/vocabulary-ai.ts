@@ -80,6 +80,8 @@ export async function extractVocabulary(job: VocabularyJob) {
   const input = JSON.stringify({
     section: job.section,
     question_range: job.category,
+    level: job.level,
+    book: job.book,
     teacher_words: job.input_text,
   });
   const format = {
@@ -181,6 +183,8 @@ export async function extractVocabulary(job: VocabularyJob) {
           kind: w.kind,
           section: job.section,
           categories: [job.category],
+          level: job.level,
+          book: job.book,
         }),
       ];
     });

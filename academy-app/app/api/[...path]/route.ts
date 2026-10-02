@@ -3,7 +3,14 @@ import { courseHttp } from '@/lib/course-http';
 import { requireTopikAccess, courseAccess } from '@/lib/course-access';
 import { courseAssignmentAccess, saveCourseGroup } from '@/lib/courses';
 import { handleVocabularyBot } from '@/lib/vocabulary-bot';
-import { vocabularyList, visibleVocabularyWord } from '@/lib/vocabulary-data';
+import { vocabularyList, vocabularyCatalog, visibleVocabularyWord } from '@/lib/vocabulary-data';
+import {
+  scopeSchema,
+  validateCategories,
+  saveVocabularyAccess,
+  vocabularyGrants,
+} from '@/lib/vocabulary-access';
+import { startVocabularyQuiz } from '@/lib/vocabulary-quiz';
 import { VOCABULARY_BANDS } from '@/lib/vocabulary-types';
 import {
   vocabularySectionSchema,
@@ -262,10 +269,30 @@ async function handle(req: NextRequest, ctx: { params: Promise<{ path: string[] 
           kind: z.enum(['word', 'idiom']).default('word'),
         })
         .parse(Object.fromEntries(req.nextUrl.searchParams));
-      if (q.category !== 'all' && !VOCABULARY_BANDS[q.section].includes(q.category))
-        throw new AppError(400, 'Savollar diapazonini tanlang.');
-      return json({ items: vocabularyList(user, q.section, q.category, q.kind) });
+      const scope = req.nextUrl.searchParams.has('level')
+        ? scopeSchema.parse({
+            level: req.nextUrl.searchParams.get('level'),
+            book: req.nextUrl.searchParams.get('book'),
+            section: q.section,
+          })
+        : undefined;
+      validateCategories(
+        scope || { level: 'topik34', book: null, section: q.section },
+        [q.category],
+        true,
+      );
+      return json({ items: vocabularyList(user, q.section, q.category, q.kind, scope) });
     }
+    if (endpoint === 'vocabulary/catalog' && method === 'GET') return json(vocabularyCatalog(user));
+    if (endpoint === 'vocabulary/quiz' && method === 'POST')
+      return json(startVocabularyQuiz(user, await body(req)));
+    if (endpoint === 'teacher/vocabulary/access' && method === 'GET') {
+      const groupId = z.uuid().parse(req.nextUrl.searchParams.get('groupId'));
+      teacherGroup(user, groupId);
+      return json({ grants: vocabularyGrants(groupId) });
+    }
+    if (endpoint === 'teacher/vocabulary/access' && method === 'POST')
+      return json(saveVocabularyAccess(user, await body(req)));
     if (endpoint === 'teacher/vocabulary/word' && method === 'POST') {
       requireTeacher(user);
       const b = z
@@ -307,6 +334,8 @@ async function handle(req: NextRequest, ctx: { params: Promise<{ path: string[] 
         section: form.get('section'),
         category: form.get('category'),
         groupIds: form.getAll('groupIds'),
+        level: form.get('level') || 'topik34',
+        book: form.get('book') || null,
       };
       const job = queueVocabularyJob(user, settings, {
         text: z
@@ -475,9 +504,7 @@ async function handle(req: NextRequest, ctx: { params: Promise<{ path: string[] 
         })
         .parse(Object.fromEntries(req.nextUrl.searchParams));
       return json({
-        items: courseAccess(user).managed
-          ? vocabularyList(user, 'reading', query.category, query.kind)
-          : topikVocabulary(query.category, query.kind),
+        items: vocabularyList(user, 'reading', query.category, query.kind),
       });
     }
     if (endpoint === 'logout' && method === 'POST') {

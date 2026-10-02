@@ -17,11 +17,13 @@ import {
 } from 'lucide-react';
 import { api, Badge, Empty, errorText } from './ui';
 import {
-  VOCABULARY_BANDS,
   bandLabel,
   sectionLabel,
   type VocabularySection,
   type VocabularyEntry,
+  matchesCategory,
+  scopeLabel,
+  type VocabularyScope,
 } from '@/lib/vocabulary-types';
 import '@/app/topik.css';
 const LoadingSection = () => (
@@ -41,6 +43,10 @@ export default function VocabularyDeck({
   onEdit,
   onNote,
   refreshKey,
+  scope,
+  topics,
+  onQuiz,
+  quizBusy,
 }: {
   kind: 'word' | 'idiom';
   section: VocabularySection;
@@ -48,8 +54,13 @@ export default function VocabularyDeck({
   onEdit: (word: VocabularyEntry) => void;
   onNote: (word: VocabularyEntry) => void;
   refreshKey: number;
+  scope: VocabularyScope;
+  topics: { id: string; label: string; count: number; open: boolean }[];
+  onQuiz: (categories: string[], count: number) => void;
+  quizBusy: boolean;
 }) {
-  const [category, setCategory] = useState('all');
+  const [categories, setCategories] = useState<string[]>(['all']);
+  const [quizCount, setQuizCount] = useState(20);
   const [items, setItems] = useState<VocabularyEntry[] | null>(null);
   const [error, setError] = useState('');
   const [search, setSearch] = useState('');
@@ -101,7 +112,7 @@ export default function VocabularyDeck({
     setPractice(false);
     setShuffled([]);
     api<{ items: VocabularyEntry[] }>(
-      `vocabulary?section=${section}&category=${encodeURIComponent(category)}&kind=${kind}`,
+      `vocabulary?section=${section}&level=${scope.level}${scope.book ? `&book=${scope.book}` : ''}&kind=${kind}`,
     )
       .then((data) => {
         if (active) setItems(data.items);
@@ -112,10 +123,11 @@ export default function VocabularyDeck({
     return () => {
       active = false;
     };
-  }, [category, kind, section, retryVersion, refreshKey]);
+  }, [kind, section, scope.level, scope.book, retryVersion, refreshKey]);
   const filtered = useMemo(
     () =>
       (items || [])
+        .filter((item) => categories.some((c) => matchesCategory(item.categories, c)))
         .filter(
           (item) =>
             !dueOnly ||
@@ -128,7 +140,7 @@ export default function VocabularyDeck({
           `${item.ko} ${item.uz} ${item.example}`.toLowerCase().includes(search.toLowerCase()),
         )
         .sort((a, b) => b.frequency - a.frequency || a.ko.localeCompare(b.ko, 'ko')),
-    [items, search, dueOnly, reviews],
+    [items, categories, search, dueOnly, reviews],
   );
   const words = useMemo(
     () =>
@@ -154,16 +166,27 @@ export default function VocabularyDeck({
     setPractice(true);
   }
   const current = words[index];
-  const vocabCategories = ['all', ...VOCABULARY_BANDS[section]];
+  function select(next: string[]) {
+    setCategories(next);
+    setPractice(false);
+    setShuffled([]);
+    setIndex(0);
+  }
   return (
     <>
       <div className="topik-section-heading">
         <div>
-          <h2>{kind === 'idiom' ? 'Ibora ortidagi ma’no' : 'TOPIK uchun faol lug‘at'}</h2>
+          <h2>
+            {kind === 'idiom'
+              ? 'Ibora ortidagi ma’no'
+              : scope.level === 'hangul'
+                ? `${scopeLabel(scope)} · Mavzular lug‘ati`
+                : 'TOPIK uchun faol lug‘at'}
+          </h2>
           <p>
             {kind === 'idiom'
               ? '관용표현 · Iboralarni ma’nosi va qo‘llanishi bilan o‘rganing.'
-              : 'Savollarda takrorlangan muhim so‘zlar. Ma’no va qo‘llanish birga.'}
+              : 'Bitta mavzuni oching yoki bir nechtasini belgilang. Tanlangan so‘zlardan mashq va quiz ishlang.'}
           </p>
         </div>
         {!!words.length && !teacher && (
@@ -187,18 +210,87 @@ export default function VocabularyDeck({
           Faqat bugun takrorlanadiganlar
         </label>
       )}
-      <div className="topik-word-bands" role="group" aria-label="Lug‘at savol turlari">
-        {vocabCategories.map((id) => (
-          <button
-            key={id}
-            aria-pressed={category === id}
-            className={category === id ? 'active' : ''}
-            onClick={() => setCategory(id)}
+      <div className="vocab-topic-heading">
+        <strong>{scopeLabel(scope)}</strong>
+        <button
+          className="text-button"
+          aria-pressed={categories.includes('all')}
+          onClick={() => select(['all'])}
+        >
+          Barchasini tanlash
+        </button>
+        <button className="text-button" onClick={() => select([])}>
+          Tanlovni tozalash
+        </button>
+      </div>
+      <div className="vocab-topic-grid" role="group" aria-label="Lug‘at mavzulari">
+        {topics.map((topic) => (
+          <article
+            key={topic.id}
+            className={`vocab-topic ${topic.open && (categories.includes('all') || categories.includes(topic.id)) ? 'selected' : ''} ${!topic.open ? 'locked' : ''}`}
           >
-            {bandLabel(id)}
-          </button>
+            <button disabled={!topic.open} onClick={() => select([topic.id])}>
+              <strong>{topic.label}</strong>
+              <small>{topic.open ? `${topic.count} ta so‘z / ibora` : 'Ustoz hali ochmagan'}</small>
+            </button>
+            <label>
+              <input
+                type="checkbox"
+                aria-label={`${topic.label} — tanlash`}
+                disabled={!topic.open}
+                checked={
+                  topic.open && (categories.includes('all') || categories.includes(topic.id))
+                }
+                onChange={(e) => {
+                  const current = categories.includes('all')
+                    ? topics.filter((t) => t.open).map((t) => t.id)
+                    : categories;
+                  select(
+                    e.target.checked
+                      ? [...current, topic.id]
+                      : current.filter((c) => c !== topic.id),
+                  );
+                }}
+              />
+              <span>Tanlash</span>
+            </label>
+          </article>
         ))}
       </div>
+      {!teacher && (
+        <div className="vocab-quiz-bar">
+          <div>
+            <strong>Tanlangan mavzulardan quiz</strong>
+            <small>
+              {categories.includes('all')
+                ? 'Barcha ochilgan mavzular'
+                : `${categories.length} ta mavzu`}{' '}
+              · Har safar yangi tartibda
+            </small>
+          </div>
+          <label>
+            Savollar soni
+            <select
+              aria-label="Quiz savollari soni"
+              value={quizCount}
+              onChange={(e) => setQuizCount(Number(e.target.value))}
+            >
+              {[10, 20, 50, 100].map((n) => (
+                <option key={n} value={n}>
+                  {n} tagacha
+                </option>
+              ))}
+            </select>
+          </label>
+          <button
+            className="button primary"
+            disabled={quizBusy || !categories.length || !filtered.length}
+            onClick={() => onQuiz(categories, quizCount)}
+          >
+            {quizBusy ? 'Tayyorlanmoqda…' : 'Quizni boshlash'}
+          </button>
+        </div>
+      )}
       {error && <InlineError message={error} retry={() => setRetryVersion((v) => v + 1)} />}
       {items === null ? (
         !error && <LoadingSection />
@@ -368,7 +460,7 @@ export default function VocabularyDeck({
                   <div className="topik-word-tags">
                     {word.categories.map((c) => (
                       <span key={c}>
-                        {sectionLabel(word.section)} · {bandLabel(c)}
+                        {scopeLabel(scope)} · {bandLabel(c)}
                       </span>
                     ))}
                   </div>

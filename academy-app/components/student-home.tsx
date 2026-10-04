@@ -157,10 +157,11 @@ export default function StudentHome({
                     <span className={`home-skill-icon ${s.id}`}>
                       <Icon size={22} strokeWidth={1.7} />
                     </span>
-                    <StatusIcon className="home-skill-indicator" size={19} />
+                    <div className="home-skill-name">
+                      <h3 lang="ko">{s.ko}</h3>
+                      <span className="home-skill-uz">{s.label}</span>
+                    </div>
                   </div>
-                  <h3 lang="ko">{s.ko}</h3>
-                  <span className="home-skill-uz">{s.label}</span>
                   <div className="home-skill-status">
                     <StatusIcon size={14} />
                     <strong>{summary.label}</strong>

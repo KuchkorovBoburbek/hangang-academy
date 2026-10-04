@@ -13,20 +13,20 @@
   padding: 11px 14px;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: #fff;
+  background: var(--paper);
   color: var(--muted);
   font-size: 13px;
 }
 .notebook-tabs > button.active {
-  background: #e9f1ff;
-  border-color: #bfd5ff;
-  color: #155bce;
+  background: var(--surface-soft);
+  border-color: var(--line);
+  color: var(--blue);
 }
 .notebook-tabs > button span {
   font-size: 11px;
   padding: 1px 5px;
   border-radius: 5px;
-  background: #f1f4f8;
+  background: var(--surface-soft);
 }
 .notebook-toolbar {
   display: flex;
@@ -47,7 +47,7 @@
   padding: 12px;
   border: 1px solid var(--line);
   border-radius: 10px;
-  background: #fff;
+  background: var(--paper);
   min-height: 44px;
   color: var(--ink);
   font-size: 14px;
@@ -82,14 +82,14 @@
 .notebook-card {
   border: 1px solid var(--line);
   border-radius: 18px;
-  background: white;
+  background: var(--paper);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   min-height: 235px;
 }
 .notebook-card.pinned {
-  border-color: #bacff5;
+  border-color: var(--blue-border);
 }
 .notebook-card-meta {
   display: flex;
@@ -100,7 +100,7 @@
 .notebook-card-meta > span {
   font-size: 11px;
   font-weight: 700;
-  color: #59759c;
+  color: var(--muted);
 }
 .notebook-card-meta .icon-button {
   width: 32px;
@@ -132,7 +132,7 @@
   white-space: pre-line;
 }
 .notebook-card-open:hover h2 {
-  color: #1665d8;
+  color: var(--blue);
 }
 .notebook-tags {
   padding: 0 18px 12px;
@@ -142,8 +142,8 @@
 }
 .notebook-tags button {
   padding: 3px 7px;
-  background: #f2f6fc;
-  color: #627b9c;
+  background: var(--surface-soft);
+  color: var(--muted);
   border: 0;
   border-radius: 5px;
   font-size: 11px;
@@ -153,10 +153,10 @@
   gap: 8px;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px solid #f1f3f7;
+  border-top: 1px solid var(--line);
   padding: 12px 18px;
   font-size: 10px;
-  color: #8998ad;
+  color: var(--muted);
 }
 .notebook-card footer > span {
   display: flex;
@@ -188,7 +188,7 @@
   border-top: 1px solid var(--line);
 }
 .notebook-source {
-  background: #f5f8fc;
+  background: var(--paper);
   border-radius: 12px;
   padding: 18px;
   margin: 18px 0;
@@ -217,7 +217,7 @@
   display: flex;
   align-items: center;
   gap: 18px;
-  background: #eaf3ff;
+  background: var(--surface-soft);
   border-radius: 12px;
   padding: 14px 18px;
 }
@@ -230,34 +230,34 @@
 }
 .solution-panel {
   margin-top: 16px;
-  border-top: 1px solid #dce6e1;
+  border-top: 1px solid var(--line);
   padding-top: 12px;
 }
 .solution-body {
   margin-top: 14px;
-  background: #fff;
-  border: 1px solid #e2e8f0;
+  background: var(--paper);
+  border: 1px solid var(--line);
   border-radius: 12px;
   padding: 18px;
 }
 .solution-content p {
   font-size: 14px !important;
   line-height: 1.9 !important;
-  color: #34465f;
+  color: var(--ink);
   white-space: pre-line;
   overflow-wrap: anywhere;
 }
 .solution-content blockquote {
   margin: 12px 0;
   padding: 10px 14px;
-  background: #f5f8fc;
-  border-left: 3px solid #a7bfdd;
-  color: #34465f;
+  background: var(--paper);
+  border-left: 3px solid var(--blue-border);
+  color: var(--ink);
   font-size: 15px;
   line-height: 1.9;
 }
 .solution-content .solution-tip {
-  background: #f7f8ed;
+  background: var(--surface-soft);
   padding: 12px;
   border-radius: 8px;
   margin-top: 12px;
@@ -313,7 +313,7 @@
 .solution-editor-row > span:last-child {
   white-space: nowrap;
   font-size: 12px;
-  color: #3467a6;
+  color: var(--blue);
 }
 .solution-editor-grid {
   display: grid;

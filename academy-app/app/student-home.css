@@ -1,19 +1,19 @@
-/* Logo-led sky blue: airy surfaces, readable navy text and a cyan accent. */
+/* The student dashboard uses the shared white-and-blue palette. */
 .student-shell {
-  --home-ink: #173b59;
-  --home-muted: #536e82;
-  --home-accent: #006cb8;
-  --home-cyan: #05ace7;
-  --home-line: #daeaf5;
-  --home-surface: #ffffff;
-  --home-soft: #eff8ff;
+  --home-ink: var(--ink);
+  --home-muted: var(--muted);
+  --home-accent: var(--blue);
+  --home-highlight: var(--blue-highlight);
+  --home-line: var(--line);
+  --home-surface: var(--paper);
+  --home-soft: var(--blue-light);
 }
 .student-home-shell {
-  background: #f6fbff;
+  background: var(--bg);
   min-height: 100dvh;
 }
 .student-home-shell .topbar {
-  background: #f6fbff;
+  background: var(--paper);
   border-color: var(--home-line);
 }
 .student-home-shell .main-content {
@@ -24,11 +24,11 @@
   padding-bottom: 12px;
 }
 .student-home button {
-  -webkit-tap-highlight-color: #006cb812;
+  -webkit-tap-highlight-color: color-mix(in srgb, var(--blue) 7.06%, transparent);
 }
 .student-home button:focus-visible,
 .student-shell .mobile-nav button:focus-visible {
-  outline-color: #38a8dc;
+  outline-color: var(--focus);
 }
 .student-home h2 {
   font-size: 19px;
@@ -67,7 +67,7 @@
   width: 5px;
   height: 5px;
   flex-shrink: 0;
-  background: #1689c7;
+  background: var(--blue);
   border-radius: 50%;
 }
 .home-group-label b {
@@ -90,7 +90,7 @@
   font-weight: 500;
 }
 .home-greeting-dot {
-  color: #1689c7;
+  color: var(--blue);
   font-weight: 500;
 }
 .home-welcome p {
@@ -111,7 +111,7 @@
 .home-homework {
   padding: 20px;
   border-radius: 26px;
-  background: linear-gradient(145deg, #edf8ff, #e4f3ff);
+  background: linear-gradient(145deg, var(--paper), var(--blue-light));
   border: 1px solid var(--home-line);
 }
 .home-section-heading {
@@ -131,7 +131,7 @@
 .home-progress-count {
   background: var(--home-surface);
   padding: 7px 12px;
-  border: 1px solid #c4e1f3;
+  border: 1px solid var(--line);
   color: var(--home-muted);
   border-radius: 12px;
   font-size: 13px;
@@ -151,14 +151,14 @@
 .home-progress-track {
   height: 4px;
   border-radius: 4px;
-  background: #d8eefc;
+  background: var(--blue-light);
   overflow: hidden;
   margin-bottom: 14px;
 }
 .home-progress-track > span {
   height: 100%;
   display: block;
-  background: linear-gradient(90deg, #0083ce, var(--home-cyan));
+  background: linear-gradient(90deg, var(--blue), var(--home-highlight));
   border-radius: inherit;
 }
 .home-skills {
@@ -174,14 +174,14 @@
   border-radius: 17px;
   padding: 14px;
   background: var(--home-surface);
-  box-shadow: 0 3px 2px #075eab0a;
+  box-shadow: 0 3px 2px color-mix(in srgb, var(--ink) 3.92%, transparent);
   color: var(--home-ink);
   transition:
     border-color 0.15s,
     transform 0.15s;
 }
 button.home-skill-card:hover {
-  border-color: #7dbce0;
+  border-color: var(--blue-border);
   transform: translateY(-2px);
 }
 button.home-skill-card:active {
@@ -205,20 +205,20 @@ button.home-skill-card:active {
   place-items: center;
 }
 .home-skill-icon.reading {
-  background: #e0f2fe;
+  background: var(--surface-soft);
   color: var(--home-accent);
 }
 .home-skill-icon.listening {
-  background: #edf6fc;
-  color: #0783b3;
+  background: var(--surface-soft);
+  color: var(--blue);
 }
 .home-skill-icon.speaking {
-  background: #e8f1fc;
-  color: #3576b8;
+  background: var(--surface-soft);
+  color: var(--blue);
 }
 .home-skill-icon.writing {
-  background: #edf0fd;
-  color: #647fbb;
+  background: var(--surface-soft);
+  color: var(--blue);
 }
 .home-skill-card h3 {
   font-size: 21px;
@@ -238,7 +238,7 @@ button.home-skill-card:active {
   gap: 5px;
   font-size: 12px;
   margin-top: 0;
-  color: #9b542c;
+  color: var(--blue);
   line-height: 1.5;
 }
 .home-skill-status strong {
@@ -248,7 +248,7 @@ button.home-skill-card:active {
   color: var(--home-accent);
 }
 .home-skill-card.submitted .home-skill-status {
-  color: #806128;
+  color: var(--warning);
 }
 .home-skill-card.empty .home-skill-status {
   color: var(--home-muted);
@@ -256,12 +256,12 @@ button.home-skill-card:active {
 .home-skill-card.empty {
   background: var(--home-soft);
   border-style: dashed;
-  border-color: #c4e1f3;
+  border-color: var(--line);
   box-shadow: none;
 }
 .home-skill-card.empty .home-skill-icon {
-  background: #edf6fc;
-  color: #6e9cb8;
+  background: var(--surface-soft);
+  color: var(--blue);
 }
 .home-skill-card.empty h3 {
   color: var(--home-muted);
@@ -289,7 +289,7 @@ button.home-skill-card:active {
   flex-shrink: 0;
   width: 6px;
   height: 6px;
-  background: #ad7046;
+  background: var(--blue);
   border-radius: 50%;
 }
 .home-extra {
@@ -299,7 +299,7 @@ button.home-skill-card:active {
   color: var(--home-muted);
 }
 .home-extra .home-section-heading > svg {
-  color: #1689c7;
+  color: var(--blue);
 }
 .home-practice-grid {
   display: grid;
@@ -335,16 +335,16 @@ button.home-skill-card:active {
   color: var(--home-accent);
 }
 .home-practice-link > svg:last-child {
-  color: #6e9cb8;
+  color: var(--blue);
 }
 .home-practice-link.listening > svg:first-child {
-  color: #0783b3;
+  color: var(--blue);
 }
 .home-practice-link.speaking > svg:first-child {
-  color: #3576b8;
+  color: var(--blue);
 }
 .home-practice-link.writing > svg:first-child {
-  color: #647fbb;
+  color: var(--blue);
 }
 .home-practice-link:hover {
   background: var(--home-soft);
@@ -359,13 +359,13 @@ button.home-skill-card:active {
   padding: 18px;
   border: 0;
   border-radius: 17px;
-  background: linear-gradient(115deg, #006db6, #0075b5);
+  background: linear-gradient(115deg, var(--blue-deep), var(--blue));
   color: var(--home-surface);
   text-align: left;
-  box-shadow: 0 5px 14px #0075ba20;
+  box-shadow: 0 5px 14px color-mix(in srgb, var(--ink) 12.55%, transparent);
 }
 .home-word-quiz:hover {
-  background: #0065a6;
+  background: var(--blue-hover);
 }
 .home-word-art {
   flex-shrink: 0;
@@ -385,7 +385,7 @@ button.home-skill-card:active {
 .home-word-art span:first-child {
   top: 0;
   left: 0;
-  background: #e8f8ff;
+  background: var(--surface-soft);
   color: var(--home-accent);
   transform: rotate(-12deg);
   border: 1px solid var(--home-surface);
@@ -393,10 +393,10 @@ button.home-skill-card:active {
 .home-word-art span:last-child {
   bottom: 0;
   right: 0;
-  background: #89d9f7;
+  background: var(--blue-fill);
   color: var(--home-ink);
   transform: rotate(9deg);
-  border: 1px solid #b0e7fb;
+  border: 1px solid var(--blue-border);
   font-size: 20px;
 }
 .home-word-copy {
@@ -406,7 +406,7 @@ button.home-skill-card:active {
 .home-word-copy small {
   display: block;
   font-size: 10px;
-  color: #edf8ff;
+  color: var(--on-blue-muted);
   font-weight: 600;
   letter-spacing: 0.12em;
   margin-bottom: 5px;
@@ -419,7 +419,7 @@ button.home-skill-card:active {
 .home-word-copy > span {
   display: block;
   font-size: 11px;
-  color: #edf8ff;
+  color: var(--on-blue-muted);
   margin-top: 4px;
 }
 .home-word-arrow {
@@ -428,7 +428,7 @@ button.home-skill-card:active {
   border-radius: 50%;
   flex: 0 0 33px;
   height: 33px;
-  background: #ffffff24;
+  background: color-mix(in srgb, var(--paper) 14.12%, transparent);
 }
 .home-small-links {
   display: grid;
@@ -496,7 +496,7 @@ button.home-skill-card:active {
 }
 .home-task-row + .home-task-row,
 .home-lesson-link + .home-lesson-link {
-  border-top: 1px solid #edf5fb;
+  border-top: 1px solid var(--line);
 }
 .home-task-row:hover,
 .home-lesson-link:hover,
@@ -528,14 +528,14 @@ button.home-skill-card:active {
 .home-task-caption {
   display: block;
   font-size: 11px;
-  color: #9b633d;
+  color: var(--blue);
   margin-top: 3px;
 }
 .home-task-row.done .home-task-caption {
   color: var(--home-accent);
 }
 .home-task-row.submitted .home-task-caption {
-  color: #8c723e;
+  color: var(--warning);
 }
 .home-task-symbol {
   border-radius: 50%;
@@ -544,17 +544,17 @@ button.home-skill-card:active {
   display: grid;
   place-items: center;
   flex-shrink: 0;
-  background: #f7ede3;
-  color: #9b633d;
+  background: var(--blue-light);
+  color: var(--blue);
 }
 .home-task-row.done .home-task-symbol {
-  background: #e0f2fe;
+  background: var(--surface-soft);
   color: var(--home-accent);
 }
 .home-lesson-number {
   font-size: 20px;
   color: var(--home-accent);
-  background: #e0f2fe;
+  background: var(--surface-soft);
   border-radius: 12px;
   width: 46px;
   height: 46px;
@@ -564,7 +564,7 @@ button.home-skill-card:active {
   font-weight: 500;
 }
 .home-lesson-link > svg {
-  color: #6e9cb8;
+  color: var(--blue);
 }
 .home-live {
   display: flex;
@@ -572,7 +572,7 @@ button.home-skill-card:active {
   text-align: left;
   gap: 13px;
   width: 100%;
-  border: 1px solid #c4e1f3;
+  border: 1px solid var(--line);
   background: var(--home-soft);
   border-radius: 16px;
   padding: 17px;
@@ -599,7 +599,7 @@ button.home-skill-card:active {
   height: 40px;
   display: grid;
   place-items: center;
-  background: #d8eefc;
+  background: var(--blue-light);
   border-radius: 50%;
 }
 .home-support-grid {
@@ -625,7 +625,7 @@ button.home-skill-card:active {
   display: grid;
   place-items: center;
   border-radius: 12px;
-  background: #e0f2fe;
+  background: var(--surface-soft);
 }
 .home-gift-copy {
   min-width: 0;
@@ -648,7 +648,7 @@ button.home-skill-card:active {
   align-items: center;
 }
 .home-gift-track {
-  background: #d8eefc;
+  background: var(--blue-light);
   height: 4px;
   display: block;
   border-radius: 4px;
@@ -659,7 +659,7 @@ button.home-skill-card:active {
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: #1689c7;
+  background: var(--blue);
 }
 .home-gift-copy small {
   font-size: 11px;
@@ -690,24 +690,24 @@ button.home-skill-card:active {
   margin: 0 auto 5px;
   display: grid;
   place-items: center;
-  background: #edf6fc;
+  background: var(--surface-soft);
   color: var(--home-accent);
   border-radius: 50%;
   width: 30px;
   height: 30px;
 }
 .home-week-days .done > span {
-  background: #d8eefc;
+  background: var(--blue-light);
 }
 .home-week-days .today > span {
-  outline: 1px solid #1689c7;
+  outline: 1px solid var(--focus);
   outline-offset: 3px;
 }
 .home-week-dot {
   width: 3px;
   height: 3px;
   border-radius: 50%;
-  background: #6e9cb8;
+  background: var(--blue);
 }
 .home-week-days small {
   font-size: 10px;
@@ -722,7 +722,7 @@ button.home-skill-card:active {
   border-radius: 16px;
   text-align: center;
   background: var(--home-soft);
-  color: #6e9cb8;
+  color: var(--blue);
 }
 .home-calm-empty > svg {
   margin: 0 auto 12px;
@@ -768,7 +768,7 @@ button.home-skill-card:active {
   flex: 1;
 }
 .student-menu-links button.active {
-  border-color: #7dbce0;
+  border-color: var(--blue-border);
   color: var(--home-accent);
 }
 @media (min-width: 1050px) {
@@ -805,7 +805,7 @@ button.home-skill-card:active {
   }
   .student-home-shell .topbar-right .avatar-button {
     display: grid;
-    background: #e0f2fe;
+    background: var(--surface-soft);
     color: var(--home-accent);
     font-size: 12px;
     width: 32px;
@@ -905,7 +905,7 @@ button.home-skill-card:active {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     padding: 8px 7px max(8px, env(safe-area-inset-bottom));
-    background: #fbfdfff5;
+    background: color-mix(in srgb, var(--paper) 96.08%, transparent);
     border-top: 1px solid var(--home-line);
   }
   .student-shell .mobile-nav.topik-student-nav button {
@@ -920,7 +920,7 @@ button.home-skill-card:active {
   }
   .student-shell .mobile-nav.topik-student-nav button.active {
     color: var(--home-accent);
-    background: #e0f2fe;
+    background: var(--surface-soft);
   }
   .student-shell .mobile-nav.topik-student-nav button svg {
     width: 20px;

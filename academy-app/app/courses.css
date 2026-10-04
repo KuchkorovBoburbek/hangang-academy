@@ -1,12 +1,16 @@
 .course-space {
-  --course-green: #216d5f;
-  --course-soft: #edf5ef;
+  --course-accent: var(--blue);
+  --course-soft: var(--blue-light);
   max-width: 1240px;
   margin: auto;
 }
 .course-space .button.primary {
-  background: var(--course-green);
-  border-color: var(--course-green);
+  background: var(--course-accent);
+  border-color: var(--course-accent);
+}
+.course-space .button.primary:hover {
+  background: var(--blue-hover);
+  border-color: var(--blue-hover);
 }
 .course-space label {
   display: flex;
@@ -26,9 +30,9 @@
   width: 100%;
   min-width: 0;
   padding: 11px 13px;
-  border: 1px solid #dce6e1;
+  border: 1px solid var(--line);
   border-radius: 11px;
-  background: #fff;
+  background: var(--paper);
   color: var(--ink);
 }
 .course-space textarea {
@@ -55,17 +59,17 @@
 }
 .course-levels button {
   position: relative;
-  border: 1px solid #e0e8e3;
+  border: 1px solid var(--line);
   border-radius: 18px;
   padding: 22px 24px;
-  background: #fff;
+  background: var(--paper);
   text-align: left;
   transition: 0.15s;
 }
 .course-levels button.selected {
-  background: #edf5ef;
-  border-color: #307b68;
-  box-shadow: inset 0 0 0 1px #307b68;
+  background: var(--surface-soft);
+  border-color: var(--blue);
+  box-shadow: inset 0 0 0 1px var(--ink);
 }
 .course-levels strong {
   font-size: 22px;
@@ -74,12 +78,12 @@
   margin: 8px 0;
 }
 .course-levels small {
-  color: #5e766d;
+  color: var(--muted);
 }
 .course-level-number {
   font-size: 11px;
   font-weight: 800;
-  color: #679082;
+  color: var(--muted);
   letter-spacing: 0.16em;
 }
 .course-overview {
@@ -87,7 +91,7 @@
   align-items: center;
   gap: 24px;
   padding: 30px 34px;
-  background: #e9f1ed;
+  background: var(--blue-light);
   border-radius: 22px;
   margin: 24px 0 30px;
   overflow: hidden;
@@ -95,14 +99,14 @@
 .course-emblem {
   display: grid;
   place-items: center;
-  border: 1px solid #a9c5b5;
+  border: 1px solid var(--blue-border);
   border-radius: 100%;
   width: 90px;
   height: 90px;
   flex-shrink: 0;
   font-size: 25px;
-  color: #377060;
-  background: #f8fbf4;
+  color: var(--blue);
+  background: var(--paper);
 }
 .course-overview h2 {
   font-size: 26px;
@@ -111,7 +115,7 @@
 .course-overview p {
   margin: 0;
   max-width: 640px;
-  color: #536e64;
+  color: var(--muted);
 }
 .course-empty-action {
   text-align: center;
@@ -126,15 +130,15 @@
   align-items: center;
   gap: 22px;
   width: 100%;
-  background: white;
+  background: var(--paper);
   text-align: left;
   padding: 24px;
   border-radius: 17px;
-  border: 1px solid #e3eae5;
+  border: 1px solid var(--line);
 }
 .course-lesson-row:hover {
-  border-color: #8eb9a9;
-  background: #fcfefb;
+  border-color: var(--blue-border);
+  background: var(--paper);
 }
 .course-lesson-row > div {
   flex: 1;
@@ -145,12 +149,12 @@
 }
 .course-lesson-row p {
   margin: 5px 0 6px;
-  color: #6c7b75;
+  color: var(--muted);
   font-size: 13px;
 }
 .course-lesson-row small {
   font-size: 12px;
-  color: #70877a;
+  color: var(--muted);
 }
 .course-step {
   width: 48px;
@@ -159,8 +163,8 @@
   place-items: center;
   flex-shrink: 0;
   border-radius: 14px;
-  background: #f0f5ed;
-  color: #427654;
+  background: var(--surface-soft);
+  color: var(--muted);
   font-size: 20px;
   font-weight: 700;
 }
@@ -169,7 +173,7 @@
   gap: 8px;
   align-items: center;
   margin: 26px 0;
-  color: #6b7f73;
+  color: var(--muted);
   font-size: 12px;
 }
 .course-editor-meta {
@@ -189,14 +193,14 @@
 }
 .course-material-picker span {
   font-weight: 800;
-  color: var(--course-green);
+  color: var(--course-accent);
 }
 .course-material-editor {
   padding: 26px;
   display: grid;
   gap: 18px;
   margin-bottom: 22px;
-  border-top: 3px solid #a9c4b4;
+  border-top: 3px solid var(--blue-border);
 }
 .course-material-editor .section-title {
   margin-bottom: 0;
@@ -213,15 +217,15 @@
   display: flex;
   align-items: center;
   gap: 7px;
-  border: 1px solid #dce6df;
+  border: 1px solid var(--line);
   border-radius: 9px;
   padding: 6px 10px;
-  background: #f7faf5;
+  background: var(--paper);
   font-size: 12px;
   overflow-wrap: anywhere;
 }
 .course-task-settings {
-  background: #f4f7f3;
+  background: var(--surface-soft);
   padding: 18px;
   border-radius: 13px;
   display: flex;
@@ -240,12 +244,12 @@
   grid-template-columns: 20px minmax(0, 1fr) 32px;
   gap: 10px;
   padding: 14px;
-  background: #f8faf6;
+  background: var(--paper);
   border-radius: 12px;
 }
 .course-word-row > span {
   padding-top: 26px;
-  color: #739181;
+  color: var(--muted);
   font-size: 12px;
 }
 .course-word-row details {
@@ -253,7 +257,7 @@
 }
 .course-word-row summary {
   font-size: 12px;
-  color: #627c69;
+  color: var(--muted);
   cursor: pointer;
 }
 .course-word-row details label {
@@ -264,7 +268,7 @@
   gap: 12px;
 }
 .course-questions > details {
-  border: 1px solid #e1e8df;
+  border: 1px solid var(--line);
   border-radius: 12px;
   padding: 16px;
 }
@@ -298,16 +302,16 @@
   align-items: center;
   gap: 12px;
   padding: 17px 23px;
-  border: 1px solid #d9e6dc;
+  border: 1px solid var(--line);
   border-radius: 15px;
-  background: #ffffffed;
+  background: color-mix(in srgb, var(--paper) 92.94%, transparent);
   backdrop-filter: blur(12px);
-  box-shadow: 0 9px 35px #16362a15;
+  box-shadow: 0 9px 35px color-mix(in srgb, var(--ink) 8.24%, transparent);
   margin-top: 22px;
 }
 .course-savebar > span {
   font-size: 12px;
-  color: #61776a;
+  color: var(--muted);
 }
 .course-bank-list {
   max-height: 440px;
@@ -316,7 +320,7 @@
 }
 .course-bank-list .checkbox-label {
   padding: 13px 4px;
-  border-bottom: 1px solid #edf0e9;
+  border-bottom: 1px solid var(--line);
   gap: 14px;
 }
 .course-bank-list strong {
@@ -343,7 +347,7 @@
   margin-bottom: 16px;
 }
 .course-grammar {
-  background: #f3f6f1;
+  background: var(--surface-soft);
   padding: 22px;
   border-radius: 15px;
   margin: 18px 0;
@@ -371,7 +375,7 @@
 }
 .course-word-games {
   padding: 18px;
-  border: 1px solid #e4eadf;
+  border: 1px solid var(--line);
   border-radius: 15px;
   margin: 18px 0;
 }
@@ -385,12 +389,12 @@
   padding: 9px 13px;
   border: 0;
   border-radius: 9px;
-  background: #f2f5ef;
+  background: var(--surface-soft);
   font-size: 12px;
 }
 .course-game-tabs button.active {
-  background: #246b59;
-  color: white;
+  background: var(--blue-deep);
+  color: var(--on-blue);
 }
 .course-word-list {
   display: grid;
@@ -400,7 +404,7 @@
   display: grid;
   grid-template-columns: minmax(100px, 1fr) 2fr;
   gap: 10px;
-  border-bottom: 1px solid #edf0e9;
+  border-bottom: 1px solid var(--line);
   padding: 14px 0;
 }
 .course-word-list strong {
@@ -408,7 +412,7 @@
 }
 .course-word-list small {
   grid-column: 1/-1;
-  color: #667c70;
+  color: var(--muted);
 }
 .course-flashcard {
   display: grid;
@@ -416,9 +420,9 @@
   place-items: center;
   width: 100%;
   min-height: 220px;
-  border: 1px solid #d6e4d4;
+  border: 1px solid var(--line);
   border-radius: 18px;
-  background: #f3f8ef;
+  background: var(--surface-soft);
   padding: 25px;
   margin-bottom: 15px;
 }
@@ -427,7 +431,7 @@
 }
 .course-flashcard small {
   font-size: 11px;
-  color: #749078;
+  color: var(--muted);
 }
 .course-pairs {
   display: grid;
@@ -441,14 +445,14 @@
 .course-pairs button,
 .course-answer {
   padding: 12px;
-  border: 1px solid #dce5d9;
-  background: white;
+  border: 1px solid var(--line);
+  background: var(--paper);
   border-radius: 10px;
 }
 .course-pairs button.selected,
 .course-answer.correct {
-  background: #e0f3e1;
-  border-color: #41815e;
+  background: var(--blue-light);
+  border-color: var(--blue);
 }
 .course-mini-quiz .course-answer {
   display: block;
@@ -457,7 +461,7 @@
   text-align: left;
 }
 .course-progress-hero {
-  background: #eaf3ed;
+  background: var(--surface-soft);
   border-radius: 24px;
   padding: 30px;
   display: grid;
@@ -472,26 +476,26 @@
 .course-progress-hero h2 small {
   font-size: 18px;
   font-weight: 500;
-  color: #64806d;
+  color: var(--muted);
 }
 .course-space progress {
   width: 100%;
   height: 8px;
-  accent-color: #26745b;
+  accent-color: var(--blue);
   display: block;
 }
 .course-progress-hero p {
   font-size: 13px;
-  color: #617b69;
+  color: var(--muted);
   margin: 15px 0 0;
 }
 .course-points {
-  border-left: 1px solid #cbddcf;
+  border-left: 1px solid var(--blue-border);
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-left: 28px;
-  color: #347055;
+  color: var(--blue);
 }
 .course-points strong {
   font-size: 29px;
@@ -510,22 +514,22 @@
   display: grid;
   gap: 11px;
   text-align: left;
-  border: 1px solid #e1e8de;
+  border: 1px solid var(--line);
   border-radius: 17px;
-  background: white;
+  background: var(--paper);
   padding: 23px;
-  color: #356448;
+  color: var(--ink);
 }
 .course-practice-links span {
   font-size: 12px;
-  color: #758171;
+  color: var(--muted);
 }
 .course-student-material {
   padding: 0 28px 26px;
   margin-bottom: 24px;
 }
 .course-task {
-  border-top: 1px solid #e0e9df;
+  border-top: 1px solid var(--line);
   padding-top: 24px;
 }
 .course-task .section-title {
@@ -541,11 +545,11 @@
   align-items: center;
   padding: 18px;
   border-radius: 13px;
-  background: #f3f3e7;
+  background: var(--warning-soft);
 }
 .course-task-status.done {
-  background: #eaf5e9;
-  color: #367048;
+  background: var(--surface-soft);
+  color: var(--blue);
 }
 .course-task-status p {
   margin: 6px 0 0;
@@ -553,7 +557,7 @@
 .course-answer-questions fieldset {
   margin: 18px 0;
   padding: 17px;
-  border: 1px solid #dae5d7;
+  border: 1px solid var(--line);
   border-radius: 12px;
   min-width: 0;
 }
@@ -569,24 +573,24 @@
   padding: 13px;
   border-radius: 9px;
   margin: 5px 0;
-  background: #f7f9f3;
+  background: var(--surface-soft);
   cursor: pointer;
 }
 .course-answer-questions label.selected {
-  background: #e5f1e4;
+  background: var(--blue-light);
 }
 .course-live {
   padding: 24px;
   margin: 22px 0;
-  background: #f9fbf3;
-  border-color: #d4dfc5;
+  background: var(--surface-soft);
+  border-color: var(--blue-border);
 }
 .course-live-results > div {
   display: flex;
   justify-content: space-between;
   gap: 12px;
   padding: 12px 0;
-  border-bottom: 1px solid #e0e8d5;
+  border-bottom: 1px solid var(--line);
 }
 .course-live-results {
   margin-top: 20px;
@@ -602,14 +606,14 @@
 .course-board th,
 .course-board td {
   padding: 17px 20px;
-  border-bottom: 1px solid #e5ebe1;
+  border-bottom: 1px solid var(--line);
   text-align: center;
   font-size: 13px;
 }
 .course-board th:first-child {
   position: sticky;
   left: 0;
-  background: #fff;
+  background: var(--paper);
   text-align: left;
   z-index: 1;
 }
@@ -618,7 +622,7 @@
   display: block;
   font-size: 11px;
   font-weight: 400;
-  color: #788a75;
+  color: var(--muted);
 }
 .course-board td > span {
   font-size: 19px;
@@ -644,8 +648,8 @@
   align-items: center;
   padding: 23px;
   border-radius: 16px;
-  background: #fff;
-  border: 1px solid #e3eadf;
+  background: var(--paper);
+  border: 1px solid var(--line);
 }
 .course-ranking > div > div {
   flex: 1;
@@ -654,11 +658,11 @@
 .course-ranking p {
   font-size: 12px;
   margin: 5px 0 12px;
-  color: #687a60;
+  color: var(--muted);
 }
 .course-ranking small {
   font-size: 11px;
-  color: #78916d;
+  color: var(--muted);
 }
 .course-ranking progress {
   max-width: 280px;
@@ -670,8 +674,8 @@
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: #f0f5e6;
-  color: #5d7942;
+  background: var(--blue-light);
+  color: var(--muted);
   font-weight: 800;
 }
 .course-group-select {
@@ -783,7 +787,7 @@
   }
   .course-points {
     border-left: 0;
-    border-top: 1px solid #cedecc;
+    border-top: 1px solid var(--blue-border);
     padding: 18px 0 0;
   }
   .course-points strong {
@@ -855,23 +859,23 @@
   gap: 10px;
   padding: 8px 10px;
   border-radius: 8px;
-  background: #f6f8f3;
+  background: var(--surface-soft);
   font-size: 12px;
 }
 .course-home-tasks > span > span:nth-child(2) {
   flex: 1;
 }
 .course-home-tasks .done {
-  color: #387451;
-  background: #eef6eb;
+  color: var(--blue);
+  background: var(--surface-soft);
 }
 .course-home-tasks .todo {
-  color: #985825;
-  background: #fff3e5;
+  color: var(--warning);
+  background: var(--warning-soft);
 }
 .course-home-tasks .submitted {
-  color: #7a6a37;
-  background: #f8f4e7;
+  color: var(--warning);
+  background: var(--warning-soft);
 }
 .course-home-tasks small {
   font-size: 10px;

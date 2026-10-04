@@ -130,7 +130,10 @@ test('teacher book access, invite link, topic selection and repeatable vocabular
     'TOPIK 5/6 darajasiga mos guruh yo‘q',
   );
   await wordForm.getByLabel('Lug‘at darajasi').selectOption('hangul');
-  await expect(wordForm.getByLabel('Seoulte curriculum QA', { exact: true })).toBeChecked();
+  const selectedGroup = wordForm.getByLabel('Seoulte curriculum QA', { exact: true });
+  const matchingGroups = state.groups.filter((g: { level: string }) => g.level === group.level);
+  await expect(selectedGroup).toBeChecked({ checked: matchingGroups.length === 1 });
+  await selectedGroup.check();
   await wordForm.getByLabel('Koreyscha so‘z').fill('교실');
   await wordForm.getByLabel('O‘zbekcha ma’nosi').fill('sinfxona');
   await wordForm.getByLabel('So‘z turkumi').fill('Ot');

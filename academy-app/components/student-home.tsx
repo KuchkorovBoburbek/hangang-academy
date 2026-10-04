@@ -38,22 +38,25 @@ const statusIcons = { todo: ArrowUpRight, submitted: Clock3, done: Check, empty:
 function HangangScene() {
   return (
     <svg className="hangang-scene" viewBox="0 0 180 110" fill="none" aria-hidden="true">
-      <circle cx="126" cy="31" r="21" fill="#C7EAFC" />
-      <path d="M19 79C38 67 45 57 62 66C78 75 83 47 105 47C126 47 138 73 166 78" fill="#DFEFFB" />
+      <circle cx="126" cy="31" r="21" fill="var(--blue-fill)" />
+      <path
+        d="M19 79C38 67 45 57 62 66C78 75 83 47 105 47C126 47 138 73 166 78"
+        fill="var(--blue-light)"
+      />
       <path
         d="M9 89C38 75 59 91 85 84C119 74 135 86 174 81M22 98C64 85 79 103 113 92C133 85 152 94 173 90"
-        stroke="#82BCD9"
+        stroke="var(--blue-border)"
         strokeWidth="1.5"
         strokeLinecap="round"
       />
-      <g stroke="#387CA7" strokeWidth="1.6" strokeLinejoin="round" strokeLinecap="round">
+      <g stroke="var(--blue)" strokeWidth="1.6" strokeLinejoin="round" strokeLinecap="round">
         <path d="M101 48L103 27H109L111 48M102 26H110L112 22H100L102 26ZM106 22V7M103 17H109" />
         <path d="M35 77V65H68V78M30 64C38 63 45 57 51 52C57 57 64 63 73 64H30Z" />
         <path d="M34 58C41 58 47 54 51 51C55 54 61 58 68 58M42 76V68H49V76M56 76V68H62V77" />
       </g>
       <path
         d="M141 56Q145 52 149 56Q153 52 157 56M15 33Q19 29 23 33Q27 29 31 33"
-        stroke="#82BCD9"
+        stroke="var(--blue-border)"
         strokeWidth="1.5"
         strokeLinecap="round"
       />

@@ -11,7 +11,7 @@
 }
 .vocab-eyebrow {
   display: block;
-  color: #548d89;
+  color: var(--muted);
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 2px;
@@ -21,7 +21,7 @@
   font-size: clamp(27px, 3vw, 36px);
   letter-spacing: -1.5px;
   margin: 0 0 10px;
-  color: #173b39;
+  color: var(--ink);
   line-height: 1.3;
 }
 .vocab-hero h1 span {
@@ -30,26 +30,26 @@
   font-weight: 400;
   display: inline-block;
   margin-left: 18px;
-  color: #8aa39e;
+  color: var(--muted);
 }
 .vocab-hero p {
   margin: 0;
-  color: #6c7f7c;
+  color: var(--muted);
   font-size: 14px;
 }
 .vocab-hero-mark {
   width: 102px;
   height: 102px;
   flex-shrink: 0;
-  border: 1px solid #d8e8e1;
+  border: 1px solid var(--line);
   border-radius: 32px;
-  background: linear-gradient(140deg, #eef8f2, #e8f4f3);
+  background: linear-gradient(140deg, var(--surface-soft), var(--blue-light));
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 7px;
-  color: #43867a;
+  color: var(--blue);
   transform: rotate(4deg);
 }
 .vocab-hero-mark span {
@@ -67,11 +67,11 @@
   align-items: center;
   text-align: left;
   gap: 14px;
-  border: 1px solid #e0e7e3;
-  background: #fff;
+  border: 1px solid var(--line);
+  background: var(--paper);
   padding: 20px;
   border-radius: 18px;
-  color: #7d9089;
+  color: var(--muted);
   cursor: pointer;
   transition: 0.2s;
 }
@@ -82,14 +82,14 @@
 .vocab-section-tabs strong {
   display: block;
   font-size: 17px;
-  color: #425b54;
+  color: var(--ink);
   font-weight: 650;
 }
 .vocab-section-tabs small {
   display: block;
   font-size: 11px;
   margin-top: 4px;
-  color: #87978f;
+  color: var(--muted);
 }
 .vocab-section-tabs > button > svg:last-child {
   opacity: 0;
@@ -97,13 +97,13 @@
   transition: 0.2s;
 }
 .vocab-section-tabs > button.active {
-  border-color: #68a392;
-  background: #f0f8f3;
-  box-shadow: 0 4px 14px #47796209;
-  color: #277663;
+  border-color: var(--blue);
+  background: var(--surface-soft);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--ink) 3.53%, transparent);
+  color: var(--ink);
 }
 .vocab-section-tabs > button.active strong {
-  color: #1d6150;
+  color: var(--ink);
 }
 .vocab-section-tabs > button.active > svg:last-child {
   opacity: 1;
@@ -115,28 +115,28 @@
   gap: 16px;
   padding: 23px;
   border-radius: 20px;
-  background: linear-gradient(115deg, #183d39, #29584b);
-  color: #fff;
+  background: linear-gradient(115deg, var(--blue-deep), var(--blue));
+  color: var(--on-blue);
   position: relative;
   margin-bottom: 10px;
 }
 .vocab-assistant-icon {
   padding: 13px;
-  background: #ffffff13;
-  border: 1px solid #ffffff21;
+  background: color-mix(in srgb, var(--paper) 7.45%, transparent);
+  border: 1px solid color-mix(in srgb, var(--paper) 12.94%, transparent);
   border-radius: 17px;
   line-height: 0;
-  color: #c5e6cf;
+  color: var(--on-blue-muted);
 }
 .vocab-assistant-banner h2 {
   font-size: 17px;
   margin: 0 0 7px;
-  color: #fff;
+  color: var(--on-blue);
 }
 .vocab-assistant-banner p {
   font-size: 12px;
   line-height: 1.7;
-  color: #c4d8ce;
+  color: var(--on-blue-muted);
   margin: 0;
   max-width: 395px;
 }
@@ -151,21 +151,28 @@
   white-space: nowrap;
 }
 .vocab-assistant-actions .secondary {
-  background: #ffffff0c;
-  border-color: #ffffff38;
-  color: #eaf3ec;
+  background: color-mix(in srgb, var(--paper) 4.71%, transparent);
+  border-color: color-mix(in srgb, var(--paper) 21.96%, transparent);
+  color: var(--on-blue-muted);
 }
 .vocab-assistant-actions .primary {
-  background: #e7f4de;
-  color: #224d3d;
-  border-color: #e7f4de;
+  background: var(--blue-light);
+  color: var(--ink);
+  border-color: var(--line);
+}
+.vocab-assistant-actions .primary:hover {
+  background: var(--paper);
+  color: var(--blue-deep);
+}
+.vocab-assistant-actions .secondary:hover {
+  background: color-mix(in srgb, var(--paper) 15%, transparent);
 }
 .vocab-telegram-hint {
   display: flex;
   gap: 8px;
   align-items: center;
   font-size: 11px;
-  color: #74847d;
+  color: var(--muted);
   margin: 14px 3px 23px;
   line-height: 1.65;
 }
@@ -175,7 +182,7 @@
 .vocab-telegram-hint button {
   background: none;
   border: 0;
-  color: #377861;
+  color: var(--blue);
   display: flex;
   align-items: center;
   gap: 5px;
@@ -193,7 +200,7 @@
 .vocab-kind-tabs {
   display: inline-flex;
   padding: 4px;
-  background: #eaf0eb;
+  background: var(--blue-light);
   border-radius: 12px;
   gap: 3px;
 }
@@ -202,15 +209,15 @@
   border: 0;
   border-radius: 9px;
   padding: 10px 18px;
-  color: #73867a;
+  color: var(--muted);
   cursor: pointer;
   font-size: 12px;
   font-weight: 650;
 }
 .vocab-kind-tabs button.active {
-  background: #fff;
-  color: #315c49;
-  box-shadow: 0 2px 6px #345d3b0d;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 2px 6px color-mix(in srgb, var(--ink) 5.1%, transparent);
 }
 .vocab-kind-row > .text-button {
   font-size: 12px;
@@ -219,9 +226,9 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  background: #f3f7f3;
-  color: #3d765f;
-  border: 1px solid #e4ece6;
+  background: var(--surface-soft);
+  color: var(--muted);
+  border: 1px solid var(--line);
   border-radius: 9px;
   padding: 8px 12px;
   cursor: pointer;
@@ -230,7 +237,7 @@
 }
 .vocab-edit-button span {
   font-size: 10px;
-  color: #7c9184;
+  color: var(--muted);
 }
 .vocab-jobs {
   padding: 0 20px;
@@ -252,11 +259,11 @@
   gap: 8px;
 }
 .vocab-jobs summary small {
-  color: #839088;
+  color: var(--muted);
   font-size: 11px;
 }
 .vocab-job {
-  border-top: 1px solid #e9eee8;
+  border-top: 1px solid var(--line);
   padding: 17px 0;
 }
 .vocab-job-heading {
@@ -267,24 +274,24 @@
 }
 .vocab-job-heading > small {
   font-size: 10px;
-  color: #889489;
+  color: var(--muted);
 }
 .vocab-job-status {
   font-size: 11px;
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  color: #668071;
+  color: var(--muted);
 }
 .vocab-job-status.completed {
-  color: #3b8769;
+  color: var(--blue);
 }
 .vocab-job-status.failed {
-  color: #ac673c;
+  color: var(--blue);
 }
 .vocab-job > p {
   font-size: 12px;
-  color: #63736a;
+  color: var(--muted);
   line-height: 1.7;
   margin: 10px 0;
 }
@@ -295,17 +302,17 @@
 }
 .vocab-result-words > span {
   padding: 6px 10px;
-  background: #f0f5ef;
+  background: var(--surface-soft);
   border-radius: 8px;
   font-size: 11px;
-  color: #778576;
+  color: var(--muted);
 }
 .vocab-result-words b {
-  color: #425b49;
+  color: var(--ink);
   margin-right: 4px;
 }
 .vocab-job .vocab-job-warning {
-  color: #a57332;
+  color: var(--warning);
 }
 .vocab-form-columns {
   display: grid;
@@ -315,12 +322,12 @@
 .vocab-form-note {
   font-size: 12px;
   line-height: 1.8;
-  color: #788578;
+  color: var(--muted);
   margin: 0 0 5px;
 }
 .vocab-groups,
 .vocab-bands-field {
-  border: 1px solid #e3eae1;
+  border: 1px solid var(--line);
   border-radius: 12px;
   padding: 13px;
   display: flex;
@@ -330,7 +337,7 @@
 .vocab-groups legend,
 .vocab-bands-field legend {
   font-size: 12px;
-  color: #566c5a;
+  color: var(--muted);
   padding: 0 5px;
 }
 .vocab-groups label,
@@ -341,7 +348,7 @@
   gap: 7px !important;
   line-height: 1.5;
   font-size: 12px !important;
-  background: #f7f9f5;
+  background: var(--surface-soft);
   border-radius: 7px;
   padding: 7px 10px;
   cursor: pointer;
@@ -350,7 +357,7 @@
 .vocab-bands-field input {
   width: 15px !important;
   height: 15px;
-  accent-color: #457d61;
+  accent-color: var(--blue);
   margin: 0;
 }
 .vocab-upload {
@@ -360,11 +367,11 @@
   align-items: center;
   gap: 13px !important;
   padding: 19px;
-  border: 1px dashed #9bb9a1;
+  border: 1px dashed var(--blue-border);
   border-radius: 14px;
-  background: #f6f9f2;
+  background: var(--surface-soft);
   cursor: pointer;
-  color: #69936e;
+  color: var(--muted);
 }
 .vocab-upload input {
   position: absolute;
@@ -375,19 +382,19 @@
 .vocab-upload strong {
   display: block;
   font-size: 12px;
-  color: #546e50;
+  color: var(--muted);
   font-weight: 600;
 }
 .vocab-upload small {
   display: block;
   font-size: 10px;
   margin-top: 6px;
-  color: #8b9882;
+  color: var(--muted);
 }
 .vocab-image-preview {
   position: relative;
-  background: #f3f5f0;
-  border: 1px solid #e3e7df;
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
   border-radius: 12px;
   overflow: hidden;
   display: flex;
@@ -403,7 +410,7 @@
   position: absolute;
   right: 8px;
   top: 8px;
-  background: white;
+  background: var(--paper);
 }
 .vocab-form textarea {
   resize: vertical;
@@ -432,7 +439,7 @@
   white-space: normal;
 }
 .vocabulary-hub button:focus-visible {
-  outline: 3px solid #9bbdaa;
+  outline: 3px solid var(--focus);
   outline-offset: 3px;
 }
 @media (max-width: 1100px) {
@@ -603,14 +610,14 @@
   gap: 9px;
   font-size: 12px;
   margin: 18px 0;
-  color: #687c70;
+  color: var(--muted);
 }
 .vocabulary-hub .study-due-filter input {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
   margin: 0;
-  accent-color: #477b60;
+  accent-color: var(--blue);
 }
 .vocab-level-tabs {
   display: flex;
@@ -620,16 +627,16 @@
 }
 .vocab-level-tabs button {
   padding: 12px 20px;
-  border: 1px solid #d9e8f2;
+  border: 1px solid var(--line);
   border-radius: 12px;
-  background: #fff;
-  color: #587184;
+  background: var(--paper);
+  color: var(--muted);
   font-weight: 700;
 }
 .vocab-level-tabs button.active {
-  color: #0c6192;
-  background: #e7f5ff;
-  border-color: #8fcbed;
+  color: var(--ink);
+  background: var(--surface-soft);
+  border-color: var(--blue-border);
 }
 .vocab-book-grid {
   display: grid;
@@ -643,23 +650,23 @@
   align-items: flex-start;
   gap: 9px;
   padding: 22px;
-  border: 1px solid #d9e8f2;
+  border: 1px solid var(--line);
   border-radius: 16px;
-  background: white;
-  color: #496577;
+  background: var(--paper);
+  color: var(--muted);
   text-align: left;
 }
 .vocab-book-grid button.active {
-  background: #e9f6ff;
-  border-color: #62b4e7;
-  color: #09547f;
-  box-shadow: 0 5px 20px #277aa510;
+  background: var(--surface-soft);
+  border-color: var(--blue-border);
+  color: var(--ink);
+  box-shadow: 0 5px 20px color-mix(in srgb, var(--ink) 6.27%, transparent);
 }
 .vocab-book-grid strong {
   font-size: 19px;
 }
 .vocab-book-grid small {
-  color: #6e8291;
+  color: var(--muted);
 }
 .vocab-access-button {
   margin-bottom: 18px;
@@ -682,16 +689,16 @@
 }
 .vocab-topic {
   overflow: hidden;
-  border: 1px solid #dce7ec;
+  border: 1px solid var(--line);
   border-radius: 13px;
-  background: #fff;
+  background: var(--paper);
 }
 .vocab-topic.selected {
-  border-color: #7cbbe2;
-  background: #f1f9ff;
+  border-color: var(--blue-border);
+  background: var(--paper);
 }
 .vocab-topic.locked {
-  background: #f5f7f8;
+  background: var(--surface-soft);
 }
 .vocab-topic > button {
   display: flex;
@@ -703,10 +710,10 @@
   min-height: 90px;
   border: 0;
   background: transparent;
-  color: #264d65;
+  color: var(--ink);
 }
 .vocab-topic > button:disabled {
-  color: #8999a3;
+  color: var(--muted);
   cursor: default;
 }
 .vocab-topic strong {
@@ -716,7 +723,7 @@
 }
 .vocab-topic small {
   font-size: 11px;
-  color: #6f8490;
+  color: var(--muted);
 }
 .vocab-topic > label {
   display: flex;
@@ -724,13 +731,13 @@
   gap: 7px;
   padding: 8px 14px 12px;
   font-size: 11px;
-  color: #50758d;
+  color: var(--muted);
 }
 .vocab-topic input {
   width: 17px;
   height: 17px;
   margin: 0;
-  accent-color: #2380b8;
+  accent-color: var(--blue);
 }
 .vocab-quiz-bar {
   display: flex;
@@ -739,9 +746,9 @@
   flex-wrap: wrap;
   padding: 20px;
   margin-bottom: 25px;
-  border: 1px solid #c7e5f5;
+  border: 1px solid var(--line);
   border-radius: 16px;
-  background: #eaf7ff;
+  background: var(--surface-soft);
 }
 .vocab-quiz-bar > div {
   flex: 1;
@@ -754,7 +761,7 @@
 .vocab-quiz-bar small {
   font-size: 11px;
   margin-top: 7px;
-  color: #61849b;
+  color: var(--muted);
 }
 .vocab-quiz-bar label {
   font-size: 11px;
@@ -763,7 +770,7 @@
 }
 .vocab-quiz-bar select {
   padding: 8px;
-  background: white;
+  background: var(--paper);
 }
 @media (max-width: 900px) {
   .vocab-topic-grid {

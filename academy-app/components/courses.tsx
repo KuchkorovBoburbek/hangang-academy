@@ -5,6 +5,9 @@ import {
   ArrowRight,
   BookOpen,
   Check,
+  CircleCheckBig,
+  CircleX,
+  Clock3,
   ChevronDown,
   ChevronUp,
   Eye,
@@ -2297,7 +2300,7 @@ export function GroupBoard({
         <div className="course-shared-submissions">
           {data.submissions.map((submission) => (
             <button
-              className="course-shared-card"
+              className={`course-shared-card ${submission.review_outcome || 'pending'}`}
               key={submission.id}
               onClick={() => setSelected(submission)}
             >
@@ -2307,13 +2310,20 @@ export function GroupBoard({
                   <strong>{submission.student_name}</strong>
                   <small>{submission.assignment_title}</small>
                 </span>
-                <Badge tone={submission.review_outcome === 'success' ? 'green' : 'orange'}>
+                <span className={`course-review-status ${submission.review_outcome || 'pending'}`}>
+                  {submission.review_outcome === 'success' ? (
+                    <CircleCheckBig size={17} />
+                  ) : submission.review_outcome === 'fail' ? (
+                    <CircleX size={17} />
+                  ) : (
+                    <Clock3 size={17} />
+                  )}
                   {submission.review_outcome === 'success'
                     ? 'Success'
                     : submission.review_outcome === 'fail'
                       ? 'Fail'
                       : 'Tekshirilmoqda'}
-                </Badge>
+                </span>
               </div>
               <p lang="ko">{submission.body || 'Javob biriktirilgan faylda.'}</p>
               <small>
@@ -2394,13 +2404,31 @@ export function GroupBoard({
           wide
         >
           <div className="course-shared-detail">
-            <Badge tone={selected.review_outcome === 'success' ? 'green' : 'orange'}>
-              {selected.review_outcome === 'success'
-                ? 'Success'
-                : selected.review_outcome === 'fail'
-                  ? 'Fail · qayta topshirish kerak'
-                  : 'Tekshirilmoqda'}
-            </Badge>
+            <div className={`course-review-banner ${selected.review_outcome || 'pending'}`}>
+              {selected.review_outcome === 'success' ? (
+                <CircleCheckBig size={28} />
+              ) : selected.review_outcome === 'fail' ? (
+                <CircleX size={28} />
+              ) : (
+                <Clock3 size={28} />
+              )}
+              <div>
+                <strong>
+                  {selected.review_outcome === 'success'
+                    ? 'Success'
+                    : selected.review_outcome === 'fail'
+                      ? 'Fail · qayta topshirish kerak'
+                      : 'Tekshirilmoqda'}
+                </strong>
+                <small>
+                  {selected.review_outcome === 'success'
+                    ? 'Ustoz vazifani qabul qildi.'
+                    : selected.review_outcome === 'fail'
+                      ? 'Ustoz izohini o‘qib, vazifani qayta yuboring.'
+                      : 'Vazifa ustoz tekshiruvida.'}
+                </small>
+              </div>
+            </div>
             <div className="submitted-text" lang="ko">
               {selected.body || 'Javob biriktirilgan faylda.'}
             </div>

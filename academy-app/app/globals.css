@@ -451,6 +451,18 @@ input[readonly] {
   color: var(--on-blue);
   padding: 0 5px;
 }
+.nav-item .review-notice {
+  min-width: 21px;
+  min-height: 21px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px var(--blue-light);
+}
+.nav-item .review-notice.fail {
+  background: var(--warning);
+  box-shadow: 0 0 0 4px var(--warning-soft);
+}
 .sidebar-bottom {
   margin-top: auto;
   padding-top: 35px;
@@ -1854,6 +1866,21 @@ td small {
   padding: 24px;
   text-align: left;
 }
+.review-list-card.success {
+  border: 2px solid var(--blue);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--blue) 12%, transparent);
+}
+.review-list-card.fail {
+  border: 2px solid var(--warning);
+  background: color-mix(in srgb, var(--warning-soft) 48%, var(--paper));
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--warning) 12%, transparent);
+}
+.review-list-card.pending {
+  border-style: dashed;
+}
+.review-list-card .badge {
+  gap: 5px;
+}
 .review-list-card > div {
   display: flex;
   justify-content: space-between;
@@ -3170,6 +3197,27 @@ td small {
     min-height: 46px;
     padding: 5px 6px;
     flex: 1;
+    position: relative;
+  }
+  .mobile-review-notice {
+    position: absolute;
+    top: 0;
+    left: calc(50% + 7px);
+    min-width: 18px;
+    height: 18px;
+    display: grid;
+    place-items: center;
+    padding: 0 4px;
+    border-radius: 10px;
+    background: var(--blue);
+    color: var(--on-blue);
+    border: 2px solid var(--paper);
+    font-size: 9px;
+    line-height: 1;
+    z-index: 1;
+  }
+  .mobile-review-notice.fail {
+    background: var(--warning);
   }
   .mobile-nav button.active {
     color: var(--blue);

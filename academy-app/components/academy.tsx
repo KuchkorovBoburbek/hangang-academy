@@ -80,6 +80,24 @@ export default function Academy() {
   const [starting, setStarting] = useState(false);
   const [submission, setSubmission] = useState<Submission | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [reviewSeenAt, setReviewSeenAt] = useState('');
+  const reviewedSubmissions =
+    state?.user.role === 'student'
+      ? (state as State & StudentData).submissions.filter((item) => !!item.review_outcome)
+      : [];
+  const latestReviewAt = reviewedSubmissions.reduce(
+    (latest, item) => (item.updated_at > latest ? item.updated_at : latest),
+    '',
+  );
+  useEffect(() => {
+    if (!state || state.user.role !== 'student') return;
+    const key = `hangang-review-seen:${state.user.id}`;
+    const stored = window.localStorage.getItem(key) || '';
+    if (pathname === '/my-group' && latestReviewAt) {
+      window.localStorage.setItem(key, latestReviewAt);
+      setReviewSeenAt(latestReviewAt);
+    } else setReviewSeenAt(stored);
+  }, [latestReviewAt, pathname, state?.user.id, state?.user.role]);
   const refresh = useCallback(async () => {
     try {
       const result = await api<State>('state');
@@ -93,6 +111,11 @@ export default function Academy() {
   useEffect(() => {
     refresh();
   }, [refresh, pathname]);
+  useEffect(() => {
+    if (state?.user.role !== 'student') return;
+    const timer = window.setInterval(refresh, 15000);
+    return () => window.clearInterval(timer);
+  }, [refresh, state?.user.role]);
   useEffect(() => {
     if (notice) {
       const t = setTimeout(() => setNotice(''), 5000);
@@ -167,6 +190,9 @@ export default function Academy() {
   const title = pathname === '/settings' ? 'Sozlamalar' : page?.label || 'HangangAcademy';
   const student = state as State & StudentData;
   const teacher = state as State & TeacherData;
+  const unseenReviews = reviewedSubmissions.filter((item) => item.updated_at > reviewSeenAt);
+  const reviewNoticeCount = unseenReviews.length;
+  const reviewNoticeHasFail = unseenReviews.some((item) => item.review_outcome === 'fail');
   const mobileNav = isTeacher
     ? nav
     : [
@@ -197,6 +223,11 @@ export default function Academy() {
               <span>{n.label}</span>
               {n.path === '/reviews' && isTeacher && teacher.stats.pending > 0 && (
                 <b>{teacher.stats.pending}</b>
+              )}
+              {n.path === '/my-group' && reviewNoticeCount > 0 && (
+                <b className={reviewNoticeHasFail ? 'review-notice fail' : 'review-notice'}>
+                  {reviewNoticeCount}
+                </b>
               )}
             </button>
           ))}
@@ -368,6 +399,15 @@ export default function Academy() {
             onClick={() => go(n.path)}
           >
             <n.icon size={21} />
+            {n.path === '/my-group' && reviewNoticeCount > 0 && (
+              <b
+                className={
+                  reviewNoticeHasFail ? 'mobile-review-notice fail' : 'mobile-review-notice'
+                }
+              >
+                {reviewNoticeCount}
+              </b>
+            )}
             <span>
               {n.path === '/topik'
                 ? 'TOPIK'
@@ -413,6 +453,11 @@ export default function Academy() {
               >
                 <n.icon size={21} />
                 <span>{n.label}</span>
+                {n.path === '/my-group' && reviewNoticeCount > 0 && (
+                  <b className={reviewNoticeHasFail ? 'review-notice fail' : 'review-notice'}>
+                    {reviewNoticeCount}
+                  </b>
+                )}
                 <ChevronRight size={18} />
               </button>
             ))}

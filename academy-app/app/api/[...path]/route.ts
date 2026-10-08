@@ -62,6 +62,7 @@ import {
   viewSession,
   submissionAccess,
   enqueueNotification,
+  feedbackNotification,
   withSubmissionDetails,
 } from '@/lib/learning';
 import {
@@ -897,7 +898,7 @@ async function handle(req: NextRequest, ctx: { params: Promise<{ path: string[] 
       enqueueNotification(
         s.user_id,
         'feedback',
-        `“${s.assignment_title}” vazifangiz ${b.outcome === 'success' ? 'Success' : 'Fail — qayta topshiring'} deb baholandi. Ustoz izohini ilovada o‘qing.`,
+        feedbackNotification(s.assignment_title || 'Vazifa', b.outcome, b.feedback, b.score),
         `feedback-${s.id}-${now()}`,
       );
       return json({ ok: true });

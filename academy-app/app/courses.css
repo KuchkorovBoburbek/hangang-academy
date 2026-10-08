@@ -708,6 +708,18 @@
   color: var(--ink);
   text-align: left;
 }
+.course-shared-card.success {
+  border: 2px solid var(--blue);
+  box-shadow: 0 8px 25px color-mix(in srgb, var(--blue) 13%, transparent);
+}
+.course-shared-card.fail {
+  border: 2px solid var(--warning);
+  background: color-mix(in srgb, var(--warning-soft) 52%, var(--paper));
+  box-shadow: 0 8px 25px color-mix(in srgb, var(--warning) 13%, transparent);
+}
+.course-shared-card.pending {
+  border-style: dashed;
+}
 .course-shared-card:hover {
   border-color: var(--blue-border);
   background: var(--blue-light);
@@ -737,6 +749,64 @@
   -webkit-line-clamp: 3;
   line-clamp: 3;
   line-height: 1.7;
+}
+.course-review-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  padding: 7px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.course-review-status.success {
+  color: var(--on-blue);
+  background: var(--blue);
+}
+.course-review-status.fail {
+  color: var(--paper);
+  background: var(--warning);
+}
+.course-review-status.pending {
+  color: var(--muted);
+  background: var(--surface-soft);
+}
+.course-review-banner {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 18px;
+  border: 2px solid;
+  border-radius: 15px;
+}
+.course-review-banner > div {
+  display: grid;
+  gap: 4px;
+}
+.course-review-banner strong {
+  font-size: 18px;
+}
+.course-review-banner small {
+  line-height: 1.6;
+}
+.course-review-banner.success {
+  color: var(--blue);
+  border-color: var(--blue);
+  background: var(--blue-light);
+}
+.course-review-banner.fail {
+  color: var(--warning);
+  border-color: var(--warning);
+  background: var(--warning-soft);
+}
+.course-review-banner.pending {
+  color: var(--muted);
+  border-color: var(--line);
+  border-style: dashed;
+  background: var(--surface-soft);
 }
 .course-shared-detail {
   display: grid;

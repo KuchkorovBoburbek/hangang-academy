@@ -546,3 +546,15 @@ export function enqueueNotification(
     availableAt,
   );
 }
+
+export function feedbackNotification(
+  title: string,
+  outcome: 'success' | 'fail',
+  feedback: string,
+  score: number,
+) {
+  const status = outcome === 'success' ? '✅ SUCCESS' : '❌ FAIL · QAYTA TOPSHIRISH KERAK';
+  return [status, `“${title}”`, `Baho: ${score}/100`, '', 'Ustoz izohi:', feedback.trim()]
+    .join('\n')
+    .slice(0, 3900);
+}

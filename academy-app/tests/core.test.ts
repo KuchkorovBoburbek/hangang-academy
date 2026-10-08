@@ -14,6 +14,7 @@ import {
   viewSession,
   submissionAccess,
   withSubmissionDetails,
+  feedbackNotification,
 } from '../lib/learning';
 import { validateFile } from '../lib/files';
 import { normalizeReview, evaluateSubmission } from '../lib/ai';
@@ -148,6 +149,14 @@ describe('Telegram identity and reminders', () => {
     expect(
       many("SELECT * FROM notifications WHERE kind='reminder' AND user_id=?", other.id),
     ).toHaveLength(1);
+  });
+  it('puts the review outcome and teacher comment directly in Telegram notifications', () => {
+    expect(feedbackNotification('Insho', 'success', 'Juda yaxshi yozilgan.', 92)).toContain(
+      '✅ SUCCESS\n“Insho”\nBaho: 92/100\n\nUstoz izohi:\nJuda yaxshi yozilgan.',
+    );
+    expect(feedbackNotification('Gapirish', 'fail', 'Talaffuzni qayta yozing.', 48)).toContain(
+      '❌ FAIL · QAYTA TOPSHIRISH KERAK',
+    );
   });
 });
 

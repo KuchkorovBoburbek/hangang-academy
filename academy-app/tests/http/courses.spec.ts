@@ -300,6 +300,9 @@ test('Premium course editor and student lesson are usable on desktop and phone',
   await sp.goto('/', { waitUntil: 'domcontentloaded' });
   await expect(sp.getByRole('heading', { name: /안녕하세요/ })).toBeVisible();
   await expect(sp.getByRole('button', { name: 'TOPIK 읽기', exact: true })).toHaveCount(0);
+  await expect(
+    sp.getByRole('navigation', { name: 'Telefon menyusi' }).locator('.mobile-review-notice'),
+  ).toHaveText('2');
   await sp.screenshot({ path: 'test-results/course-student-home-mobile.png', fullPage: true });
   await sp.goto(`/lessons/${releaseId}`, { waitUntil: 'domcontentloaded' });
   await expect(sp.getByRole('heading', { name: 'Oila — 가족', exact: true })).toBeVisible();
@@ -316,6 +319,8 @@ test('Premium course editor and student lesson are usable on desktop and phone',
   );
   await sp.goto('/my-group', { waitUntil: 'domcontentloaded' });
   await expect(sp.getByRole('heading', { name: 'Guruh reytingi' })).toBeVisible();
+  await expect(sp.locator('.mobile-review-notice')).toHaveCount(0);
+  await expect(sp.locator('.course-shared-card.success')).toHaveCount(2);
   await sp.screenshot({ path: 'test-results/course-board-mobile.png', fullPage: true });
   await sc.close();
 });

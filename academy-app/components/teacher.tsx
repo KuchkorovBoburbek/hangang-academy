@@ -635,7 +635,11 @@ export function Reviews({
       </div>
       <div className="review-grid">
         {data.submissions.filter(matches).map((s) => (
-          <button className="review-list-card" key={s.id} onClick={() => openReview(s)}>
+          <button
+            className={`review-list-card ${s.review_outcome || 'pending'}`}
+            key={s.id}
+            onClick={() => openReview(s)}
+          >
             <div>
               <div className="student-cell">
                 <div className="avatar">{s.student_name?.[0]}</div>
@@ -645,11 +649,17 @@ export function Reviews({
                 </div>
               </div>
               <Badge tone={s.review_outcome === 'success' ? 'green' : 'orange'}>
-                {s.review_outcome === 'success'
-                  ? `Success · ${s.score}/100`
-                  : s.review_outcome === 'fail'
-                    ? `Fail · ${s.score}/100`
-                    : 'Tekshirish kerak'}
+                {s.review_outcome === 'success' ? (
+                  <>
+                    <Check size={14} /> Success · {s.score}/100
+                  </>
+                ) : s.review_outcome === 'fail' ? (
+                  <>
+                    <AlertCircle size={14} /> Fail · {s.score}/100
+                  </>
+                ) : (
+                  'Tekshirish kerak'
+                )}
               </Badge>
             </div>
             <h2>{s.assignment_title}</h2>

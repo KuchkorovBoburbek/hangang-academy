@@ -268,6 +268,12 @@ test('Premium course editor and student lesson are usable on desktop and phone',
   await page.getByRole('button', { name: 'Saqlash', exact: true }).first().click();
   await expect(page.getByRole('status')).toContainText('Dars qoralamasi saqlandi.');
   await page.screenshot({ path: 'test-results/course-editor-desktop.png', fullPage: true });
+  await page.getByRole('button', { name: 'Guruhga ochish', exact: true }).click();
+  await expect(page.getByRole('dialog')).toContainText('Ochiladigan qismlar');
+  await expect(page.getByRole('dialog')).toContainText('dars ochilgan, material qo‘shish mumkin');
+  await expect(page.getByLabel('O‘quvchilarga ochiladigan vaqt')).toBeVisible();
+  await expect(page.getByText('O‘quvchilarga xabar yuborish')).toBeVisible();
+  await page.getByRole('button', { name: 'Yopish', exact: true }).click();
   await page.getByRole('button', { name: 'O‘quvchi ko‘rinishi' }).click();
   await expect(page.getByRole('dialog')).toBeVisible();
   await page.getByRole('button', { name: 'Yopish', exact: true }).click();

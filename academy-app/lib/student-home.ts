@@ -39,7 +39,7 @@ export function homeTasks(data: HomeData): HomeTask[] {
       kind: t.kind,
       status: t.status,
       lesson: `${r.position}-dars · ${r.title}`,
-      dueAt: r.due_at,
+      dueAt: t.dueAt || r.due_at,
       path: `/lessons/${r.id}#material-${t.materialId}`,
     })),
   );

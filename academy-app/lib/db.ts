@@ -11,7 +11,7 @@ export const dataDir = () =>
 export const now = () => new Date().toISOString();
 export const id = () => randomUUID();
 export function db() {
-  if (globalDb.academyDb && globalDb.academySchemaVersion === 14) return globalDb.academyDb;
+  if (globalDb.academyDb && globalDb.academySchemaVersion === 15) return globalDb.academyDb;
   fs.mkdirSync(dataDir(), { recursive: true });
   const connection = globalDb.academyDb || new DatabaseSync(path.join(dataDir(), 'academy.sqlite'));
   connection.exec('PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON; PRAGMA busy_timeout=10000;');
@@ -36,7 +36,7 @@ export function db() {
  CREATE TABLE IF NOT EXISTS attachments(id TEXT PRIMARY KEY,submission_id TEXT NOT NULL REFERENCES submissions(id) ON DELETE CASCADE,name TEXT NOT NULL,mime TEXT NOT NULL,size INTEGER NOT NULL,disk_name TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS ai_jobs(id TEXT PRIMARY KEY,submission_id TEXT NOT NULL REFERENCES submissions(id),requested_by TEXT NOT NULL REFERENCES users(id),status TEXT NOT NULL DEFAULT 'queued',model TEXT NOT NULL,result TEXT,error TEXT,created_at TEXT NOT NULL,updated_at TEXT NOT NULL);
  CREATE UNIQUE INDEX IF NOT EXISTS ai_active ON ai_jobs(submission_id) WHERE status IN ('queued','running');
- CREATE TABLE IF NOT EXISTS notifications(id TEXT PRIMARY KEY,user_id TEXT NOT NULL REFERENCES users(id),kind TEXT NOT NULL,body TEXT NOT NULL,dedupe_key TEXT NOT NULL UNIQUE,status TEXT NOT NULL DEFAULT 'pending',attempts INTEGER NOT NULL DEFAULT 0,error TEXT,created_at TEXT NOT NULL,sent_at TEXT);
+ CREATE TABLE IF NOT EXISTS notifications(id TEXT PRIMARY KEY,user_id TEXT NOT NULL REFERENCES users(id),kind TEXT NOT NULL,body TEXT NOT NULL,dedupe_key TEXT NOT NULL UNIQUE,status TEXT NOT NULL DEFAULT 'pending',attempts INTEGER NOT NULL DEFAULT 0,error TEXT,created_at TEXT NOT NULL,sent_at TEXT,available_at TEXT NOT NULL DEFAULT '');
  CREATE TABLE IF NOT EXISTS telegram_links(token_hash TEXT PRIMARY KEY,user_id TEXT NOT NULL REFERENCES users(id),expires_at TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS rate_limits(key TEXT PRIMARY KEY,count INTEGER NOT NULL,expires_at INTEGER NOT NULL);
  CREATE INDEX IF NOT EXISTS quiz_user ON quiz_sessions(user_id,started_at);
@@ -53,6 +53,7 @@ export function db() {
  CREATE TABLE IF NOT EXISTS course_lessons(id TEXT PRIMARY KEY,course_id TEXT NOT NULL REFERENCES courses(id),position INTEGER NOT NULL,body TEXT NOT NULL,revision INTEGER NOT NULL DEFAULT 0,updated_at TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS course_files(id TEXT PRIMARY KEY,lesson_id TEXT NOT NULL REFERENCES course_lessons(id),name TEXT NOT NULL,mime TEXT NOT NULL,size INTEGER NOT NULL,disk_name TEXT NOT NULL,created_at TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS course_releases(id TEXT PRIMARY KEY,group_id TEXT NOT NULL REFERENCES groups(id),lesson_id TEXT NOT NULL REFERENCES course_lessons(id),lesson_date TEXT NOT NULL,due_at TEXT NOT NULL,snapshot TEXT NOT NULL,opened_at TEXT NOT NULL,UNIQUE(group_id,lesson_id));
+ CREATE TABLE IF NOT EXISTS course_release_items(release_id TEXT NOT NULL REFERENCES course_releases(id),item_id TEXT NOT NULL,available_at TEXT NOT NULL,due_at TEXT NOT NULL,published_at TEXT NOT NULL,PRIMARY KEY(release_id,item_id));
  CREATE TABLE IF NOT EXISTS course_assignments(release_id TEXT NOT NULL REFERENCES course_releases(id),material_id TEXT NOT NULL,assignment_id TEXT NOT NULL UNIQUE REFERENCES assignments(id),PRIMARY KEY(release_id,material_id));
  CREATE TABLE IF NOT EXISTS course_tasks(release_id TEXT NOT NULL REFERENCES course_releases(id),material_id TEXT NOT NULL,user_id TEXT NOT NULL REFERENCES users(id),score INTEGER NOT NULL,total INTEGER NOT NULL,completed_at TEXT NOT NULL,PRIMARY KEY(release_id,material_id,user_id));
  CREATE TABLE IF NOT EXISTS course_bot_state(user_id TEXT PRIMARY KEY REFERENCES users(id),lesson_id TEXT REFERENCES course_lessons(id),updated_at TEXT NOT NULL);
@@ -128,6 +129,31 @@ export function db() {
     }[];
     if (!notificationColumns.some((c) => c.name === 'telegram_markup'))
       connection.exec('ALTER TABLE notifications ADD COLUMN telegram_markup TEXT');
+    if (!notificationColumns.some((c) => c.name === 'available_at'))
+      connection.exec("ALTER TABLE notifications ADD COLUMN available_at TEXT NOT NULL DEFAULT ''");
+    if (!connection.prepare("SELECT key FROM app_meta WHERE key='course-release-items-v1'").get()) {
+      for (const release of connection
+        .prepare('SELECT id,snapshot,due_at,opened_at FROM course_releases')
+        .all() as { id: string; snapshot: string; due_at: string; opened_at: string }[]) {
+        const snapshot = JSON.parse(release.snapshot) as {
+          youtubeUrl?: string;
+          materials?: { id: string }[];
+        };
+        const itemIds = [
+          ...(snapshot.youtubeUrl ? ['video'] : []),
+          ...(snapshot.materials || []).map((material) => material.id),
+        ];
+        for (const itemId of itemIds)
+          connection
+            .prepare(
+              'INSERT OR IGNORE INTO course_release_items(release_id,item_id,available_at,due_at,published_at) VALUES(?,?,?,?,?)',
+            )
+            .run(release.id, itemId, release.opened_at, release.due_at, release.opened_at);
+      }
+      connection
+        .prepare("INSERT INTO app_meta(key,value) VALUES('course-release-items-v1',?)")
+        .run(now());
+    }
     if (!columns.some((c) => c.name === 'provider'))
       connection.exec("ALTER TABLE ai_jobs ADD COLUMN provider TEXT NOT NULL DEFAULT 'openai'");
     const vocabularyColumns = connection.prepare('PRAGMA table_info(topik_vocabulary)').all() as {
@@ -191,7 +217,7 @@ export function db() {
     throw error;
   }
   globalDb.academyDb = connection;
-  globalDb.academySchemaVersion = 14;
+  globalDb.academySchemaVersion = 15;
   return connection;
 }
 export function one<T = Record<string, unknown>>(

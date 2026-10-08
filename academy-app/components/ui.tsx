@@ -96,13 +96,15 @@ export function SubmitButton({
   busy,
   children,
   className = 'button primary',
+  disabled = false,
 }: {
   busy: boolean;
   children: React.ReactNode;
   className?: string;
+  disabled?: boolean;
 }) {
   return (
-    <button type="submit" disabled={busy} className={className}>
+    <button type="submit" disabled={busy || disabled} className={className}>
       {busy ? <LoaderCircle className="spin" size={18} /> : null}
       {children}
     </button>

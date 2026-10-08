@@ -51,6 +51,45 @@
 .course-space .button-row {
   flex-wrap: wrap;
 }
+.course-publish-items {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.course-publish-items legend {
+  margin-bottom: 9px;
+  font-weight: 750;
+}
+.course-publish-items .checkbox-label,
+.course-notify-choice {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  gap: 12px;
+  padding: 13px 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+}
+.course-publish-items .checkbox-label:has(input:checked),
+.course-notify-choice:has(input:checked) {
+  border-color: var(--blue-border);
+  background: var(--blue-light);
+}
+.course-publish-items .checkbox-label > span:last-child,
+.course-notify-choice > span {
+  display: grid;
+  gap: 3px;
+}
+.course-publish-items small,
+.course-notify-choice small {
+  color: var(--muted);
+  font-weight: 500;
+}
+.course-notify-choice {
+  grid-template-columns: auto minmax(0, 1fr);
+}
 .course-levels {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

@@ -1,4 +1,4 @@
-import { many, one } from './db';
+import { many, one, now } from './db';
 import { AppError } from './auth';
 import type { User } from './types';
 import type { CourseLevel, LessonBody } from './course-types';
@@ -17,10 +17,24 @@ export function courseAccess(user: User) {
     user.group_id || '',
   );
   const snapshots = course
-    ? many<{ snapshot: string }>(
-        'SELECT snapshot FROM course_releases WHERE group_id=?',
+    ? many<{ id: string; snapshot: string }>(
+        'SELECT id,snapshot FROM course_releases WHERE group_id=?',
         user.group_id || '',
-      ).map((r) => JSON.parse(r.snapshot) as LessonBody)
+      ).map((r) => {
+        const snapshot = JSON.parse(r.snapshot) as LessonBody;
+        const active = new Set(
+          many<{ item_id: string }>(
+            'SELECT item_id FROM course_release_items WHERE release_id=? AND available_at<=?',
+            r.id,
+            now(),
+          ).map((item) => item.item_id),
+        );
+        return {
+          ...snapshot,
+          youtubeUrl: active.has('video') ? snapshot.youtubeUrl : '',
+          materials: snapshot.materials.filter((material) => active.has(material.id)),
+        };
+      })
     : [];
   const materials = snapshots.flatMap((s) => s.materials);
   return {

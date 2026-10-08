@@ -249,6 +249,8 @@ function LessonEditor({
     [dirty, setDirty] = useState(false),
     [preview, setPreview] = useState(false),
     [opening, setOpening] = useState(false),
+    [publishMaterials, setPublishMaterials] = useState<string[]>([]),
+    [publishVideo, setPublishVideo] = useState(false),
     [picker, setPicker] = useState<{ id: string; kind: 'word' | 'grammar' } | null>(null),
     [query, setQuery] = useState(''),
     [ai, setAi] = useState<string | null>(null),
@@ -833,7 +835,11 @@ function LessonEditor({
           <button
             className="button primary"
             disabled={busy || dirty || (!lesson.materials.length && !lesson.youtubeUrl)}
-            onClick={() => setOpening(true)}
+            onClick={() => {
+              setPublishMaterials(lesson.materials.map((material) => material.id));
+              setPublishVideo(!!lesson.youtubeUrl);
+              setOpening(true);
+            }}
           >
             <LockKeyhole size={16} />
             Guruhga ochish
@@ -841,10 +847,10 @@ function LessonEditor({
         </div>
       </div>
       {opening && (
-        <Modal title="Darsni guruhga ochish" onClose={() => setOpening(false)}>
+        <Modal title="Materiallarni guruhga ochish" onClose={() => setOpening(false)} wide>
           <p>
-            Ochilgan nusxa saqlanadi. Keyingi qoralama tahrirlari o‘quvchi vazifalarini
-            o‘zgartirmaydi.
+            Kerakli video, mavzu va vazifalarni tanlang. Shu dars avval ochilgan bo‘lsa, yangi
+            tanlov mavjud darsga qo‘shiladi.
           </p>
           {!groups.length ? (
             <Empty title="Mos guruh yo‘q">
@@ -861,10 +867,13 @@ function LessonEditor({
                 try {
                   await post(`lessons/${lessonId}/open`, {
                     groupId: fd.get('groupId'),
-                    date: fd.get('date'),
+                    availableAt: new Date(String(fd.get('availableAt'))).toISOString(),
                     dueAt: new Date(String(fd.get('dueAt'))).toISOString(),
+                    materialIds: publishMaterials,
+                    includeVideo: publishVideo,
+                    notify: fd.get('notify') === 'on',
                   });
-                  notify('Dars guruhga ochildi.');
+                  notify('Tanlangan materiallar guruhga ochildi.');
                   setOpening(false);
                   onChange();
                 } catch (e) {
@@ -878,35 +887,94 @@ function LessonEditor({
                 Guruh
                 <select name="groupId" required>
                   {groups.map((g) => (
-                    <option
-                      key={g.id}
-                      value={g.id}
-                      disabled={catalog.releases.some(
-                        (r) => r.lesson_id === lessonId && r.group_id === g.id,
-                      )}
-                    >
+                    <option key={g.id} value={g.id}>
                       {g.name}
                       {catalog.releases.some((r) => r.lesson_id === lessonId && r.group_id === g.id)
-                        ? ' · ochilgan'
+                        ? ' · dars ochilgan, material qo‘shish mumkin'
                         : ''}
                     </option>
                   ))}
                 </select>
               </label>
-              <label>
-                Dars sanasi
-                <input
-                  type="date"
-                  name="date"
-                  defaultValue={new Date().toLocaleDateString('en-CA')}
-                  required
-                />
+              <fieldset className="course-publish-items">
+                <legend>Ochiladigan qismlar</legend>
+                {lesson.youtubeUrl && (
+                  <label className="checkbox-label">
+                    <input
+                      type="checkbox"
+                      checked={publishVideo}
+                      onChange={(event) => setPublishVideo(event.target.checked)}
+                    />
+                    <Video size={18} />
+                    <span>
+                      <strong>YouTube video</strong>
+                      <small>Dars sahifasining yuqorisida ko‘rinadi</small>
+                    </span>
+                  </label>
+                )}
+                {lesson.materials.map((material) => (
+                  <label className="checkbox-label" key={material.id}>
+                    <input
+                      type="checkbox"
+                      checked={publishMaterials.includes(material.id)}
+                      onChange={(event) =>
+                        setPublishMaterials((items) =>
+                          event.target.checked
+                            ? [...items, material.id]
+                            : items.filter((item) => item !== material.id),
+                        )
+                      }
+                    />
+                    <span lang="ko">{label(material.kind)?.ko}</span>
+                    <span>
+                      <strong>{material.title}</strong>
+                      <small>
+                        {material.task === 'none'
+                          ? 'O‘quv materiali'
+                          : material.task === 'quiz'
+                            ? 'Quiz vazifasi'
+                            : 'Uyga vazifa'}
+                      </small>
+                    </span>
+                  </label>
+                ))}
+              </fieldset>
+              <div className="form-two">
+                <label>
+                  O‘quvchilarga ochiladigan vaqt
+                  <input
+                    type="datetime-local"
+                    name="availableAt"
+                    defaultValue={new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+                      .toISOString()
+                      .slice(0, 16)}
+                    required
+                  />
+                </label>
+                <label>
+                  Vazifalar muddati
+                  <input
+                    type="datetime-local"
+                    name="dueAt"
+                    defaultValue={new Date(
+                      Date.now() + 7 * 86400000 - new Date().getTimezoneOffset() * 60000,
+                    )
+                      .toISOString()
+                      .slice(0, 16)}
+                    required
+                  />
+                </label>
+              </div>
+              <label className="checkbox-label course-notify-choice">
+                <input type="checkbox" name="notify" defaultChecked />
+                <span>
+                  <strong>O‘quvchilarga xabar yuborish</strong>
+                  <small>Telegram ulangan bo‘lsa, xabar ochilish vaqtida yuboriladi.</small>
+                </span>
               </label>
-              <label>
-                Vazifalar muddati
-                <input type="datetime-local" name="dueAt" required />
-              </label>
-              <SubmitButton busy={busy}>Darsni ochish</SubmitButton>
+              <SubmitButton busy={busy} disabled={!publishMaterials.length && !publishVideo}>
+                Tanlanganlarni ochish
+              </SubmitButton>
             </form>
           )}
         </Modal>
@@ -1686,7 +1754,7 @@ export function StudentLesson({
               releaseId={releaseId}
               material={m}
               status={lesson.tasks.find((t) => t.materialId === m.id)!}
-              dueAt={lesson.due_at}
+              dueAt={lesson.tasks.find((t) => t.materialId === m.id)?.dueAt || lesson.due_at}
               notify={notify}
               refresh={load}
             />

@@ -91,7 +91,8 @@ export async function sendNotifications() {
     reminder_enabled: number;
     created_at: string;
   }>(
-    "SELECT n.*,u.telegram_id,u.reminder_enabled FROM notifications n JOIN users u ON u.id=n.user_id WHERE n.status='pending' AND n.attempts<3 AND u.telegram_id IS NOT NULL ORDER BY n.created_at LIMIT 15",
+    "SELECT n.*,u.telegram_id,u.reminder_enabled FROM notifications n JOIN users u ON u.id=n.user_id WHERE n.status='pending' AND n.attempts<3 AND u.telegram_id IS NOT NULL AND (n.available_at='' OR n.available_at<=?) ORDER BY n.created_at LIMIT 15",
+    now(),
   );
   for (const n of notifications) {
     if (

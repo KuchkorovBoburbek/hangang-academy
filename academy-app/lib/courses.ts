@@ -267,41 +267,113 @@ export function saveLesson(user: User, lessonId: string, input: unknown) {
 }
 export function openLesson(user: User, lessonId: string, input: unknown) {
   const b = z
-    .object({ groupId: z.string().uuid(), date: z.iso.date(), dueAt: z.iso.datetime() })
+    .object({
+      groupId: z.string().uuid(),
+      date: z.iso.date().optional(),
+      availableAt: z.iso.datetime().optional(),
+      dueAt: z.iso.datetime(),
+      materialIds: z.array(z.string().uuid()).max(30).optional(),
+      includeVideo: z.boolean().optional(),
+      notify: z.boolean().default(false),
+    })
     .parse(input);
   teacherGroup(user, b.groupId);
   const lesson = ownLesson(user, lessonId);
   const group = one<Group>('SELECT * FROM groups WHERE id=?', b.groupId)!;
   if (group.course_id !== lesson.course_id)
     throw new AppError(400, 'Guruh va dars bir dasturga tegishli bo‘lishi kerak.');
-  if (!lesson.materials.length && !lesson.youtubeUrl)
-    throw new AppError(400, 'Avval darsga material yoki YouTube video qo‘shing.');
+  const selectedIds = b.materialIds || lesson.materials.map((material) => material.id);
+  const selected = lesson.materials.filter((material) => selectedIds.includes(material.id));
+  if (selected.length !== selectedIds.length)
+    throw new AppError(400, 'Tanlangan material dars qoralamasida topilmadi.');
+  const includeVideo = b.includeVideo ?? !!lesson.youtubeUrl;
+  if (!selected.length && !(includeVideo && lesson.youtubeUrl))
+    throw new AppError(400, 'Kamida bitta material yoki YouTube videoni tanlang.');
+  const availableAt = b.availableAt || now();
+  const validationStart = b.availableAt || (b.date ? `${b.date}T00:00:00.000Z` : availableAt);
+  if (Date.parse(b.dueAt) <= Date.parse(validationStart))
+    throw new AppError(400, 'Vazifa muddati ochilish vaqtidan keyin bo‘lishi kerak.');
   return transaction(() => {
-    const existing = one<{ id: string }>(
-      'SELECT id FROM course_releases WHERE group_id=? AND lesson_id=?',
+    const existing = one<{ id: string; snapshot: string }>(
+      'SELECT id,snapshot FROM course_releases WHERE group_id=? AND lesson_id=?',
       group.id,
       lessonId,
     );
-    if (existing) return existing;
-    const rid = id();
+    // Keep old clients idempotent: the explicit material list is what opts into adding/updating content.
+    if (existing && b.materialIds === undefined && b.availableAt === undefined)
+      return { id: existing.id };
+    const rid = existing?.id || id();
+    const previous = existing ? lessonSchema.parse(JSON.parse(existing.snapshot)) : null;
+    const publishedIds = new Set([
+      ...(previous?.materials.map((material) => material.id) || []),
+      ...selectedIds,
+    ]);
+    const previousMaterials = new Map(
+      (previous?.materials || []).map((material) => [material.id, material]),
+    );
+    const current = lesson.materials
+      .filter((material) => publishedIds.has(material.id))
+      .map((material) =>
+        selectedIds.includes(material.id)
+          ? material
+          : previousMaterials.get(material.id) || material,
+      );
+    const retired = (previous?.materials || []).filter(
+      (material) => !lesson.materials.some((draft) => draft.id === material.id),
+    );
     const snapshot: LessonBody = {
-      title: lesson.title,
-      description: lesson.description,
-      youtubeUrl: lesson.youtubeUrl,
-      materials: lesson.materials,
-      warmup: lesson.warmup,
+      title: previous?.title || lesson.title,
+      description: previous?.description || lesson.description,
+      youtubeUrl: includeVideo ? lesson.youtubeUrl : previous?.youtubeUrl || '',
+      materials: [...current, ...retired],
+      warmup: previous?.warmup || lesson.warmup,
     };
-    run(
-      'INSERT INTO course_releases(id,group_id,lesson_id,lesson_date,due_at,snapshot,opened_at) VALUES(?,?,?,?,?,?,?)',
-      rid,
-      group.id,
-      lessonId,
-      b.date,
-      b.dueAt,
-      JSON.stringify(snapshot),
-      now(),
-    );
-    for (const m of lesson.materials.filter((m) => ['text', 'upload', 'audio'].includes(m.task))) {
+    if (existing)
+      run(
+        'UPDATE course_releases SET snapshot=?,due_at=? WHERE id=?',
+        JSON.stringify(snapshot),
+        b.dueAt,
+        rid,
+      );
+    else
+      run(
+        'INSERT INTO course_releases(id,group_id,lesson_id,lesson_date,due_at,snapshot,opened_at) VALUES(?,?,?,?,?,?,?)',
+        rid,
+        group.id,
+        lessonId,
+        b.date || availableAt.slice(0, 10),
+        b.dueAt,
+        JSON.stringify(snapshot),
+        now(),
+      );
+    const publishedAt = now();
+    const itemIds = [...selectedIds, ...(includeVideo && lesson.youtubeUrl ? ['video'] : [])];
+    for (const itemId of itemIds)
+      run(
+        'INSERT INTO course_release_items(release_id,item_id,available_at,due_at,published_at) VALUES(?,?,?,?,?) ON CONFLICT(release_id,item_id) DO UPDATE SET available_at=excluded.available_at,due_at=excluded.due_at,published_at=excluded.published_at',
+        rid,
+        itemId,
+        availableAt,
+        b.dueAt,
+        publishedAt,
+      );
+    for (const m of selected.filter((m) => ['text', 'upload', 'audio'].includes(m.task))) {
+      const linked = one<{ assignment_id: string }>(
+        'SELECT assignment_id FROM course_assignments WHERE release_id=? AND material_id=?',
+        rid,
+        m.id,
+      );
+      if (linked) {
+        if (!one('SELECT id FROM submissions WHERE assignment_id=?', linked.assignment_id))
+          run(
+            'UPDATE assignments SET title=?,prompt=?,due_at=? WHERE id=?',
+            `${lesson.title} · ${m.title}`,
+            m.body || m.title,
+            b.dueAt,
+            linked.assignment_id,
+          );
+        continue;
+      }
       const aid = id();
       run(
         'INSERT INTO assignments(id,group_id,title,kind,prompt,topic_ids,due_at,created_by,created_at) VALUES(?,?,?,?,?,?,?,?,?)',
@@ -322,7 +394,24 @@ export function openLesson(user: User, lessonId: string, input: unknown) {
         aid,
       );
     }
-    return { id: rid };
+    if (b.notify) {
+      const count = selected.length + +(includeVideo && !!lesson.youtubeUrl);
+      for (const student of many<{ id: string }>(
+        "SELECT id FROM users WHERE group_id=? AND role='student'",
+        group.id,
+      ))
+        run(
+          'INSERT OR IGNORE INTO notifications(id,user_id,kind,body,dedupe_key,created_at,available_at) VALUES(?,?,?,?,?,?,?)',
+          id(),
+          student.id,
+          'course-material',
+          `“${lesson.title}” darsida ${count} ta material ochildi. HangangAcademy’da ko‘ring.`,
+          `course-material:${rid}:${student.id}:${lesson.revision}:${itemIds.sort().join(',')}:${availableAt}`,
+          now(),
+          availableAt,
+        );
+    }
+    return { id: rid, added: itemIds.length, availableAt };
   });
 }
 export function releaseAccess(user: User, releaseId: string): LessonRelease {
@@ -330,7 +419,18 @@ export function releaseAccess(user: User, releaseId: string): LessonRelease {
     'SELECT r.*,g.teacher_id,l.position FROM course_releases r JOIN groups g ON g.id=r.group_id JOIN course_lessons l ON l.id=r.lesson_id WHERE r.id=?',
     releaseId,
   );
-  if (!r || (user.role === 'teacher' ? r.teacher_id !== user.id : r.group_id !== user.group_id))
+  const availableItems = r
+    ? many<LessonRelease['availableItems'][number]>(
+        'SELECT item_id,available_at,due_at,published_at FROM course_release_items WHERE release_id=? ORDER BY published_at,item_id',
+        r.id,
+      )
+    : [];
+  if (
+    !r ||
+    (user.role === 'teacher'
+      ? r.teacher_id !== user.id
+      : r.group_id !== user.group_id || !availableItems.some((item) => item.available_at <= now()))
+  )
     throw new AppError(404, 'Dars topilmadi yoki hali ochilmagan.');
   const snapshot = lessonSchema.parse(JSON.parse(r.snapshot));
   return {
@@ -343,11 +443,22 @@ export function releaseAccess(user: User, releaseId: string): LessonRelease {
     position: r.position,
     title: snapshot.title,
     snapshot,
+    availableItems,
+  };
+}
+function activeSnapshot(r: LessonRelease) {
+  const active = new Set(
+    r.availableItems.filter((item) => item.available_at <= now()).map((item) => item.item_id),
+  );
+  return {
+    ...r.snapshot,
+    youtubeUrl: active.has('video') ? r.snapshot.youtubeUrl : '',
+    materials: r.snapshot.materials.filter((material) => active.has(material.id)),
   };
 }
 export function releaseTasks(user: User, r: LessonRelease): TaskStatus[] {
-  return r.snapshot.materials
-    .filter((m) => m.task !== 'none')
+  return activeSnapshot(r)
+    .materials.filter((m) => m.task !== 'none')
     .map((m) => {
       const link = one<{ assignment_id: string }>(
         'SELECT assignment_id FROM course_assignments WHERE release_id=? AND material_id=?',
@@ -368,6 +479,7 @@ export function releaseTasks(user: User, r: LessonRelease): TaskStatus[] {
           assignmentId: link.assignment_id,
           status: s?.published_at ? 'done' : s ? 'submitted' : 'todo',
           feedback: s?.published_at ? s.feedback : null,
+          dueAt: r.availableItems.find((item) => item.item_id === m.id)?.due_at,
         };
       }
       const t = one<{ score: number; total: number }>(
@@ -384,6 +496,7 @@ export function releaseTasks(user: User, r: LessonRelease): TaskStatus[] {
         status: t ? 'done' : 'todo',
         score: t?.score,
         total: t?.total,
+        dueAt: r.availableItems.find((item) => item.item_id === m.id)?.due_at,
       };
     });
 }
@@ -391,11 +504,13 @@ export function studentCourses(user: User): CourseStudentState {
   const access = courseAccess(user);
   const group = one<Group>('SELECT * FROM groups WHERE id=?', user.group_id || '');
   const releases = many<{ id: string }>(
-    'SELECT id FROM course_releases WHERE group_id=? ORDER BY lesson_date DESC,opened_at DESC',
+    'SELECT DISTINCT r.id FROM course_releases r JOIN course_release_items i ON i.release_id=r.id WHERE r.group_id=? AND i.available_at<=? ORDER BY r.lesson_date DESC,r.opened_at DESC',
     user.group_id || '',
+    now(),
   ).map((row) => {
     const r = releaseAccess(user, row.id);
-    const { snapshot, ...summary } = r;
+    const snapshot = activeSnapshot(r);
+    const { snapshot: _snapshot, availableItems: _availableItems, ...summary } = r;
     return {
       ...summary,
       tasks: releaseTasks(user, r),
@@ -424,6 +539,7 @@ export function studentCourses(user: User): CourseStudentState {
 }
 export function lessonView(user: User, releaseId: string) {
   const r = releaseAccess(user, releaseId);
+  const visible = user.role === 'student' ? activeSnapshot(r) : r.snapshot;
   const qPublic = (q: LessonBody['warmup'][number]) => ({
     id: q.id,
     prompt: q.prompt,
@@ -432,16 +548,16 @@ export function lessonView(user: User, releaseId: string) {
   return {
     ...r,
     snapshot: {
-      ...r.snapshot,
-      materials: r.snapshot.materials.map((m) => ({ ...m, questions: m.questions.map(qPublic) })),
+      ...visible,
+      materials: visible.materials.map((m) => ({ ...m, questions: m.questions.map(qPublic) })),
       warmup: [],
     },
     tasks: releaseTasks(user, r),
     files: many<{ id: string; name: string; mime: string; size: number }>(
       'SELECT id,name,mime,size FROM course_files WHERE lesson_id=?',
       r.lesson_id,
-    ).filter((f) => r.snapshot.materials.some((m) => m.fileIds.includes(f.id))),
-    grammars: GRAMMARS.filter((g) => r.snapshot.materials.some((m) => m.grammarIds.includes(g.id))),
+    ).filter((f) => visible.materials.some((m) => m.fileIds.includes(f.id))),
+    grammars: GRAMMARS.filter((g) => visible.materials.some((m) => m.grammarIds.includes(g.id))),
   };
 }
 export function completeLessonTask(user: User, releaseId: string, input: unknown) {
@@ -453,7 +569,7 @@ export function completeLessonTask(user: User, releaseId: string, input: unknown
     })
     .parse(input);
   const r = releaseAccess(user, releaseId);
-  const m = r.snapshot.materials.find((m) => m.id === b.materialId);
+  const m = activeSnapshot(r).materials.find((m) => m.id === b.materialId);
   if (!m || !['self', 'quiz'].includes(m.task))
     throw new AppError(400, 'Bu vazifa shu usulda topshirilmaydi.');
   if (
@@ -485,16 +601,19 @@ export function courseAssignmentAccess(user: User, assignmentId: string) {
     assignmentId,
   );
   if (!link) return null;
-  return releaseAccess(user, link.release_id).snapshot.materials.find(
-    (m) => m.id === link.material_id,
-  )!;
+  const release = releaseAccess(user, link.release_id);
+  const snapshot = user.role === 'student' ? activeSnapshot(release) : release.snapshot;
+  const material = snapshot.materials.find((m) => m.id === link.material_id);
+  if (!material) throw new AppError(404, 'Topshiriq hali ochilmagan.');
+  return material;
 }
 export function courseBoard(user: User, groupId: string) {
   if (user.role === 'teacher') teacherGroup(user, groupId);
   else if (user.group_id !== groupId) throw new AppError(404, 'Guruh topilmadi.');
   const releases = many<{ id: string }>(
-    'SELECT id FROM course_releases WHERE group_id=? ORDER BY lesson_date,opened_at',
+    'SELECT DISTINCT r.id FROM course_releases r JOIN course_release_items i ON i.release_id=r.id WHERE r.group_id=? AND i.available_at<=? ORDER BY r.lesson_date,r.opened_at',
     groupId,
+    now(),
   ).map((r) => releaseAccess(user, r.id));
   const students = many<User>(
     "SELECT * FROM users WHERE group_id=? AND role='student' ORDER BY name",

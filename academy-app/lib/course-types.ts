@@ -66,6 +66,13 @@ export type LessonRelease = {
   opened_at: string;
   title: string;
   position: number;
+  availableItems: ReleaseItem[];
+};
+export type ReleaseItem = {
+  item_id: string;
+  available_at: string;
+  due_at: string;
+  published_at: string;
 };
 export type TaskStatus = {
   materialId: string;
@@ -77,6 +84,7 @@ export type TaskStatus = {
   total?: number;
   assignmentId?: string;
   feedback?: string | null;
+  dueAt?: string;
 };
 export type CourseSummary = {
   id: string;
@@ -88,7 +96,7 @@ export type CourseStudentState = {
   managed: boolean;
   level: CourseLevel | null;
   groupName: string;
-  releases: (Omit<LessonRelease, 'snapshot'> & {
+  releases: (Omit<LessonRelease, 'snapshot' | 'availableItems'> & {
     tasks: TaskStatus[];
     materials: Pick<LessonMaterial, 'id' | 'kind' | 'title'>[];
     liveQuiz: boolean;

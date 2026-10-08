@@ -325,7 +325,21 @@ export function studentState(user: User) {
   const assignments = many<Assignment>(
     'SELECT * FROM assignments WHERE group_id=? ORDER BY due_at',
     user.group_id || '',
-  );
+  ).filter((assignment) => {
+    const course = one<{ release_id: string; material_id: string }>(
+      'SELECT release_id,material_id FROM course_assignments WHERE assignment_id=?',
+      assignment.id,
+    );
+    return (
+      !course ||
+      !!one(
+        'SELECT item_id FROM course_release_items WHERE release_id=? AND item_id=? AND available_at<=?',
+        course.release_id,
+        course.material_id,
+        now(),
+      )
+    );
+  });
   const submissions = many<Submission>(
     'SELECT s.*,a.title AS assignment_title FROM submissions s JOIN assignments a ON a.id=s.assignment_id WHERE s.user_id=? ORDER BY s.created_at DESC',
     user.id,
@@ -513,14 +527,21 @@ export function teacherState(user: User) {
     words: WORDS,
   };
 }
-export function enqueueNotification(userId: string, kind: string, body: string, key: string) {
+export function enqueueNotification(
+  userId: string,
+  kind: string,
+  body: string,
+  key: string,
+  availableAt = '',
+) {
   run(
-    'INSERT OR IGNORE INTO notifications(id,user_id,kind,body,dedupe_key,created_at) VALUES(?,?,?,?,?,?)',
+    'INSERT OR IGNORE INTO notifications(id,user_id,kind,body,dedupe_key,created_at,available_at) VALUES(?,?,?,?,?,?,?)',
     id(),
     userId,
     kind,
     body,
     key,
     now(),
+    availableAt,
   );
 }

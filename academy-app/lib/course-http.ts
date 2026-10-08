@@ -171,14 +171,23 @@ export async function courseHttp(req: NextRequest, user: User, parts: string[]) 
     if (!f) throw new AppError(404, 'Fayl topilmadi.');
     if (user.role === 'teacher') ownLesson(user, f.lesson_id);
     else {
-      const r = one<{ snapshot: string }>(
-        'SELECT snapshot FROM course_releases WHERE lesson_id=? AND group_id=?',
+      const r = one<{ id: string; snapshot: string }>(
+        'SELECT id,snapshot FROM course_releases WHERE lesson_id=? AND group_id=?',
         f.lesson_id,
         user.group_id || '',
       );
+      const material = r
+        ? (JSON.parse(r.snapshot) as LessonBody).materials.find((m) => m.fileIds.includes(f.id))
+        : undefined;
       if (
         !r ||
-        !(JSON.parse(r.snapshot) as LessonBody).materials.some((m) => m.fileIds.includes(f.id))
+        !material ||
+        !one(
+          'SELECT item_id FROM course_release_items WHERE release_id=? AND item_id=? AND available_at<=?',
+          r.id,
+          material.id,
+          now(),
+        )
       )
         throw new AppError(404, 'Fayl ochilmagan.');
     }

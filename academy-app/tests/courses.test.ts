@@ -147,6 +147,98 @@ it('publishes a video-only lesson without requiring an extra material card', () 
     'https://www.youtube.com/live/dQw4w9WgXcQ',
   );
 });
+it('opens selected materials now, schedules later additions and queues scoped notifications', async () => {
+  const group = one<Group>('SELECT * FROM groups WHERE id=?', gid2)!;
+  let staged = createLesson(teacher, group.course_id!);
+  const first = {
+    ...makeMaterial('vocabulary'),
+    title: 'Salomlashish',
+    grammarIds: [],
+    words: [
+      { id: id(), ko: '안녕하세요', uz: 'salom', example: '', translation: '' },
+      { id: id(), ko: '감사합니다', uz: 'rahmat', example: '', translation: '' },
+    ],
+  };
+  const second = {
+    ...makeMaterial('writing'),
+    title: 'Uyga vazifa',
+    words: [],
+    grammarIds: [],
+    task: 'text' as const,
+  };
+  staged = saveLesson(teacher, staged.id, {
+    ...staged,
+    title: 'Bosqichli dars',
+    materials: [first, second],
+  });
+  const firstRelease = openLesson(teacher, staged.id, {
+    groupId: gid2,
+    availableAt: '2026-09-22T09:00:00.000Z',
+    dueAt: '2027-01-10T09:00:00.000Z',
+    materialIds: [first.id],
+    includeVideo: false,
+    notify: true,
+  }).id;
+  expect(lessonView(other, firstRelease).snapshot.materials.map((m) => m.title)).toEqual([
+    'Salomlashish',
+  ]);
+  expect(lessonView(other, firstRelease).tasks).toHaveLength(1);
+  expect(
+    one<{ available_at: string }>(
+      "SELECT available_at FROM notifications WHERE user_id=? AND kind='course-material'",
+      other.id,
+    )?.available_at,
+  ).toBe('2026-09-22T09:00:00.000Z');
+
+  staged = saveLesson(teacher, staged.id, {
+    ...staged,
+    materials: [{ ...staged.materials[0], body: 'SAQLANMAGAN GURUH TAHRIRI' }, staged.materials[1]],
+  });
+  openLesson(teacher, staged.id, {
+    groupId: gid2,
+    availableAt: '2099-01-01T09:00:00.000Z',
+    dueAt: '2099-01-10T09:00:00.000Z',
+    materialIds: [second.id],
+    includeVideo: false,
+    notify: true,
+  });
+  expect(lessonView(other, firstRelease).snapshot.materials.map((m) => m.title)).toEqual([
+    'Salomlashish',
+  ]);
+  expect(JSON.stringify(lessonView(other, firstRelease))).not.toContain(
+    'SAQLANMAGAN GURUH TAHRIRI',
+  );
+  const { studentState } = await import('../lib/learning');
+  expect(
+    studentState(other).assignments.some((assignment) => assignment.title.includes('Uyga vazifa')),
+  ).toBe(false);
+  expect(lessonView(teacher, firstRelease).snapshot.materials.map((m) => m.title)).toEqual([
+    'Salomlashish',
+    'Uyga vazifa',
+  ]);
+  expect(
+    one<{ n: number }>(
+      "SELECT COUNT(*) n FROM notifications WHERE user_id=? AND kind='course-material' AND available_at>'2098-01-01'",
+      other.id,
+    )!.n,
+  ).toBe(1);
+  run(
+    'UPDATE course_release_items SET available_at=? WHERE release_id=? AND item_id=?',
+    '2026-09-23T09:00:00.000Z',
+    firstRelease,
+    second.id,
+  );
+  expect(lessonView(other, firstRelease).snapshot.materials.map((m) => m.title)).toEqual([
+    'Salomlashish',
+    'Uyga vazifa',
+  ]);
+  expect(
+    studentState(other).assignments.some((assignment) => assignment.title.includes('Uyga vazifa')),
+  ).toBe(true);
+  expect(
+    lessonView(other, firstRelease).tasks.find((task) => task.materialId === second.id)?.dueAt,
+  ).toBe('2099-01-10T09:00:00.000Z');
+});
 it('draft edits cannot change published materials, concurrent edits fail and opening is idempotent', () => {
   const stale = { ...lesson };
   lesson = saveLesson(teacher, lesson.id, {

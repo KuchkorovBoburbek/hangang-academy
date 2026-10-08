@@ -13,7 +13,8 @@ Bu imkoniyatlar lokal loyihaga qo‘shilgan. Serverga joylash alohida bosqich; u
 7. Quizni qo‘lda yozing yoki dars so‘zlari / bazadagi grammatika savollaridan yarating. To‘g‘ri javobni tekshiring. So‘zlar quiz uchun kamida ikki xil tarjimaga ega bo‘lishi kerak.
 8. Dars boshidagi takrorlash quiziga oldingi darsdan savollarni tanlang yoki o‘zingiz yozing.
 9. **O‘quvchi ko‘rinishi** orqali tekshiring va **Saqlash** tugmasini bosing.
-10. **Guruhga ochish** orqali shu darajadagi guruh, dars sanasi va vazifa muddatini tanlang.
+10. **Guruhga ochish** orqali shu darajadagi guruhni, ochiladigan video/materiallarni, ochilish
+    vaqti va vazifa muddatini tanlang. Telegram xabarini ham shu yerda yoqish mumkin.
 
 Dastur har bir ustoz va daraja uchun bir marta yaratiladi. Bir ustozning bir nechta guruhi shu dasturdan foydalanadi. Har bir guruh darslarni alohida tezlikda ochadi.
 
@@ -26,6 +27,12 @@ Yangi guruhlar faqat uchta belgilangan darajadan tanlanadi. Darslari ochilgan gu
 ### Qoralama va ochilgan dars
 
 Ochish paytida guruh uchun darsning mustaqil nusxasi olinadi. Keyingi qoralama tahriri ochilgan darsni yoki topshirilgan javoblarni o‘zgartirmaydi. Bir darsni bir guruhga takror ochish yangi vazifa yoki ball hosil qilmaydi. Keyingi guruhga ochilganda esa eng so‘nggi saqlangan qoralama olinadi. Oldingi ochilgan darslar o‘quvchi uchun qoladi.
+
+Butun darsni birdan ochish shart emas. Ustoz video, lug‘at, mashq va uyga vazifalarni alohida
+tanlaydi. Keyin shu darsni o‘sha guruh uchun yana ochib, yangi material qo‘shishi yoki tanlangan
+materialning yangi qoralamasini ongli ravishda yuborishi mumkin. Avval ochilgan boshqa materiallar
+o‘zgarmaydi. Kelajak vaqti tanlansa, material va unga bog‘liq vazifa shu vaqtgacha o‘quvchiga
+ko‘rinmaydi; Telegram xabari ham ochilish vaqtigacha kutiladi.
 
 ## Telegram orqali dars lug‘ati
 
@@ -61,4 +68,8 @@ Dars quizini ustoz guruh natijalaridan boshlaydi va yakunlaydi. Bir o‘quvchiga
 
 ## Texnik saqlash
 
-SQLite sxemasi 13: yangi kurs, dars, fayl, ochilgan nusxa, vazifa, quiz, ball va Telegram qoralama jadvallari qo‘shilgan. Eski jadvallardan ma’lumot o‘chirilmaydi. Dars fayllari mavjud yopiq uploads katalogida saqlanadi va zaxira nusxaga kiritiladi. Darsni saqlash revision orqali bir vaqtda tahrirlash ziddiyatini aniqlaydi.
+SQLite sxemasi 15: kurs, dars, fayl, ochilgan nusxa, materiallarning alohida ochilish vaqti,
+vazifa, quiz, ball va Telegram qoralama jadvallari mavjud. Eski jadvallardan ma’lumot
+o‘chirilmaydi. Oldingi ochilgan darslar migratsiyada o‘sha zahoti ochilgan materiallar sifatida
+saqlanadi. Dars fayllari yopiq uploads katalogida turadi va zaxira nusxaga kiritiladi. Darsni
+saqlash revision orqali bir vaqtda tahrirlash ziddiyatini aniqlaydi.

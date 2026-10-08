@@ -311,7 +311,8 @@ export function Writing({
     if (!target) return;
     openedFromUrl.current = id;
     const submission = data.submissions.find((item) => item.assignment_id === id);
-    if (submission) setResult(submission);
+    if (submission?.review_outcome === 'fail') setAssignment(target);
+    else if (submission) setResult(submission);
     else {
       setAssignment(target);
       setError('');
@@ -356,15 +357,28 @@ export function Writing({
           .filter((a) => a.kind === 'writing')
           .map((a) => {
             const s = data.submissions.find((s) => s.assignment_id === a.id);
+            const outcome = s?.review_outcome || (s?.published_at ? 'success' : null);
             return (
               <article className="writing-card" key={a.id}>
                 <div className="writing-card-top">
-                  <Badge tone={s?.published_at ? 'green' : s ? 'blue' : 'orange'}>
-                    {s?.published_at
-                      ? 'Tekshirildi'
-                      : s
-                        ? 'Ustoz tekshiruvida'
-                        : 'Topshirish kerak'}
+                  <Badge
+                    tone={
+                      outcome === 'success'
+                        ? 'green'
+                        : outcome === 'fail'
+                          ? 'orange'
+                          : s
+                            ? 'blue'
+                            : 'orange'
+                    }
+                  >
+                    {outcome === 'success'
+                      ? 'Success'
+                      : outcome === 'fail'
+                        ? 'Fail · qayta topshiring'
+                        : s
+                          ? 'Ustoz tekshiruvida'
+                          : 'Topshirish kerak'}
                   </Badge>
                   <span>{dateLabel(a.due_at)} gacha</span>
                 </div>
@@ -375,7 +389,7 @@ export function Writing({
                     <Paperclip size={16} />
                     Matn · Rasm · PDF
                   </span>
-                  {s ? (
+                  {s && outcome !== 'fail' ? (
                     <button className="button secondary" onClick={() => setResult(s)}>
                       Ishni ko‘rish
                       <ArrowUpRight size={17} />
@@ -388,7 +402,7 @@ export function Writing({
                         setError('');
                       }}
                     >
-                      Yozishni boshlash
+                      {outcome === 'fail' ? 'Qayta topshirish' : 'Yozishni boshlash'}
                       <PenLine size={17} />
                     </button>
                   )}
@@ -411,6 +425,21 @@ export function Writing({
           wide
         >
           <form className="form-stack" onSubmit={submit}>
+            {data.submissions.find(
+              (item) => item.assignment_id === assignment.id && item.review_outcome === 'fail',
+            ) && (
+              <div className="alert error">
+                <strong>Fail · qayta topshirish kerak</strong>
+                <p>
+                  {
+                    data.submissions.find(
+                      (item) =>
+                        item.assignment_id === assignment.id && item.review_outcome === 'fail',
+                    )?.feedback
+                  }
+                </p>
+              </div>
+            )}
             <div className="assignment-prompt">
               <h3>{assignment.title}</h3>
               <p>{assignment.prompt}</p>
@@ -481,8 +510,12 @@ export function Writing({
           onClose={() => setResult(null)}
           wide
         >
-          <Badge tone={result.published_at ? 'green' : 'orange'}>
-            {result.published_at ? 'Ustoz izohi tayyor' : 'Tekshirish kutilmoqda'}
+          <Badge tone={result.review_outcome === 'success' ? 'green' : 'orange'}>
+            {result.review_outcome === 'success' || (result.published_at && !result.review_outcome)
+              ? 'Success'
+              : result.review_outcome === 'fail'
+                ? 'Fail · qayta topshirish kerak'
+                : 'Tekshirish kutilmoqda'}
           </Badge>
           <div className="submitted-text" lang="ko">
             {result.body || 'Javob biriktirilgan faylda.'}
@@ -510,6 +543,19 @@ export function Writing({
               </div>
               <p>{result.feedback}</p>
             </div>
+          )}
+          {result.review_outcome === 'fail' && (
+            <button
+              className="button primary"
+              onClick={() => {
+                const target = data.assignments.find((item) => item.id === result.assignment_id);
+                setResult(null);
+                if (target) setAssignment(target);
+              }}
+            >
+              Vazifani qayta bajarish
+              <ArrowRight size={17} />
+            </button>
           )}
         </Modal>
       )}

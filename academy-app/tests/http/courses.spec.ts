@@ -152,7 +152,7 @@ test('Drafts and attachments stay private; publishing to one group never opens a
     ).status(),
   ).toBe(403);
 });
-test('Student completes lessons and audio submission; teacher approval updates public board without sharing private work', async () => {
+test('Student work and review states are visible to the group board', async () => {
   const view = await (await student.get(`/api/courses/releases/${releaseId}`)).json();
   expect(
     (
@@ -186,13 +186,20 @@ test('Student completes lessons and audio submission; teacher approval updates p
     expect(
       (
         await teacher.post('/api/teacher/feedback', {
-          data: { submissionId: sid, feedback: 'PRIVATE FEEDBACK: yaxshi bajarilgan.', score: 90 },
+          data: {
+            submissionId: sid,
+            feedback: 'Guruhga ko‘rinadigan ustoz izohi: yaxshi bajarilgan.',
+            score: 90,
+            outcome: 'success',
+          },
         })
       ).status(),
     ).toBe(200);
   const board = await (await student.get(`/api/courses/board/${group.id}`)).json();
   expect(board.students[0].lessons[0].status).toBe('done');
-  expect(JSON.stringify(board)).not.toContain('PRIVATE');
+  expect(board.submissions).toHaveLength(2);
+  expect(board.submissions.every((item: any) => item.review_outcome === 'success')).toBe(true);
+  expect(JSON.stringify(board)).toContain('Guruhga ko‘rinadigan ustoz izohi');
   expect(
     (
       await teacher.post('/api/teacher/ai-review', { data: { submissionId: submissions[1] } })

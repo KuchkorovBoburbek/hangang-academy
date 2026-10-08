@@ -11,7 +11,7 @@ export const dataDir = () =>
 export const now = () => new Date().toISOString();
 export const id = () => randomUUID();
 export function db() {
-  if (globalDb.academyDb && globalDb.academySchemaVersion === 16) return globalDb.academyDb;
+  if (globalDb.academyDb && globalDb.academySchemaVersion === 17) return globalDb.academyDb;
   fs.mkdirSync(dataDir(), { recursive: true });
   const connection = globalDb.academyDb || new DatabaseSync(path.join(dataDir(), 'academy.sqlite'));
   connection.exec('PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON; PRAGMA busy_timeout=10000;');
@@ -32,7 +32,7 @@ export function db() {
  CREATE TABLE IF NOT EXISTS quiz_sessions(id TEXT PRIMARY KEY,user_id TEXT NOT NULL REFERENCES users(id),kind TEXT NOT NULL,mode TEXT NOT NULL,assignment_id TEXT REFERENCES assignments(id),question_ids TEXT NOT NULL,answers TEXT NOT NULL DEFAULT '[]',status TEXT NOT NULL DEFAULT 'active',score INTEGER NOT NULL DEFAULT 0,started_at TEXT NOT NULL,completed_at TEXT);
  CREATE TABLE IF NOT EXISTS reviews(user_id TEXT NOT NULL REFERENCES users(id),question_id TEXT NOT NULL REFERENCES questions(id),box INTEGER NOT NULL DEFAULT 0,due_at TEXT NOT NULL,correct_count INTEGER NOT NULL DEFAULT 0,wrong_count INTEGER NOT NULL DEFAULT 0,last_at TEXT NOT NULL,PRIMARY KEY(user_id,question_id));
  CREATE TABLE IF NOT EXISTS notes(id TEXT PRIMARY KEY,user_id TEXT NOT NULL REFERENCES users(id),topic_id TEXT,title TEXT NOT NULL,body TEXT NOT NULL,created_at TEXT NOT NULL,updated_at TEXT NOT NULL);
- CREATE TABLE IF NOT EXISTS submissions(id TEXT PRIMARY KEY,assignment_id TEXT NOT NULL REFERENCES assignments(id),user_id TEXT NOT NULL REFERENCES users(id),body TEXT NOT NULL,status TEXT NOT NULL DEFAULT 'submitted',feedback TEXT,score INTEGER,published_at TEXT,created_at TEXT NOT NULL,updated_at TEXT NOT NULL,UNIQUE(assignment_id,user_id));
+ CREATE TABLE IF NOT EXISTS submissions(id TEXT PRIMARY KEY,assignment_id TEXT NOT NULL REFERENCES assignments(id),user_id TEXT NOT NULL REFERENCES users(id),body TEXT NOT NULL,status TEXT NOT NULL DEFAULT 'submitted',review_outcome TEXT,attempt INTEGER NOT NULL DEFAULT 1,feedback TEXT,score INTEGER,published_at TEXT,created_at TEXT NOT NULL,updated_at TEXT NOT NULL,UNIQUE(assignment_id,user_id));
  CREATE TABLE IF NOT EXISTS attachments(id TEXT PRIMARY KEY,submission_id TEXT NOT NULL REFERENCES submissions(id) ON DELETE CASCADE,name TEXT NOT NULL,mime TEXT NOT NULL,size INTEGER NOT NULL,disk_name TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS ai_jobs(id TEXT PRIMARY KEY,submission_id TEXT NOT NULL REFERENCES submissions(id),requested_by TEXT NOT NULL REFERENCES users(id),status TEXT NOT NULL DEFAULT 'queued',model TEXT NOT NULL,result TEXT,error TEXT,created_at TEXT NOT NULL,updated_at TEXT NOT NULL);
  CREATE UNIQUE INDEX IF NOT EXISTS ai_active ON ai_jobs(submission_id) WHERE status IN ('queued','running');
@@ -92,6 +92,17 @@ export function db() {
         "UPDATE assignments SET skill=CASE WHEN kind='writing' THEN 'writing' ELSE 'reading' END",
       );
     }
+    const submissionColumns = connection.prepare('PRAGMA table_info(submissions)').all() as {
+      name: string;
+    }[];
+    if (!submissionColumns.some((c) => c.name === 'review_outcome')) {
+      connection.exec('ALTER TABLE submissions ADD COLUMN review_outcome TEXT');
+      connection.exec(
+        "UPDATE submissions SET review_outcome='success' WHERE published_at IS NOT NULL",
+      );
+    }
+    if (!submissionColumns.some((c) => c.name === 'attempt'))
+      connection.exec('ALTER TABLE submissions ADD COLUMN attempt INTEGER NOT NULL DEFAULT 1');
     const columns = connection.prepare('PRAGMA table_info(ai_jobs)').all() as { name: string }[];
     for (const table of ['vocabulary_jobs', 'vocabulary_bot_state']) {
       const fields = connection.prepare(`PRAGMA table_info(${table})`).all() as { name: string }[];
@@ -226,7 +237,7 @@ export function db() {
     throw error;
   }
   globalDb.academyDb = connection;
-  globalDb.academySchemaVersion = 16;
+  globalDb.academySchemaVersion = 17;
   return connection;
 }
 export function one<T = Record<string, unknown>>(

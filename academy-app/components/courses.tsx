@@ -23,7 +23,7 @@ import {
   X,
   Video,
 } from 'lucide-react';
-import { api, Badge, Empty, errorText, Modal, SubmitButton } from './ui';
+import { api, Badge, dateLabel, Empty, errorText, Modal, SubmitButton } from './ui';
 import {
   COURSE_LEVELS,
   MATERIAL_TYPES,
@@ -1815,59 +1815,70 @@ function MaterialTask({
       </div>
     );
   return (
-    <div className="course-task">
-      <div className="section-title">
-        <h3>Vazifa · bajarish kerak</h3>
-        <small>Muddat: {new Date(dueAt).toLocaleString('uz-UZ')}</small>
-      </div>
-      {m.task === 'self' ? (
-        <>
-          <p>
-            Materialni o‘rganib bo‘lgach belgilang. Bu sizning tasdig‘ingiz sifatida qayd etiladi.
-          </p>
-          <button className="button primary" disabled={busy} onClick={complete}>
-            <Check size={17} />
-            Bajardim
-          </button>
-        </>
-      ) : m.task === 'quiz' ? (
-        result ? (
+    <>
+      {status.outcome === 'fail' && (
+        <div className="course-task-status fail">
+          <X size={18} />
           <div>
-            <h3>
-              {result.score}/{result.total} to‘g‘ri javob
-            </h3>
-            {result.solutions.map((q) => (
-              <p key={q.id}>
-                {q.prompt}
-                <br />
-                <strong>{q.options[q.answer!]}</strong> · {q.explanation}
-              </p>
-            ))}
-            <button className="button primary" onClick={refresh}>
-              Natijani ko‘rish
-            </button>
+            <strong>Fail · vazifani qayta topshiring</strong>
+            {status.feedback && <p>{status.feedback}</p>}
           </div>
-        ) : (
+        </div>
+      )}
+      <div className="course-task">
+        <div className="section-title">
+          <h3>{status.outcome === 'fail' ? 'Qayta topshirish' : 'Vazifa · bajarish kerak'}</h3>
+          <small>Muddat: {new Date(dueAt).toLocaleString('uz-UZ')}</small>
+        </div>
+        {m.task === 'self' ? (
           <>
-            <AnswerQuestions questions={m.questions} answers={answers} setAnswers={setAnswers} />
-            <button
-              className="button primary"
-              disabled={busy || answers.includes(-1)}
-              onClick={complete}
-            >
-              Javoblarni tekshirish
+            <p>
+              Materialni o‘rganib bo‘lgach belgilang. Bu sizning tasdig‘ingiz sifatida qayd etiladi.
+            </p>
+            <button className="button primary" disabled={busy} onClick={complete}>
+              <Check size={17} />
+              Bajardim
             </button>
           </>
-        )
-      ) : (
-        <SubmissionForm
-          task={m.task}
-          assignmentId={status.assignmentId!}
-          notify={notify}
-          refresh={refresh}
-        />
-      )}
-    </div>
+        ) : m.task === 'quiz' ? (
+          result ? (
+            <div>
+              <h3>
+                {result.score}/{result.total} to‘g‘ri javob
+              </h3>
+              {result.solutions.map((q) => (
+                <p key={q.id}>
+                  {q.prompt}
+                  <br />
+                  <strong>{q.options[q.answer!]}</strong> · {q.explanation}
+                </p>
+              ))}
+              <button className="button primary" onClick={refresh}>
+                Natijani ko‘rish
+              </button>
+            </div>
+          ) : (
+            <>
+              <AnswerQuestions questions={m.questions} answers={answers} setAnswers={setAnswers} />
+              <button
+                className="button primary"
+                disabled={busy || answers.includes(-1)}
+                onClick={complete}
+              >
+                Javoblarni tekshirish
+              </button>
+            </>
+          )
+        ) : (
+          <SubmissionForm
+            task={m.task}
+            assignmentId={status.assignmentId!}
+            notify={notify}
+            refresh={refresh}
+          />
+        )}
+      </div>
+    </>
   );
 }
 function AnswerQuestions({
@@ -2140,6 +2151,9 @@ export function GroupBoard({
   notify: (s: string) => void;
 }) {
   const [data, setData] = useState<ReturnType<typeof courseBoard> | null>(null),
+    [selected, setSelected] = useState<
+      ReturnType<typeof courseBoard>['submissions'][number] | null
+    >(null),
     [busy, setBusy] = useState(false),
     [error, setError] = useState('');
   const load = useCallback(async () => {
@@ -2172,7 +2186,7 @@ export function GroupBoard({
         <div>
           <span className="eyebrow">우리 반 · BIRGA O‘SAMIZ</span>
           <h1>Guruhim</h1>
-          <p>✅ Tasdiqlangan · ⏳ Tekshiruvda · ◐ Qisman bajarilgan · ○ Bajarish kerak</p>
+          <p>✅ Success · ❌ Fail · ⏳ Tekshiruvda · ○ Bajarish kerak</p>
         </div>
         <button className="button secondary" onClick={load}>
           Yangilash
@@ -2206,21 +2220,25 @@ export function GroupBoard({
                       <span
                         aria-label={
                           l.status === 'done'
-                            ? 'Tasdiqlangan'
-                            : l.status === 'submitted'
-                              ? 'Tekshiruvda'
-                              : l.status === 'partial'
-                                ? 'Qisman bajarilgan'
-                                : 'Bajarilmagan'
+                            ? 'Success'
+                            : l.status === 'fail'
+                              ? 'Fail · qayta topshirish kerak'
+                              : l.status === 'submitted'
+                                ? 'Tekshiruvda'
+                                : l.status === 'partial'
+                                  ? 'Qisman bajarilgan'
+                                  : 'Bajarilmagan'
                         }
                       >
                         {l.status === 'done'
                           ? '✅'
-                          : l.status === 'submitted'
-                            ? '⏳'
-                            : l.status === 'partial'
-                              ? '◐'
-                              : '○'}
+                          : l.status === 'fail'
+                            ? '❌'
+                            : l.status === 'submitted'
+                              ? '⏳'
+                              : l.status === 'partial'
+                                ? '◐'
+                                : '○'}
                       </span>
                       {teacher ? (
                         <form
@@ -2265,6 +2283,50 @@ export function GroupBoard({
             </tbody>
           </table>
         </div>
+      )}
+      <div className="section-title course-shared-title">
+        <div>
+          <h2>Guruh vazifalari</h2>
+          <p className="muted">
+            Talabalar topshirgan ishlar va ustozning natijasi hammaga ko‘rinadi.
+          </p>
+        </div>
+        <Badge tone="neutral">{data.submissions.length} ta ish</Badge>
+      </div>
+      {data.submissions.length ? (
+        <div className="course-shared-submissions">
+          {data.submissions.map((submission) => (
+            <button
+              className="course-shared-card"
+              key={submission.id}
+              onClick={() => setSelected(submission)}
+            >
+              <div>
+                <span className="avatar">{submission.student_name?.[0]}</span>
+                <span>
+                  <strong>{submission.student_name}</strong>
+                  <small>{submission.assignment_title}</small>
+                </span>
+                <Badge tone={submission.review_outcome === 'success' ? 'green' : 'orange'}>
+                  {submission.review_outcome === 'success'
+                    ? 'Success'
+                    : submission.review_outcome === 'fail'
+                      ? 'Fail'
+                      : 'Tekshirilmoqda'}
+                </Badge>
+              </div>
+              <p lang="ko">{submission.body || 'Javob biriktirilgan faylda.'}</p>
+              <small>
+                {submission.attempt > 1 ? `${submission.attempt}-urinish · ` : ''}
+                {dateLabel(submission.updated_at)}
+              </small>
+            </button>
+          ))}
+        </div>
+      ) : (
+        <Empty title="Hali topshirilgan vazifa yo‘q">
+          Birinchi topshiriq yuborilgach, guruh natijalari shu yerda ko‘rinadi.
+        </Empty>
       )}
       <div className="section-title">
         <h2>Guruh reytingi</h2>
@@ -2325,6 +2387,64 @@ export function GroupBoard({
             <LiveQuiz releaseId={r.id} teacher notify={notify} />
           </details>
         ))}
+      {selected && (
+        <Modal
+          title={`${selected.student_name} · ${selected.assignment_title}`}
+          onClose={() => setSelected(null)}
+          wide
+        >
+          <div className="course-shared-detail">
+            <Badge tone={selected.review_outcome === 'success' ? 'green' : 'orange'}>
+              {selected.review_outcome === 'success'
+                ? 'Success'
+                : selected.review_outcome === 'fail'
+                  ? 'Fail · qayta topshirish kerak'
+                  : 'Tekshirilmoqda'}
+            </Badge>
+            <div className="submitted-text" lang="ko">
+              {selected.body || 'Javob biriktirilgan faylda.'}
+            </div>
+            <div className="submission-attachments">
+              {selected.attachments?.map((file) =>
+                file.mime.startsWith('audio/') || file.mime === 'application/ogg' ? (
+                  <div className="course-file" key={file.id}>
+                    <audio controls preload="none" src={`/api/files/${file.id}`} />
+                    <a href={`/api/files/${file.id}`} target="_blank" rel="noreferrer">
+                      {file.name}
+                    </a>
+                  </div>
+                ) : (
+                  <a
+                    className={file.mime.startsWith('image/') ? 'image-attachment' : 'file-chip'}
+                    href={`/api/files/${file.id}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    key={file.id}
+                  >
+                    {file.mime.startsWith('image/') ? (
+                      <img src={`/api/files/${file.id}`} alt={file.name} />
+                    ) : (
+                      <FileText size={22} />
+                    )}
+                    <span>{file.name}</span>
+                  </a>
+                ),
+              )}
+            </div>
+            {selected.published_at && (
+              <div className="feedback-box">
+                <div>
+                  <h3>Ustoz izohi</h3>
+                  <Badge tone={selected.review_outcome === 'success' ? 'green' : 'orange'}>
+                    {selected.score}/100
+                  </Badge>
+                </div>
+                <p>{selected.feedback}</p>
+              </div>
+            )}
+          </div>
+        </Modal>
+      )}
     </div>
   );
 }

@@ -590,6 +590,11 @@
   background: var(--surface-soft);
   color: var(--blue);
 }
+.course-task-status.fail {
+  margin-bottom: 14px;
+  background: var(--warning-soft);
+  color: var(--warning);
+}
 .course-task-status p {
   margin: 6px 0 0;
 }
@@ -680,6 +685,62 @@
   display: grid;
   gap: 12px;
   margin: 20px 0 30px;
+}
+.course-shared-title {
+  margin-top: 30px;
+  align-items: flex-start;
+}
+.course-shared-title p {
+  margin: 5px 0 0;
+}
+.course-shared-submissions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 30px;
+}
+.course-shared-card {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--paper);
+  color: var(--ink);
+  text-align: left;
+}
+.course-shared-card:hover {
+  border-color: var(--blue-border);
+  background: var(--blue-light);
+}
+.course-shared-card > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.course-shared-card > div > span:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+}
+.course-shared-card strong,
+.course-shared-card small {
+  display: block;
+}
+.course-shared-card small {
+  color: var(--muted);
+  font-size: 11px;
+}
+.course-shared-card p {
+  margin: 14px 0 10px;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  line-height: 1.7;
+}
+.course-shared-detail {
+  display: grid;
+  gap: 18px;
 }
 .course-ranking > div {
   display: flex;
@@ -802,6 +863,9 @@
   border: 0;
 }
 @media (max-width: 700px) {
+  .course-shared-submissions {
+    grid-template-columns: 1fr;
+  }
   .course-levels {
     gap: 7px;
   }

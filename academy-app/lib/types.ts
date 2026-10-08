@@ -72,6 +72,8 @@ export type Submission = {
   user_id: string;
   body: string;
   status: 'submitted' | 'reviewed';
+  review_outcome: 'success' | 'fail' | null;
+  attempt: number;
   feedback: string | null;
   score: number | null;
   created_at: string;

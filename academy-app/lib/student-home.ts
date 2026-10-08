@@ -60,15 +60,16 @@ export function homeTasks(data: HomeData): HomeTask[] {
     .filter((a) => !linked.has(a.id))
     .map((a) => {
       const submission = data.submissions.find((s) => s.assignment_id === a.id);
+      const outcome = submission?.review_outcome || (submission?.published_at ? 'success' : null);
       return {
         id: a.id,
         title: a.title,
         kind: homeworkSkill(a.kind, a.skill),
         status:
           a.kind === 'writing'
-            ? submission?.published_at
+            ? outcome === 'success'
               ? 'done'
-              : submission
+              : submission && outcome !== 'fail'
                 ? 'submitted'
                 : 'todo'
             : data.completedAssignments.includes(a.id)

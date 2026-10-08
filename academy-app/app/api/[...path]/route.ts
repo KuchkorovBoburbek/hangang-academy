@@ -634,7 +634,12 @@ async function handle(req: NextRequest, ctx: { params: Promise<{ path: string[] 
         throw new AppError(400, 'Rasm yoki PDF qo‘shing.');
       if (lessonMaterial?.task === 'text' && !text)
         throw new AppError(400, 'Javob matnini yozing.');
-      if (one('SELECT id FROM submissions WHERE assignment_id=? AND user_id=?', aid, user.id))
+      const previous = one<Submission>(
+        'SELECT * FROM submissions WHERE assignment_id=? AND user_id=?',
+        aid,
+        user.id,
+      );
+      if (previous && previous.review_outcome !== 'fail')
         throw new AppError(
           409,
           'Bu topshiriq yuborilgan. Natijani yozma ishlar bo‘limidan ko‘ring.',
@@ -647,18 +652,34 @@ async function handle(req: NextRequest, ctx: { params: Promise<{ path: string[] 
         prepared.push({ name: file.name.slice(0, 200), mime: file.type, size: file.size, bytes });
       }
       const saved: string[] = [];
-      const sid = id();
+      const sid = previous?.id || id();
+      const oldFiles = previous
+        ? many<{ disk_name: string }>(
+            'SELECT disk_name FROM attachments WHERE submission_id=?',
+            sid,
+          )
+        : [];
       try {
         transaction(() => {
-          run(
-            'INSERT INTO submissions(id,assignment_id,user_id,body,created_at,updated_at) VALUES(?,?,?,?,?,?)',
-            sid,
-            aid,
-            user.id,
-            text,
-            now(),
-            now(),
-          );
+          if (previous) {
+            run('DELETE FROM ai_jobs WHERE submission_id=?', sid);
+            run('DELETE FROM attachments WHERE submission_id=?', sid);
+            run(
+              "UPDATE submissions SET body=?,status='submitted',review_outcome=NULL,feedback=NULL,score=NULL,published_at=NULL,attempt=attempt+1,updated_at=? WHERE id=?",
+              text,
+              now(),
+              sid,
+            );
+          } else
+            run(
+              'INSERT INTO submissions(id,assignment_id,user_id,body,created_at,updated_at) VALUES(?,?,?,?,?,?)',
+              sid,
+              aid,
+              user.id,
+              text,
+              now(),
+              now(),
+            );
           for (const f of prepared) {
             const disk = storeFile(f.bytes);
             saved.push(disk);
@@ -675,10 +696,11 @@ async function handle(req: NextRequest, ctx: { params: Promise<{ path: string[] 
           enqueueNotification(
             assignment.created_by,
             'submission',
-            `${user.name} “${assignment.title}” yozma ishini topshirdi. Tekshirish bo‘limida ko‘ring.`,
-            `submission-${sid}`,
+            `${user.name} “${assignment.title}” vazifasini ${previous ? 'qayta ' : ''}topshirdi. Tekshirish bo‘limida ko‘ring.`,
+            `submission-${sid}-${(previous?.attempt || 0) + 1}`,
           );
         });
+        oldFiles.forEach((file) => removeFile(file.disk_name));
       } catch (e) {
         saved.forEach(removeFile);
         throw e;
@@ -857,15 +879,17 @@ async function handle(req: NextRequest, ctx: { params: Promise<{ path: string[] 
           submissionId: str(1, 50),
           feedback: str(10, 12000),
           score: z.number().int().min(0).max(100),
+          outcome: z.enum(['success', 'fail']),
         })
         .parse(await body(req));
       const s = submissionAccess(user, b.submissionId);
       teacherGroup(user, s.group_id);
       run(
-        'UPDATE submissions SET feedback=?,score=?,status=?,published_at=?,updated_at=? WHERE id=?',
+        'UPDATE submissions SET feedback=?,score=?,status=?,review_outcome=?,published_at=?,updated_at=? WHERE id=?',
         b.feedback,
         b.score,
         'reviewed',
+        b.outcome,
         now(),
         now(),
         s.id,
@@ -873,7 +897,7 @@ async function handle(req: NextRequest, ctx: { params: Promise<{ path: string[] 
       enqueueNotification(
         s.user_id,
         'feedback',
-        `“${s.assignment_title}” yozma ishingiz tekshirildi. Ustoz izohini ilovada o‘qing.`,
+        `“${s.assignment_title}” vazifangiz ${b.outcome === 'success' ? 'Success' : 'Fail — qayta topshiring'} deb baholandi. Ustoz izohini ilovada o‘qing.`,
         `feedback-${s.id}-${now()}`,
       );
       return json({ ok: true });

@@ -12,7 +12,7 @@ import {
   type TaskStatus,
   type CourseStudentState,
 } from './course-types';
-import type { User, Group, Submission } from './types';
+import type { User, Group, Submission, Attachment } from './types';
 import { GRAMMARS } from './content';
 import { allVocabulary } from './vocabulary-data';
 import { courseAccess } from './course-access';
@@ -479,7 +479,15 @@ export function releaseTasks(user: User, r: LessonRelease): TaskStatus[] {
           kind: m.kind,
           required: m.required,
           assignmentId: link.assignment_id,
-          status: s?.published_at ? 'done' : s ? 'submitted' : 'todo',
+          status:
+            s?.review_outcome === 'success' || (s?.published_at && !s.review_outcome)
+              ? 'done'
+              : s?.review_outcome === 'fail'
+                ? 'todo'
+                : s
+                  ? 'submitted'
+                  : 'todo',
+          outcome: s?.review_outcome || (s?.published_at ? 'success' : null),
           feedback: s?.published_at ? s.feedback : null,
           dueAt: r.availableItems.find((item) => item.item_id === m.id)?.due_at,
         };
@@ -630,11 +638,13 @@ export function courseBoard(user: User, groupId: string) {
           status:
             tasks.length && tasks.every((t) => t.status === 'done')
               ? 'done'
-              : tasks.some((t) => t.status === 'submitted')
-                ? 'submitted'
-                : tasks.some((t) => t.status === 'done')
-                  ? 'partial'
-                  : 'todo',
+              : tasks.some((t) => t.outcome === 'fail')
+                ? 'fail'
+                : tasks.some((t) => t.status === 'submitted')
+                  ? 'submitted'
+                  : tasks.some((t) => t.status === 'done')
+                    ? 'partial'
+                    : 'todo',
           points:
             one<{ points: number }>(
               'SELECT points FROM course_points WHERE release_id=? AND user_id=?',
@@ -669,9 +679,22 @@ export function courseBoard(user: User, groupId: string) {
         b.quizScore - a.quizScore ||
         a.name.localeCompare(b.name),
     );
+  const submissions = many<Submission>(
+    'SELECT s.*,u.name AS student_name,a.title AS assignment_title,a.prompt FROM submissions s JOIN users u ON u.id=s.user_id JOIN assignments a ON a.id=s.assignment_id WHERE a.group_id=? ORDER BY s.updated_at DESC',
+    groupId,
+  ).map((submission) => ({
+    ...submission,
+    feedback: submission.published_at ? submission.feedback : null,
+    score: submission.published_at ? submission.score : null,
+    attachments: many<Attachment>(
+      'SELECT id,name,mime,size FROM attachments WHERE submission_id=?',
+      submission.id,
+    ),
+  }));
   return {
     releases: releases.map(({ id, title, lesson_date }) => ({ id, title, lesson_date })),
     students,
+    submissions,
   };
 }
 export function setCoursePoints(user: User, releaseId: string, input: unknown) {

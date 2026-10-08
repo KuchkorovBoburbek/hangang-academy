@@ -99,7 +99,7 @@ test('Private notebook creates, updates and deletes only the owner’s note', as
   expect((await (await student.get('/api/state')).json()).notes).toHaveLength(0);
 });
 
-test('Text + image + PDF reach the teacher; feedback reaches the correct student', async () => {
+test('Group sees submitted work; fail requires a retry and success completes it', async () => {
   const form = new FormData();
   form.set('assignmentId', assignmentId);
   form.set('body', '한국어를 배우고 있어요. 매일 연습해요.');
@@ -125,20 +125,54 @@ test('Text + image + PDF reach the teacher; feedback reaches the correct student
   expect(received.attachments).toHaveLength(2);
   fileId = received.attachments[0].id;
   expect((await teacher.get(`/api/files/${fileId}`)).status()).toBe(200);
-  expect((await other.get(`/api/files/${fileId}`)).status()).toBe(403);
-  expect((await other.get(`/api/submissions/${submissionId}`)).status()).toBe(403);
+  expect((await other.get(`/api/files/${fileId}`)).status()).toBe(200);
+  expect((await other.get(`/api/submissions/${submissionId}`)).status()).toBe(200);
   expect((await teacher.post('/api/teacher/ai-review', { data: { submissionId } })).status()).toBe(
     503,
   );
   const feedback = 'Maqsadingizni yaxshi ifodalagansiz. Sababni -아/어서 bilan qo‘shing.';
   expect(
     (
-      await teacher.post('/api/teacher/feedback', { data: { submissionId, feedback, score: 82 } })
+      await teacher.post('/api/teacher/feedback', {
+        data: { submissionId, feedback, score: 55, outcome: 'fail' },
+      })
+    ).status(),
+  ).toBe(200);
+  const failed = await (await other.get(`/api/submissions/${submissionId}`)).json();
+  expect(failed.review_outcome).toBe('fail');
+  expect(failed.feedback).toBe(feedback);
+
+  const retry = new FormData();
+  retry.set('assignmentId', assignmentId);
+  retry.set('body', '한국어를 배우고 있어서 매일 열심히 연습해요.');
+  const retryRequest = new Request(origin, { method: 'POST', body: retry });
+  const retried = await student.post('/api/submissions', {
+    headers: { 'Content-Type': retryRequest.headers.get('content-type')! },
+    data: Buffer.from(await retryRequest.arrayBuffer()),
+  });
+  expect(retried.status()).toBe(200);
+  expect((await retried.json()).id).toBe(submissionId);
+  expect((await other.get(`/api/files/${fileId}`)).status()).toBe(404);
+  const pending = await (await other.get(`/api/submissions/${submissionId}`)).json();
+  expect(pending.review_outcome).toBeNull();
+  expect(pending.attempt).toBe(2);
+  expect(pending.feedback).toBeNull();
+
+  expect(
+    (
+      await teacher.post('/api/teacher/feedback', {
+        data: {
+          submissionId,
+          feedback: 'Sabab va natija aniq yozildi. Vazifa muvaffaqiyatli bajarilgan.',
+          score: 88,
+          outcome: 'success',
+        },
+      })
     ).status(),
   ).toBe(200);
   const result = await (await student.get(`/api/submissions/${submissionId}`)).json();
-  expect(result.feedback).toBe(feedback);
-  expect(result.score).toBe(82);
+  expect(result.review_outcome).toBe('success');
+  expect(result.score).toBe(88);
   expect(result.ai).toBeNull();
 });
 

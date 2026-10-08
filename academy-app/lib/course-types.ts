@@ -80,6 +80,7 @@ export type TaskStatus = {
   kind: LessonMaterial['kind'];
   required: boolean;
   status: 'todo' | 'submitted' | 'done';
+  outcome?: 'success' | 'fail' | null;
   score?: number;
   total?: number;
   assignmentId?: string;

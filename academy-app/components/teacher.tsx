@@ -597,6 +597,10 @@ export function Reviews({
   openReview: (s: Submission) => void;
 }) {
   const [filter, setFilter] = useState('pending');
+  const matches = (submission: Submission) =>
+    filter === 'all' ||
+    (filter === 'pending' && !submission.review_outcome) ||
+    submission.review_outcome === filter;
   return (
     <>
       <div className="page-heading">
@@ -616,50 +620,54 @@ export function Reviews({
         >
           Kutilmoqda · {data.stats.pending}
         </button>
-        <button className={filter === 'done' ? 'active' : ''} onClick={() => setFilter('done')}>
-          Tekshirilgan
+        <button
+          className={filter === 'success' ? 'active' : ''}
+          onClick={() => setFilter('success')}
+        >
+          Success
+        </button>
+        <button className={filter === 'fail' ? 'active' : ''} onClick={() => setFilter('fail')}>
+          Fail
         </button>
         <button className={filter === 'all' ? 'active' : ''} onClick={() => setFilter('all')}>
           Barchasi
         </button>
       </div>
       <div className="review-grid">
-        {data.submissions
-          .filter(
-            (s) => filter === 'all' || (filter === 'pending' ? !s.published_at : !!s.published_at),
-          )
-          .map((s) => (
-            <button className="review-list-card" key={s.id} onClick={() => openReview(s)}>
-              <div>
-                <div className="student-cell">
-                  <div className="avatar">{s.student_name?.[0]}</div>
-                  <div>
-                    <h3>{s.student_name}</h3>
-                    <small>{s.group_name}</small>
-                  </div>
+        {data.submissions.filter(matches).map((s) => (
+          <button className="review-list-card" key={s.id} onClick={() => openReview(s)}>
+            <div>
+              <div className="student-cell">
+                <div className="avatar">{s.student_name?.[0]}</div>
+                <div>
+                  <h3>{s.student_name}</h3>
+                  <small>{s.group_name}</small>
                 </div>
-                <Badge tone={s.published_at ? 'green' : 'orange'}>
-                  {s.published_at ? `${s.score}/100` : 'Tekshirish kerak'}
-                </Badge>
               </div>
-              <h2>{s.assignment_title}</h2>
-              <p lang="ko">{s.body || 'Javob biriktirilgan faylda.'}</p>
-              <footer>
-                <span>
-                  <FileText size={16} />
-                  {s.attachments.length} fayl · {dateLabel(s.created_at)}
-                </span>
-                <span>
-                  Ochish
-                  <ArrowUpRight size={17} />
-                </span>
-              </footer>
-            </button>
-          ))}
+              <Badge tone={s.review_outcome === 'success' ? 'green' : 'orange'}>
+                {s.review_outcome === 'success'
+                  ? `Success · ${s.score}/100`
+                  : s.review_outcome === 'fail'
+                    ? `Fail · ${s.score}/100`
+                    : 'Tekshirish kerak'}
+              </Badge>
+            </div>
+            <h2>{s.assignment_title}</h2>
+            <p lang="ko">{s.body || 'Javob biriktirilgan faylda.'}</p>
+            <footer>
+              <span>
+                <FileText size={16} />
+                {s.attachments.length} fayl · {dateLabel(s.created_at)}
+              </span>
+              <span>
+                Ochish
+                <ArrowUpRight size={17} />
+              </span>
+            </footer>
+          </button>
+        ))}
       </div>
-      {!data.submissions.filter(
-        (s) => filter === 'all' || (filter === 'pending' ? !s.published_at : !!s.published_at),
-      ).length && (
+      {!data.submissions.filter(matches).length && (
         <Empty title="Bu yerda hozircha ish yo‘q">
           Topshirilgan yozma vazifalar shu yerga keladi.
         </Empty>
@@ -685,6 +693,9 @@ export function ReviewDetail({
   const [s, setS] = useState(submission);
   const [feedback, setFeedback] = useState(submission.feedback || '');
   const [score, setScore] = useState(submission.score ?? 0);
+  const [outcome, setOutcome] = useState<'success' | 'fail'>(
+    submission.review_outcome || 'success',
+  );
   const [busy, setBusy] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState('');
@@ -734,9 +745,13 @@ export function ReviewDetail({
     try {
       await api('teacher/feedback', {
         method: 'POST',
-        body: JSON.stringify({ submissionId: s.id, feedback, score }),
+        body: JSON.stringify({ submissionId: s.id, feedback, score, outcome }),
       });
-      notify('Izoh o‘quvchiga yuborildi.');
+      notify(
+        outcome === 'success'
+          ? 'Vazifa Success deb belgilandi.'
+          : 'Vazifa Fail deb belgilandi va qayta topshirish uchun ochildi.',
+      );
       refresh();
       onClose();
     } catch (e) {
@@ -934,6 +949,35 @@ export function ReviewDetail({
               placeholder="Nima yaxshi chiqqani va nimani yaxshilash kerakligini yozing."
             />
           </label>
+          <fieldset className="review-outcome">
+            <legend>Yakuniy natija</legend>
+            <label className={outcome === 'success' ? 'selected success' : ''}>
+              <input
+                type="radio"
+                name="outcome"
+                value="success"
+                checked={outcome === 'success'}
+                onChange={() => setOutcome('success')}
+              />
+              <span>
+                <strong>Success</strong>
+                <small>Vazifa qabul qilinadi va bajarilgan deb belgilanadi.</small>
+              </span>
+            </label>
+            <label className={outcome === 'fail' ? 'selected fail' : ''}>
+              <input
+                type="radio"
+                name="outcome"
+                value="fail"
+                checked={outcome === 'fail'}
+                onChange={() => setOutcome('fail')}
+              />
+              <span>
+                <strong>Fail</strong>
+                <small>O‘quvchi ustoz izohini ko‘rib, vazifani qayta topshiradi.</small>
+              </span>
+            </label>
+          </fieldset>
           <label className="score-input">
             Baho (0–100)
             <input
@@ -948,7 +992,7 @@ export function ReviewDetail({
           {error && <div className="alert error">{error}</div>}
           <SubmitButton busy={sending}>
             <Send size={17} />
-            {s.published_at ? 'Izohni yangilash va yuborish' : 'Izohni o‘quvchiga yuborish'}
+            {outcome === 'success' ? 'Success va izohni yuborish' : 'Fail va izohni yuborish'}
           </SubmitButton>
         </form>
       </div>

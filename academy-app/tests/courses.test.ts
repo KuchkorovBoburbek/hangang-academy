@@ -292,7 +292,7 @@ it('program boundaries, file references and level changes are checked server-sid
   ).toThrow('YouTube');
   expect(() => setCoursePoints(student, release, { userId: student.id, points: 10 })).toThrow();
 });
-it('homework remains pending until teacher publication; group board never leaks bodies or feedback', () => {
+it('homework remains pending until review; group board shares work and teacher feedback', () => {
   const view = lessonView(student, release),
     word = view.snapshot.materials[0];
   completeLessonTask(student, release, { materialId: word.id });
@@ -309,14 +309,16 @@ it('homework remains pending until teacher publication; group board never leaks 
   );
   expect(courseBoard(student, gid).students[0].lessons[0].status).toBe('submitted');
   run(
-    "UPDATE submissions SET status='reviewed',published_at=?,feedback=? WHERE id=?",
+    "UPDATE submissions SET status='reviewed',review_outcome='success',published_at=?,feedback=? WHERE id=?",
     now(),
     'PRIVATE FEEDBACK',
     sid,
   );
   const board = courseBoard(student, gid);
   expect(board.students[0].lessons[0].status).toBe('done');
-  expect(JSON.stringify(board)).not.toMatch(/PRIVATE|telegram|email/);
+  expect(JSON.stringify(board)).toContain('PRIVATE ANSWER');
+  expect(JSON.stringify(board)).toContain('PRIVATE FEEDBACK');
+  expect(JSON.stringify(board)).not.toMatch(/telegram|email/);
   expect(() => courseBoard(other, gid)).toThrow();
 });
 it('live quiz hides answers and student ranking until closed; repeat submissions do not inflate score', () => {

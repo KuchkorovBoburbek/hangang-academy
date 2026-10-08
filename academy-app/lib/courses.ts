@@ -16,6 +16,7 @@ import type { User, Group, Submission } from './types';
 import { GRAMMARS } from './content';
 import { allVocabulary } from './vocabulary-data';
 import { courseAccess } from './course-access';
+import { youtubeVideoId } from './youtube';
 const text = (max = 1000) => z.string().trim().max(max);
 const question = z
   .object({
@@ -69,6 +70,11 @@ const material = z
 export const lessonSchema = z.object({
   title: text(160).min(2),
   description: text(2000).default(''),
+  youtubeUrl: text(2000)
+    .default('')
+    .refine((value) => !value || youtubeVideoId(value) !== null, {
+      message: 'Faqat haqiqiy YouTube video havolasini kiriting.',
+    }),
   materials: z.array(material).max(30),
   warmup: z.array(question).max(30).default([]),
 });
@@ -97,7 +103,7 @@ export function ownLesson(user: User, lessonId: string): CourseLesson {
     user.id,
   );
   if (!row) throw new AppError(404, 'Dars topilmadi.');
-  return { ...row, ...JSON.parse(row.body) };
+  return { ...row, ...lessonSchema.parse(JSON.parse(row.body)) };
 }
 export function ensureCourses(user: User) {
   requireTeacher(user);
@@ -191,7 +197,13 @@ export function createLesson(user: User, courseId: string) {
       lid,
       courseId,
       position,
-      JSON.stringify({ title: `${position}-dars`, description: '', materials: [], warmup: [] }),
+      JSON.stringify({
+        title: `${position}-dars`,
+        description: '',
+        youtubeUrl: '',
+        materials: [],
+        warmup: [],
+      }),
       now(),
     );
     return ownLesson(user, lid);
@@ -262,7 +274,8 @@ export function openLesson(user: User, lessonId: string, input: unknown) {
   const group = one<Group>('SELECT * FROM groups WHERE id=?', b.groupId)!;
   if (group.course_id !== lesson.course_id)
     throw new AppError(400, 'Guruh va dars bir dasturga tegishli bo‘lishi kerak.');
-  if (!lesson.materials.length) throw new AppError(400, 'Avval darsga material qo‘shing.');
+  if (!lesson.materials.length && !lesson.youtubeUrl)
+    throw new AppError(400, 'Avval darsga material yoki YouTube video qo‘shing.');
   return transaction(() => {
     const existing = one<{ id: string }>(
       'SELECT id FROM course_releases WHERE group_id=? AND lesson_id=?',
@@ -274,6 +287,7 @@ export function openLesson(user: User, lessonId: string, input: unknown) {
     const snapshot: LessonBody = {
       title: lesson.title,
       description: lesson.description,
+      youtubeUrl: lesson.youtubeUrl,
       materials: lesson.materials,
       warmup: lesson.warmup,
     };
@@ -318,7 +332,7 @@ export function releaseAccess(user: User, releaseId: string): LessonRelease {
   );
   if (!r || (user.role === 'teacher' ? r.teacher_id !== user.id : r.group_id !== user.group_id))
     throw new AppError(404, 'Dars topilmadi yoki hali ochilmagan.');
-  const snapshot = JSON.parse(r.snapshot) as LessonBody;
+  const snapshot = lessonSchema.parse(JSON.parse(r.snapshot));
   return {
     id: r.id,
     group_id: r.group_id,

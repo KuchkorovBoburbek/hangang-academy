@@ -74,6 +74,7 @@ test.beforeAll(async ({ playwright }) => {
         ...lesson,
         title: 'Oila — 가족',
         description: 'Oila a’zolarini tanishtirishni o‘rganamiz.',
+        youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
         materials: [
           material('vocabulary', 'self'),
           material('writing', 'text'),
@@ -137,6 +138,7 @@ test('Drafts and attachments stay private; publishing to one group never opens a
   expect((await (await outsider.get('/api/courses/mine')).json()).releases).toHaveLength(0);
   const view = await (await student.get(`/api/courses/releases/${releaseId}`)).json();
   expect(view.snapshot.warmup).toHaveLength(0);
+  expect(view.snapshot.youtubeUrl).toBe('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
   expect(JSON.stringify(view)).not.toContain('"answer":');
   expect((await (await student.get('/api/vocabulary')).json()).items.map((w: any) => w.ko)).toEqual(
     ['가족', '동생'],
@@ -249,11 +251,19 @@ test('Premium course editor and student lesson are usable on desktop and phone',
   const page = await tc.newPage();
   const errors: string[] = [];
   page.on('pageerror', (e) => errors.push(e.message));
-  await page.goto('/courses');
+  await page.route('https://www.youtube-nocookie.com/**', (route) => route.abort());
+  await page.goto('/courses', { waitUntil: 'domcontentloaded' });
   await expect(page.getByRole('heading', { name: 'Dars dasturlari', exact: true })).toBeVisible();
   await page.screenshot({ path: 'test-results/courses-desktop.png', fullPage: true });
   await page.getByRole('button', { name: /Oila — 가족/ }).click();
   await expect(page.getByRole('heading', { name: 'Dars tayyorlash' })).toBeVisible();
+  await expect(page.getByLabel('YouTube video havolasi')).toHaveValue(
+    'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+  );
+  await expect(page.getByTitle('Oila — 가족 videosi')).toHaveAttribute(
+    'src',
+    'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?rel=0',
+  );
   await page.getByLabel('Dars nomi', { exact: true }).fill('Oila — 가족 · Yangilangan qoralama');
   await page.getByRole('button', { name: 'Saqlash', exact: true }).first().click();
   await expect(page.getByRole('status')).toContainText('Dars qoralamasi saqlandi.');
@@ -273,12 +283,17 @@ test('Premium course editor and student lesson are usable on desktop and phone',
     viewport: { width: 390, height: 844 },
   });
   const sp = await sc.newPage();
-  await sp.goto('/');
+  await sp.route('https://www.youtube-nocookie.com/**', (route) => route.abort());
+  await sp.goto('/', { waitUntil: 'domcontentloaded' });
   await expect(sp.getByRole('heading', { name: /안녕하세요/ })).toBeVisible();
   await expect(sp.getByRole('button', { name: 'TOPIK 읽기', exact: true })).toHaveCount(0);
   await sp.screenshot({ path: 'test-results/course-student-home-mobile.png', fullPage: true });
-  await sp.goto(`/lessons/${releaseId}`);
+  await sp.goto(`/lessons/${releaseId}`, { waitUntil: 'domcontentloaded' });
   await expect(sp.getByRole('heading', { name: 'Oila — 가족', exact: true })).toBeVisible();
+  await expect(sp.getByTitle('Oila — 가족 video darsi')).toHaveAttribute(
+    'src',
+    'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?rel=0',
+  );
   await sp.getByRole('button', { name: 'Kartochka', exact: true }).click();
   await expect(sp.getByRole('button', { name: /Tarjimani ko‘rish/ })).toBeVisible();
   await sp.getByRole('button', { name: /Tarjimani ko‘rish/ }).click();
@@ -286,7 +301,7 @@ test('Premium course editor and student lesson are usable on desktop and phone',
   expect(await sp.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
     true,
   );
-  await sp.goto('/my-group');
+  await sp.goto('/my-group', { waitUntil: 'domcontentloaded' });
   await expect(sp.getByRole('heading', { name: 'Guruh reytingi' })).toBeVisible();
   await sp.screenshot({ path: 'test-results/course-board-mobile.png', fullPage: true });
   await sc.close();

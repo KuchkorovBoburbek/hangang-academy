@@ -44,6 +44,7 @@ export type LessonMaterial = {
 export type LessonBody = {
   title: string;
   description: string;
+  youtubeUrl: string;
   materials: LessonMaterial[];
   warmup: LessonQuestion[];
 };

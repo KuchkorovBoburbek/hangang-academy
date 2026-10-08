@@ -21,6 +21,7 @@ import {
   Trophy,
   Upload,
   X,
+  Video,
 } from 'lucide-react';
 import { api, Badge, Empty, errorText, Modal, SubmitButton } from './ui';
 import {
@@ -39,6 +40,7 @@ import {
 import type { Group, Grammar } from '@/lib/types';
 import type { courseBoard, lessonView } from '@/lib/courses';
 import type { VocabularyEntry } from '@/lib/vocabulary-types';
+import { youtubeEmbedUrl, youtubeVideoId } from '@/lib/youtube';
 import '@/app/courses.css';
 type Catalog = {
   courses: CourseSummary[];
@@ -453,6 +455,26 @@ function LessonEditor({
             placeholder="Bu darsda nimani o‘rganamiz?"
           />
         </label>
+        <label>
+          YouTube video
+          <span className="course-field-note">
+            <Video size={16} /> O‘quvchi videoni dars sahifasining o‘zida ko‘radi.
+          </span>
+          <input
+            type="url"
+            aria-label="YouTube video havolasi"
+            value={lesson.youtubeUrl}
+            maxLength={2000}
+            onChange={(e) => update({ youtubeUrl: e.target.value })}
+            placeholder="https://www.youtube.com/watch?v=…"
+          />
+          {lesson.youtubeUrl && youtubeVideoId(lesson.youtubeUrl) === null && (
+            <small className="course-field-error">Haqiqiy YouTube video havolasini kiriting.</small>
+          )}
+        </label>
+        {youtubeEmbedUrl(lesson.youtubeUrl) && (
+          <YouTubePlayer url={lesson.youtubeUrl} title={`${lesson.title} videosi`} compact />
+        )}
       </section>
       {wordJobs.some((j) => j.status !== 'applied') && (
         <section className="panel course-editor-meta">
@@ -810,7 +832,7 @@ function LessonEditor({
           </button>
           <button
             className="button primary"
-            disabled={busy || dirty || !lesson.materials.length}
+            disabled={busy || dirty || (!lesson.materials.length && !lesson.youtubeUrl)}
             onClick={() => setOpening(true)}
           >
             <LockKeyhole size={16} />
@@ -893,6 +915,9 @@ function LessonEditor({
         <Modal title="O‘quvchi ko‘rinishi · Qoralama" onClose={() => setPreview(false)} wide>
           <h2>{lesson.title}</h2>
           <p>{lesson.description}</p>
+          {lesson.youtubeUrl && (
+            <YouTubePlayer url={lesson.youtubeUrl} title={`${lesson.title} videosi`} />
+          )}
           {lesson.materials.map((m) => (
             <MaterialReading
               key={m.id}
@@ -1226,6 +1251,7 @@ function MaterialReading({
   files: CourseFile[];
   grammars: Grammar[];
 }) {
+  const materialYoutube = youtubeEmbedUrl(m.url);
   return (
     <div className="course-reading">
       <div className="section-title">
@@ -1274,11 +1300,13 @@ function MaterialReading({
           </div>
         ) : null;
       })}
-      {m.url && /^https?:\/\//i.test(m.url) && (
+      {materialYoutube ? (
+        <YouTubePlayer url={m.url} title={`${m.title} videosi`} />
+      ) : m.url && /^https?:\/\//i.test(m.url) ? (
         <a className="button secondary" href={m.url} target="_blank" rel="noopener noreferrer">
           Qo‘shimcha materialni ochish <ArrowRight size={16} />
         </a>
-      )}
+      ) : null}
       {m.topikCategory && (
         <a
           className="button secondary"
@@ -1287,6 +1315,41 @@ function MaterialReading({
           TOPIK 읽기 {m.topikCategory} mashqlari <ArrowRight size={16} />
         </a>
       )}
+    </div>
+  );
+}
+
+function YouTubePlayer({
+  url,
+  title,
+  compact = false,
+}: {
+  url: string;
+  title: string;
+  compact?: boolean;
+}) {
+  const embedUrl = youtubeEmbedUrl(url);
+  if (!embedUrl) return null;
+  return (
+    <div className={`course-youtube ${compact ? 'compact' : ''}`}>
+      <div className="course-youtube-heading">
+        <span>
+          <Video size={19} /> Video dars
+        </span>
+        <a href={url} target="_blank" rel="noopener noreferrer">
+          YouTube’da ochish <ArrowRight size={15} />
+        </a>
+      </div>
+      <div className="course-youtube-frame">
+        <iframe
+          src={embedUrl}
+          title={title}
+          loading="lazy"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
+      </div>
     </div>
   );
 }
@@ -1605,6 +1668,9 @@ export function StudentLesson({
         </div>
         <Badge tone="green">O‘rganishda davom eting</Badge>
       </div>
+      {lesson.snapshot.youtubeUrl && (
+        <YouTubePlayer url={lesson.snapshot.youtubeUrl} title={`${lesson.title} video darsi`} />
+      )}
       <LiveQuiz releaseId={releaseId} teacher={false} notify={notify} />
       {lesson.snapshot.materials.map((m) => (
         <section

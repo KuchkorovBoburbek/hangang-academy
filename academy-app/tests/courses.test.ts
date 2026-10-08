@@ -24,6 +24,7 @@ import { allVocabulary } from '../lib/vocabulary-data';
 import { courseAccess, requireTopikAccess } from '../lib/course-access';
 import { validateAudio } from '../lib/files';
 import type { CourseLesson, LessonMaterial } from '../lib/course-types';
+import { youtubeEmbedUrl, youtubeVideoId } from '../lib/youtube';
 let root: string,
   teacher: User,
   student: User,
@@ -54,6 +55,15 @@ const makeMaterial = (kind: LessonMaterial['kind'] = 'vocabulary'): LessonMateri
   task: 'self',
   required: true,
   questions: [],
+});
+it('accepts common YouTube links and rejects unrelated or malformed URLs', () => {
+  expect(youtubeVideoId('https://youtu.be/dQw4w9WgXcQ')).toBe('dQw4w9WgXcQ');
+  expect(youtubeVideoId('https://www.youtube.com/shorts/dQw4w9WgXcQ')).toBe('dQw4w9WgXcQ');
+  expect(youtubeEmbedUrl('https://www.youtube.com/watch?v=dQw4w9WgXcQ')).toBe(
+    'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?rel=0',
+  );
+  expect(youtubeVideoId('https://example.com/watch?v=dQw4w9WgXcQ')).toBeNull();
+  expect(youtubeVideoId('javascript:alert(1)')).toBeNull();
 });
 beforeAll(() => {
   root = fs.mkdtempSync(path.join(os.tmpdir(), 'hangang-courses-'));
@@ -102,6 +112,7 @@ it('new groups automatically share a level program but drafts are private and pa
   lesson = saveLesson(teacher, lesson.id, {
     ...lesson,
     title: 'Oila darsi',
+    youtubeUrl: 'https://youtu.be/dQw4w9WgXcQ',
     materials: [material, writing],
     warmup: [
       { id: id(), prompt: '가족?', options: ['Oila', 'Maktab'], answer: 0, explanation: 'Oila.' },
@@ -115,9 +126,26 @@ it('new groups automatically share a level program but drafts are private and pa
   expect(studentCourses(student).releases).toHaveLength(1);
   expect(studentCourses(other).releases).toHaveLength(0);
   expect(() => lessonView(other, release)).toThrow();
+  expect(lessonView(student, release).snapshot.youtubeUrl).toBe('https://youtu.be/dQw4w9WgXcQ');
   expect(allVocabulary(student).map((w) => w.ko)).toEqual(['가족', '동생']);
   expect(allVocabulary(other)).toHaveLength(0);
   expect(() => requireTopikAccess(student)).toThrow();
+});
+it('publishes a video-only lesson without requiring an extra material card', () => {
+  let videoLesson = createLesson(teacher, lesson.course_id);
+  videoLesson = saveLesson(teacher, videoLesson.id, {
+    ...videoLesson,
+    title: 'Video dars',
+    youtubeUrl: 'https://www.youtube.com/live/dQw4w9WgXcQ',
+  });
+  const videoRelease = openLesson(teacher, videoLesson.id, {
+    groupId: gid,
+    date: '2026-12-31',
+    dueAt: '2027-01-02T12:00:00.000Z',
+  }).id;
+  expect(lessonView(student, videoRelease).snapshot.youtubeUrl).toBe(
+    'https://www.youtube.com/live/dQw4w9WgXcQ',
+  );
 });
 it('draft edits cannot change published materials, concurrent edits fail and opening is idempotent', () => {
   const stale = { ...lesson };
@@ -164,6 +192,12 @@ it('program boundaries, file references and level changes are checked server-sid
       materials: [{ ...lesson.materials[0], url: 'javascript:alert(1)' }],
     }),
   ).toThrow();
+  expect(() =>
+    saveLesson(teacher, lesson.id, {
+      ...lesson,
+      youtubeUrl: 'https://example.com/not-youtube',
+    }),
+  ).toThrow('YouTube');
   expect(() => setCoursePoints(student, release, { userId: student.id, points: 10 })).toThrow();
 });
 it('homework remains pending until teacher publication; group board never leaks bodies or feedback', () => {

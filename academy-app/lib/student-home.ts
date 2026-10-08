@@ -13,6 +13,8 @@ export type HomeTask = {
   title: string;
   kind: LessonMaterial['kind'];
   status: TaskStatus['status'];
+  source: 'lesson' | 'extra';
+  required: boolean;
   lesson: string;
   dueAt: string;
   path?: string;
@@ -38,6 +40,8 @@ export function homeTasks(data: HomeData): HomeTask[] {
       title: t.title,
       kind: t.kind,
       status: t.status,
+      source: 'lesson' as const,
+      required: t.required,
       lesson: `${r.position}-dars · ${r.title}`,
       dueAt: t.dueAt || r.due_at,
       path: `/lessons/${r.id}#material-${t.materialId}`,
@@ -61,11 +65,13 @@ export function homeTasks(data: HomeData): HomeTask[] {
             : data.completedAssignments.includes(a.id)
               ? 'done'
               : 'todo',
-        lesson: 'Ustoz bergan vazifa',
+        source: 'extra' as const,
+        required: true,
+        lesson: 'Qo‘shimcha vazifa',
         dueAt: a.due_at,
         path:
           a.kind === 'writing'
-            ? '/writing'
+            ? `/writing?assignment=${a.id}`
             : a.kind === 'topik' || a.kind === 'topik_words'
               ? `/assignment/${a.id}`
               : undefined,

@@ -4,7 +4,7 @@ let teacher: APIRequestContext,
   student: APIRequestContext,
   empty: APIRequestContext,
   legacy: APIRequestContext;
-let releaseId: string;
+let releaseId: string, releasePosition: number;
 const materials = [
   ['reading', 'self', '학교 · Maktab haqida o‘qing'],
   ['listening', 'none', '인사 · Salomlashishni tinglang'],
@@ -68,6 +68,7 @@ test.beforeAll(async ({ playwright }) => {
   const draft = await (
     await teacher.post('/api/courses/lessons', { data: { courseId: group.course_id } })
   ).json();
+  releasePosition = draft.position;
   expect(
     (
       await teacher.post(`/api/courses/lessons/${draft.id}`, {
@@ -86,6 +87,20 @@ test.beforeAll(async ({ playwright }) => {
   });
   expect(release.status()).toBe(200);
   releaseId = (await release.json()).id;
+  expect(
+    (
+      await teacher.post('/api/teacher/assignments', {
+        data: {
+          groupId: group.id,
+          title: 'Qo‘shimcha insho',
+          kind: 'writing',
+          prompt: 'Dam olish kuningiz haqida koreys tilida yozing.',
+          topicIds: [],
+          dueAt: new Date(Date.now() + 7 * 86400000).toISOString(),
+        },
+      })
+    ).status(),
+  ).toBe(200);
   expect(
     (
       await student.post(`/api/courses/releases/${releaseId}/complete`, {
@@ -127,6 +142,15 @@ test('Mobile home shows four real states, preserves access, opens exact practice
   await expect(page.locator('[data-skill=listening]')).toContainText('Vazifa yo‘q');
   await expect(page.locator('[data-skill=speaking]')).toContainText('Bajarish kerak');
   await expect(page.locator('[data-skill=writing]')).toContainText('Tekshirilmoqda');
+  await expect(page.getByText('Bajarilishi shart', { exact: true })).toBeVisible();
+  await expect(page.locator('.home-required-list .home-task-row')).toHaveCount(3);
+  await expect(page.locator('.home-required-list')).toContainText(
+    `${releasePosition}-dars · Mening birinchi darsim`,
+  );
+  await expect(page.getByRole('heading', { name: 'Qo‘shimcha vazifalar' })).toBeVisible();
+  await expect(
+    page.getByRole('button', { name: /Qo‘shimcha vazifa Qo‘shimcha insho/ }),
+  ).toBeVisible();
   await expect(page.getByRole('progressbar', { name: 'Vazifalar bajarilishi' })).toHaveAttribute(
     'aria-valuenow',
     '33',
@@ -150,6 +174,17 @@ test('Mobile home shows four real states, preserves access, opens exact practice
     await page.screenshot({ path: `test-results/student-home-${width}.png`, fullPage: true });
   }
   await page.setViewportSize({ width: 390, height: 844 });
+  await page
+    .locator('.home-required-list')
+    .getByRole('button', { name: /자기소개/ })
+    .click();
+  await expect(page).toHaveURL(new RegExp(`lessons/${releaseId}#material-${materials[2].id}`));
+  await page.goto('/');
+  await page.getByRole('button', { name: /Qo‘shimcha vazifa Qo‘shimcha insho/ }).click();
+  await expect(page).toHaveURL(/\/writing\?assignment=/);
+  await expect(page.getByRole('dialog')).toContainText('Qo‘shimcha insho');
+  await page.getByRole('button', { name: 'Yopish', exact: true }).click();
+  await page.goto('/');
   await page.getByRole('button', { name: '듣기 · Tinglash uchun qo‘shimcha mashqlar' }).click();
   await expect(page.getByRole('dialog')).toContainText('인사 · Salomlashishni tinglang');
   await page.getByRole('button', { name: /인사 · Salomlashishni tinglang/ }).click();
@@ -191,7 +226,8 @@ test('Empty groups show no invented homework, and legacy students use the same l
       await expect(page.getByRole('dialog')).toContainText('Hozircha mashq yo‘q');
       await page.getByRole('button', { name: 'Yopish', exact: true }).click();
     } else {
-      await expect(page.locator('[data-skill=writing]')).toContainText('Bajarish kerak');
+      await expect(page.locator('[data-skill=writing]')).toContainText('Vazifa yo‘q');
+      await expect(page.getByRole('heading', { name: 'Qo‘shimcha vazifalar' })).toBeVisible();
       await page.getByRole('button', { name: '읽기 · O‘qish uchun qo‘shimcha mashqlar' }).click();
       await expect(page.getByRole('dialog')).toContainText('TOPIK II · 읽기');
       await page.getByRole('button', { name: 'Yopish', exact: true }).click();

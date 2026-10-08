@@ -77,12 +77,13 @@ export default function StudentHome({
 }) {
   const [sheet, setSheet] = useState<{ type: 'tasks' | 'practice'; skill: HomeSkill } | null>(null);
   const tasks = homeTasks(data);
-  const progress = taskSummary(tasks);
+  const requiredTasks = tasks.filter((task) => task.source === 'lesson' && task.required);
+  const additionalTasks = tasks.filter((task) => task.source === 'extra' || !task.required);
+  const progress = taskSummary(requiredTasks);
   const courses = data.courses;
   const level = COURSE_LEVELS.find((l) => l.id === courses.level)?.label || data.group?.level;
-  const extras = tasks.filter((t) => !HOME_SKILLS.some((s) => s.id === t.kind));
   const skill = HOME_SKILLS.find((s) => s.id === sheet?.skill);
-  const skillTasks = tasks.filter((t) => t.kind === sheet?.skill);
+  const skillTasks = requiredTasks.filter((t) => t.kind === sheet?.skill);
   const practice = courses.releases.flatMap((r) =>
     r.materials
       .filter((m) => m.kind === sheet?.skill)
@@ -149,9 +150,22 @@ export default function StudentHome({
               style={{ width: `${progress.total ? (progress.done / progress.total) * 100 : 0}%` }}
             />
           </div>
+          {requiredTasks.length > 0 && (
+            <div className="home-required-block">
+              <div className="home-required-heading">
+                <strong>Bajarilishi shart</strong>
+                <span>{progress.todo} ta qolgan</span>
+              </div>
+              <div className="home-task-list home-required-list">
+                {requiredTasks.map((task) => (
+                  <TaskRow key={task.id} task={task} onClick={() => openTask(task)} />
+                ))}
+              </div>
+            </div>
+          )}
           <div className="home-skills">
             {HOME_SKILLS.map((s) => {
-              const summary = taskSummary(tasks.filter((t) => t.kind === s.id));
+              const summary = taskSummary(requiredTasks.filter((t) => t.kind === s.id));
               const Icon = skillIcons[s.id];
               const StatusIcon = statusIcons[summary.status];
               const content = (
@@ -312,16 +326,16 @@ export default function StudentHome({
         </button>
       ))}
 
-      {extras.length > 0 && (
+      {additionalTasks.length > 0 && (
         <section className="home-secondary-section">
           <div className="home-section-heading">
-            <h2>Boshqa vazifalar</h2>
+            <h2>Qo‘shimcha vazifalar</h2>
             <span className="home-muted-count">
-              {extras.filter((t) => t.status === 'done').length}/{extras.length}
+              {additionalTasks.filter((t) => t.status === 'done').length}/{additionalTasks.length}
             </span>
           </div>
           <div className="home-task-list">
-            {extras.map((task) => (
+            {additionalTasks.map((task) => (
               <TaskRow key={task.id} task={task} onClick={() => openTask(task)} />
             ))}
           </div>

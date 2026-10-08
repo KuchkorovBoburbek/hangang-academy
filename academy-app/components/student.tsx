@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ReadingSession } from './topik';
 import GrammarLesson from './grammar-lesson';
 import type { TopikSession } from '@/lib/topik-types';
@@ -303,6 +303,20 @@ export function Writing({
   const [files, setFiles] = useState<File[]>([]);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
+  const openedFromUrl = useRef('');
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.search).get('assignment');
+    if (!id || openedFromUrl.current === id) return;
+    const target = data.assignments.find((item) => item.id === id && item.kind === 'writing');
+    if (!target) return;
+    openedFromUrl.current = id;
+    const submission = data.submissions.find((item) => item.assignment_id === id);
+    if (submission) setResult(submission);
+    else {
+      setAssignment(target);
+      setError('');
+    }
+  }, [data.assignments, data.submissions]);
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     if (!assignment) return;

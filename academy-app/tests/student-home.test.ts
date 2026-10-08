@@ -53,12 +53,15 @@ it('legacy TOPIK belongs to reading, word quizzes remain vocabulary, and writing
   expect(tasks.find((t) => t.id === 'read')).toMatchObject({
     kind: 'reading',
     status: 'done',
+    source: 'extra',
+    required: true,
     path: '/assignment/read',
   });
   expect(tasks.find((t) => t.id === 'word')).toMatchObject({ kind: 'vocabulary', status: 'todo' });
   expect(tasks.find((t) => t.id === 'write')).toMatchObject({
     kind: 'writing',
     status: 'submitted',
+    path: '/writing?assignment=write',
   });
 });
 it('published teacher feedback changes legacy writing to done', () => {
@@ -107,7 +110,51 @@ it('course speaking submissions are not double-counted as legacy writing assignm
   expect(tasks[0]).toMatchObject({
     kind: 'speaking',
     status: 'submitted',
+    source: 'lesson',
+    required: true,
     path: '/lessons/lesson#material-speech',
+  });
+});
+it('keeps optional lesson work separate from standalone extra assignments', () => {
+  const tasks = homeTasks({
+    ...base,
+    assignments: [assignment('extra-writing', 'writing')],
+    courses: {
+      ...courses,
+      managed: true,
+      releases: [
+        {
+          id: 'lesson',
+          group_id: 'group',
+          lesson_id: 'source',
+          title: 'Birinchi dars',
+          position: 1,
+          lesson_date: '2026-09-22',
+          due_at: '2026-09-25',
+          opened_at: '',
+          materials: [],
+          liveQuiz: false,
+          tasks: [
+            {
+              materialId: 'optional-word-work',
+              title: 'So‘zlarni takrorlash',
+              kind: 'vocabulary',
+              required: false,
+              status: 'todo',
+            },
+          ],
+        },
+      ],
+    },
+  });
+  expect(tasks.find((task) => task.id === 'lesson-optional-word-work')).toMatchObject({
+    source: 'lesson',
+    required: false,
+    lesson: '1-dars · Birinchi dars',
+  });
+  expect(tasks.find((task) => task.id === 'extra-writing')).toMatchObject({
+    source: 'extra',
+    lesson: 'Qo‘shimcha vazifa',
   });
 });
 it('unfinished work from an older lesson remains ahead of completed new tasks', () => {

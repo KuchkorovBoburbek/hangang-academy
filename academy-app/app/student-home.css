@@ -481,6 +481,29 @@ button.home-skill-card:active {
   background: var(--home-surface);
   overflow: hidden;
 }
+.home-required-block {
+  margin: 15px 0 16px;
+}
+.home-required-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 2px 8px;
+  font-size: 12px;
+}
+.home-required-heading strong {
+  color: var(--home-ink);
+}
+.home-required-heading span {
+  color: var(--home-muted);
+}
+.home-required-list {
+  max-height: 286px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
 .home-task-row,
 .home-lesson-link,
 .home-sheet-link {
@@ -875,6 +898,9 @@ button.home-skill-card:active {
   }
   .home-progress-track {
     margin-bottom: 14px;
+  }
+  .home-required-list {
+    max-height: 252px;
   }
   .home-extra .home-section-note {
     margin-bottom: 15px;

@@ -44,6 +44,13 @@ import type { Group, Grammar } from '@/lib/types';
 import type { courseBoard, lessonView } from '@/lib/courses';
 import type { VocabularyEntry } from '@/lib/vocabulary-types';
 import { youtubeEmbedUrl, youtubeVideoId } from '@/lib/youtube';
+import GrammarLesson from './grammar-lesson';
+import {
+  GRAMMAR_TOPICS,
+  grammarTopicFor,
+  groupGrammarsByTopic,
+  type GrammarTopicId,
+} from '@/lib/grammar-topics';
 import '@/app/courses.css';
 type Catalog = {
   courses: CourseSummary[];
@@ -256,6 +263,7 @@ function LessonEditor({
     [publishVideo, setPublishVideo] = useState(false),
     [picker, setPicker] = useState<{ id: string; kind: 'word' | 'grammar' } | null>(null),
     [query, setQuery] = useState(''),
+    [grammarTopic, setGrammarTopic] = useState<'all' | GrammarTopicId>('all'),
     [ai, setAi] = useState<string | null>(null),
     [aiBusy, setAiBusy] = useState(false),
     [aiWords, setAiWords] = useState<LessonWord[]>([]),
@@ -640,6 +648,7 @@ function LessonEditor({
                 className="button secondary"
                 onClick={() => {
                   setQuery('');
+                  setGrammarTopic('all');
                   setPicker({ id: m.id, kind: 'grammar' });
                 }}
               >
@@ -1012,66 +1021,61 @@ function LessonEditor({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
-          <div className="course-bank-list">
-            {picker.kind === 'word'
-              ? bank?.words
-                  .filter((w) => `${w.ko} ${w.uz}`.toLowerCase().includes(query.toLowerCase()))
-                  .slice(0, 100)
-                  .map((w) => {
-                    const m = lesson.materials.find((m) => m.id === picker.id)!;
-                    const checked = m.words.some((v) => v.id === w.id);
-                    return (
-                      <label className="checkbox-label" key={w.id}>
-                        <input
-                          type="checkbox"
-                          checked={checked}
-                          onChange={() =>
-                            materialUpdate(m.id, {
-                              words: checked
-                                ? m.words.filter((v) => v.id !== w.id)
-                                : [
-                                    ...m.words,
-                                    {
-                                      id: w.id,
-                                      ko: w.ko,
-                                      uz: w.uz,
-                                      example: w.example,
-                                      translation: w.translation,
-                                    },
-                                  ],
-                            })
-                          }
-                        />
-                        <strong lang="ko">{w.ko}</strong>
-                        <span>{w.uz}</span>
-                      </label>
-                    );
-                  })
-              : bank?.grammars
-                  .filter((g) =>
-                    `${g.form} ${g.meaning}`.toLowerCase().includes(query.toLowerCase()),
-                  )
-                  .map((g) => {
-                    const m = lesson.materials.find((m) => m.id === picker.id)!;
-                    return (
-                      <label className="checkbox-label" key={g.id}>
-                        <input
-                          type="checkbox"
-                          checked={m.grammarIds.includes(g.id)}
-                          onChange={(e) =>
-                            materialUpdate(m.id, {
-                              grammarIds: e.target.checked
-                                ? [...m.grammarIds, g.id]
-                                : m.grammarIds.filter((v) => v !== g.id),
-                            })
-                          }
-                        />
-                        <strong lang="ko">{g.form}</strong>
-                        <span>{g.meaning}</span>
-                      </label>
-                    );
-                  })}
-          </div>
+          {picker.kind === 'word' ? (
+            <div className="course-bank-list">
+              {bank?.words
+                .filter((w) => `${w.ko} ${w.uz}`.toLowerCase().includes(query.toLowerCase()))
+                .slice(0, 100)
+                .map((w) => {
+                  const m = lesson.materials.find((m) => m.id === picker.id)!;
+                  const checked = m.words.some((v) => v.id === w.id);
+                  return (
+                    <label className="checkbox-label" key={w.id}>
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={() =>
+                          materialUpdate(m.id, {
+                            words: checked
+                              ? m.words.filter((v) => v.id !== w.id)
+                              : [
+                                  ...m.words,
+                                  {
+                                    id: w.id,
+                                    ko: w.ko,
+                                    uz: w.uz,
+                                    example: w.example,
+                                    translation: w.translation,
+                                  },
+                                ],
+                          })
+                        }
+                      />
+                      <strong lang="ko">{w.ko}</strong>
+                      <span>{w.uz}</span>
+                    </label>
+                  );
+                })}
+            </div>
+          ) : (
+            <GrammarBankPicker
+              grammars={bank?.grammars || []}
+              selectedIds={
+                lesson.materials.find((material) => material.id === picker.id)?.grammarIds || []
+              }
+              query={query}
+              topic={grammarTopic}
+              onTopic={setGrammarTopic}
+              onToggle={(grammarId, checked) => {
+                const material = lesson.materials.find((material) => material.id === picker.id)!;
+                materialUpdate(material.id, {
+                  grammarIds: checked
+                    ? [...new Set([...material.grammarIds, grammarId])]
+                    : material.grammarIds.filter((id) => id !== grammarId),
+                });
+              }}
+            />
+          )}
           <button className="button primary" onClick={() => setPicker(null)}>
             Tanlanganlarni qo‘shish
           </button>
@@ -1168,6 +1172,95 @@ function LessonEditor({
           </div>
         </Modal>
       )}
+    </div>
+  );
+}
+function GrammarBankPicker({
+  grammars,
+  selectedIds,
+  query,
+  topic,
+  onTopic,
+  onToggle,
+}: {
+  grammars: Grammar[];
+  selectedIds: string[];
+  query: string;
+  topic: 'all' | GrammarTopicId;
+  onTopic: (topic: 'all' | GrammarTopicId) => void;
+  onToggle: (grammarId: string, checked: boolean) => void;
+}) {
+  const normalizedQuery = query.trim().toLocaleLowerCase('uz');
+  const matching = grammars.filter((grammar) => {
+    const matchesQuery = `${grammar.form} ${grammar.meaning} ${grammar.syntax}`
+      .toLocaleLowerCase('uz')
+      .includes(normalizedQuery);
+    return matchesQuery && (topic === 'all' || grammarTopicFor(grammar).id === topic);
+  });
+  const groups = groupGrammarsByTopic(matching);
+  return (
+    <div className="course-grammar-picker">
+      <div className="course-grammar-picker-summary">
+        <div>
+          <strong>Grammatika mavzulari</strong>
+          <span>Avval mavzuni, keyin shu darsda o‘rganiladigan grammatikani tanlang.</span>
+        </div>
+        <Badge tone="blue">{selectedIds.length} ta tanlangan</Badge>
+      </div>
+      <div className="course-grammar-topic-filters" aria-label="Grammatika mavzulari">
+        <button
+          className={topic === 'all' ? 'active' : ''}
+          aria-pressed={topic === 'all'}
+          onClick={() => onTopic('all')}
+        >
+          <span>Barchasi</span>
+          <small>{grammars.length}</small>
+        </button>
+        {GRAMMAR_TOPICS.map((item) => (
+          <button
+            key={item.id}
+            className={topic === item.id ? 'active' : ''}
+            aria-pressed={topic === item.id}
+            onClick={() => onTopic(item.id)}
+          >
+            <span>{item.label}</span>
+            <small>
+              {grammars.filter((grammar) => grammarTopicFor(grammar).id === item.id).length}
+            </small>
+          </button>
+        ))}
+      </div>
+      <div className="course-bank-list course-grammar-bank-list">
+        {!groups.length && (
+          <Empty title="Mos grammatika topilmadi">Boshqa so‘z bilan qidiring.</Empty>
+        )}
+        {groups.map((group) => (
+          <section key={group.id} className="course-grammar-bank-group">
+            <header>
+              <div>
+                <span lang="ko">{group.ko}</span>
+                <strong>{group.label}</strong>
+                <small>{group.description}</small>
+              </div>
+              <Badge tone="neutral">{group.grammars.length} ta</Badge>
+            </header>
+            {group.grammars.map((grammar) => {
+              const checked = selectedIds.includes(grammar.id);
+              return (
+                <label className="checkbox-label" key={grammar.id}>
+                  <input
+                    type="checkbox"
+                    checked={checked}
+                    onChange={(event) => onToggle(grammar.id, event.target.checked)}
+                  />
+                  <strong lang="ko">{grammar.form}</strong>
+                  <span>{grammar.meaning}</span>
+                </label>
+              );
+            })}
+          </section>
+        ))}
+      </div>
     </div>
   );
 }
@@ -1323,6 +1416,14 @@ function MaterialReading({
   grammars: Grammar[];
 }) {
   const materialYoutube = youtubeEmbedUrl(m.url);
+  const [selectedGrammarId, setSelectedGrammarId] = useState<string | null>(null);
+  const grammarGroups = groupGrammarsByTopic(
+    m.grammarIds.flatMap((id) => {
+      const grammar = grammars.find((item) => item.id === id);
+      return grammar ? [grammar] : [];
+    }),
+  );
+  const selectedGrammar = grammars.find((grammar) => grammar.id === selectedGrammarId);
   return (
     <div className="course-reading">
       <div className="section-title">
@@ -1339,19 +1440,47 @@ function MaterialReading({
           {m.body}
         </p>
       )}
-      {m.grammarIds.map((gid) => {
-        const g = grammars.find((g) => g.id === gid);
-        return g ? (
-          <div className="course-grammar" key={gid}>
-            <h3 lang="ko">{g.form}</h3>
-            <p>{g.meaning}</p>
-            <p lang="ko">{g.syntax}</p>
-            <p lang="ko">{g.ko}</p>
-            <p>{g.uz}</p>
-            <small>{g.note}</small>
+      {grammarGroups.length > 0 && (
+        <div className="course-grammar-topics">
+          <div className="course-grammar-topics-intro">
+            <span className="course-grammar-topics-icon">
+              <BookOpen size={21} />
+            </span>
+            <div>
+              <strong>Shu dars grammatikasi</strong>
+              <span>Grammatikani bosib, qoida va misollar bilan o‘rganing.</span>
+            </div>
           </div>
-        ) : null;
-      })}
+          {grammarGroups.map((group) => (
+            <section className="course-grammar-topic" key={group.id}>
+              <header>
+                <div>
+                  <span lang="ko">{group.ko}</span>
+                  <h4>{group.label}</h4>
+                </div>
+                <small>{group.grammars.length} ta grammatika</small>
+              </header>
+              <div className="course-grammar-grid">
+                {group.grammars.map((grammar) => (
+                  <button
+                    key={grammar.id}
+                    className="course-grammar-card"
+                    onClick={() => setSelectedGrammarId(grammar.id)}
+                    aria-label={`${grammar.form} grammatikasini o‘rganish`}
+                  >
+                    <span className="course-grammar-card-top">
+                      <strong lang="ko">{grammar.form}</strong>
+                      <ArrowRight size={18} />
+                    </span>
+                    <span>{grammar.meaning}</span>
+                    <small>Qoida · misol · mashq</small>
+                  </button>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      )}
       {m.words.length > 0 && <WordGames words={m.words} />}
       {m.fileIds.map((fid) => {
         const f = files.find((f) => f.id === fid);
@@ -1385,6 +1514,25 @@ function MaterialReading({
         >
           TOPIK 읽기 {m.topikCategory} mashqlari <ArrowRight size={16} />
         </a>
+      )}
+      {selectedGrammar && (
+        <Modal
+          title={`${selectedGrammar.form} · Grammatika darsi`}
+          onClose={() => setSelectedGrammarId(null)}
+          wide
+        >
+          <div className="course-grammar-lesson-heading">
+            <Badge tone="blue">{grammarTopicFor(selectedGrammar).label}</Badge>
+            <p>{selectedGrammar.meaning}</p>
+          </div>
+          <GrammarLesson
+            key={selectedGrammar.id}
+            grammar={selectedGrammar}
+            grammars={grammars}
+            correctDays={0}
+            showMastery={false}
+          />
+        </Modal>
       )}
     </div>
   );

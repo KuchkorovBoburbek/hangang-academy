@@ -369,6 +369,94 @@
 .course-bank-list span {
   font-size: 13px;
 }
+.course-grammar-picker-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 18px 0 14px;
+}
+.course-grammar-picker-summary > div {
+  display: grid;
+  gap: 4px;
+}
+.course-grammar-picker-summary > div > span {
+  color: var(--muted);
+  font-size: 13px;
+}
+.course-grammar-topic-filters {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.course-grammar-topic-filters button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+.course-grammar-topic-filters button:hover,
+.course-grammar-topic-filters button.active {
+  border-color: var(--blue-border);
+  background: var(--blue-light);
+  color: var(--blue-deep);
+}
+.course-grammar-topic-filters span {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.course-grammar-topic-filters small {
+  color: var(--muted);
+}
+.course-grammar-bank-list {
+  display: grid;
+  gap: 13px;
+  padding-right: 4px;
+}
+.course-grammar-bank-group {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+}
+.course-grammar-bank-group > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--blue-light);
+}
+.course-grammar-bank-group > header > div {
+  display: grid;
+  gap: 3px;
+}
+.course-grammar-bank-group > header span[lang='ko'] {
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 700;
+}
+.course-grammar-bank-group > header strong {
+  min-width: 0;
+  font-size: 14px;
+}
+.course-grammar-bank-group > header small {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.45;
+}
+.course-grammar-bank-group .checkbox-label {
+  padding-inline: 16px;
+}
 .course-preserve {
   white-space: pre-wrap;
   overflow-wrap: anywhere;
@@ -390,6 +478,160 @@
   padding: 22px;
   border-radius: 15px;
   margin: 18px 0;
+}
+.course-grammar-topics {
+  display: grid;
+  gap: 18px;
+  margin: 22px 0;
+}
+.course-grammar-topics-intro {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 17px;
+  border: 1px solid var(--blue-border);
+  border-radius: 14px;
+  background: var(--blue-light);
+}
+.course-grammar-topics-icon {
+  display: grid;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--paper);
+  color: var(--blue);
+}
+.course-grammar-topics-intro > div {
+  display: grid;
+  gap: 3px;
+}
+.course-grammar-topics-intro span:last-child {
+  color: var(--muted);
+  font-size: 13px;
+}
+.course-grammar-topic {
+  padding: 0;
+}
+.course-grammar-topic > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.course-grammar-topic > header span {
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 700;
+}
+.course-grammar-topic > header h4 {
+  margin: 2px 0 0;
+  font-size: 16px;
+}
+.course-grammar-topic > header small {
+  color: var(--muted);
+}
+.course-grammar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.course-grammar-card {
+  display: grid;
+  gap: 9px;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+.course-grammar-card:hover {
+  transform: translateY(-1px);
+  border-color: var(--blue-border);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--blue) 10%, transparent);
+}
+.course-grammar-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  color: var(--blue-deep);
+}
+.course-grammar-card-top strong {
+  font-size: 20px;
+}
+.course-grammar-card > span:nth-child(2) {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.course-grammar-card > small {
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 700;
+}
+.course-grammar-lesson-heading {
+  padding: 14px 16px;
+  border: 1px solid var(--blue-border);
+  border-radius: 13px;
+  background: var(--blue-light);
+}
+.course-grammar-lesson-heading p {
+  margin: 10px 0 0;
+  line-height: 1.65;
+}
+.course-space .grammar-mini section {
+  margin: 22px 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+.course-space .grammar-mini h3 {
+  font-size: 16px;
+}
+.course-space .grammar-mini p {
+  line-height: 1.8;
+}
+.course-space .grammar-mini select {
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+}
+.course-space .grammar-recall {
+  display: grid;
+  gap: 8px;
+}
+.course-space .grammar-recall button {
+  justify-content: flex-start;
+  white-space: normal;
+  text-align: left;
+  line-height: 1.6;
+}
+.course-space .grammar-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.course-space .grammar-compare article {
+  padding: 15px;
+  border-radius: 12px;
+  background: var(--surface-soft);
+}
+.course-space .grammar-compare h4 {
+  margin: 0 0 10px;
+  font-size: 20px;
+}
+.course-space .grammar-compare small {
+  display: block;
+  line-height: 1.7;
 }
 .course-file {
   margin: 18px 0;
@@ -933,6 +1175,30 @@
   border: 0;
 }
 @media (max-width: 700px) {
+  .course-grammar-topic-filters {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scroll-snap-type: x proximity;
+  }
+  .course-grammar-topic-filters button {
+    flex: 0 0 155px;
+    scroll-snap-align: start;
+  }
+  .course-grammar-picker-summary {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .course-grammar-picker-summary .badge {
+    align-self: flex-start;
+  }
+  .course-grammar-grid,
+  .course-space .grammar-compare {
+    grid-template-columns: 1fr;
+  }
+  .course-grammar-topic > header {
+    align-items: flex-start;
+  }
   .course-shared-submissions {
     grid-template-columns: 1fr;
   }

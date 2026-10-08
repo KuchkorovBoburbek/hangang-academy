@@ -69,10 +69,12 @@ export default function GrammarLesson({
   grammar,
   grammars,
   correctDays,
+  showMastery = true,
 }: {
   grammar: Grammar;
   grammars: Grammar[];
   correctDays: number;
+  showMastery?: boolean;
 }) {
   const [view, setView] = useState<'learn' | 'recall' | 'compare'>('learn');
   const [pairChoice, setPairChoice] = useState<string | null>(null);
@@ -220,21 +222,23 @@ export default function GrammarLesson({
           )}
         </section>
       )}
-      <section>
-        <h3>O‘zlashtirish</h3>
-        <p>
-          {correctDays >= 3
-            ? 'Mustahkamlanmoqda'
-            : correctDays
-              ? 'Mashq boshlandi'
-              : 'Hali tekshirilmagan'}{' '}
-          · {correctDays} alohida kunda to‘g‘ri javob.
-        </p>
-        <p className="muted">
-          Sahifani ochish hisoblanmaydi. Quyidagi TOPIK mashqini turli kunlarda bajaring; xato yoki
-          ikkilanishdan keyin hisob yangidan boshlanadi.
-        </p>
-      </section>
+      {showMastery && (
+        <section>
+          <h3>O‘zlashtirish</h3>
+          <p>
+            {correctDays >= 3
+              ? 'Mustahkamlanmoqda'
+              : correctDays
+                ? 'Mashq boshlandi'
+                : 'Hali tekshirilmagan'}{' '}
+            · {correctDays} alohida kunda to‘g‘ri javob.
+          </p>
+          <p className="muted">
+            Sahifani ochish hisoblanmaydi. Quyidagi TOPIK mashqini turli kunlarda bajaring; xato
+            yoki ikkilanishdan keyin hisob yangidan boshlanadi.
+          </p>
+        </section>
+      )}
     </div>
   );
 }

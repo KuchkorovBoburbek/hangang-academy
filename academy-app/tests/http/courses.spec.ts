@@ -5,8 +5,16 @@ const origin = 'http://localhost:3100';
 const material = (kind: string, task: string) => ({
   id: crypto.randomUUID(),
   kind,
-  title: kind === 'vocabulary' ? 'Oila lug‘ati' : 'Oilangizni tanishtiring',
-  body: 'Oila a’zolaringiz haqida yozing.',
+  title:
+    kind === 'vocabulary'
+      ? 'Oila lug‘ati'
+      : kind === 'grammar'
+        ? 'Maqsad va sabab grammatikasi'
+        : 'Oilangizni tanishtiring',
+  body:
+    kind === 'grammar'
+      ? 'Oilangiz haqida gapirganda maqsad va sababni to‘g‘ri ifodalang.'
+      : 'Oila a’zolaringiz haqida yozing.',
   url: '',
   fileIds: [],
   words:
@@ -28,7 +36,7 @@ const material = (kind: string, task: string) => ({
           },
         ]
       : [],
-  grammarIds: [],
+  grammarIds: kind === 'grammar' ? ['A04', 'A12'] : [],
   topikCategory: '',
   task,
   required: true,
@@ -79,6 +87,7 @@ test.beforeAll(async ({ playwright }) => {
           material('vocabulary', 'self'),
           material('writing', 'text'),
           material('speaking', 'audio'),
+          material('grammar', 'none'),
         ],
         warmup: [
           {
@@ -271,6 +280,13 @@ test('Premium course editor and student lesson are usable on desktop and phone',
     'src',
     'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?rel=0',
   );
+  await page.getByRole('button', { name: 'Mavjud grammatikadan tanlash' }).click();
+  const grammarPicker = page.getByRole('dialog');
+  await expect(grammarPicker.getByText('Grammatika mavzulari', { exact: true })).toBeVisible();
+  await grammarPicker.getByRole('button', { name: /Maqsad va niyat/ }).click();
+  await expect(grammarPicker.getByText('-(으)려고', { exact: true })).toBeVisible();
+  await expect(grammarPicker.getByRole('checkbox', { name: /\-\(으\)려고/ })).toBeChecked();
+  await grammarPicker.getByRole('button', { name: 'Tanlanganlarni qo‘shish' }).click();
   await page.getByLabel('Dars nomi', { exact: true }).fill('Oila — 가족 · Yangilangan qoralama');
   await page.getByRole('button', { name: 'Saqlash', exact: true }).first().click();
   await expect(page.getByRole('status')).toContainText('Dars qoralamasi saqlandi.');
@@ -310,6 +326,16 @@ test('Premium course editor and student lesson are usable on desktop and phone',
     'src',
     'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?rel=0',
   );
+  await expect(sp.getByText('Shu dars grammatikasi')).toBeVisible();
+  await expect(sp.getByText('Maqsad va niyat', { exact: true })).toBeVisible();
+  await sp.getByRole('button', { name: '-(으)려고 grammatikasini o‘rganish' }).click();
+  const grammarLesson = sp.getByRole('dialog');
+  await expect(
+    grammarLesson.getByRole('heading', { name: '1. Qaysi vaziyatda ishlatiladi?' }),
+  ).toBeVisible();
+  await grammarLesson.getByRole('button', { name: 'Eslab ko‘rish' }).click();
+  await expect(grammarLesson.getByRole('heading', { name: 'Ma’noni eslab ko‘ring' })).toBeVisible();
+  await grammarLesson.getByRole('button', { name: 'Yopish' }).click();
   await sp.getByRole('button', { name: 'Kartochka', exact: true }).click();
   await expect(sp.getByRole('button', { name: /Tarjimani ko‘rish/ })).toBeVisible();
   await sp.getByRole('button', { name: /Tarjimani ko‘rish/ }).click();

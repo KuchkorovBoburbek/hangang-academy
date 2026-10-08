@@ -100,8 +100,11 @@ export default function StudentHome({
   function openTask(task: HomeTask) {
     setSheet(null);
     if (task.path) go(task.path);
-    else if (task.assignment)
-      start(task.kind as 'grammar' | 'vocabulary', 'practice', undefined, task.assignment.id);
+    else if (
+      task.assignment &&
+      (task.assignment.kind === 'grammar' || task.assignment.kind === 'vocabulary')
+    )
+      start(task.assignment.kind, 'practice', undefined, task.assignment.id);
   }
   return (
     <div className="student-home">
@@ -334,10 +337,25 @@ export default function StudentHome({
               {additionalTasks.filter((t) => t.status === 'done').length}/{additionalTasks.length}
             </span>
           </div>
-          <div className="home-task-list">
-            {additionalTasks.map((task) => (
-              <TaskRow key={task.id} task={task} onClick={() => openTask(task)} />
-            ))}
+          <div className="home-additional-groups">
+            {HOME_SKILLS.map((item) => {
+              const grouped = additionalTasks.filter((task) => task.kind === item.id);
+              if (!grouped.length) return null;
+              return (
+                <div className="home-task-group" key={item.id}>
+                  <div className="home-task-group-title">
+                    <strong lang="ko">{item.ko}</strong>
+                    <span>{item.label}</span>
+                    <small>{grouped.length} ta</small>
+                  </div>
+                  <div className="home-task-list">
+                    {grouped.map((task) => (
+                      <TaskRow key={task.id} task={task} onClick={() => openTask(task)} />
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </section>
       )}
@@ -519,13 +537,16 @@ export default function StudentHome({
 function TaskRow({ task, onClick }: { task: HomeTask; onClick: () => void }) {
   const summary = taskSummary([task]);
   const Icon = statusIcons[summary.status];
+  const skill = HOME_SKILLS.find((item) => item.id === task.kind)!;
   return (
     <button className={`home-task-row ${task.status}`} onClick={onClick}>
       <span className="home-task-symbol">
         <Icon size={18} />
       </span>
       <span>
-        <small>{task.lesson}</small>
+        <small>
+          {task.lesson} · <span lang="ko">{skill.ko}</span> {skill.label}
+        </small>
         <strong>{task.title}</strong>
         <span className="home-task-caption">
           {summary.label}

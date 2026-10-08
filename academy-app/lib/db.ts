@@ -11,7 +11,7 @@ export const dataDir = () =>
 export const now = () => new Date().toISOString();
 export const id = () => randomUUID();
 export function db() {
-  if (globalDb.academyDb && globalDb.academySchemaVersion === 15) return globalDb.academyDb;
+  if (globalDb.academyDb && globalDb.academySchemaVersion === 16) return globalDb.academyDb;
   fs.mkdirSync(dataDir(), { recursive: true });
   const connection = globalDb.academyDb || new DatabaseSync(path.join(dataDir(), 'academy.sqlite'));
   connection.exec('PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON; PRAGMA busy_timeout=10000;');
@@ -28,7 +28,7 @@ export function db() {
  CREATE TABLE IF NOT EXISTS vocabulary_jobs(id TEXT PRIMARY KEY,requested_by TEXT NOT NULL REFERENCES users(id),source TEXT NOT NULL,request_key TEXT NOT NULL UNIQUE,section TEXT NOT NULL,category TEXT NOT NULL,group_ids TEXT NOT NULL,input_text TEXT NOT NULL,image_data TEXT,image_mime TEXT,telegram_file_id TEXT,status TEXT NOT NULL DEFAULT 'queued',model TEXT NOT NULL,provider TEXT NOT NULL,result TEXT,error TEXT,created_at TEXT NOT NULL,updated_at TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS vocabulary_bot_state(user_id TEXT PRIMARY KEY REFERENCES users(id),section TEXT NOT NULL DEFAULT 'reading',category TEXT NOT NULL DEFAULT 'general',group_ids TEXT NOT NULL DEFAULT '[]',stage TEXT NOT NULL DEFAULT 'section',updated_at TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS vocabulary_bot_updates(update_id INTEGER PRIMARY KEY,created_at TEXT NOT NULL);
- CREATE TABLE IF NOT EXISTS assignments(id TEXT PRIMARY KEY,group_id TEXT NOT NULL REFERENCES groups(id),title TEXT NOT NULL,kind TEXT NOT NULL,prompt TEXT NOT NULL,topic_ids TEXT NOT NULL DEFAULT '[]',due_at TEXT NOT NULL,created_by TEXT NOT NULL REFERENCES users(id),created_at TEXT NOT NULL);
+ CREATE TABLE IF NOT EXISTS assignments(id TEXT PRIMARY KEY,group_id TEXT NOT NULL REFERENCES groups(id),title TEXT NOT NULL,kind TEXT NOT NULL,skill TEXT NOT NULL DEFAULT 'reading',prompt TEXT NOT NULL,topic_ids TEXT NOT NULL DEFAULT '[]',due_at TEXT NOT NULL,created_by TEXT NOT NULL REFERENCES users(id),created_at TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS quiz_sessions(id TEXT PRIMARY KEY,user_id TEXT NOT NULL REFERENCES users(id),kind TEXT NOT NULL,mode TEXT NOT NULL,assignment_id TEXT REFERENCES assignments(id),question_ids TEXT NOT NULL,answers TEXT NOT NULL DEFAULT '[]',status TEXT NOT NULL DEFAULT 'active',score INTEGER NOT NULL DEFAULT 0,started_at TEXT NOT NULL,completed_at TEXT);
  CREATE TABLE IF NOT EXISTS reviews(user_id TEXT NOT NULL REFERENCES users(id),question_id TEXT NOT NULL REFERENCES questions(id),box INTEGER NOT NULL DEFAULT 0,due_at TEXT NOT NULL,correct_count INTEGER NOT NULL DEFAULT 0,wrong_count INTEGER NOT NULL DEFAULT 0,last_at TEXT NOT NULL,PRIMARY KEY(user_id,question_id));
  CREATE TABLE IF NOT EXISTS notes(id TEXT PRIMARY KEY,user_id TEXT NOT NULL REFERENCES users(id),topic_id TEXT,title TEXT NOT NULL,body TEXT NOT NULL,created_at TEXT NOT NULL,updated_at TEXT NOT NULL);
@@ -83,6 +83,15 @@ export function db() {
     }[];
     if (!groupColumns.some((c) => c.name === 'course_id'))
       connection.exec('ALTER TABLE groups ADD COLUMN course_id TEXT REFERENCES courses(id)');
+    const assignmentColumns = connection.prepare('PRAGMA table_info(assignments)').all() as {
+      name: string;
+    }[];
+    if (!assignmentColumns.some((c) => c.name === 'skill')) {
+      connection.exec("ALTER TABLE assignments ADD COLUMN skill TEXT NOT NULL DEFAULT 'reading'");
+      connection.exec(
+        "UPDATE assignments SET skill=CASE WHEN kind='writing' THEN 'writing' ELSE 'reading' END",
+      );
+    }
     const columns = connection.prepare('PRAGMA table_info(ai_jobs)').all() as { name: string }[];
     for (const table of ['vocabulary_jobs', 'vocabulary_bot_state']) {
       const fields = connection.prepare(`PRAGMA table_info(${table})`).all() as { name: string }[];
@@ -217,7 +226,7 @@ export function db() {
     throw error;
   }
   globalDb.academyDb = connection;
-  globalDb.academySchemaVersion = 15;
+  globalDb.academySchemaVersion = 16;
   return connection;
 }
 export function one<T = Record<string, unknown>>(

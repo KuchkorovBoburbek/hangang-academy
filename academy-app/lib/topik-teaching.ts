@@ -98,11 +98,12 @@ export function createTopikAssignment(
   const aid = id(),
     title = category ? `읽기 ${category} · Mustahkamlash` : 'TOPIK lug‘ati · Takrorlash';
   run(
-    'INSERT INTO assignments(id,group_id,title,kind,prompt,topic_ids,due_at,created_by,created_at) VALUES(?,?,?,?,?,?,?,?,?)',
+    'INSERT INTO assignments(id,group_id,title,kind,skill,prompt,topic_ids,due_at,created_by,created_at) VALUES(?,?,?,?,?,?,?,?,?,?)',
     aid,
     groupId,
     title,
     category ? 'topik' : 'topik_words',
+    'reading',
     category
       ? 'Savol turidan 10 ta mashqni bajaring.'
       : 'Belgilangan so‘zlarni misoli bilan eslang.',

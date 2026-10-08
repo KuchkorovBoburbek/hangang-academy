@@ -5,6 +5,7 @@ import type { CourseStudentState } from '../lib/course-types';
 const assignment = (id: string, kind: Assignment['kind']): Assignment => ({
   id,
   kind,
+  skill: kind === 'writing' ? 'writing' : 'reading',
   title: id,
   group_id: 'group',
   prompt: '',
@@ -39,7 +40,7 @@ it('distinguishes no task, unfinished, awaiting teacher review, and completed', 
     taskSummary([{ status: 'done' }, { status: 'submitted' }, { status: 'todo' }]),
   ).toMatchObject({ status: 'todo', done: 1, submitted: 1, todo: 1 });
 });
-it('legacy TOPIK belongs to reading, word quizzes remain vocabulary, and writing needs published feedback', () => {
+it('every standalone task has one of four skills and writing needs published feedback', () => {
   const tasks = homeTasks({
     ...base,
     assignments: [
@@ -57,12 +58,21 @@ it('legacy TOPIK belongs to reading, word quizzes remain vocabulary, and writing
     required: true,
     path: '/assignment/read',
   });
-  expect(tasks.find((t) => t.id === 'word')).toMatchObject({ kind: 'vocabulary', status: 'todo' });
+  expect(tasks.find((t) => t.id === 'word')).toMatchObject({ kind: 'reading', status: 'todo' });
   expect(tasks.find((t) => t.id === 'write')).toMatchObject({
     kind: 'writing',
     status: 'submitted',
     path: '/writing?assignment=write',
   });
+});
+it('uses the skill selected by the teacher independently from the response format', () => {
+  const listening = assignment('listen', 'vocabulary');
+  listening.skill = 'listening';
+  const speaking = assignment('speak', 'writing');
+  speaking.skill = 'speaking';
+  const tasks = homeTasks({ ...base, assignments: [listening, speaking] });
+  expect(tasks.find((task) => task.id === 'listen')?.kind).toBe('listening');
+  expect(tasks.find((task) => task.id === 'speak')?.kind).toBe('speaking');
 });
 it('published teacher feedback changes legacy writing to done', () => {
   expect(

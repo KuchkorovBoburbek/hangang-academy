@@ -366,8 +366,9 @@ export function openLesson(user: User, lessonId: string, input: unknown) {
       if (linked) {
         if (!one('SELECT id FROM submissions WHERE assignment_id=?', linked.assignment_id))
           run(
-            'UPDATE assignments SET title=?,prompt=?,due_at=? WHERE id=?',
+            'UPDATE assignments SET title=?,skill=?,prompt=?,due_at=? WHERE id=?',
             `${lesson.title} · ${m.title}`,
+            ['listening', 'writing', 'speaking'].includes(m.kind) ? m.kind : 'reading',
             m.body || m.title,
             b.dueAt,
             linked.assignment_id,
@@ -376,11 +377,12 @@ export function openLesson(user: User, lessonId: string, input: unknown) {
       }
       const aid = id();
       run(
-        'INSERT INTO assignments(id,group_id,title,kind,prompt,topic_ids,due_at,created_by,created_at) VALUES(?,?,?,?,?,?,?,?,?)',
+        'INSERT INTO assignments(id,group_id,title,kind,skill,prompt,topic_ids,due_at,created_by,created_at) VALUES(?,?,?,?,?,?,?,?,?,?)',
         aid,
         group.id,
         `${lesson.title} · ${m.title}`,
         'writing',
+        ['listening', 'writing', 'speaking'].includes(m.kind) ? m.kind : 'reading',
         m.body || m.title,
         '[]',
         b.dueAt,

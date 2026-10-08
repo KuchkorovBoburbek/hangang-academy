@@ -56,6 +56,7 @@ export type Assignment = {
   group_id: string;
   title: string;
   kind: 'writing' | 'grammar' | 'vocabulary' | 'topik' | 'topik_words';
+  skill: HomeworkSkill;
   prompt: string;
   topic_ids: string;
   due_at: string;
@@ -63,6 +64,7 @@ export type Assignment = {
   created_at: string;
   group_name?: string;
 };
+export type HomeworkSkill = 'listening' | 'reading' | 'writing' | 'speaking';
 export type Attachment = { id: string; name: string; mime: string; size: number };
 export type Submission = {
   id: string;

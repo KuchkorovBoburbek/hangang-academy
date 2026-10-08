@@ -60,10 +60,11 @@ export function ensureSeed() {
     );
     const writing = id();
     run(
-      'INSERT INTO assignments(id,group_id,title,kind,prompt,topic_ids,due_at,created_by,created_at) VALUES(?,?,?,?,?,?,?,?,?)',
+      'INSERT INTO assignments(id,group_id,title,kind,skill,prompt,topic_ids,due_at,created_by,created_at) VALUES(?,?,?,?,?,?,?,?,?,?)',
       writing,
       group,
       '나의 한국어 공부 — Mening o‘qish odatim',
+      'writing',
       'writing',
       '한국어를 왜 배우고 있어요? 어떻게 공부해요? 앞으로 어떤 목표가 있어요?\n\nKoreys tilini o‘rganishingiz haqida 150–250 belgili matn yozing. Maqsad va sababni ifodalang. -(으)려고 va -아/어서 shakllaridan foydalaning. Bu o‘quv mashqi; rasmiy TOPIK bahosi emas.',
       '["A04","A12"]',
@@ -72,11 +73,12 @@ export function ensureSeed() {
       time,
     );
     run(
-      'INSERT INTO assignments(id,group_id,title,kind,prompt,topic_ids,due_at,created_by,created_at) VALUES(?,?,?,?,?,?,?,?,?)',
+      'INSERT INTO assignments(id,group_id,title,kind,skill,prompt,topic_ids,due_at,created_by,created_at) VALUES(?,?,?,?,?,?,?,?,?,?)',
       id(),
       group,
       'Maqsad va sababni farqlaymiz',
       'grammar',
+      'reading',
       'Bugungi mavzulardan 10 ta savolni ishlang.',
       '["A04","A05","A06","A12"]',
       due,

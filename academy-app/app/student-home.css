@@ -463,6 +463,28 @@ button.home-skill-card:active {
   font-size: 12px;
   color: var(--home-muted);
 }
+.home-additional-groups {
+  display: grid;
+  gap: 14px;
+}
+.home-task-group-title {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  margin: 0 3px 7px;
+  color: var(--home-ink);
+}
+.home-task-group-title strong {
+  font-size: 14px;
+}
+.home-task-group-title span,
+.home-task-group-title small {
+  font-size: 11px;
+  color: var(--home-muted);
+}
+.home-task-group-title small {
+  margin-left: auto;
+}
 .home-text-link {
   display: flex;
   align-items: center;

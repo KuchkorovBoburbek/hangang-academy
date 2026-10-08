@@ -1,5 +1,5 @@
 import type { CourseStudentState, LessonMaterial, TaskStatus } from './course-types';
-import type { Assignment, Submission } from './types';
+import type { Assignment, HomeworkSkill, Submission } from './types';
 
 export const HOME_SKILLS = [
   { id: 'reading', ko: '읽기', label: 'O‘qish' },
@@ -7,11 +7,11 @@ export const HOME_SKILLS = [
   { id: 'speaking', ko: '말하기', label: 'Gapirish' },
   { id: 'writing', ko: '쓰기', label: 'Yozish' },
 ] as const;
-export type HomeSkill = (typeof HOME_SKILLS)[number]['id'];
+export type HomeSkill = HomeworkSkill;
 export type HomeTask = {
   id: string;
   title: string;
-  kind: LessonMaterial['kind'];
+  kind: HomeSkill;
   status: TaskStatus['status'];
   source: 'lesson' | 'extra';
   required: boolean;
@@ -20,6 +20,15 @@ export type HomeTask = {
   path?: string;
   assignment?: Assignment;
 };
+
+export function homeworkSkill(
+  kind: LessonMaterial['kind'] | Assignment['kind'],
+  saved?: HomeworkSkill,
+): HomeSkill {
+  if (saved) return saved;
+  if (kind === 'listening' || kind === 'writing' || kind === 'speaking') return kind;
+  return 'reading';
+}
 type HomeData = {
   courses: CourseStudentState;
   assignments: Assignment[];
@@ -38,7 +47,7 @@ export function homeTasks(data: HomeData): HomeTask[] {
     r.tasks.map((t) => ({
       id: `${r.id}-${t.materialId}`,
       title: t.title,
-      kind: t.kind,
+      kind: homeworkSkill(t.kind),
       status: t.status,
       source: 'lesson' as const,
       required: t.required,
@@ -54,7 +63,7 @@ export function homeTasks(data: HomeData): HomeTask[] {
       return {
         id: a.id,
         title: a.title,
-        kind: a.kind === 'topik' ? 'reading' : a.kind === 'topik_words' ? 'vocabulary' : a.kind,
+        kind: homeworkSkill(a.kind, a.skill),
         status:
           a.kind === 'writing'
             ? submission?.published_at

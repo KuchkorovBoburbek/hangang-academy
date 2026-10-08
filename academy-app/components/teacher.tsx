@@ -27,7 +27,7 @@ import {
   LoaderCircle,
 } from 'lucide-react';
 import type { teacherState } from '@/lib/learning';
-import type { Group, Submission, AIReview, Grammar, Word } from '@/lib/types';
+import type { Group, Submission, AIReview, Grammar, Word, HomeworkSkill } from '@/lib/types';
 import { api, Badge, Modal, Empty, SectionTitle, SubmitButton, dateLabel, errorText } from './ui';
 export type TeacherData = ReturnType<typeof teacherState>;
 export function TeacherHome({
@@ -371,7 +371,11 @@ export function Groups({
             <div>
               <strong>{a.title}</strong>
               <p>
-                {a.group_name} · {dateLabel(a.due_at)} gacha
+                {a.group_name} ·{' '}
+                {{ listening: '듣기', reading: '읽기', writing: '쓰기', speaking: '말하기' }[
+                  a.skill
+                ] || '읽기'}{' '}
+                · {dateLabel(a.due_at)} gacha
               </p>
             </div>
             <Badge tone="neutral">
@@ -464,6 +468,7 @@ function AssignmentForm({
   notify: (s: string) => void;
 }) {
   const [kind, setKind] = useState('writing');
+  const [skill, setSkill] = useState<HomeworkSkill>('writing');
   const [topics, setTopics] = useState<string[]>([]);
   const [busy, setBusy] = useState(false);
   async function submit(e: React.FormEvent<HTMLFormElement>) {
@@ -477,6 +482,7 @@ function AssignmentForm({
           groupId: fd.get('groupId'),
           title: fd.get('title'),
           kind,
+          skill,
           prompt: fd.get('prompt'),
           topicIds: topics,
           dueAt: new Date(String(fd.get('dueAt'))).toISOString(),
@@ -508,13 +514,24 @@ function AssignmentForm({
             <select
               value={kind}
               onChange={(e) => {
-                setKind(e.target.value);
+                const next = e.target.value;
+                setKind(next);
+                setSkill(next === 'writing' ? 'writing' : 'reading');
                 setTopics([]);
               }}
             >
               <option value="writing">Yozma vazifa</option>
               <option value="grammar">Grammatika quiz</option>
               <option value="vocabulary">Lug‘at quiz</option>
+            </select>
+          </label>
+          <label>
+            Ko‘nikma
+            <select value={skill} onChange={(e) => setSkill(e.target.value as HomeworkSkill)}>
+              <option value="listening">듣기 · Tinglash</option>
+              <option value="reading">읽기 · O‘qish</option>
+              <option value="writing">쓰기 · Yozish</option>
+              <option value="speaking">말하기 · Gapirish</option>
             </select>
           </label>
         </div>

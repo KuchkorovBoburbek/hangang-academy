@@ -148,9 +148,7 @@ test('Mobile home shows four real states, preserves access, opens exact practice
     `${releasePosition}-dars · Mening birinchi darsim`,
   );
   await expect(page.getByRole('heading', { name: 'Qo‘shimcha vazifalar' })).toBeVisible();
-  await expect(
-    page.getByRole('button', { name: /Qo‘shimcha vazifa Qo‘shimcha insho/ }),
-  ).toBeVisible();
+  await expect(page.getByRole('button', { name: /Qo‘shimcha insho/ })).toBeVisible();
   await expect(page.getByRole('progressbar', { name: 'Vazifalar bajarilishi' })).toHaveAttribute(
     'aria-valuenow',
     '33',
@@ -180,7 +178,7 @@ test('Mobile home shows four real states, preserves access, opens exact practice
     .click();
   await expect(page).toHaveURL(new RegExp(`lessons/${releaseId}#material-${materials[2].id}`));
   await page.goto('/');
-  await page.getByRole('button', { name: /Qo‘shimcha vazifa Qo‘shimcha insho/ }).click();
+  await page.getByRole('button', { name: /Qo‘shimcha insho/ }).click();
   await expect(page).toHaveURL(/\/writing\?assignment=/);
   await expect(page.getByRole('dialog')).toContainText('Qo‘shimcha insho');
   await page.getByRole('button', { name: 'Yopish', exact: true }).click();

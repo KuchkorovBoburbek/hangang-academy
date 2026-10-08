@@ -754,6 +754,7 @@ async function handle(req: NextRequest, ctx: { params: Promise<{ path: string[] 
           groupId: str(1, 50),
           title: str(2, 140),
           kind: z.enum(['grammar', 'vocabulary', 'writing']),
+          skill: z.enum(['listening', 'reading', 'writing', 'speaking']).optional(),
           prompt: str(5, 5000),
           topicIds: z.array(str(1, 30)).max(100).default([]),
           dueAt: z.iso.datetime(),
@@ -778,11 +779,12 @@ async function handle(req: NextRequest, ctx: { params: Promise<{ path: string[] 
       if (new Date(b.dueAt).getTime() < Date.now())
         throw new AppError(400, 'Kelajakdagi muddatni tanlang.');
       run(
-        'INSERT INTO assignments(id,group_id,title,kind,prompt,topic_ids,due_at,created_by,created_at) VALUES(?,?,?,?,?,?,?,?,?)',
+        'INSERT INTO assignments(id,group_id,title,kind,skill,prompt,topic_ids,due_at,created_by,created_at) VALUES(?,?,?,?,?,?,?,?,?,?)',
         id(),
         b.groupId,
         b.title,
         b.kind,
+        b.skill || (b.kind === 'writing' ? 'writing' : 'reading'),
         b.prompt,
         JSON.stringify(b.topicIds),
         b.dueAt,

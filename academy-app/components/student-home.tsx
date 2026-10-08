@@ -78,7 +78,7 @@ export default function StudentHome({
   const [sheet, setSheet] = useState<{ type: 'tasks' | 'practice'; skill: HomeSkill } | null>(null);
   const tasks = homeTasks(data);
   const requiredTasks = tasks.filter((task) => task.source === 'lesson' && task.required);
-  const additionalTasks = tasks.filter((task) => task.source === 'extra' || !task.required);
+  const additionalTasks = tasks.filter((task) => task.source === 'extra');
   const progress = taskSummary(requiredTasks);
   const courses = data.courses;
   const level = COURSE_LEVELS.find((l) => l.id === courses.level)?.label || data.group?.level;
@@ -153,19 +153,6 @@ export default function StudentHome({
               style={{ width: `${progress.total ? (progress.done / progress.total) * 100 : 0}%` }}
             />
           </div>
-          {requiredTasks.length > 0 && (
-            <div className="home-required-block">
-              <div className="home-required-heading">
-                <strong>Bajarilishi shart</strong>
-                <span>{progress.todo} ta qolgan</span>
-              </div>
-              <div className="home-task-list home-required-list">
-                {requiredTasks.map((task) => (
-                  <TaskRow key={task.id} task={task} onClick={() => openTask(task)} />
-                ))}
-              </div>
-            </div>
-          )}
           <div className="home-skills">
             {HOME_SKILLS.map((s) => {
               const summary = taskSummary(requiredTasks.filter((t) => t.kind === s.id));

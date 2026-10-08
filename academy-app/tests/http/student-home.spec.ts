@@ -142,11 +142,8 @@ test('Mobile home shows four real states, preserves access, opens exact practice
   await expect(page.locator('[data-skill=listening]')).toContainText('Vazifa yo‘q');
   await expect(page.locator('[data-skill=speaking]')).toContainText('Bajarish kerak');
   await expect(page.locator('[data-skill=writing]')).toContainText('Tekshirilmoqda');
-  await expect(page.getByText('Bajarilishi shart', { exact: true })).toBeVisible();
-  await expect(page.locator('.home-required-list .home-task-row')).toHaveCount(3);
-  await expect(page.locator('.home-required-list')).toContainText(
-    `${releasePosition}-dars · Mening birinchi darsim`,
-  );
+  await expect(page.getByText('Bajarilishi shart', { exact: true })).toHaveCount(0);
+  await expect(page.locator('.home-required-list')).toHaveCount(0);
   await expect(page.getByRole('heading', { name: 'Qo‘shimcha vazifalar' })).toBeVisible();
   await expect(page.getByRole('button', { name: /Qo‘shimcha insho/ })).toBeVisible();
   await expect(page.getByRole('progressbar', { name: 'Vazifalar bajarilishi' })).toHaveAttribute(
@@ -172,8 +169,12 @@ test('Mobile home shows four real states, preserves access, opens exact practice
     await page.screenshot({ path: `test-results/student-home-${width}.png`, fullPage: true });
   }
   await page.setViewportSize({ width: 390, height: 844 });
+  await page.getByRole('button', { name: '말하기 · Gapirish: Bajarish kerak' }).click();
+  await expect(page.getByRole('dialog')).toContainText(
+    `${releasePosition}-dars · Mening birinchi darsim`,
+  );
   await page
-    .locator('.home-required-list')
+    .getByRole('dialog')
     .getByRole('button', { name: /자기소개/ })
     .click();
   await expect(page).toHaveURL(new RegExp(`lessons/${releaseId}#material-${materials[2].id}`));

@@ -337,7 +337,7 @@ it('program boundaries, file references and level changes are checked server-sid
   ).toThrow('YouTube');
   expect(() => setCoursePoints(student, release, { userId: student.id, points: 10 })).toThrow();
 });
-it('homework remains pending until review; group board shares work and teacher feedback', () => {
+it('homework remains pending until review; students see only their own work and teacher feedback', () => {
   const view = lessonView(student, release),
     word = view.snapshot.materials[0];
   completeLessonTask(student, release, { materialId: word.id });
@@ -359,11 +359,37 @@ it('homework remains pending until review; group board shares work and teacher f
     'PRIVATE FEEDBACK',
     sid,
   );
+  const peerId = id();
+  const peerSubmissionId = id();
+  run(
+    'INSERT INTO users(id,name,email,password_hash,role,group_id,created_at) VALUES(?,?,?,?,?,?,?)',
+    peerId,
+    'Z peer',
+    'z-peer@example.test',
+    'test-only',
+    'student',
+    gid,
+    now(),
+  );
+  run(
+    'INSERT INTO submissions(id,assignment_id,user_id,body,created_at,updated_at) VALUES(?,?,?,?,?,?)',
+    peerSubmissionId,
+    task.assignmentId!,
+    peerId,
+    'OTHER STUDENT PRIVATE ANSWER',
+    now(),
+    now(),
+  );
   const board = courseBoard(student, gid);
   expect(board.students[0].lessons[0].status).toBe('done');
+  expect(board.submissions.map((submission) => submission.id)).toEqual([sid]);
   expect(JSON.stringify(board)).toContain('PRIVATE ANSWER');
   expect(JSON.stringify(board)).toContain('PRIVATE FEEDBACK');
+  expect(JSON.stringify(board)).not.toContain('OTHER STUDENT PRIVATE ANSWER');
   expect(JSON.stringify(board)).not.toMatch(/telegram|email/);
+  expect(JSON.stringify(courseBoard(teacher, gid))).toContain('OTHER STUDENT PRIVATE ANSWER');
+  run('DELETE FROM submissions WHERE id=?', peerSubmissionId);
+  run('DELETE FROM users WHERE id=?', peerId);
   expect(() => courseBoard(other, gid)).toThrow();
 });
 it('live quiz hides answers and student ranking until closed; repeat submissions do not inflate score', () => {

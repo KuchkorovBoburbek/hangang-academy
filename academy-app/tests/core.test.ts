@@ -79,12 +79,10 @@ describe('Learning and access boundaries', () => {
     expect(s.results).toHaveLength(count);
     expect(viewSession(getSession(s.id, student)).status).toBe('completed');
   });
-  it('shares submissions inside the group while keeping AI drafts and other groups private', () => {
+  it('keeps submissions private to their owner and teacher, including inside one group', () => {
     const s = one<Submission>('SELECT * FROM submissions WHERE user_id=?', other.id)!;
-    expect(submissionAccess(student, s.id).id).toBe(s.id);
-    expect(() => submissionAccess({ ...student, group_id: 'another-group' }, s.id)).toThrow(
-      'kirish huquqi',
-    );
+    expect(() => submissionAccess(student, s.id)).toThrow('kirish huquqi');
+    expect(submissionAccess(other, s.id).id).toBe(s.id);
     expect(submissionAccess(teacher, s.id).id).toBe(s.id);
     run(
       'INSERT INTO ai_jobs(id,submission_id,requested_by,model,status,result,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?)',

@@ -1,5 +1,8 @@
 import { test, expect, type APIRequestContext } from '@playwright/test';
-let teacher: APIRequestContext, student: APIRequestContext, outsider: APIRequestContext;
+let teacher: APIRequestContext,
+  student: APIRequestContext,
+  groupmate: APIRequestContext,
+  outsider: APIRequestContext;
 let group: any, lesson: any, releaseId: string, otherGroup: any;
 const origin = 'http://localhost:3100';
 const material = (kind: string, task: string) => ({
@@ -47,6 +50,7 @@ test.beforeAll(async ({ playwright }) => {
     playwright.request.newContext({ baseURL: origin, extraHTTPHeaders: { Origin: origin } });
   teacher = await context();
   student = await context();
+  groupmate = await context();
   outsider = await context();
   expect(
     (
@@ -64,6 +68,7 @@ test.beforeAll(async ({ playwright }) => {
   otherGroup = catalog.groups.find((g: any) => g.name === 'Course evening');
   for (const [client, name, invite] of [
     [student, 'coursestudent', group.invite_code],
+    [groupmate, 'coursegroupmate', group.invite_code],
     [outsider, 'courseoutside', otherGroup.invite_code],
   ] as const)
     expect(
@@ -103,7 +108,12 @@ test.beforeAll(async ({ playwright }) => {
   ).json();
 });
 test.afterAll(async () => {
-  await Promise.all([teacher.dispose(), student.dispose(), outsider.dispose()]);
+  await Promise.all([
+    teacher.dispose(),
+    student.dispose(),
+    groupmate.dispose(),
+    outsider.dispose(),
+  ]);
 });
 test('Drafts and attachments stay private; publishing to one group never opens another group', async () => {
   expect((await student.get(`/api/courses/lessons/${lesson.id}`)).status()).toBe(403);
@@ -161,7 +171,7 @@ test('Drafts and attachments stay private; publishing to one group never opens a
     ).status(),
   ).toBe(403);
 });
-test('Student work and review states are visible to the group board', async () => {
+test('Student work is private to its owner while teachers retain the complete group view', async () => {
   const view = await (await student.get(`/api/courses/releases/${releaseId}`)).json();
   expect(
     (
@@ -187,6 +197,22 @@ test('Student work and review states are visible to the group board', async () =
     expect(response.status()).toBe(200);
     submissions.push((await response.json()).id);
   }
+  const groupmateView = await (await groupmate.get(`/api/courses/releases/${releaseId}`)).json();
+  const groupmateTask = groupmateView.tasks.find(
+    (task: any) => task.materialId === lesson.materials[1].id,
+  );
+  const groupmateForm = new FormData();
+  groupmateForm.set('assignmentId', groupmateTask.assignmentId);
+  groupmateForm.set('body', 'PRIVATE GROUPMATE WORK');
+  const groupmateRequest = new Request(origin, { method: 'POST', body: groupmateForm });
+  expect(
+    (
+      await groupmate.post('/api/submissions', {
+        headers: { 'Content-Type': groupmateRequest.headers.get('content-type')! },
+        data: Buffer.from(await groupmateRequest.arrayBuffer()),
+      })
+    ).status(),
+  ).toBe(200);
   expect(
     (await (await student.get(`/api/courses/board/${group.id}`)).json()).students[0].lessons[0]
       .status,
@@ -209,6 +235,10 @@ test('Student work and review states are visible to the group board', async () =
   expect(board.submissions).toHaveLength(2);
   expect(board.submissions.every((item: any) => item.review_outcome === 'success')).toBe(true);
   expect(JSON.stringify(board)).toContain('Guruhga ko‘rinadigan ustoz izohi');
+  expect(JSON.stringify(board)).not.toContain('PRIVATE GROUPMATE WORK');
+  const teacherBoard = await (await teacher.get(`/api/courses/board/${group.id}`)).json();
+  expect(teacherBoard.submissions).toHaveLength(3);
+  expect(JSON.stringify(teacherBoard)).toContain('PRIVATE GROUPMATE WORK');
   expect(
     (
       await teacher.post('/api/teacher/ai-review', { data: { submissionId: submissions[1] } })

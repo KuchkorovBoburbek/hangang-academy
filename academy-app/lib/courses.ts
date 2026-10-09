@@ -704,9 +704,14 @@ export function courseBoard(user: User, groupId: string) {
         b.quizScore - a.quizScore ||
         a.name.localeCompare(b.name),
     );
+  const submissionSql =
+    'SELECT s.*,u.name AS student_name,a.title AS assignment_title,a.prompt FROM submissions s JOIN users u ON u.id=s.user_id JOIN assignments a ON a.id=s.assignment_id WHERE a.group_id=?' +
+    (user.role === 'student' ? ' AND s.user_id=?' : '') +
+    ' ORDER BY s.updated_at DESC';
   const submissions = many<Submission>(
-    'SELECT s.*,u.name AS student_name,a.title AS assignment_title,a.prompt FROM submissions s JOIN users u ON u.id=s.user_id JOIN assignments a ON a.id=s.assignment_id WHERE a.group_id=? ORDER BY s.updated_at DESC',
+    submissionSql,
     groupId,
+    ...(user.role === 'student' ? [user.id] : []),
   ).map((submission) => ({
     ...submission,
     feedback: submission.published_at ? submission.feedback : null,

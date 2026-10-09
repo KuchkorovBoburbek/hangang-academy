@@ -2627,9 +2627,11 @@ export function GroupBoard({
       )}
       <div className="section-title course-shared-title">
         <div>
-          <h2>Guruh vazifalari</h2>
+          <h2>{teacher ? 'Guruh vazifalari' : 'Mening topshiriqlarim'}</h2>
           <p className="muted">
-            Talabalar topshirgan ishlar va ustozning natijasi hammaga ko‘rinadi.
+            {teacher
+              ? 'Guruhdagi topshirilgan ishlar va tekshiruv natijalari.'
+              : 'Faqat siz topshirgan ishlar, success/fail holati va ustoz izohi ko‘rinadi.'}
           </p>
         </div>
         <Badge tone="neutral">{data.submissions.length} ta ish</Badge>
@@ -2672,8 +2674,12 @@ export function GroupBoard({
           ))}
         </div>
       ) : (
-        <Empty title="Hali topshirilgan vazifa yo‘q">
-          Birinchi topshiriq yuborilgach, guruh natijalari shu yerda ko‘rinadi.
+        <Empty
+          title={teacher ? 'Hali topshirilgan vazifa yo‘q' : 'Siz hali vazifa topshirmagansiz'}
+        >
+          {teacher
+            ? 'Birinchi topshiriq yuborilgach, natija shu yerda ko‘rinadi.'
+            : 'Vazifani topshirganingizdan keyin natija va ustoz izohi shu yerda ko‘rinadi.'}
         </Empty>
       )}
       <div className="section-title">

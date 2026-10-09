@@ -99,7 +99,7 @@ test('Private notebook creates, updates and deletes only the owner’s note', as
   expect((await (await student.get('/api/state')).json()).notes).toHaveLength(0);
 });
 
-test('Group sees submitted work; fail requires a retry and success completes it', async () => {
+test('Submitted work stays private; fail requires a retry and success completes it', async () => {
   const form = new FormData();
   form.set('assignmentId', assignmentId);
   form.set('body', '한국어를 배우고 있어요. 매일 연습해요.');
@@ -125,8 +125,9 @@ test('Group sees submitted work; fail requires a retry and success completes it'
   expect(received.attachments).toHaveLength(2);
   fileId = received.attachments[0].id;
   expect((await teacher.get(`/api/files/${fileId}`)).status()).toBe(200);
-  expect((await other.get(`/api/files/${fileId}`)).status()).toBe(200);
-  expect((await other.get(`/api/submissions/${submissionId}`)).status()).toBe(200);
+  expect((await student.get(`/api/files/${fileId}`)).status()).toBe(200);
+  expect((await other.get(`/api/files/${fileId}`)).status()).toBe(403);
+  expect((await other.get(`/api/submissions/${submissionId}`)).status()).toBe(403);
   expect((await teacher.post('/api/teacher/ai-review', { data: { submissionId } })).status()).toBe(
     503,
   );
@@ -138,7 +139,7 @@ test('Group sees submitted work; fail requires a retry and success completes it'
       })
     ).status(),
   ).toBe(200);
-  const failed = await (await other.get(`/api/submissions/${submissionId}`)).json();
+  const failed = await (await student.get(`/api/submissions/${submissionId}`)).json();
   expect(failed.review_outcome).toBe('fail');
   expect(failed.feedback).toBe(feedback);
 
@@ -153,7 +154,8 @@ test('Group sees submitted work; fail requires a retry and success completes it'
   expect(retried.status()).toBe(200);
   expect((await retried.json()).id).toBe(submissionId);
   expect((await other.get(`/api/files/${fileId}`)).status()).toBe(404);
-  const pending = await (await other.get(`/api/submissions/${submissionId}`)).json();
+  expect((await other.get(`/api/submissions/${submissionId}`)).status()).toBe(403);
+  const pending = await (await student.get(`/api/submissions/${submissionId}`)).json();
   expect(pending.review_outcome).toBeNull();
   expect(pending.attempt).toBe(2);
   expect(pending.feedback).toBeNull();

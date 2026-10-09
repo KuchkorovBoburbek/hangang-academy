@@ -256,8 +256,7 @@ export function submissionAccess(user: User, sid: string) {
     sid,
   );
   if (!s) throw new AppError(404, 'Yozma ish topilmadi.');
-  const groupMate = user.role === 'student' && user.group_id === s.group_id;
-  if (s.user_id !== user.id && s.teacher_id !== user.id && !groupMate)
+  if (s.user_id !== user.id && s.teacher_id !== user.id)
     throw new AppError(403, 'Bu yozma ishga kirish huquqi yo‘q.');
   return s;
 }

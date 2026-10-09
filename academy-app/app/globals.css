@@ -1111,6 +1111,29 @@ input[readonly] {
 .vocab-banner {
   background: linear-gradient(105deg, var(--surface-soft), var(--paper));
 }
+.grammar-curriculum-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.4fr) auto;
+  align-items: end;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid var(--blue-border);
+  border-radius: 15px;
+  background: linear-gradient(135deg, var(--blue-light), var(--paper));
+}
+.grammar-filter-result {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 14px;
+  border: 1px solid var(--blue-border);
+  border-radius: 11px;
+  background: var(--paper);
+  color: var(--blue-deep);
+  font-size: 12px;
+  font-weight: 750;
+  white-space: nowrap;
+}
 .library-toolbar {
   display: flex;
   justify-content: space-between;
@@ -3248,6 +3271,12 @@ td small {
     flex-direction: column;
     align-items: stretch;
     gap: 14px;
+  }
+  .grammar-curriculum-toolbar {
+    grid-template-columns: 1fr;
+  }
+  .grammar-filter-result {
+    justify-content: center;
   }
   .search-box {
     width: 100%;

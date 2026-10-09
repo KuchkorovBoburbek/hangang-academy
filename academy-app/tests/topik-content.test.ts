@@ -5,6 +5,7 @@ vi.mock('next/headers', () => ({ cookies: vi.fn() }));
 import { planTopikMocks } from '../lib/topik';
 import type { TopikGroup, TopikVocabulary } from '../lib/topik-types';
 import { GRAMMARS } from '../lib/content';
+import { isSeoulte1AGrammar } from '../lib/seoulte-1a';
 
 const read = <T>(name: string): T =>
   JSON.parse(fs.readFileSync(path.resolve('content/topik', name), 'utf8'));
@@ -81,10 +82,10 @@ describe('Supplied TOPIK reading corpus', () => {
     expect(new Set(imagePaths).size).toBe(72);
   });
 
-  it('covers every supplied grammar and scopes vocabulary counts to real source questions', () => {
+  it('covers every TOPIK grammar and scopes vocabulary counts to real source questions', () => {
     const grammar = read<TopikGroup[]>('generated-grammar.json');
     expect(new Set(grammar.flatMap((g) => g.questions.flatMap((q) => q.grammarIds || [])))).toEqual(
-      new Set(GRAMMARS.map((g) => g.id)),
+      new Set(GRAMMARS.filter((g) => !isSeoulte1AGrammar(g.id)).map((g) => g.id)),
     );
     expect(grammar.every((g) => g.origin === 'generated' && g.source.exam === null)).toBe(true);
     const validSources = new Set(

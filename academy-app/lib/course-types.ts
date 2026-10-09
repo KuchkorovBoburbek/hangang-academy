@@ -29,6 +29,7 @@ export type LessonQuestion = {
 };
 export type LessonMaterial = {
   id: string;
+  curriculumUnit?: string;
   kind: (typeof MATERIAL_TYPES)[number]['id'];
   title: string;
   body: string;
@@ -42,6 +43,7 @@ export type LessonMaterial = {
   questions: LessonQuestion[];
 };
 export type LessonBody = {
+  curriculumUnit?: string;
   title: string;
   description: string;
   youtubeUrl: string;

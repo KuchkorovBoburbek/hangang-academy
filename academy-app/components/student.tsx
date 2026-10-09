@@ -21,6 +21,13 @@ import {
 import type { studentState } from '@/lib/learning';
 import type { QuizKind, Grammar, Word, Assignment, Note, Submission } from '@/lib/types';
 import { api, Badge, Modal, Empty, SubmitButton, dateLabel, errorText } from './ui';
+import {
+  SEOULTE_1A_BOOK,
+  SEOULTE_1A_UNITS,
+  isSeoulte1AGrammar,
+  seoulte1AUnit,
+  seoulte1AUnitForGrammar,
+} from '@/lib/seoulte-1a';
 export type StudentData = ReturnType<typeof studentState>;
 export type StartQuiz = (
   kind: QuizKind,
@@ -44,7 +51,11 @@ export function PracticeLibrary({
   go: (path: string) => void;
 }) {
   const [search, setSearch] = useState('');
-  const [tab, setTab] = useState('all');
+  const [tab, setTab] = useState(data.access.managed ? 'group' : 'all');
+  const [grammarBook, setGrammarBook] = useState<'all' | 'seoulte-1a' | 'topik'>(
+    data.access.level === 'hangul' ? 'seoulte-1a' : 'all',
+  );
+  const [curriculumUnit, setCurriculumUnit] = useState('all');
   const [selected, setSelected] = useState<Grammar | Word | null>(null);
   const [topikSession, setTopikSession] = useState<TopikSession | null>(null);
   const [starting, setStarting] = useState(false);
@@ -69,16 +80,26 @@ export function PracticeLibrary({
   const allowed: string[] = JSON.parse(
     isGrammar ? data.group?.grammar_ids || '[]' : data.group?.vocabulary_ids || '[]',
   );
+  const groupAllowed = data.access.managed
+    ? new Set(
+        isGrammar ? data.grammars.map((grammar) => grammar.id) : data.words.map((word) => word.id),
+      )
+    : new Set(allowed);
   const grammars = data.grammars.filter(
     (g) =>
       `${g.form} ${g.meaning}`.toLowerCase().includes(search.toLowerCase()) &&
-      (tab === 'all' || allowed.includes(g.id)),
+      (tab === 'all' || groupAllowed.has(g.id)) &&
+      (grammarBook === 'all' ||
+        (grammarBook === 'seoulte-1a' && isSeoulte1AGrammar(g.id)) ||
+        (grammarBook === 'topik' && !isSeoulte1AGrammar(g.id))) &&
+      (curriculumUnit === 'all' || seoulte1AUnit(curriculumUnit)?.grammarIds.includes(g.id)),
   );
   const words = data.words.filter(
     (w) =>
       `${w.ko} ${w.uz}`.toLowerCase().includes(search.toLowerCase()) &&
       (tab === 'all' || allowed.includes(w.id)),
   );
+  const hasGrammarQuiz = data.grammars.some((grammar) => !!data.coverage[grammar.id]);
   async function save() {
     if (!selected) return;
     try {
@@ -125,7 +146,11 @@ export function PracticeLibrary({
               : 'Har bir yangi so‘z — yangi imkoniyat.'}
           </p>
         </div>
-        <button className="button primary" onClick={() => start(kind)}>
+        <button
+          className="button primary"
+          disabled={isGrammar && !hasGrammarQuiz}
+          onClick={() => start(kind)}
+        >
           Quizni boshlash
           <ArrowRight size={18} />
         </button>
@@ -145,22 +170,72 @@ export function PracticeLibrary({
       <div className={`library-banner ${isGrammar ? 'grammar-banner' : 'vocab-banner'}`}>
         <div>
           <Badge tone={isGrammar ? 'purple' : 'green'}>
-            {isGrammar ? 'TOPIK II · 읽기 1–4' : 'KOREYSCHA ↔ O‘ZBEKCHA'}
+            {isGrammar
+              ? data.access.level === 'hangul'
+                ? 'SEOULTE 1A · GURUHGA OCHILGAN'
+                : 'TOPIK II · 읽기 1–4'
+              : 'KOREYSCHA ↔ O‘ZBEKCHA'}
           </Badge>
           <h2>
             {isGrammar ? 'O‘rganganingizni sinab ko‘ring.' : 'So‘zlarni gap ichida eslab qoling.'}
           </h2>
           <p>
             {isGrammar
-              ? 'Qo‘llanma asosidagi mashqlar. Natija rasmiy TOPIK bahosi emas.'
+              ? data.access.level === 'hangul'
+                ? 'Ustoz ochgan Seoulte 1A mavzularini qoida va misollar bilan o‘rganing.'
+                : 'Qo‘llanma asosidagi mashqlar. Natija rasmiy TOPIK bahosi emas.'
               : 'Ma’no, koreyscha misol va o‘zbekcha tarjima.'}
           </p>
         </div>
-        <button className="button secondary" onClick={() => start(kind, 'test')}>
-          Kichik sinov
-          <ArrowUpRight size={17} />
-        </button>
+        {(!isGrammar || hasGrammarQuiz) && (
+          <button className="button secondary" onClick={() => start(kind, 'test')}>
+            Kichik sinov
+            <ArrowUpRight size={17} />
+          </button>
+        )}
       </div>
+      {isGrammar && (
+        <div className="grammar-curriculum-toolbar" aria-label="Grammatika filtrlari">
+          <label>
+            Kitob
+            <select
+              aria-label="Grammatika kitobi"
+              value={grammarBook}
+              onChange={(event) => {
+                const next = event.target.value as 'all' | 'seoulte-1a' | 'topik';
+                setGrammarBook(next);
+                if (next !== 'seoulte-1a') setCurriculumUnit('all');
+              }}
+            >
+              <option value="all">Barcha manbalar</option>
+              <option value="seoulte-1a">{SEOULTE_1A_BOOK.label}</option>
+              <option value="topik">TOPIK va qo‘shimcha</option>
+            </select>
+          </label>
+          <label>
+            Mavzu
+            <select
+              aria-label="Grammatika mavzusi"
+              value={curriculumUnit}
+              disabled={grammarBook !== 'seoulte-1a'}
+              onChange={(event) => setCurriculumUnit(event.target.value)}
+            >
+              <option value="all">Barcha ochilgan mavzular</option>
+              {SEOULTE_1A_UNITS.map((unit) => {
+                const count = data.grammars.filter((grammar) =>
+                  unit.grammarIds.includes(grammar.id),
+                ).length;
+                return (
+                  <option key={unit.id} value={unit.id} disabled={!count}>
+                    {unit.position}-mavzu · {unit.koTitle} · {unit.title} ({count})
+                  </option>
+                );
+              })}
+            </select>
+          </label>
+          <span className="grammar-filter-result">{grammars.length} ta grammatika</span>
+        </div>
+      )}
       <div className="library-toolbar">
         <div className="segmented">
           <button className={tab === 'all' ? 'active' : ''} onClick={() => setTab('all')}>
@@ -182,28 +257,35 @@ export function PracticeLibrary({
       </div>
       <div className={isGrammar ? 'grammar-grid' : 'word-grid'}>
         {isGrammar
-          ? grammars.map((g, i) => (
-              <button className="grammar-card" key={g.id} onClick={() => setSelected(g)}>
-                <div>
-                  <span className="muted">{g.id}</span>
-                  {allowed.includes(g.id) ? (
-                    <Badge tone="blue">O‘tilmoqda</Badge>
-                  ) : (
-                    <BookOpen size={17} />
-                  )}
-                </div>
-                <h3 lang="ko">{g.form}</h3>
-                <p>{g.meaning}</p>
-                <footer>
-                  <span>
-                    {data.grammarMastery[g.id]
-                      ? `${data.grammarMastery[g.id]} kun to‘g‘ri javob`
-                      : 'Mini-dars va mashq'}
-                  </span>
-                  <ArrowUpRight size={18} />
-                </footer>
-              </button>
-            ))
+          ? grammars.map((g) => {
+              const unit = seoulte1AUnitForGrammar(g.id);
+              return (
+                <button className="grammar-card" key={g.id} onClick={() => setSelected(g)}>
+                  <div>
+                    <span className="muted">
+                      {unit ? `${SEOULTE_1A_BOOK.label} · ${unit.position}-mavzu` : g.id}
+                    </span>
+                    {groupAllowed.has(g.id) ? (
+                      <Badge tone="blue">Guruhga ochilgan</Badge>
+                    ) : (
+                      <BookOpen size={17} />
+                    )}
+                  </div>
+                  <h3 lang="ko">{g.form}</h3>
+                  <p>{g.meaning}</p>
+                  <footer>
+                    <span>
+                      {data.grammarMastery[g.id]
+                        ? `${data.grammarMastery[g.id]} kun to‘g‘ri javob`
+                        : data.coverage[g.id]
+                          ? 'Mini-dars va mashq'
+                          : 'Mini-dars'}
+                    </span>
+                    <ArrowUpRight size={18} />
+                  </footer>
+                </button>
+              );
+            })
           : words.map((w) => (
               <button className="word-card" key={w.id} onClick={() => setSelected(w)}>
                 <span className="word-category">{w.category}</span>
@@ -217,7 +299,11 @@ export function PracticeLibrary({
             ))}
       </div>
       {!(isGrammar ? grammars : words).length && (
-        <Empty title="Hech narsa topilmadi">Boshqa so‘z bilan qidirib ko‘ring.</Empty>
+        <Empty title={isGrammar ? 'Bu filtrda grammatika topilmadi' : 'Hech narsa topilmadi'}>
+          {isGrammar
+            ? 'Guruhingizga ushbu mavzu hali ochilmagan yoki qidiruvni o‘zgartirish kerak.'
+            : 'Boshqa so‘z bilan qidirib ko‘ring.'}
+        </Empty>
       )}
       {selected && (
         <Modal
@@ -268,7 +354,7 @@ export function PracticeLibrary({
                   TOPIK usulida mashq qilish <ArrowRight size={18} />
                 </button>
               )}
-              {allowed.includes(selected.id) && !!data.coverage[selected.id] && (
+              {groupAllowed.has(selected.id) && !!data.coverage[selected.id] && (
                 <button
                   className="button primary"
                   onClick={() => {

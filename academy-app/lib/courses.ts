@@ -17,6 +17,7 @@ import { GRAMMARS } from './content';
 import { allVocabulary } from './vocabulary-data';
 import { courseAccess } from './course-access';
 import { youtubeVideoId } from './youtube';
+import { SEOULTE_1A_UNITS, seoulte1AUnit } from './seoulte-1a';
 const text = (max = 1000) => z.string().trim().max(max);
 const question = z
   .object({
@@ -33,6 +34,7 @@ const question = z
 const material = z
   .object({
     id: z.string().uuid(),
+    curriculumUnit: text(80).default(''),
     kind: z.enum([
       'vocabulary',
       'grammar',
@@ -68,6 +70,7 @@ const material = z
   })
   .refine((m) => m.task !== 'quiz' || m.questions.length > 0, 'Quiz savollarini qo‘shing.');
 export const lessonSchema = z.object({
+  curriculumUnit: text(80).default(''),
   title: text(160).min(2),
   description: text(2000).default(''),
   youtubeUrl: text(2000)
@@ -198,6 +201,7 @@ export function createLesson(user: User, courseId: string) {
       courseId,
       position,
       JSON.stringify({
+        curriculumUnit: '',
         title: `${position}-dars`,
         description: '',
         youtubeUrl: '',
@@ -223,6 +227,11 @@ export function saveLesson(user: User, lessonId: string, input: unknown) {
   if (new Set(body.materials.map((m) => m.id)).size !== body.materials.length)
     throw new AppError(400, 'Materiallar takrorlangan.');
   const course = ownCourse(user, previous.course_id);
+  if (
+    body.curriculumUnit &&
+    (course.level !== 'hangul' || !SEOULTE_1A_UNITS.some((unit) => unit.id === body.curriculumUnit))
+  )
+    throw new AppError(400, 'Seoulte darsi dastur darajasiga mos emas.');
   const words = new Map(allVocabulary(user).map((w) => [w.id, w]));
   const categories = new Set(
     many<{ category: string }>('SELECT DISTINCT category FROM topik_groups WHERE current=1').map(
@@ -230,6 +239,17 @@ export function saveLesson(user: User, lessonId: string, input: unknown) {
     ),
   );
   for (const m of body.materials) {
+    if (m.curriculumUnit && (!body.curriculumUnit || m.curriculumUnit !== body.curriculumUnit))
+      throw new AppError(400, 'Grammatika materiali tanlangan Seoulte darsiga mos emas.');
+    if (m.curriculumUnit && m.kind !== 'grammar')
+      throw new AppError(400, 'Seoulte mavzusi faqat grammatika materialiga biriktiriladi.');
+    const unit = seoulte1AUnit(m.curriculumUnit || body.curriculumUnit);
+    if (
+      unit &&
+      m.kind === 'grammar' &&
+      m.grammarIds.some((grammarId) => !unit.grammarIds.includes(grammarId))
+    )
+      throw new AppError(400, 'Tanlangan grammatika Seoulte 1A mavzusiga mos emas.');
     if (
       new Set(m.words.map((w) => w.id)).size !== m.words.length ||
       new Set(m.questions.map((q) => q.id)).size !== m.questions.length
@@ -282,7 +302,11 @@ export function openLesson(user: User, lessonId: string, input: unknown) {
   const group = one<Group>('SELECT * FROM groups WHERE id=?', b.groupId)!;
   if (group.course_id !== lesson.course_id)
     throw new AppError(400, 'Guruh va dars bir dasturga tegishli bo‘lishi kerak.');
-  const selectedIds = b.materialIds || lesson.materials.map((material) => material.id);
+  const requestedIds = b.materialIds || lesson.materials.map((material) => material.id);
+  const automaticGrammarIds = lesson.materials
+    .filter((material) => material.kind === 'grammar' && material.grammarIds.length > 0)
+    .map((material) => material.id);
+  const selectedIds = [...new Set([...requestedIds, ...automaticGrammarIds])];
   const selected = lesson.materials.filter((material) => selectedIds.includes(material.id));
   if (selected.length !== selectedIds.length)
     throw new AppError(400, 'Tanlangan material dars qoralamasida topilmadi.');
@@ -322,6 +346,7 @@ export function openLesson(user: User, lessonId: string, input: unknown) {
       (material) => !lesson.materials.some((draft) => draft.id === material.id),
     );
     const snapshot: LessonBody = {
+      curriculumUnit: previous?.curriculumUnit || lesson.curriculumUnit,
       title: previous?.title || lesson.title,
       description: previous?.description || lesson.description,
       youtubeUrl: includeVideo ? lesson.youtubeUrl : previous?.youtubeUrl || '',

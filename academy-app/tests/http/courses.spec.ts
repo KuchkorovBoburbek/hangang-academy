@@ -36,7 +36,7 @@ const material = (kind: string, task: string) => ({
           },
         ]
       : [],
-  grammarIds: kind === 'grammar' ? ['A04', 'A12'] : [],
+  grammarIds: kind === 'grammar' ? ['A04', 'A12', 'S1A-01-01'] : [],
   topikCategory: '',
   task,
   required: true,
@@ -283,6 +283,10 @@ test('Premium course editor and student lesson are usable on desktop and phone',
   await page.getByRole('button', { name: 'Mavjud grammatikadan tanlash' }).click();
   const grammarPicker = page.getByRole('dialog');
   await expect(grammarPicker.getByText('Grammatika mavzulari', { exact: true })).toBeVisible();
+  await grammarPicker.getByLabel('Grammatika bazasi kitobi').selectOption('seoulte-1a');
+  await grammarPicker.getByLabel('Grammatika bazasi mavzusi').selectOption('seoulte-1a-unit-1');
+  await expect(grammarPicker.getByText('N은/는 N이에요/예요', { exact: true })).toBeVisible();
+  await grammarPicker.getByLabel('Grammatika bazasi kitobi').selectOption('all');
   await grammarPicker.getByRole('button', { name: /Maqsad va niyat/ }).click();
   await expect(grammarPicker.getByText('-(으)려고', { exact: true })).toBeVisible();
   await expect(grammarPicker.getByRole('checkbox', { name: /\-\(으\)려고/ })).toBeChecked();
@@ -343,6 +347,13 @@ test('Premium course editor and student lesson are usable on desktop and phone',
   expect(await sp.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
     true,
   );
+  await sp.goto('/grammar', { waitUntil: 'domcontentloaded' });
+  await expect(sp.getByLabel('Grammatika kitobi')).toHaveValue('seoulte-1a');
+  await expect(sp.getByText('N은/는 N이에요/예요', { exact: true })).toBeVisible();
+  await sp.getByLabel('Grammatika mavzusi').selectOption('seoulte-1a-unit-1');
+  await expect(sp.locator('.grammar-card')).toHaveCount(1);
+  await expect(sp.getByText('Seoulte 1A · 1-mavzu', { exact: true })).toBeVisible();
+  await sp.screenshot({ path: 'test-results/student-grammar-mobile.png', fullPage: true });
   await sp.goto('/my-group', { waitUntil: 'domcontentloaded' });
   await expect(sp.getByRole('heading', { name: 'Guruh reytingi' })).toBeVisible();
   await expect(sp.locator('.mobile-review-notice')).toHaveCount(0);

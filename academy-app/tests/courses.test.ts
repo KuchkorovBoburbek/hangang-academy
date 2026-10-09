@@ -25,6 +25,7 @@ import { courseAccess, requireTopikAccess } from '../lib/course-access';
 import { validateAudio } from '../lib/files';
 import type { CourseLesson, LessonMaterial } from '../lib/course-types';
 import { youtubeEmbedUrl, youtubeVideoId } from '../lib/youtube';
+import { SEOULTE_1A_UNITS } from '../lib/seoulte-1a';
 let root: string,
   teacher: User,
   student: User,
@@ -146,6 +147,41 @@ it('publishes a video-only lesson without requiring an extra material card', () 
   expect(lessonView(student, videoRelease).snapshot.youtubeUrl).toBe(
     'https://www.youtube.com/live/dQw4w9WgXcQ',
   );
+});
+it('keeps Seoulte 1A grammar scoped to the selected lesson topic and publishes its metadata', () => {
+  const unit = SEOULTE_1A_UNITS[0];
+  const group = one<Group>('SELECT * FROM groups WHERE id=?', gid)!;
+  let scoped = createLesson(teacher, group.course_id!);
+  const grammar = {
+    ...makeMaterial('grammar'),
+    curriculumUnit: unit.id,
+    title: `${unit.position}-mavzu grammatikasi`,
+    words: [],
+    grammarIds: [...unit.grammarIds],
+    task: 'none' as const,
+  };
+  expect(() =>
+    saveLesson(teacher, scoped.id, {
+      ...scoped,
+      curriculumUnit: unit.id,
+      materials: [{ ...grammar, grammarIds: ['S1A-08-03'] }],
+    }),
+  ).toThrow('Tanlangan grammatika Seoulte 1A mavzusiga mos emas.');
+  scoped = saveLesson(teacher, scoped.id, {
+    ...scoped,
+    curriculumUnit: unit.id,
+    title: 'Seoulte 1A · 1-mavzu',
+    materials: [grammar],
+  });
+  const scopedRelease = openLesson(teacher, scoped.id, {
+    groupId: gid,
+    dueAt: '2027-02-01T12:00:00.000Z',
+    materialIds: [grammar.id],
+  }).id;
+  const published = lessonView(student, scopedRelease);
+  expect(published.snapshot.curriculumUnit).toBe(unit.id);
+  expect(published.grammars.map((item) => item.id)).toEqual(unit.grammarIds);
+  expect(courseAccess(student).grammarIds).toEqual(expect.arrayContaining(unit.grammarIds));
 });
 it('opens selected materials now, schedules later additions and queues scoped notifications', async () => {
   const group = one<Group>('SELECT * FROM groups WHERE id=?', gid2)!;

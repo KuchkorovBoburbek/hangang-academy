@@ -51,7 +51,14 @@ import {
   groupGrammarsByTopic,
   type GrammarTopicId,
 } from '@/lib/grammar-topics';
+import {
+  SEOULTE_1A_BOOK,
+  SEOULTE_1A_UNITS,
+  isSeoulte1AGrammar,
+  seoulte1AUnit,
+} from '@/lib/seoulte-1a';
 import '@/app/courses.css';
+type GrammarBookFilter = 'all' | 'seoulte-1a' | 'topik';
 type Catalog = {
   courses: CourseSummary[];
   groups: Group[];
@@ -264,6 +271,8 @@ function LessonEditor({
     [picker, setPicker] = useState<{ id: string; kind: 'word' | 'grammar' } | null>(null),
     [query, setQuery] = useState(''),
     [grammarTopic, setGrammarTopic] = useState<'all' | GrammarTopicId>('all'),
+    [grammarBook, setGrammarBook] = useState<GrammarBookFilter>('all'),
+    [grammarUnit, setGrammarUnit] = useState('all'),
     [ai, setAi] = useState<string | null>(null),
     [aiBusy, setAiBusy] = useState(false),
     [aiWords, setAiWords] = useState<LessonWord[]>([]),
@@ -325,6 +334,30 @@ function LessonEditor({
       l ? { ...l, materials: l.materials.map((m) => (m.id === mid ? { ...m, ...patch } : m)) } : l,
     );
     setDirty(true);
+  }
+  function changeCurriculumUnit(unitId: string) {
+    if (!lesson) return;
+    const unit = seoulte1AUnit(unitId);
+    const allowed = new Set(unit?.grammarIds || []);
+    const removed = lesson.materials
+      .filter((material) => material.kind === 'grammar')
+      .flatMap((material) => material.grammarIds)
+      .filter((grammarId) => unit && !allowed.has(grammarId)).length;
+    update({
+      curriculumUnit: unitId,
+      materials: lesson.materials.map((material) =>
+        material.kind === 'grammar'
+          ? {
+              ...material,
+              curriculumUnit: unitId,
+              grammarIds: unit
+                ? material.grammarIds.filter((grammarId) => allowed.has(grammarId))
+                : material.grammarIds,
+            }
+          : material,
+      ),
+    });
+    if (removed) notify(`${removed} ta boshqa mavzuga tegishli grammatika tanlovdan chiqarildi.`);
   }
   async function save() {
     if (!lesson) return;
@@ -394,6 +427,7 @@ function LessonEditor({
         ...lesson.materials,
         {
           id: crypto.randomUUID(),
+          curriculumUnit: kind === 'grammar' ? lesson.curriculumUnit || '' : '',
           kind,
           title: label(kind)!.label,
           body: '',
@@ -437,6 +471,61 @@ function LessonEditor({
         </div>
       </div>
       <section className="panel course-editor-meta">
+        {course.level === 'hangul' && (
+          <div className="course-curriculum-select">
+            <div className="course-curriculum-heading">
+              <span className="square-icon pale-blue">
+                <BookOpen size={20} />
+              </span>
+              <div>
+                <strong>Darsning kitob va mavzusi</strong>
+                <small>
+                  Tanlov grammatika bazasini avtomatik filtrlab, faqat shu mavzudagi qoidalarni
+                  ko‘rsatadi.
+                </small>
+              </div>
+            </div>
+            <div className="form-two">
+              <label>
+                Kitob
+                <select
+                  aria-label="Grammatika kitobi"
+                  value={lesson.curriculumUnit ? SEOULTE_1A_BOOK.id : ''}
+                  onChange={(event) =>
+                    changeCurriculumUnit(
+                      event.target.value === SEOULTE_1A_BOOK.id ? SEOULTE_1A_UNITS[0].id : '',
+                    )
+                  }
+                >
+                  <option value="">Erkin dars</option>
+                  <option value={SEOULTE_1A_BOOK.id}>{SEOULTE_1A_BOOK.label}</option>
+                </select>
+              </label>
+              <label>
+                Mavzu
+                <select
+                  aria-label="Seoulte 1A mavzusi"
+                  value={lesson.curriculumUnit || ''}
+                  disabled={!lesson.curriculumUnit}
+                  onChange={(event) => changeCurriculumUnit(event.target.value)}
+                >
+                  <option value="">Avval kitobni tanlang</option>
+                  {SEOULTE_1A_UNITS.map((unit) => (
+                    <option key={unit.id} value={unit.id}>
+                      {unit.position}-mavzu · {unit.koTitle} · {unit.title}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
+            {seoulte1AUnit(lesson.curriculumUnit) && (
+              <p className="course-curriculum-note">
+                {seoulte1AUnit(lesson.curriculumUnit)!.description} ·{' '}
+                {seoulte1AUnit(lesson.curriculumUnit)!.grammarIds.length} ta grammatika
+              </p>
+            )}
+          </div>
+        )}
         <div className="form-two">
           <label>
             Dars nomi
@@ -649,6 +738,8 @@ function LessonEditor({
                 onClick={() => {
                   setQuery('');
                   setGrammarTopic('all');
+                  setGrammarBook(lesson.curriculumUnit ? 'seoulte-1a' : 'all');
+                  setGrammarUnit(lesson.curriculumUnit || 'all');
                   setPicker({ id: m.id, kind: 'grammar' });
                 }}
               >
@@ -1065,13 +1156,29 @@ function LessonEditor({
               }
               query={query}
               topic={grammarTopic}
+              book={grammarBook}
+              unit={grammarUnit}
               onTopic={setGrammarTopic}
+              onBook={(book) => {
+                setGrammarBook(book);
+                if (book !== 'seoulte-1a') setGrammarUnit('all');
+                if (book === 'seoulte-1a') setGrammarTopic('all');
+              }}
+              onUnit={setGrammarUnit}
               onToggle={(grammarId, checked) => {
                 const material = lesson.materials.find((material) => material.id === picker.id)!;
                 materialUpdate(material.id, {
                   grammarIds: checked
                     ? [...new Set([...material.grammarIds, grammarId])]
                     : material.grammarIds.filter((id) => id !== grammarId),
+                });
+              }}
+              onToggleMany={(grammarIds, checked) => {
+                const material = lesson.materials.find((material) => material.id === picker.id)!;
+                materialUpdate(material.id, {
+                  grammarIds: checked
+                    ? [...new Set([...material.grammarIds, ...grammarIds])]
+                    : material.grammarIds.filter((id) => !grammarIds.includes(id)),
                 });
               }}
             />
@@ -1180,55 +1287,138 @@ function GrammarBankPicker({
   selectedIds,
   query,
   topic,
+  book,
+  unit,
   onTopic,
+  onBook,
+  onUnit,
   onToggle,
+  onToggleMany,
 }: {
   grammars: Grammar[];
   selectedIds: string[];
   query: string;
   topic: 'all' | GrammarTopicId;
+  book: GrammarBookFilter;
+  unit: string;
   onTopic: (topic: 'all' | GrammarTopicId) => void;
+  onBook: (book: GrammarBookFilter) => void;
+  onUnit: (unit: string) => void;
   onToggle: (grammarId: string, checked: boolean) => void;
+  onToggleMany: (grammarIds: string[], checked: boolean) => void;
 }) {
   const normalizedQuery = query.trim().toLocaleLowerCase('uz');
   const matching = grammars.filter((grammar) => {
     const matchesQuery = `${grammar.form} ${grammar.meaning} ${grammar.syntax}`
       .toLocaleLowerCase('uz')
       .includes(normalizedQuery);
-    return matchesQuery && (topic === 'all' || grammarTopicFor(grammar).id === topic);
+    const matchesBook =
+      book === 'all' ||
+      (book === 'seoulte-1a' && isSeoulte1AGrammar(grammar.id)) ||
+      (book === 'topik' && !isSeoulte1AGrammar(grammar.id));
+    const matchesUnit = unit === 'all' || !!seoulte1AUnit(unit)?.grammarIds.includes(grammar.id);
+    return (
+      matchesQuery &&
+      matchesBook &&
+      matchesUnit &&
+      (topic === 'all' || grammarTopicFor(grammar).id === topic)
+    );
   });
-  const groups = groupGrammarsByTopic(matching);
+  const groups =
+    book === 'seoulte-1a'
+      ? SEOULTE_1A_UNITS.map((item) => ({
+          id: item.id,
+          ko: `${item.position}과 · ${item.koTitle}`,
+          label: `${item.position}-mavzu · ${item.title}`,
+          description: item.description,
+          grammars: matching.filter((grammar) => item.grammarIds.includes(grammar.id)),
+        })).filter((item) => item.grammars.length > 0)
+      : groupGrammarsByTopic(matching);
+  const matchingIds = matching.map((grammar) => grammar.id);
+  const allMatchingSelected =
+    matchingIds.length > 0 && matchingIds.every((grammarId) => selectedIds.includes(grammarId));
   return (
     <div className="course-grammar-picker">
       <div className="course-grammar-picker-summary">
         <div>
           <strong>Grammatika mavzulari</strong>
-          <span>Avval mavzuni, keyin shu darsda o‘rganiladigan grammatikani tanlang.</span>
+          <span>Kitob → mavzu → grammatika filtrlari orqali kerakli qoidalarni tez tanlang.</span>
         </div>
         <Badge tone="blue">{selectedIds.length} ta tanlangan</Badge>
       </div>
-      <div className="course-grammar-topic-filters" aria-label="Grammatika mavzulari">
-        <button
-          className={topic === 'all' ? 'active' : ''}
-          aria-pressed={topic === 'all'}
-          onClick={() => onTopic('all')}
-        >
-          <span>Barchasi</span>
-          <small>{grammars.length}</small>
-        </button>
-        {GRAMMAR_TOPICS.map((item) => (
-          <button
-            key={item.id}
-            className={topic === item.id ? 'active' : ''}
-            aria-pressed={topic === item.id}
-            onClick={() => onTopic(item.id)}
+      <div className="course-grammar-curriculum-filters">
+        <label>
+          Kitob
+          <select
+            aria-label="Grammatika bazasi kitobi"
+            value={book}
+            onChange={(event) => onBook(event.target.value as GrammarBookFilter)}
           >
-            <span>{item.label}</span>
-            <small>
-              {grammars.filter((grammar) => grammarTopicFor(grammar).id === item.id).length}
-            </small>
+            <option value="all">Barcha manbalar</option>
+            <option value="seoulte-1a">Seoulte 1A</option>
+            <option value="topik">TOPIK va qo‘shimcha</option>
+          </select>
+        </label>
+        <label>
+          Kitob mavzusi
+          <select
+            aria-label="Grammatika bazasi mavzusi"
+            value={unit}
+            disabled={book !== 'seoulte-1a'}
+            onChange={(event) => onUnit(event.target.value)}
+          >
+            <option value="all">Seoulte 1A · barcha mavzular</option>
+            {SEOULTE_1A_UNITS.map((item) => (
+              <option key={item.id} value={item.id}>
+                {item.position}-mavzu · {item.koTitle} · {item.title}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+      {book !== 'seoulte-1a' && (
+        <div className="course-grammar-topic-filters" aria-label="Grammatika mavzulari">
+          <button
+            className={topic === 'all' ? 'active' : ''}
+            aria-pressed={topic === 'all'}
+            onClick={() => onTopic('all')}
+          >
+            <span>Barcha vazifalar</span>
+            <small>{grammars.length}</small>
           </button>
-        ))}
+          {GRAMMAR_TOPICS.map((item) => (
+            <button
+              key={item.id}
+              className={topic === item.id ? 'active' : ''}
+              aria-pressed={topic === item.id}
+              onClick={() => onTopic(item.id)}
+            >
+              <span>{item.label}</span>
+              <small>
+                {
+                  grammars.filter(
+                    (grammar) =>
+                      (book !== 'topik' || !isSeoulte1AGrammar(grammar.id)) &&
+                      grammarTopicFor(grammar).id === item.id,
+                  ).length
+                }
+              </small>
+            </button>
+          ))}
+        </div>
+      )}
+      <div className="course-grammar-bulk-actions">
+        <span>{matching.length} ta grammatika ko‘rsatilmoqda</span>
+        {matchingIds.length > 0 && matchingIds.length <= 30 && (
+          <button
+            className="text-button"
+            onClick={() => onToggleMany(matchingIds, !allMatchingSelected)}
+          >
+            {allMatchingSelected
+              ? 'Ko‘rinayotganlarni bekor qilish'
+              : 'Ko‘rinayotgan barchasini tanlash'}
+          </button>
+        )}
       </div>
       <div className="course-bank-list course-grammar-bank-list">
         {!groups.length && (

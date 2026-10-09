@@ -34,6 +34,7 @@ export type StartQuiz = (
   mode?: 'practice' | 'test',
   topicId?: string,
   assignmentId?: string,
+  topicIds?: string[],
 ) => void;
 export function PracticeLibrary({
   kind,
@@ -99,7 +100,11 @@ export function PracticeLibrary({
       `${w.ko} ${w.uz}`.toLowerCase().includes(search.toLowerCase()) &&
       (tab === 'all' || allowed.includes(w.id)),
   );
-  const hasGrammarQuiz = data.grammars.some((grammar) => !!data.coverage[grammar.id]);
+  const hasGrammarQuiz = grammars.some((grammar) => !!data.coverage[grammar.id]);
+  const quizGrammarIds =
+    grammars.length > 0 && grammars.length <= 30
+      ? grammars.map((grammar) => grammar.id)
+      : undefined;
   async function save() {
     if (!selected) return;
     try {
@@ -149,7 +154,9 @@ export function PracticeLibrary({
         <button
           className="button primary"
           disabled={isGrammar && !hasGrammarQuiz}
-          onClick={() => start(kind)}
+          onClick={() =>
+            start(kind, 'practice', undefined, undefined, isGrammar ? quizGrammarIds : undefined)
+          }
         >
           Quizni boshlash
           <ArrowRight size={18} />
@@ -188,7 +195,12 @@ export function PracticeLibrary({
           </p>
         </div>
         {(!isGrammar || hasGrammarQuiz) && (
-          <button className="button secondary" onClick={() => start(kind, 'test')}>
+          <button
+            className="button secondary"
+            onClick={() =>
+              start(kind, 'test', undefined, undefined, isGrammar ? quizGrammarIds : undefined)
+            }
+          >
             Kichik sinov
             <ArrowUpRight size={17} />
           </button>

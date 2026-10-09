@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { GRAMMARS } from '../lib/content';
 import {
   SEOULTE_1A_GRAMMARS,
+  SEOULTE_1A_QUESTIONS,
   SEOULTE_1A_UNITS,
   isSeoulte1AGrammar,
   seoulte1AUnit,
@@ -26,5 +27,19 @@ describe('Seoulte 1A grammar curriculum', () => {
   it('publishes every Seoulte grammar in the shared grammar bank', () => {
     const bankIds = new Set(GRAMMARS.map((grammar) => grammar.id));
     expect(SEOULTE_1A_GRAMMARS.every((grammar) => bankIds.has(grammar.id))).toBe(true);
+  });
+
+  it('provides three valid quiz questions for every grammar', () => {
+    expect(SEOULTE_1A_QUESTIONS).toHaveLength(SEOULTE_1A_GRAMMARS.length * 3);
+    for (const grammar of SEOULTE_1A_GRAMMARS) {
+      const questions = SEOULTE_1A_QUESTIONS.filter((question) => question.topic_id === grammar.id);
+      expect(questions).toHaveLength(3);
+      for (const question of questions) {
+        expect(question.options).toHaveLength(4);
+        expect(new Set(question.options).size).toBe(4);
+        expect(question.answer).toBeGreaterThanOrEqual(0);
+        expect(question.answer).toBeLessThan(4);
+      }
+    }
   });
 });

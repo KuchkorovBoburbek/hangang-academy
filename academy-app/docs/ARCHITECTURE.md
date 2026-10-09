@@ -22,7 +22,7 @@ Student files and AI drafts are not public assets. A student sees only their own
 
 ## Content versions
 
-Initial questions are shipped in `content/questions.json`. `content-v2` seeds six similarity questions and improves starter prompts without changing answer positions. User-created questions are never overwritten by this step. `scripts/create-content.py` is the original authoring helper; do not rerun it over reviewed JSON content. Changes to historical answer positions need versioned question IDs.
+Initial questions are shipped in `content/questions.json`, with Seoulte 1A grammar quizzes generated from the reviewed curriculum in `lib/seoulte-1a.ts`. `content-v3-seoulte-1a-grammar` installs the current built-in question set without overwriting user-created questions. `scripts/create-content.py` is the original authoring helper; do not rerun it over reviewed JSON content. Changes to historical answer positions need versioned question IDs.
 
 ## Operations
 

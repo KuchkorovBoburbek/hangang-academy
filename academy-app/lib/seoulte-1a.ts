@@ -1,4 +1,4 @@
-import type { Grammar } from './types';
+import type { Grammar, Question } from './types';
 
 export type SeoulteUnit = {
   id: string;
@@ -336,6 +336,79 @@ export const SEOULTE_1A_GRAMMARS: Grammar[] = [
     note: 'Oldindan ma’lum oddiy fakt emas, ayni paytdagi kashfiyot yoki taassurotni ta’kidlaydi.',
   },
 ];
+
+function grammarQuizOptions(
+  correct: string,
+  candidates: string[],
+  answerIndex: number,
+): { options: string[]; answer: number } {
+  const distractors = [...new Set(candidates)]
+    .filter((candidate) => candidate !== correct)
+    .slice(0, 3);
+  if (distractors.length !== 3)
+    throw new Error(`Seoulte quiz variantlari yetarli emas: ${correct}`);
+  const options = [...distractors];
+  options.splice(answerIndex, 0, correct);
+  return { options, answer: answerIndex };
+}
+
+function relatedGrammars(grammarId: string) {
+  const unit = seoulte1AUnitForGrammar(grammarId);
+  const relatedIds = new Set(unit?.grammarIds || []);
+  return [
+    ...SEOULTE_1A_GRAMMARS.filter((grammar) => relatedIds.has(grammar.id)),
+    ...SEOULTE_1A_GRAMMARS.filter((grammar) => !relatedIds.has(grammar.id)),
+  ];
+}
+
+export const SEOULTE_1A_QUESTIONS: Question[] = SEOULTE_1A_GRAMMARS.flatMap((grammar, index) => {
+  const related = relatedGrammars(grammar.id);
+  const meaning = grammarQuizOptions(
+    grammar.meaning,
+    related.map((item) => item.meaning),
+    index % 4,
+  );
+  const translation = grammarQuizOptions(
+    grammar.uz,
+    related.map((item) => item.uz),
+    (index + 2) % 4,
+  );
+  const form = grammarQuizOptions(
+    grammar.form,
+    related.map((item) => item.form),
+    (index + 1) % 4,
+  );
+  const key = grammar.id.slice(4);
+  return [
+    {
+      id: `S1A-Q-${key}-A`,
+      kind: 'grammar',
+      topic_id: grammar.id,
+      prompt: `“${grammar.form}” grammatikasi qanday ma’noni bildiradi?`,
+      ...meaning,
+      explanation: `${grammar.form}: ${grammar.meaning} ${grammar.note}`,
+      translation: grammar.uz,
+    },
+    {
+      id: `S1A-Q-${key}-B`,
+      kind: 'grammar',
+      topic_id: grammar.id,
+      prompt: `“${grammar.ko}” gapining to‘g‘ri tarjimasini tanlang.`,
+      ...translation,
+      explanation: `${grammar.ko} — ${grammar.uz} ${grammar.note}`,
+      translation: grammar.uz,
+    },
+    {
+      id: `S1A-Q-${key}-C`,
+      kind: 'grammar',
+      topic_id: grammar.id,
+      prompt: `${grammar.meaning} Qaysi grammatik shakl mos keladi?`,
+      ...form,
+      explanation: `${grammar.form} · Tuzilishi: ${grammar.syntax}. ${grammar.note}`,
+      translation: grammar.uz,
+    },
+  ];
+});
 
 export function seoulte1AUnit(unitId: string | undefined) {
   return SEOULTE_1A_UNITS.find((unit) => unit.id === unitId);

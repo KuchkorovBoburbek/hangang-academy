@@ -148,7 +148,8 @@ it('publishes a video-only lesson without requiring an extra material card', () 
     'https://www.youtube.com/live/dQw4w9WgXcQ',
   );
 });
-it('keeps Seoulte 1A grammar scoped to the selected lesson topic and publishes its metadata', () => {
+it('keeps Seoulte 1A grammar scoped to the selected lesson topic and publishes its metadata', async () => {
+  const { startQuiz } = await import('../lib/learning');
   const unit = SEOULTE_1A_UNITS[0];
   const group = one<Group>('SELECT * FROM groups WHERE id=?', gid)!;
   let scoped = createLesson(teacher, group.course_id!);
@@ -182,6 +183,14 @@ it('keeps Seoulte 1A grammar scoped to the selected lesson topic and publishes i
   expect(published.snapshot.curriculumUnit).toBe(unit.id);
   expect(published.grammars.map((item) => item.id)).toEqual(unit.grammarIds);
   expect(courseAccess(student).grammarIds).toEqual(expect.arrayContaining(unit.grammarIds));
+  const scopedQuiz = startQuiz(student, 'grammar', 'practice', undefined, undefined, [
+    ...unit.grammarIds,
+  ]);
+  expect(scopedQuiz.total).toBe(9);
+  expect(unit.grammarIds).toContain(scopedQuiz.question?.topic_id);
+  expect(() =>
+    startQuiz(other, 'grammar', 'practice', undefined, undefined, [...unit.grammarIds]),
+  ).toThrow('Bu mavzuga hali savol qo‘shilmagan.');
 });
 it('opens selected materials now, schedules later additions and queues scoped notifications', async () => {
   const group = one<Group>('SELECT * FROM groups WHERE id=?', gid2)!;

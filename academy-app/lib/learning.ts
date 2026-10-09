@@ -98,6 +98,7 @@ export function startQuiz(
   mode: 'practice' | 'test',
   topicId?: string,
   assignmentId?: string,
+  topicIds?: string[],
 ) {
   if (user.role !== 'student') throw new AppError(403, 'Mashq o‘quvchi hisobidan boshlanadi.');
   const group = one<Group>('SELECT * FROM groups WHERE id=?', user.group_id || '');
@@ -164,6 +165,7 @@ export function startQuiz(
       (q.kind !== 'vocabulary' || visibleWords.has(q.topic_id)) &&
       (kind === 'review' || q.kind === kind) &&
       (!topicId || q.topic_id === topicId) &&
+      (!topicIds?.length || topicIds.includes(q.topic_id)) &&
       (!requested?.length || requested.includes(q.topic_id)),
   );
   const reviews = many<{ question_id: string; due_at: string; wrong_count: number }>(

@@ -122,14 +122,14 @@ export default function Academy() {
       return () => clearTimeout(t);
     }
   }, [notice]);
-  const start: StartQuiz = async (kind, mode = 'practice', topicId, assignmentId) => {
+  const start: StartQuiz = async (kind, mode = 'practice', topicId, assignmentId, topicIds) => {
     if (starting) return;
     setStarting(true);
     try {
       setQuiz(
         await api<SessionView>('quiz/start', {
           method: 'POST',
-          body: JSON.stringify({ kind, mode, topicId, assignmentId }),
+          body: JSON.stringify({ kind, mode, topicId, assignmentId, topicIds }),
         }),
       );
     } catch (e) {

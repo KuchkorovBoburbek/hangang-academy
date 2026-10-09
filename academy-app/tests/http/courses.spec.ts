@@ -354,6 +354,10 @@ test('Premium course editor and student lesson are usable on desktop and phone',
   await expect(sp.locator('.grammar-card')).toHaveCount(1);
   await expect(sp.getByText('Seoulte 1A · 1-mavzu', { exact: true })).toBeVisible();
   await sp.screenshot({ path: 'test-results/student-grammar-mobile.png', fullPage: true });
+  await sp.getByRole('button', { name: 'Quizni boshlash' }).click();
+  await expect(sp.locator('.quiz-content')).toBeVisible();
+  await expect(sp.getByText('1 / 3 SAVOL', { exact: true })).toBeVisible();
+  await sp.getByRole('button', { name: 'Yopish', exact: true }).click();
   await sp.goto('/my-group', { waitUntil: 'domcontentloaded' });
   await expect(sp.getByRole('heading', { name: 'Guruh reytingi' })).toBeVisible();
   await expect(sp.locator('.mobile-review-notice')).toHaveCount(0);

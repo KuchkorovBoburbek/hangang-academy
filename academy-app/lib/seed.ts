@@ -123,7 +123,8 @@ export function ensureSeed() {
 }
 
 function syncQuestions() {
-  if (one('SELECT key FROM app_meta WHERE key=?', 'content-v2')) return;
+  const contentVersion = 'content-v3-seoulte-1a-grammar';
+  if (one('SELECT key FROM app_meta WHERE key=?', contentVersion)) return;
   transaction(() => {
     for (const q of QUESTIONS) {
       run(
@@ -144,6 +145,6 @@ function syncQuestions() {
         q.id,
       );
     }
-    run('INSERT OR IGNORE INTO app_meta(key,value) VALUES(?,?)', 'content-v2', now());
+    run('INSERT OR IGNORE INTO app_meta(key,value) VALUES(?,?)', contentVersion, now());
   });
 }

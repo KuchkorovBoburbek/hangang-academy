@@ -1,6 +1,10 @@
 'use client';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { ArrowRight, CheckCircle2, Mic, RotateCcw } from 'lucide-react';
 import type { Grammar } from '@/lib/types';
+import type { GrammarPracticeReply, GrammarPracticeView } from '@/lib/grammar-practice-types';
+import { isSeoulte1AGrammar } from '@/lib/seoulte-1a';
+import { api, errorText } from './ui';
 const PAIRS: Record<string, string> = {
   A01: 'A02',
   A02: 'A10',
@@ -70,18 +74,31 @@ export default function GrammarLesson({
   grammars,
   correctDays,
   showMastery = true,
+  practiceEnabled = false,
 }: {
   grammar: Grammar;
   grammars: Grammar[];
   correctDays: number;
   showMastery?: boolean;
+  practiceEnabled?: boolean;
 }) {
-  const [view, setView] = useState<'learn' | 'recall' | 'compare'>('learn');
+  const [view, setView] = useState<'learn' | 'recall' | 'compare' | 'practice'>('learn');
   const [pairChoice, setPairChoice] = useState<string | null>(null);
   const [comparison, setComparison] = useState(PAIRS[grammar.id] || '');
   const [choice, setChoice] = useState<string | null>(null);
   const [showMeaning, setShowMeaning] = useState(false);
+  const [practice, setPractice] = useState<GrammarPracticeView | null>(null);
+  const [practiceChoice, setPracticeChoice] = useState<number | null>(null);
+  const [writtenAnswer, setWrittenAnswer] = useState('');
+  const [ordered, setOrdered] = useState<number[]>([]);
+  const [sentences, setSentences] = useState(['', '', '']);
+  const [practiceReply, setPracticeReply] = useState<GrammarPracticeReply | null>(null);
+  const [practiceError, setPracticeError] = useState('');
+  const [practiceBusy, setPracticeBusy] = useState(false);
+  const [listening, setListening] = useState<number | null>(null);
+  const recognition = useRef<{ stop: () => void } | null>(null);
   const other = grammars.find((g) => g.id === comparison);
+  const hasPractice = practiceEnabled && isSeoulte1AGrammar(grammar.id);
   const options = useMemo(() => {
     const candidates = [
       grammar,
@@ -91,6 +108,113 @@ export default function GrammarLesson({
     const shift = Number(grammar.id.slice(1)) % candidates.length;
     return [...candidates.slice(shift), ...candidates.slice(0, shift)];
   }, [grammar, grammars]);
+  useEffect(() => {
+    setPracticeChoice(null);
+    setWrittenAnswer('');
+    setOrdered([]);
+  }, [practice?.step, practice?.id]);
+  useEffect(
+    () => () => {
+      recognition.current?.stop();
+    },
+    [],
+  );
+
+  async function startPractice() {
+    if (practiceBusy) return;
+    setPracticeBusy(true);
+    setPracticeError('');
+    setPracticeReply(null);
+    try {
+      setPractice(
+        await api<GrammarPracticeView>('grammar/practice/start', {
+          method: 'POST',
+          body: JSON.stringify({ grammarId: grammar.id }),
+        }),
+      );
+      setSentences(['', '', '']);
+    } catch (error) {
+      setPracticeError(errorText(error));
+    } finally {
+      setPracticeBusy(false);
+    }
+  }
+
+  async function checkPractice() {
+    const exercise = practice?.exercise;
+    if (!practice || !exercise || practiceBusy) return;
+    let answer: number | string | string[];
+    if (exercise.kind === 'select') {
+      if (practiceChoice === null) return;
+      answer = practiceChoice;
+    } else if (exercise.kind === 'order') {
+      if (ordered.length !== exercise.tokens.length) return;
+      answer = ordered.map((index) => exercise.tokens[index]).join(' ');
+    } else if (exercise.kind === 'create') answer = sentences;
+    else {
+      if (!writtenAnswer.trim()) return;
+      answer = writtenAnswer;
+    }
+    setPracticeBusy(true);
+    setPracticeError('');
+    try {
+      const result = await api<GrammarPracticeReply>('grammar/practice/answer', {
+        method: 'POST',
+        body: JSON.stringify({ sessionId: practice.id, answer }),
+      });
+      setPracticeReply(result);
+      setPractice(result.session);
+    } catch (error) {
+      setPracticeError(errorText(error));
+    } finally {
+      setPracticeBusy(false);
+    }
+  }
+
+  function dictate(index: number) {
+    type SpeechResult = { results: ArrayLike<{ 0: { transcript: string } }> };
+    type SpeechRecognition = {
+      lang: string;
+      interimResults: boolean;
+      onresult: ((event: SpeechResult) => void) | null;
+      onerror: (() => void) | null;
+      onend: (() => void) | null;
+      start: () => void;
+      stop: () => void;
+    };
+    type SpeechConstructor = new () => SpeechRecognition;
+    const browser = window as typeof window & {
+      SpeechRecognition?: SpeechConstructor;
+      webkitSpeechRecognition?: SpeechConstructor;
+    };
+    const Constructor = browser.SpeechRecognition || browser.webkitSpeechRecognition;
+    if (!Constructor) {
+      setPracticeError(
+        'Bu brauzer koreyscha ovozni matnga aylantirishni qo‘llamaydi. Gapni yozing.',
+      );
+      return;
+    }
+    recognition.current?.stop();
+    const service = new Constructor();
+    recognition.current = service;
+    service.lang = 'ko-KR';
+    service.interimResults = false;
+    service.onresult = (event) => {
+      const transcript = event.results[0]?.[0]?.transcript || '';
+      setSentences((current) =>
+        current.map((sentence, i) => (i === index ? transcript : sentence)),
+      );
+    };
+    service.onerror = () => setPracticeError('Ovoz aniqlanmadi. Qayta ayting yoki gapni yozing.');
+    service.onend = () => {
+      setListening(null);
+      recognition.current = null;
+    };
+    setPracticeError('');
+    setListening(index);
+    service.start();
+  }
+
   return (
     <div className="grammar-mini">
       <div className="segmented" aria-label="Mini-dars bosqichlari">
@@ -99,6 +223,7 @@ export default function GrammarLesson({
             ['learn', 'Tushunish'],
             ['recall', 'Eslab ko‘rish'],
             ['compare', 'Taqqoslash'],
+            ...(hasPractice ? ([['practice', '5 bosqichli amaliyot']] as const) : []),
           ] as const
         ).map(([id, label]) => (
           <button
@@ -220,6 +345,256 @@ export default function GrammarLesson({
               )}
             </section>
           )}
+        </section>
+      )}
+      {view === 'practice' && hasPractice && (
+        <section className="grammar-practice">
+          {!practice ? (
+            <div className="grammar-practice-intro">
+              <span className="grammar-practice-kicker">AMALIY GRAMMATIKA</span>
+              <h3>Qoidani gapda qo‘llab ko‘ring</h3>
+              <p>
+                Besh bosqichda shaklni tanlaysiz, yozasiz, gap tuzasiz, xatoni tuzatasiz va uchta
+                mustaqil gap yaratasiz.
+              </p>
+              <button
+                type="button"
+                className="button primary"
+                disabled={practiceBusy}
+                onClick={startPractice}
+              >
+                Mashqni boshlash <ArrowRight size={17} />
+              </button>
+            </div>
+          ) : practice.status === 'completed' ? (
+            <div className="grammar-practice-finish">
+              <CheckCircle2 size={38} />
+              <span className="grammar-practice-kicker">AMALIYOT YAKUNLANDI</span>
+              <h3>{practice.accuracy}% aniqlik</h3>
+              <p>
+                Siz barcha besh bosqichni tugatdingiz. Keyingi urinishda boshqa misollar chiqadi.
+              </p>
+              {!!practice.modelSentences?.length && (
+                <div className="grammar-model-sentences">
+                  <strong>Namunalar</strong>
+                  {practice.modelSentences.map((sentence) => (
+                    <span key={sentence} lang="ko">
+                      {sentence}
+                    </span>
+                  ))}
+                </div>
+              )}
+              <button
+                type="button"
+                className="button primary"
+                disabled={practiceBusy}
+                onClick={() => {
+                  setPractice(null);
+                  void startPractice();
+                }}
+              >
+                <RotateCcw size={17} /> Boshqa misollar bilan mashq
+              </button>
+            </div>
+          ) : (
+            <>
+              <div className="grammar-practice-head">
+                <div>
+                  <span className="grammar-practice-kicker">{practice.variant}-VARIANT</span>
+                  <strong>{practice.exercise?.title}</strong>
+                </div>
+                <span>
+                  {practice.step + 1} / {practice.total}
+                </span>
+              </div>
+              <div
+                className="grammar-practice-progress"
+                role="progressbar"
+                aria-valuemin={0}
+                aria-valuemax={practice.total}
+                aria-valuenow={practice.step}
+              >
+                <span style={{ width: `${(practice.step / practice.total) * 100}%` }} />
+              </div>
+              {practice.exercise && (
+                <div className="grammar-practice-card">
+                  <p className="muted">{practice.exercise.instruction}</p>
+                  {practice.exercise.kind === 'select' && (
+                    <>
+                      <p className="grammar-practice-sentence" lang="ko">
+                        {practice.exercise.sentence}
+                      </p>
+                      <p>{practice.exercise.translation}</p>
+                      <div className="grammar-practice-options">
+                        {practice.exercise.options.map((option, index) => (
+                          <button
+                            type="button"
+                            key={`${option}-${index}`}
+                            className={practiceChoice === index ? 'selected' : ''}
+                            onClick={() => setPracticeChoice(index)}
+                            disabled={practiceBusy}
+                            lang="ko"
+                          >
+                            {option}
+                          </button>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                  {practice.exercise.kind === 'fill' && (
+                    <>
+                      <p className="grammar-practice-sentence" lang="ko">
+                        {practice.exercise.sentence}
+                      </p>
+                      <p>{practice.exercise.translation}</p>
+                      <input
+                        lang="ko"
+                        value={writtenAnswer}
+                        onChange={(event) => setWrittenAnswer(event.target.value)}
+                        placeholder="Bo‘sh joyga mos shaklni yozing"
+                        maxLength={100}
+                      />
+                      <small>{practice.exercise.hint}</small>
+                    </>
+                  )}
+                  {practice.exercise.kind === 'order' && (
+                    <>
+                      <p>{practice.exercise.translation}</p>
+                      <div className="grammar-built-sentence" lang="ko">
+                        {ordered.length ? (
+                          ordered.map((tokenIndex, index) => (
+                            <button
+                              type="button"
+                              key={`${tokenIndex}-${index}`}
+                              onClick={() => setOrdered(ordered.filter((_, i) => i !== index))}
+                            >
+                              {practice.exercise?.kind === 'order'
+                                ? practice.exercise.tokens[tokenIndex]
+                                : ''}
+                            </button>
+                          ))
+                        ) : (
+                          <span>So‘zlarni quyidan tanlang</span>
+                        )}
+                      </div>
+                      <div className="grammar-token-bank">
+                        {practice.exercise.tokens.map((token, index) => (
+                          <button
+                            type="button"
+                            key={`${token}-${index}`}
+                            disabled={ordered.includes(index)}
+                            onClick={() => setOrdered([...ordered, index])}
+                            lang="ko"
+                          >
+                            {token}
+                          </button>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                  {practice.exercise.kind === 'correct' && (
+                    <>
+                      <div className="grammar-wrong-sentence" lang="ko">
+                        {practice.exercise.sentence}
+                      </div>
+                      <p>To‘g‘ri ma’no: {practice.exercise.translation}</p>
+                      <textarea
+                        lang="ko"
+                        rows={2}
+                        value={writtenAnswer}
+                        onChange={(event) => setWrittenAnswer(event.target.value)}
+                        placeholder="Gapning to‘g‘ri ko‘rinishini yozing"
+                        maxLength={300}
+                      />
+                      <small>{practice.exercise.hint}</small>
+                    </>
+                  )}
+                  {practice.exercise.kind === 'create' && (
+                    <>
+                      <h3>{practice.exercise.prompt}</h3>
+                      <p>{practice.exercise.requirement}</p>
+                      <div className="grammar-own-sentences">
+                        {sentences.map((sentence, index) => (
+                          <div className="grammar-own-sentence" key={index}>
+                            <label htmlFor={`grammar-sentence-${practice.id}-${index}`}>
+                              {index + 1}-gap
+                            </label>
+                            <div>
+                              <textarea
+                                id={`grammar-sentence-${practice.id}-${index}`}
+                                lang="ko"
+                                rows={2}
+                                value={sentence}
+                                onChange={(event) =>
+                                  setSentences(
+                                    sentences.map((item, i) =>
+                                      i === index ? event.target.value : item,
+                                    ),
+                                  )
+                                }
+                                placeholder="Koreyscha gap yozing yoki ayting"
+                                maxLength={300}
+                              />
+                              <button
+                                type="button"
+                                className={listening === index ? 'listening' : ''}
+                                onClick={() => dictate(index)}
+                                disabled={practiceBusy || listening !== null}
+                                aria-label={`${index + 1}-gapni koreyscha aytish`}
+                              >
+                                <Mic size={18} />
+                              </button>
+                            </div>
+                            {practiceReply?.sentenceChecks?.[index] && (
+                              <small
+                                className={
+                                  practiceReply.sentenceChecks[index].correct ? 'correct' : 'wrong'
+                                }
+                              >
+                                {practiceReply.sentenceChecks[index].feedback}
+                              </small>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                  {practiceReply && (
+                    <div
+                      className={`grammar-practice-feedback ${practiceReply.correct ? 'correct' : 'wrong'}`}
+                      role="status"
+                    >
+                      <strong>{practiceReply.feedback}</strong>
+                      {practiceReply.expected && (
+                        <span lang="ko">To‘g‘ri javob: {practiceReply.expected}</span>
+                      )}
+                    </div>
+                  )}
+                  {practiceError && <p className="alert error">{practiceError}</p>}
+                  <button
+                    type="button"
+                    className="button primary grammar-practice-submit"
+                    disabled={
+                      practiceBusy ||
+                      (practice.exercise.kind === 'select' && practiceChoice === null) ||
+                      (practice.exercise.kind === 'order' &&
+                        ordered.length !== practice.exercise.tokens.length) ||
+                      (practice.exercise.kind !== 'select' &&
+                        practice.exercise.kind !== 'order' &&
+                        practice.exercise.kind !== 'create' &&
+                        !writtenAnswer.trim()) ||
+                      (practice.exercise.kind === 'create' &&
+                        sentences.some((sentence) => !sentence.trim()))
+                    }
+                    onClick={checkPractice}
+                  >
+                    Tekshirish <ArrowRight size={17} />
+                  </button>
+                </div>
+              )}
+            </>
+          )}
+          {practiceError && !practice?.exercise && <p className="alert error">{practiceError}</p>}
         </section>
       )}
       {showMastery && (

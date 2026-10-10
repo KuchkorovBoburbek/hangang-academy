@@ -57,7 +57,16 @@ export function grammarMastery(userId: string, timezone: string) {
       .filter((a) => topics.has(a.question_id))
       .map((a) => ({ ...a, uncertain: false, grammarIds: [topics.get(a.question_id)!] })),
   );
-  const answers = [...topikProgress(userId).answers, ...legacy].sort((a, b) =>
+  const practical = many<{ grammar_id: string; completed_at: string }>(
+    "SELECT grammar_id,completed_at FROM grammar_practice_sessions WHERE user_id=? AND status='completed' AND completed_at IS NOT NULL",
+    userId,
+  ).map((row) => ({
+    at: row.completed_at,
+    correct: true,
+    uncertain: false,
+    grammarIds: [row.grammar_id],
+  }));
+  const answers = [...topikProgress(userId).answers, ...legacy, ...practical].sort((a, b) =>
     a.at.localeCompare(b.at),
   );
   const days: Record<string, Set<string>> = {};

@@ -345,6 +345,7 @@ export function PracticeLibrary({
                 grammar={selected}
                 grammars={data.grammars}
                 correctDays={data.grammarMastery[selected.id] || 0}
+                practiceEnabled
               />
             )}
             <p className="muted">

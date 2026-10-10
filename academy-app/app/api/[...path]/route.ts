@@ -78,6 +78,11 @@ import { aiConfig } from '@/lib/ai-config';
 import { GRAMMARS } from '@/lib/content';
 import { vocabulary } from '@/lib/library';
 import {
+  answerGrammarPractice,
+  grammarPracticeSession,
+  startGrammarPractice,
+} from '@/lib/grammar-practice';
+import {
   checkTopikQuestion,
   trackTopikTime,
   markTopikUncertain,
@@ -425,6 +430,14 @@ async function handle(req: NextRequest, ctx: { params: Promise<{ path: string[] 
       const b = z.object({ wordId: str(1, 180) }).parse(await body(req));
       return json(saveStudyWord(user, b.wordId));
     }
+    if (endpoint === 'grammar/practice/start' && method === 'POST') {
+      const b = z.object({ grammarId: str(1, 50) }).parse(await body(req));
+      return json(startGrammarPractice(user, b.grammarId));
+    }
+    if (endpoint === 'grammar/practice/answer' && method === 'POST')
+      return json(answerGrammarPractice(user, await body(req)));
+    if (parts[0] === 'grammar' && parts[1] === 'practice' && parts[2] && method === 'GET')
+      return json(grammarPracticeSession(user, parts[2]));
     if (endpoint === 'study/cloze' && method === 'POST') {
       const b = z
         .object({ wordId: str(1, 180), answer: str(1, 300), eventKey: str(1, 180) })

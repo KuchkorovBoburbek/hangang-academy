@@ -50,6 +50,8 @@ Bosh sahifa ochilgan darslarni, vazifa holatlarini va jami ballni ko‘rsatadi. 
 
 Dars lug‘ati: tarjimali ro‘yxat, kartochka, mini quiz va juftlik topish. Bu takrorlash o‘yinlari sovg‘a ballini oshirmaydi. Dars vazifasi sifatida berilgan quizning birinchi natijasi saqlanadi; takror topshirish ballni ko‘paytirmaydi.
 
+Seoulte 1A grammatikasi ochilgan bo‘lsa, grammatika oynasidagi **5 bosqichli amaliyot** orqali shakl tanlash, bo‘sh joyni yozish, gap tartibini tuzish, xatoni tuzatish va uchta mustaqil gap yaratish mumkin. Oxirgi bosqichda koreyscha gapni yozish yoki brauzer qo‘llasa mikrofon orqali aytib matnga aylantirish mumkin. Mashq natijasi o‘zlashtirish hisobiga qo‘shiladi; qayta boshlanganda boshqa misollar chiqadi.
+
 Matn/rasm/PDF/ovozli javob ustozning mavjud **Tekshirish** bo‘limiga tushadi. Ovoz yozish mikrofon ruxsati va mos brauzer talab qiladi; audio fayl yuklash ham bor. AI tekshiruvi mavjud matn, rasm va PDF uchun saqlangan. Ovozli javobni ustoz tinglab baholaydi.
 
 한글 guruhiga TOPIK bo‘limi berilmaydi. TOPIK 3/4 va 5/6 guruhlari uchun mavjud TOPIK II mashqlari o‘z ishlash tartibida saqlanadi; dastur darslari daraja va ochilgan guruh bo‘yicha ajratiladi.

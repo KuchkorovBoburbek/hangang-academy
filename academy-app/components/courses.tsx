@@ -1600,10 +1600,12 @@ function MaterialReading({
   material: m,
   files,
   grammars,
+  practiceEnabled = false,
 }: {
   material: LessonMaterial;
   files: CourseFile[];
   grammars: Grammar[];
+  practiceEnabled?: boolean;
 }) {
   const materialYoutube = youtubeEmbedUrl(m.url);
   const [selectedGrammarId, setSelectedGrammarId] = useState<string | null>(null);
@@ -1721,6 +1723,7 @@ function MaterialReading({
             grammars={grammars}
             correctDays={0}
             showMastery={false}
+            practiceEnabled={practiceEnabled}
           />
         </Modal>
       )}
@@ -2088,7 +2091,12 @@ export function StudentLesson({
           style={{ scrollMarginTop: 20 }}
           key={m.id}
         >
-          <MaterialReading material={m} files={lesson.files} grammars={lesson.grammars} />
+          <MaterialReading
+            material={m}
+            files={lesson.files}
+            grammars={lesson.grammars}
+            practiceEnabled
+          />
           {m.task !== 'none' && (
             <MaterialTask
               key={`${m.id}-${lesson.tasks.find((t) => t.materialId === m.id)?.status}`}

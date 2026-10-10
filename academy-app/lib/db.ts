@@ -11,7 +11,7 @@ export const dataDir = () =>
 export const now = () => new Date().toISOString();
 export const id = () => randomUUID();
 export function db() {
-  if (globalDb.academyDb && globalDb.academySchemaVersion === 17) return globalDb.academyDb;
+  if (globalDb.academyDb && globalDb.academySchemaVersion === 18) return globalDb.academyDb;
   fs.mkdirSync(dataDir(), { recursive: true });
   const connection = globalDb.academyDb || new DatabaseSync(path.join(dataDir(), 'academy.sqlite'));
   connection.exec('PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON; PRAGMA busy_timeout=10000;');
@@ -49,6 +49,8 @@ export function db() {
  CREATE TABLE IF NOT EXISTS study_reviews(user_id TEXT NOT NULL REFERENCES users(id),kind TEXT NOT NULL,item_id TEXT NOT NULL,stage INTEGER NOT NULL DEFAULT 0,due_at TEXT NOT NULL,correct_count INTEGER NOT NULL DEFAULT 0,wrong_count INTEGER NOT NULL DEFAULT 0,last_at TEXT NOT NULL,PRIMARY KEY(user_id,kind,item_id));
  CREATE INDEX IF NOT EXISTS study_review_due ON study_reviews(user_id,due_at);
  CREATE TABLE IF NOT EXISTS study_events(user_id TEXT NOT NULL REFERENCES users(id),event_key TEXT NOT NULL,kind TEXT NOT NULL,item_id TEXT NOT NULL,correct INTEGER NOT NULL,uncertain INTEGER NOT NULL DEFAULT 0,at TEXT NOT NULL,PRIMARY KEY(user_id,event_key));
+ CREATE TABLE IF NOT EXISTS grammar_practice_sessions(id TEXT PRIMARY KEY,user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,grammar_id TEXT NOT NULL,variant INTEGER NOT NULL,step INTEGER NOT NULL DEFAULT 0,mistakes INTEGER NOT NULL DEFAULT 0,answers TEXT NOT NULL DEFAULT '[]',status TEXT NOT NULL DEFAULT 'active',started_at TEXT NOT NULL,completed_at TEXT);
+ CREATE INDEX IF NOT EXISTS grammar_practice_user ON grammar_practice_sessions(user_id,grammar_id,started_at);
  CREATE TABLE IF NOT EXISTS courses(id TEXT PRIMARY KEY,teacher_id TEXT NOT NULL REFERENCES users(id),level TEXT NOT NULL,title TEXT NOT NULL,created_at TEXT NOT NULL,UNIQUE(teacher_id,level));
  CREATE TABLE IF NOT EXISTS course_lessons(id TEXT PRIMARY KEY,course_id TEXT NOT NULL REFERENCES courses(id),position INTEGER NOT NULL,body TEXT NOT NULL,revision INTEGER NOT NULL DEFAULT 0,updated_at TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS course_files(id TEXT PRIMARY KEY,lesson_id TEXT NOT NULL REFERENCES course_lessons(id),name TEXT NOT NULL,mime TEXT NOT NULL,size INTEGER NOT NULL,disk_name TEXT NOT NULL,created_at TEXT NOT NULL);
@@ -237,7 +239,7 @@ export function db() {
     throw error;
   }
   globalDb.academyDb = connection;
-  globalDb.academySchemaVersion = 17;
+  globalDb.academySchemaVersion = 18;
   return connection;
 }
 export function one<T = Record<string, unknown>>(

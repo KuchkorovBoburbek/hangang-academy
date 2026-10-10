@@ -1,4 +1,5 @@
 import { test, expect, type APIRequestContext } from '@playwright/test';
+import { SEOULTE_1A_PRACTICE } from '../../lib/grammar-practice-content';
 let teacher: APIRequestContext,
   student: APIRequestContext,
   groupmate: APIRequestContext,
@@ -370,6 +371,37 @@ test('Premium course editor and student lesson are usable on desktop and phone',
   await grammarLesson.getByRole('button', { name: 'Eslab ko‘rish' }).click();
   await expect(grammarLesson.getByRole('heading', { name: 'Ma’noni eslab ko‘ring' })).toBeVisible();
   await grammarLesson.getByRole('button', { name: 'Yopish' }).click();
+  await sp.getByRole('button', { name: /N은\/는 N이에요\/예요 grammatikasini o‘rganish/ }).click();
+  const practical = sp.getByRole('dialog');
+  await practical.getByRole('button', { name: '5 bosqichli amaliyot' }).click();
+  await practical.getByRole('button', { name: /Mashqni boshlash/ }).click();
+  const examples = SEOULTE_1A_PRACTICE['S1A-01-01'].examples;
+  await expect(practical.getByText('1. Mos shaklni tanlang')).toBeVisible();
+  await practical.getByRole('button', { name: examples[0].target, exact: true }).click();
+  await practical.getByRole('button', { name: /Tekshirish/ }).click();
+  await expect(practical.getByText('2. Bo‘sh joyni to‘ldiring')).toBeVisible();
+  await practical.getByPlaceholder('Bo‘sh joyga mos shaklni yozing').fill(examples[1].target);
+  await practical.getByRole('button', { name: /Tekshirish/ }).click();
+  await expect(practical.getByText('3. So‘zlardan gap tuzing')).toBeVisible();
+  for (const token of examples[2].sentence.split(/\s+/))
+    await practical.locator('.grammar-token-bank').getByRole('button', { name: token }).click();
+  await practical.getByRole('button', { name: /Tekshirish/ }).click();
+  await expect(practical.getByText('4. Xatoni tuzating')).toBeVisible();
+  await practical
+    .getByPlaceholder('Gapning to‘g‘ri ko‘rinishini yozing')
+    .fill(examples[3].sentence);
+  await practical.getByRole('button', { name: /Tekshirish/ }).click();
+  await expect(practical.getByText('5. O‘zingiz gap tuzing')).toBeVisible();
+  for (const [index, sentence] of [
+    '저는 학생이에요.',
+    '제 친구는 의사예요.',
+    '유나는 회사원이에요.',
+  ].entries())
+    await practical.getByRole('textbox', { name: `${index + 1}-gap`, exact: true }).fill(sentence);
+  await practical.getByRole('button', { name: /Tekshirish/ }).click();
+  await expect(practical.getByText('100% aniqlik')).toBeVisible();
+  await practical.screenshot({ path: 'test-results/grammar-practice-mobile.png' });
+  await practical.getByRole('button', { name: 'Yopish' }).click();
   await sp.getByRole('button', { name: 'Kartochka', exact: true }).click();
   await expect(sp.getByRole('button', { name: /Tarjimani ko‘rish/ })).toBeVisible();
   await sp.getByRole('button', { name: /Tarjimani ko‘rish/ }).click();

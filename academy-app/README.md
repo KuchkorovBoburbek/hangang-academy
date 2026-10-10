@@ -47,6 +47,7 @@ Bular faqat namoyish hisoblari. Serverga mahalliy `data` papkasini ko‘chirmang
 - O‘quvchi va o‘qituvchi uchun alohida kirish hamda ekranlar.
 - **Lug‘at**: 48 boshlang‘ich so‘z, tarjima, misollar, quiz. O‘qituvchi yangi so‘z va unga savollar qo‘sha oladi.
 - **Grammatika**: avvalgi qo‘llanmaning 111 bandi, o‘zbekcha izohlar va koreyscha misollar. Hozir 15 asosiy mavzuda 51 grammatika savoli bor; qolgan bandlar uchun o‘qituvchi savol qo‘shadi. Kartalarda mavjud savollar soni ko‘rsatiladi.
+- **Seoulte 1A amaliy grammatikasi**: 8 mavzudagi 28 grammatikaning har birida shakl tanlash, bo‘sh joyni to‘ldirish, so‘zlardan gap tuzish, xatoni tuzatish va 3 ta mustaqil gap yozish/aytish bosqichlari bor. Javoblar serverda tekshiriladi, yarim qolgan mashq davom ettiriladi va keyingi urinishda boshqa misollar beriladi.
 - Jami **99 boshlang‘ich savol**: 48 lug‘at + 51 grammatika. Grammatikada bo‘sh joyni to‘ldirish hamda yaqin ma’noli ifodani tanlash mashqlari mavjud.
 - Mashq rejimida har javobdan so‘ng izoh; kichik sinovda yakunda izoh. Yarim qolgan mashq saqlanadi.
 - Takrorlash: xato savol ertasi kuni; to‘g‘ri javoblar 2, 4, 7, 14 va 30 kunlik oraliqda qaytadi. Kunlik savollar va oxirgi 7 kundagi faollik ko‘rinadi.

@@ -1,0 +1,341 @@
+.focus-page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding-bottom: 24px;
+}
+.focus-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+.focus-heading h1 {
+  margin-bottom: 7px;
+  font-size: clamp(2rem, 5vw, 3.35rem);
+}
+.focus-heading p {
+  max-width: 650px;
+  margin-bottom: 0;
+}
+.focus-heading-mark {
+  display: grid;
+  place-items: center;
+  flex: 0 0 62px;
+  height: 62px;
+  border: 1px solid var(--blue-border);
+  border-radius: 20px;
+  background: var(--blue-light);
+  color: var(--blue);
+}
+.focus-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  gap: 24px;
+  align-items: start;
+}
+.focus-timer-card,
+.focus-guide {
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+.focus-timer-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px clamp(18px, 5vw, 42px) 32px;
+}
+.focus-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--blue-light);
+  color: var(--blue-deep);
+  font-size: 0.75rem;
+}
+.focus-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+.focus-timer-card.running .focus-status-dot {
+  animation: focus-pulse 1.5s ease-in-out infinite;
+}
+.focus-timer-card.completed .focus-status-dot {
+  background: var(--blue-deep);
+}
+.focus-clock {
+  position: relative;
+  width: min(100%, 330px);
+  aspect-ratio: 1;
+  margin: 20px auto 16px;
+}
+.focus-clock svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transform: rotate(-90deg);
+}
+.focus-clock circle {
+  fill: none;
+  stroke-width: 10;
+}
+.focus-clock-track {
+  stroke: var(--blue-light);
+}
+.focus-clock-progress {
+  stroke: var(--blue);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.3s linear;
+}
+.focus-clock-copy {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue);
+}
+.focus-clock-copy > svg {
+  width: 25px;
+  height: 25px;
+  margin-bottom: 4px;
+  transform: none;
+}
+.focus-clock-time {
+  color: var(--ink);
+  font-size: clamp(3.25rem, 9vw, 5rem);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.08;
+  letter-spacing: -0.065em;
+}
+.focus-clock-copy span {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+.focus-duration {
+  width: 100%;
+  max-width: 470px;
+  padding: 17px;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  background: var(--surface-soft);
+}
+.focus-duration-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 13px;
+}
+.focus-duration-head > label {
+  color: var(--ink);
+  font-size: 0.8rem;
+}
+.focus-duration-head > div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+.focus-duration-head input {
+  width: 68px;
+  min-height: 38px;
+  padding: 5px 8px;
+  border-color: var(--blue-border);
+  color: var(--blue-deep);
+  font-weight: 800;
+  text-align: center;
+}
+.focus-duration > input[type='range'] {
+  min-height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  accent-color: var(--blue);
+}
+.focus-quick-times {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 7px;
+  margin-top: 10px;
+}
+.focus-quick-times button {
+  min-height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper);
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 750;
+}
+.focus-quick-times button.active {
+  border-color: var(--blue-border);
+  background: var(--blue-light);
+  color: var(--blue);
+}
+.focus-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 470px;
+  margin-top: 18px;
+}
+.focus-controls .button {
+  flex: 1;
+}
+.focus-main-action {
+  min-height: 52px;
+}
+.focus-guide {
+  padding: 28px 24px;
+}
+.focus-guide-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 22px;
+  border-radius: 15px;
+  background: var(--blue-light);
+  color: var(--blue);
+}
+.focus-guide .eyebrow {
+  margin-bottom: 8px;
+  font-size: 0.65rem;
+}
+.focus-guide h2 {
+  margin-bottom: 24px;
+  font-size: 1.35rem;
+}
+.focus-guide ol {
+  display: grid;
+  gap: 19px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.focus-guide li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.focus-guide li > span {
+  display: grid;
+  place-items: center;
+  flex: 0 0 28px;
+  height: 28px;
+  border: 1px solid var(--blue-border);
+  border-radius: 50%;
+  color: var(--blue);
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+.focus-guide li strong {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+.focus-guide li p {
+  margin: 4px 0 0;
+  font-size: 0.7rem;
+  line-height: 1.55;
+}
+.focus-guide-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 25px;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--blue-light);
+  color: var(--blue-deep);
+  font-size: 0.68rem;
+  line-height: 1.5;
+}
+.focus-guide-note svg {
+  margin-top: 1px;
+}
+@keyframes focus-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.75);
+  }
+}
+@media (max-width: 900px) {
+  .focus-layout {
+    grid-template-columns: 1fr;
+  }
+  .focus-guide {
+    order: 2;
+  }
+}
+@media (max-width: 560px) {
+  .focus-heading {
+    margin-bottom: 20px;
+  }
+  .focus-heading-mark {
+    flex-basis: 48px;
+    height: 48px;
+    border-radius: 15px;
+  }
+  .focus-heading-mark svg {
+    width: 23px;
+  }
+  .focus-heading h1 {
+    font-size: 2rem;
+  }
+  .focus-heading p {
+    font-size: 0.78rem;
+  }
+  .focus-timer-card {
+    padding: 18px 14px 22px;
+    border-radius: 22px;
+  }
+  .focus-clock {
+    width: min(100%, 290px);
+    margin-top: 15px;
+  }
+  .focus-duration {
+    padding: 14px;
+  }
+  .focus-controls {
+    flex-direction: column;
+  }
+  .focus-quick-times {
+    gap: 5px;
+  }
+  .focus-quick-times button {
+    padding: 4px 2px;
+    font-size: 0.62rem;
+  }
+  .focus-guide {
+    padding: 24px 20px;
+    border-radius: 22px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .focus-timer-card.running .focus-status-dot {
+    animation: none;
+  }
+  .focus-clock-progress {
+    transition: none;
+  }
+}

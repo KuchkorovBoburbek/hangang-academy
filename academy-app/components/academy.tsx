@@ -21,6 +21,7 @@ import {
   LoaderCircle,
   Grid2X2,
   RotateCcw,
+  Timer,
 } from 'lucide-react';
 import type { User, Submission } from '@/lib/types';
 import { Brand, Loading, api, errorText, Badge, SubmitButton, Modal } from './ui';
@@ -41,6 +42,7 @@ import VocabularyHub from './vocabulary';
 import DailyPractice from './daily-practice';
 import SolutionEditor from './solution-editor';
 import StudyAssignmentView from './study-assignment';
+import FocusTimer from './focus-timer';
 type State = {
   user: User;
   demo: boolean;
@@ -54,6 +56,7 @@ const studentNav = [
   { path: '/writing', label: 'Yozma vazifalar', icon: PenLine },
   { path: '/notebook', label: 'Mening daftarim', icon: NotebookPen },
   { path: '/daily', label: 'Kunlik takrorlash', icon: RotateCcw },
+  { path: '/focus', label: 'Pomodoro', icon: Timer },
 ];
 const teacherNav = [
   { path: '/', label: 'Umumiy ko‘rinish', icon: LayoutDashboard },
@@ -365,6 +368,8 @@ export default function Academy() {
                   notify={setNotice}
                   refresh={refresh}
                 />
+              ) : pathname === '/focus' ? (
+                <FocusTimer userId={state.user.id} notify={setNotice} />
               ) : pathname === '/daily' ? (
                 <DailyPractice notify={setNotice} onRefresh={refresh} />
               ) : pathname === '/grammar' ? (

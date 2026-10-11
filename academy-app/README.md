@@ -52,6 +52,7 @@ Bular faqat namoyish hisoblari. Serverga mahalliy `data` papkasini ko‘chirmang
 - Mashq rejimida har javobdan so‘ng izoh; kichik sinovda yakunda izoh. Yarim qolgan mashq saqlanadi.
 - Takrorlash: xato savol ertasi kuni; to‘g‘ri javoblar 2, 4, 7, 14 va 30 kunlik oraliqda qaytadi. Kunlik savollar va oxirgi 7 kundagi faollik ko‘rinadi.
 - Bosh sahifadagi **Bugungi rejam** — talabaning shaxsiy checklisti. Talaba nima bilan shug‘ullanishini erkin yozadi, unga vaqt belgilaydi va bajargach belgilab boradi. Reja har kun uchun alohida saqlanadi. Bir materialni o‘sha kuni qayta yechish interval bosqichini sun’iy oshirmaydi — o‘zlashtirish turli kunlardagi xotiradan javoblar bilan baholanadi.
+- Alohida **Pomodoro** sahifasida talaba 1–60 daqiqalik diqqat vaqtini tanlaydi, countdownni boshlaydi, pauza qiladi va davom ettiradi. Timer sahifadan chiqib qaytilganda ham aniq tugash vaqti bo‘yicha tiklanadi.
 - Shaxsiy daftar: qo‘llanma bandini saqlash, o‘z qaydini yozish, tahrirlash va o‘chirish.
 - Guruhlar, taklif kodlari, ochiladigan mavzular va topshirish muddati bilan vazifalar.
 - Yozma vazifa: matn, **JPG/PNG/WebP rasmi va PDF**. Har biri 5 MB gacha, bir topshiriqqa 3 ta fayl.

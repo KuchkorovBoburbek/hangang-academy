@@ -221,6 +221,34 @@ test('Mobile home shows four real states, preserves access, opens exact practice
   expect(errors).toHaveLength(0);
   await context.close();
 });
+test('Student can run, pause and reset a one-to-sixty minute Pomodoro', async ({ browser }) => {
+  const context = await browser.newContext({
+    storageState: await student.storageState(),
+    viewport: { width: 390, height: 844 },
+  });
+  const page = await context.newPage();
+  await page.goto('/focus');
+  await expect(page.getByRole('heading', { name: 'Pomodoro' })).toBeVisible();
+  await page.getByLabel('Pomodoro daqiqasi').fill('1');
+  await expect(page.locator('.focus-clock-time')).toHaveText('01:00');
+  await page.getByRole('button', { name: 'Boshlash', exact: true }).click();
+  await expect(page.getByText('Diqqat vaqti', { exact: true })).toBeVisible();
+  await expect(page.locator('.focus-clock-time')).toHaveText('00:59', { timeout: 2500 });
+  await page.getByRole('button', { name: 'Pauza', exact: true }).click();
+  const pausedAt = await page.locator('.focus-clock-time').textContent();
+  await page.waitForTimeout(1100);
+  await expect(page.locator('.focus-clock-time')).toHaveText(pausedAt!);
+  await page.getByRole('button', { name: 'Davom ettirish' }).click();
+  await expect(page.getByText('Diqqat vaqti', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Qayta boshlash' }).click();
+  await expect(page.locator('.focus-clock-time')).toHaveText('01:00');
+  await expect(page.getByText('Boshlashga tayyor', { exact: true })).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
+    true,
+  );
+  await page.screenshot({ path: 'test-results/focus-timer-390.png', fullPage: true });
+  await context.close();
+});
 test('Empty groups show no invented homework, and legacy students use the same landing', async ({
   browser,
 }) => {

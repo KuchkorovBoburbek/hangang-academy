@@ -1046,7 +1046,6 @@ button.home-skill-card:active {
     margin: 0 -3px;
   }
   .home-today-plan {
-    order: -1;
     padding: 18px 14px 15px;
     border-radius: 23px;
     margin: 0 -3px;

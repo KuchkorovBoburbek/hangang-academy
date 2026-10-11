@@ -148,15 +148,17 @@ test('Mobile home shows four real states, preserves access, opens exact practice
     'O‘zingiz uchun oddiy checklist tuzing.',
   );
   await page.getByRole('button', { name: 'Reja tuzish' }).click();
-  await expect(page.getByRole('dialog')).toContainText('Faoliyatni va unga ajratmoqchi');
-  await page.getByLabel('Reja faoliyati').selectOption('reading');
+  await expect(page.getByRole('dialog')).toContainText(
+    'Nima bilan shug‘ullanishni o‘zingiz yozing',
+  );
+  await page.getByLabel('Reja bandi').fill('Seoulte 1A matnini o‘qish');
   await page.getByLabel('Reja davomiyligi').selectOption('20');
   await page.getByRole('button', { name: 'Band qo‘shish' }).click();
-  await expect(page.getByRole('dialog')).toContainText('읽기 · O‘qish');
+  await expect(page.getByRole('dialog')).toContainText('Seoulte 1A matnini o‘qish');
   await expect(page.getByRole('dialog')).toContainText('Jami: 20 daqiqa');
   await page.getByRole('button', { name: 'Rejani saqlash' }).click();
   await expect(page.locator('.home-plan-answer')).toHaveText('1 ta band · 20 daqiqa qoldi.');
-  await page.getByRole('checkbox', { name: '읽기 · O‘qish bajarildi' }).check();
+  await page.getByRole('checkbox', { name: 'Seoulte 1A matnini o‘qish bajarildi' }).check();
   await expect(page.locator('.home-plan-answer')).toHaveText('Bugungi rejangiz bajarildi.');
   await expect(page.getByText('Bajarilishi shart', { exact: true })).toHaveCount(0);
   await expect(page.locator('.home-required-list')).toHaveCount(0);

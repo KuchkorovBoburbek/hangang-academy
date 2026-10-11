@@ -37,20 +37,6 @@ import '@/app/student-home.css';
 
 const skillIcons = { reading: BookOpen, listening: Headphones, speaking: Mic, writing: PenLine };
 const statusIcons = { todo: ArrowUpRight, submitted: Clock3, done: Check, empty: CircleDashed };
-const PLAN_ACTIVITIES: Array<{
-  kind: TodayPlanItem['kind'];
-  ko?: string;
-  label: string;
-}> = [
-  { kind: 'reading', ko: '읽기', label: 'O‘qish' },
-  { kind: 'listening', ko: '듣기', label: 'Tinglash' },
-  { kind: 'speaking', ko: '말하기', label: 'Gapirish' },
-  { kind: 'writing', ko: '쓰기', label: 'Yozish' },
-  { kind: 'vocabulary', ko: '단어', label: 'Lug‘at' },
-  { kind: 'grammar', ko: '문법', label: 'Grammatika' },
-  { kind: 'homework', label: 'Uyga vazifa' },
-  { kind: 'other', label: 'Boshqa reja' },
-];
 const planIcons = {
   reading: BookOpen,
   listening: Headphones,
@@ -110,7 +96,6 @@ export default function StudentHome({
   const [sheet, setSheet] = useState<{ type: 'tasks' | 'practice'; skill: HomeSkill } | null>(null);
   const [planOpen, setPlanOpen] = useState(false);
   const [planDraft, setPlanDraft] = useState<TodayPlanItem[]>([]);
-  const [planKind, setPlanKind] = useState<TodayPlanItem['kind']>('reading');
   const [planMinutes, setPlanMinutes] = useState(20);
   const [planCustomTitle, setPlanCustomTitle] = useState('');
   const [planSaving, setPlanSaving] = useState(false);
@@ -156,18 +141,14 @@ export default function StudentHome({
       notify('Checklistda ko‘pi bilan 12 ta band bo‘lishi mumkin.');
       return;
     }
-    const activity = PLAN_ACTIVITIES.find((item) => item.kind === planKind)!;
-    const title =
-      planKind === 'other'
-        ? planCustomTitle.trim()
-        : `${activity.ko ? `${activity.ko} · ` : ''}${activity.label}`;
+    const title = planCustomTitle.trim();
     if (!title) {
       notify('Rejangiz nomini yozing.');
       return;
     }
     setPlanDraft((current) => [
       ...current,
-      { id: crypto.randomUUID(), kind: planKind, title, minutes: planMinutes, complete: false },
+      { id: crypto.randomUUID(), kind: 'other', title, minutes: planMinutes, complete: false },
     ]);
     setPlanCustomTitle('');
   }
@@ -365,7 +346,7 @@ export default function StudentHome({
               </span>
               <div>
                 <strong>Bugungi rejangizni yozing</strong>
-                <small>Masalan: 읽기 · O‘qish — 20 daqiqa.</small>
+                <small>Nima qilmoqchi bo‘lsangiz, o‘zingiz yozing.</small>
               </div>
               <button className="button primary" onClick={editPlan}>
                 Reja tuzish
@@ -718,23 +699,18 @@ export default function StudentHome({
                 오늘의 체크리스트
               </span>
               <h3>O‘zingiz uchun oddiy checklist tuzing</h3>
-              <p>Faoliyatni va unga ajratmoqchi bo‘lgan vaqtingizni tanlang.</p>
+              <p>Nima bilan shug‘ullanishni o‘zingiz yozing va unga vaqt belgilang.</p>
             </div>
             <div className="home-plan-composer">
               <label>
-                <span>Faoliyat</span>
-                <select
-                  value={planKind}
-                  onChange={(event) => setPlanKind(event.target.value as TodayPlanItem['kind'])}
-                  aria-label="Reja faoliyati"
-                >
-                  {PLAN_ACTIVITIES.map((activity) => (
-                    <option key={activity.kind} value={activity.kind}>
-                      {activity.ko ? `${activity.ko} · ` : ''}
-                      {activity.label}
-                    </option>
-                  ))}
-                </select>
+                <span>Nima qilmoqchisiz?</span>
+                <input
+                  value={planCustomTitle}
+                  maxLength={80}
+                  onChange={(event) => setPlanCustomTitle(event.target.value)}
+                  placeholder="Masalan: Seoulte 1A matnini o‘qish"
+                  aria-label="Reja bandi"
+                />
               </label>
               <label>
                 <span>Vaqt</span>
@@ -750,25 +726,11 @@ export default function StudentHome({
                   ))}
                 </select>
               </label>
-              {planKind === 'other' && (
-                <label className="home-plan-custom-title">
-                  <span>Reja nomi</span>
-                  <input
-                    value={planCustomTitle}
-                    maxLength={80}
-                    onChange={(event) => setPlanCustomTitle(event.target.value)}
-                    placeholder="Masalan: Koreyscha film ko‘rish"
-                    aria-label="Boshqa reja nomi"
-                  />
-                </label>
-              )}
               <button
                 type="button"
                 className="button secondary home-plan-add"
                 onClick={addPlanItem}
-                disabled={
-                  planDraft.length >= 12 || (planKind === 'other' && !planCustomTitle.trim())
-                }
+                disabled={planDraft.length >= 12 || !planCustomTitle.trim()}
               >
                 <Plus size={17} />
                 Band qo‘shish

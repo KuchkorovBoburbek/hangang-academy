@@ -564,7 +564,6 @@ button.home-skill-card:active {
 .home-plan-composer input {
   padding: 0 12px;
 }
-.home-plan-custom-title,
 .home-plan-add {
   grid-column: 1 / -1;
 }
@@ -1354,7 +1353,6 @@ button.home-skill-card:active {
   .home-plan-composer {
     grid-template-columns: 1fr;
   }
-  .home-plan-custom-title,
   .home-plan-add {
     grid-column: auto;
   }

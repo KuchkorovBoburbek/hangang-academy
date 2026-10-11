@@ -73,21 +73,21 @@ describe('Learning and access boundaries', () => {
     const plan = saveTodayStudyPlan(student, [
       {
         id: 'reading-plan',
-        kind: 'reading',
-        title: '읽기 · O‘qish',
+        kind: 'other',
+        title: 'Seoulte 1A matnini o‘qish',
         minutes: 20,
         complete: false,
       },
       {
         id: 'vocabulary-plan',
-        kind: 'vocabulary',
-        title: '단어 · Lug‘at',
+        kind: 'other',
+        title: 'Yangi 15 ta so‘zni takrorlash',
         minutes: 15,
         complete: false,
       },
     ]);
     expect(plan.configured).toBe(true);
-    expect(plan.items.map((item) => item.kind)).toEqual(['reading', 'vocabulary']);
+    expect(plan.items.map((item) => item.kind)).toEqual(['other', 'other']);
     expect(plan.estimatedMinutes).toBe(35);
     expect(plan.headline).toContain('2 ta band');
     expect(todayStudyPlan(other).configured).toBe(false);

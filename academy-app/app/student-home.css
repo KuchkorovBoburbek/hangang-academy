@@ -374,6 +374,7 @@ button.home-skill-card:active {
 }
 .home-plan-item {
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 9px;
   width: 100%;
@@ -384,6 +385,7 @@ button.home-skill-card:active {
   border-radius: 15px;
   background: var(--paper);
   color: var(--home-ink);
+  cursor: pointer;
   text-align: left;
   transition:
     border-color 0.15s,
@@ -395,41 +397,31 @@ button.home-skill-card:active {
   background: var(--home-soft);
   transform: translateY(-1px);
 }
-.home-plan-item.next {
-  border-color: var(--blue-border);
-  background: linear-gradient(120deg, var(--blue-light), var(--paper));
-}
 .home-plan-item.completed {
-  background: var(--home-soft);
-  border-color: var(--home-line);
+  background: var(--blue-light);
+  border-color: var(--blue-border);
   box-shadow: none;
-  opacity: 0.76;
+  opacity: 0.8;
 }
-.home-plan-item.completed .home-plan-order {
-  color: var(--paper);
-  background: var(--blue);
+.home-plan-item.completed .home-plan-copy strong {
+  color: var(--home-muted);
+  text-decoration: line-through;
 }
-.home-plan-item:disabled {
-  cursor: default;
+.home-plan-item > input {
+  flex: 0 0 19px;
+  width: 19px;
+  height: 19px;
+  margin: 0 2px;
+  accent-color: var(--blue);
 }
-.home-plan-item:disabled:hover {
-  border-color: var(--home-line);
-  background: var(--home-soft);
-  transform: none;
+.home-plan-item > input:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
 }
-.home-plan-order {
-  display: grid;
-  place-items: center;
-  align-self: flex-start;
-  flex: 0 0 20px;
-  height: 20px;
-  margin-top: 9px;
-  border: 1px solid var(--blue-border);
-  border-radius: 50%;
+.home-plan-updating {
+  flex-shrink: 0;
   color: var(--blue);
-  background: var(--paper);
-  font-size: 9px;
-  font-weight: 800;
+  animation: spin 0.9s linear infinite;
 }
 .home-plan-icon {
   display: grid;
@@ -440,7 +432,8 @@ button.home-skill-card:active {
   color: var(--blue);
   background: var(--surface-soft);
 }
-.home-plan-icon.task {
+.home-plan-icon.homework,
+.home-plan-icon.grammar {
   color: var(--blue-deep);
   background: var(--blue-fill);
 }
@@ -462,23 +455,6 @@ button.home-skill-card:active {
   color: var(--home-muted);
   font-size: 10px;
   line-height: 1.45;
-}
-.home-plan-start {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  flex-shrink: 0;
-  min-height: 30px;
-  padding: 6px 8px;
-  border-radius: 9px;
-  color: var(--paper);
-  background: var(--blue);
-  font-size: 9px;
-  font-weight: 750;
-}
-.home-plan-chevron {
-  flex-shrink: 0;
-  color: var(--blue);
 }
 .home-plan-rule {
   display: flex;
@@ -557,51 +533,117 @@ button.home-skill-card:active {
   font-size: 12px;
   line-height: 1.6;
 }
-.home-plan-options {
+.home-plan-composer {
   display: grid;
-  gap: 9px;
-}
-.home-plan-options label {
-  display: flex;
-  align-items: center;
+  grid-template-columns: minmax(0, 1.35fr) minmax(120px, 0.65fr);
   gap: 11px;
-  min-width: 0;
-  padding: 12px;
+  padding: 14px;
+  border: 1px solid var(--blue-border);
+  border-radius: 16px;
+  background: var(--blue-light);
+}
+.home-plan-composer label > span {
+  display: block;
+  margin: 0 0 5px 2px;
+  color: var(--home-muted);
+  font-size: 10px;
+  font-weight: 750;
+}
+.home-plan-composer select,
+.home-plan-composer input,
+.home-plan-draft-row select {
+  width: 100%;
+  min-height: 43px;
+  border: 1px solid var(--home-line);
+  border-radius: 11px;
+  background: var(--paper);
+  color: var(--home-ink);
+  font: inherit;
+  font-size: 12px;
+}
+.home-plan-composer input {
+  padding: 0 12px;
+}
+.home-plan-custom-title,
+.home-plan-add {
+  grid-column: 1 / -1;
+}
+.home-plan-add {
+  min-height: 42px;
+}
+.home-plan-draft {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+}
+.home-plan-draft-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) 88px auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
   border: 1px solid var(--home-line);
   border-radius: 14px;
   background: var(--paper);
-  cursor: pointer;
 }
-.home-plan-options label:has(input:checked) {
-  border-color: var(--blue-border);
-  background: var(--blue-light);
-}
-.home-plan-options label.completed {
-  opacity: 0.72;
-}
-.home-plan-options input {
-  width: 17px;
-  height: 17px;
-  flex-shrink: 0;
-  accent-color: var(--blue);
-}
-.home-plan-options label > span:last-child {
+.home-plan-draft-copy {
   min-width: 0;
-  flex: 1;
 }
-.home-plan-options strong,
-.home-plan-options small {
+.home-plan-draft-copy small,
+.home-plan-draft-copy strong {
   display: block;
   overflow-wrap: anywhere;
 }
-.home-plan-options strong {
-  font-size: 12px;
-  line-height: 1.5;
-}
-.home-plan-options small {
-  margin-top: 2px;
+.home-plan-draft-copy small {
+  margin-bottom: 2px;
   color: var(--home-muted);
-  font-size: 10px;
+  font-size: 9px;
+}
+.home-plan-draft-copy strong {
+  font-size: 12px;
+  line-height: 1.4;
+}
+.home-plan-draft-row select {
+  min-height: 37px;
+  padding-left: 8px;
+  font-size: 11px;
+}
+.home-plan-draft-row > button {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--home-soft);
+  color: var(--home-muted);
+}
+.home-plan-draft-row > button:hover {
+  color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 8%, var(--paper));
+}
+.home-plan-empty-draft {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 16px;
+  padding: 13px;
+  border: 1px dashed var(--home-line);
+  border-radius: 13px;
+  color: var(--home-muted);
+  font-size: 11px;
+}
+.home-plan-empty-draft svg {
+  color: var(--blue);
+}
+.home-plan-total {
+  margin: 11px 3px 0;
+  color: var(--home-muted);
+  font-size: 11px;
+  text-align: right;
+}
+.home-plan-total strong {
+  color: var(--home-ink);
 }
 .home-plan-editor-actions {
   display: flex;
@@ -1309,12 +1351,19 @@ button.home-skill-card:active {
     padding-left: 10px;
     padding-right: 10px;
   }
-  .home-plan-order {
-    display: none;
+  .home-plan-composer {
+    grid-template-columns: 1fr;
   }
-  .home-plan-start {
-    padding-left: 6px;
-    padding-right: 6px;
+  .home-plan-custom-title,
+  .home-plan-add {
+    grid-column: auto;
+  }
+  .home-plan-draft-row {
+    grid-template-columns: minmax(0, 1fr) 74px auto;
+    gap: 6px;
+  }
+  .home-plan-draft-row .home-plan-icon {
+    display: none;
   }
   .home-skill-card {
     padding: 12px 10px;

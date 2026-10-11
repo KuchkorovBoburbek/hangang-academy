@@ -14,9 +14,11 @@ import {
   Mic,
   NotebookPen,
   PenLine,
+  Plus,
   Radio,
   RotateCcw,
   Sparkles,
+  Trash2,
   Trophy,
 } from 'lucide-react';
 import {
@@ -35,6 +37,31 @@ import '@/app/student-home.css';
 
 const skillIcons = { reading: BookOpen, listening: Headphones, speaking: Mic, writing: PenLine };
 const statusIcons = { todo: ArrowUpRight, submitted: Clock3, done: Check, empty: CircleDashed };
+const PLAN_ACTIVITIES: Array<{
+  kind: TodayPlanItem['kind'];
+  ko?: string;
+  label: string;
+}> = [
+  { kind: 'reading', ko: '읽기', label: 'O‘qish' },
+  { kind: 'listening', ko: '듣기', label: 'Tinglash' },
+  { kind: 'speaking', ko: '말하기', label: 'Gapirish' },
+  { kind: 'writing', ko: '쓰기', label: 'Yozish' },
+  { kind: 'vocabulary', ko: '단어', label: 'Lug‘at' },
+  { kind: 'grammar', ko: '문법', label: 'Grammatika' },
+  { kind: 'homework', label: 'Uyga vazifa' },
+  { kind: 'other', label: 'Boshqa reja' },
+];
+const planIcons = {
+  reading: BookOpen,
+  listening: Headphones,
+  speaking: Mic,
+  writing: PenLine,
+  vocabulary: Languages,
+  grammar: Sparkles,
+  homework: NotebookPen,
+  other: CircleDashed,
+};
+const PLAN_MINUTES = [10, 15, 20, 30, 45, 60];
 
 function HangangScene() {
   return (
@@ -82,8 +109,13 @@ export default function StudentHome({
 }) {
   const [sheet, setSheet] = useState<{ type: 'tasks' | 'practice'; skill: HomeSkill } | null>(null);
   const [planOpen, setPlanOpen] = useState(false);
-  const [planSelection, setPlanSelection] = useState<string[]>([]);
+  const [planDraft, setPlanDraft] = useState<TodayPlanItem[]>([]);
+  const [planKind, setPlanKind] = useState<TodayPlanItem['kind']>('reading');
+  const [planMinutes, setPlanMinutes] = useState(20);
+  const [planCustomTitle, setPlanCustomTitle] = useState('');
   const [planSaving, setPlanSaving] = useState(false);
+  const [planUpdating, setPlanUpdating] = useState<string | null>(null);
+  const [planChecks, setPlanChecks] = useState<Record<string, boolean>>({});
   const tasks = homeTasks(data);
   const requiredTasks = tasks.filter((task) => task.source === 'lesson' && task.required);
   const additionalTasks = tasks.filter((task) => task.source === 'extra');
@@ -115,20 +147,29 @@ export default function StudentHome({
     )
       start(task.assignment.kind, 'practice', undefined, task.assignment.id);
   }
-  function openPlanItem(item: TodayPlanItem) {
-    if (item.complete) return;
-    if (item.kind === 'words') start('review', 'practice', undefined, undefined, item.wordIds);
-    else if (item.kind === 'grammar')
-      start('review', 'practice', undefined, undefined, undefined, item.questionIds);
-    else if (item.kind === 'topik') go('/daily');
-    else {
-      const task = tasks.find((candidate) => candidate.id === item.taskId);
-      if (task) openTask(task);
-    }
-  }
   function editPlan() {
-    setPlanSelection(plan.items.map((item) => item.id));
+    setPlanDraft(plan.items);
     setPlanOpen(true);
+  }
+  function addPlanItem() {
+    if (planDraft.length >= 12) {
+      notify('Checklistda ko‘pi bilan 12 ta band bo‘lishi mumkin.');
+      return;
+    }
+    const activity = PLAN_ACTIVITIES.find((item) => item.kind === planKind)!;
+    const title =
+      planKind === 'other'
+        ? planCustomTitle.trim()
+        : `${activity.ko ? `${activity.ko} · ` : ''}${activity.label}`;
+    if (!title) {
+      notify('Rejangiz nomini yozing.');
+      return;
+    }
+    setPlanDraft((current) => [
+      ...current,
+      { id: crypto.randomUUID(), kind: planKind, title, minutes: planMinutes, complete: false },
+    ]);
+    setPlanCustomTitle('');
   }
   async function savePlan(event: React.FormEvent) {
     event.preventDefault();
@@ -137,7 +178,7 @@ export default function StudentHome({
     try {
       await api('study/today-plan', {
         method: 'POST',
-        body: JSON.stringify({ itemIds: planSelection }),
+        body: JSON.stringify({ items: planDraft }),
       });
       setPlanOpen(false);
       notify('Bugungi rejangiz saqlandi.');
@@ -146,6 +187,30 @@ export default function StudentHome({
       notify(errorText(error));
     } finally {
       setPlanSaving(false);
+    }
+  }
+  async function togglePlanItem(itemId: string, complete: boolean) {
+    if (planUpdating) return;
+    const currentItems = plan.items.map((item) => ({
+      ...item,
+      complete: planChecks[item.id] ?? item.complete,
+    }));
+    const previous = currentItems.find((item) => item.id === itemId)?.complete ?? false;
+    setPlanChecks((current) => ({ ...current, [itemId]: complete }));
+    setPlanUpdating(itemId);
+    try {
+      await api('study/today-plan', {
+        method: 'POST',
+        body: JSON.stringify({
+          items: currentItems.map((item) => (item.id === itemId ? { ...item, complete } : item)),
+        }),
+      });
+      await Promise.resolve(refresh());
+    } catch (error) {
+      setPlanChecks((current) => ({ ...current, [itemId]: previous }));
+      notify(errorText(error));
+    } finally {
+      setPlanUpdating(null);
     }
   }
   return (
@@ -287,20 +352,20 @@ export default function StudentHome({
               {!plan.configured
                 ? 'Belgilanmagan'
                 : plan.complete
-                  ? 'Tayyor'
-                  : `≈ ${plan.estimatedMinutes} daqiqa`}
+                  ? 'Bajarildi'
+                  : `${plan.estimatedMinutes} daqiqa qoldi`}
             </span>
           </div>
-          <p className="home-plan-question">Bugun nimani qilishni tanlaysiz?</p>
+          <p className="home-plan-question">O‘zingiz uchun bugungi checklist</p>
           <strong className="home-plan-answer">{plan.headline}</strong>
           {!plan.configured ? (
             <div className="home-plan-build">
               <span>
-                <Sparkles size={21} />
+                <Check size={21} />
               </span>
               <div>
-                <strong>Rejani o‘zingiz tuzing</strong>
-                <small>Tizim faqat ochiq takrorlashlar va vazifalarni tavsiya qiladi.</small>
+                <strong>Bugungi rejangizni yozing</strong>
+                <small>Masalan: 읽기 · O‘qish — 20 daqiqa.</small>
               </div>
               <button className="button primary" onClick={editPlan}>
                 Reja tuzish
@@ -308,37 +373,31 @@ export default function StudentHome({
             </div>
           ) : plan.items.length ? (
             <div className="home-plan-list">
-              {plan.items.map((item, index) => {
-                const Icon =
-                  item.kind === 'words' ? Languages : item.kind === 'task' ? BookOpen : RotateCcw;
-                const next = item.id === plan.items.find((candidate) => !candidate.complete)?.id;
+              {plan.items.map((item) => {
+                const Icon = planIcons[item.kind];
                 return (
-                  <button
+                  <label
                     key={item.id}
-                    className={`home-plan-item ${next ? 'next' : ''} ${item.complete ? 'completed' : ''}`}
-                    onClick={() => openPlanItem(item)}
-                    disabled={item.complete}
-                    aria-label={`${index + 1}-qadam: ${item.title}`}
+                    className={`home-plan-item ${item.complete ? 'completed' : ''}`}
                   >
-                    <span className="home-plan-order">
-                      {item.complete ? <Check size={12} /> : index + 1}
-                    </span>
+                    <input
+                      type="checkbox"
+                      checked={planChecks[item.id] ?? item.complete}
+                      disabled={!!planUpdating}
+                      onChange={(event) => togglePlanItem(item.id, event.target.checked)}
+                      aria-label={`${item.title} bajarildi`}
+                    />
                     <span className={`home-plan-icon ${item.kind}`}>
                       <Icon size={18} strokeWidth={1.8} />
                     </span>
                     <span className="home-plan-copy">
                       <strong>{item.title}</strong>
-                      <small>{item.detail}</small>
+                      <small>{item.minutes} daqiqa</small>
                     </span>
-                    {next ? (
-                      <span className="home-plan-start">
-                        Boshlash
-                        <ArrowRight size={14} />
-                      </span>
-                    ) : (
-                      <ChevronRight className="home-plan-chevron" size={17} />
+                    {planUpdating === item.id && (
+                      <Clock3 className="home-plan-updating" size={16} />
                     )}
-                  </button>
+                  </label>
                 );
               })}
             </div>
@@ -348,19 +407,17 @@ export default function StudentHome({
                 <Check size={23} />
               </span>
               <div>
-                <strong>Bugungi muhim ishlar tugadi</strong>
-                <small>Yangi vazifa yoki takrorlash muddati kelganda shu yerda chiqadi.</small>
+                <strong>Bugungi checklist bajarildi</strong>
+                <small>Ertaga yangi reja tuzishingiz mumkin.</small>
               </div>
             </div>
           )}
           <div className="home-plan-footer">
             <p className="home-plan-rule">
-              <RotateCcw size={14} />
-              Tizim tavsiya qiladi, tanlov sizniki.
+              <Check size={14} />
+              Bu shaxsiy rejangiz, vazifalardan alohida.
             </p>
-            {plan.configured && (
-              <button onClick={editPlan}>{plan.complete ? 'Yangi reja' : 'O‘zgartirish'}</button>
-            )}
+            {plan.configured && <button onClick={editPlan}>O‘zgartirish</button>}
           </div>
         </section>
       </div>
@@ -658,62 +715,131 @@ export default function StudentHome({
           <form className="home-plan-editor" onSubmit={savePlan}>
             <div>
               <span className="home-overline" lang="ko">
-                직접 선택
+                오늘의 체크리스트
               </span>
-              <h3>Bugun bajarmoqchi bo‘lganlaringizni tanlang</h3>
-              <p>
-                Faqat sizga ochilgan materiallar ko‘rsatiladi. Muddati kelgan takrorlashlar tavsiya
-                sifatida beriladi.
-              </p>
+              <h3>O‘zingiz uchun oddiy checklist tuzing</h3>
+              <p>Faoliyatni va unga ajratmoqchi bo‘lgan vaqtingizni tanlang.</p>
             </div>
-            {plan.options.length ? (
-              <div className="home-plan-options">
-                {plan.options.map((item) => (
-                  <label key={item.id} className={item.complete ? 'completed' : ''}>
-                    <input
-                      type="checkbox"
-                      checked={planSelection.includes(item.id)}
-                      onChange={(event) =>
-                        setPlanSelection((current) =>
-                          event.target.checked
-                            ? [...current, item.id]
-                            : current.filter((itemId) => itemId !== item.id),
-                        )
-                      }
-                    />
-                    <span className={`home-plan-icon ${item.kind}`}>
-                      {item.complete ? (
-                        <Check size={18} />
-                      ) : item.kind === 'task' ? (
-                        <BookOpen size={18} />
-                      ) : item.kind === 'words' ? (
-                        <Languages size={18} />
-                      ) : (
-                        <RotateCcw size={18} />
-                      )}
-                    </span>
-                    <span>
-                      <strong>{item.title}</strong>
-                      <small>{item.complete ? 'Bugun bajarilgan' : item.detail}</small>
-                    </span>
-                  </label>
-                ))}
+            <div className="home-plan-composer">
+              <label>
+                <span>Faoliyat</span>
+                <select
+                  value={planKind}
+                  onChange={(event) => setPlanKind(event.target.value as TodayPlanItem['kind'])}
+                  aria-label="Reja faoliyati"
+                >
+                  {PLAN_ACTIVITIES.map((activity) => (
+                    <option key={activity.kind} value={activity.kind}>
+                      {activity.ko ? `${activity.ko} · ` : ''}
+                      {activity.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                <span>Vaqt</span>
+                <select
+                  value={planMinutes}
+                  onChange={(event) => setPlanMinutes(Number(event.target.value))}
+                  aria-label="Reja davomiyligi"
+                >
+                  {PLAN_MINUTES.map((minutes) => (
+                    <option key={minutes} value={minutes}>
+                      {minutes} daqiqa
+                    </option>
+                  ))}
+                </select>
+              </label>
+              {planKind === 'other' && (
+                <label className="home-plan-custom-title">
+                  <span>Reja nomi</span>
+                  <input
+                    value={planCustomTitle}
+                    maxLength={80}
+                    onChange={(event) => setPlanCustomTitle(event.target.value)}
+                    placeholder="Masalan: Koreyscha film ko‘rish"
+                    aria-label="Boshqa reja nomi"
+                  />
+                </label>
+              )}
+              <button
+                type="button"
+                className="button secondary home-plan-add"
+                onClick={addPlanItem}
+                disabled={
+                  planDraft.length >= 12 || (planKind === 'other' && !planCustomTitle.trim())
+                }
+              >
+                <Plus size={17} />
+                Band qo‘shish
+              </button>
+            </div>
+            {planDraft.length ? (
+              <div className="home-plan-draft" aria-label="Tanlangan reja bandlari">
+                {planDraft.map((item, index) => {
+                  const Icon = planIcons[item.kind];
+                  return (
+                    <div key={item.id} className="home-plan-draft-row">
+                      <span className={`home-plan-icon ${item.kind}`}>
+                        <Icon size={18} />
+                      </span>
+                      <span className="home-plan-draft-copy">
+                        <small>{index + 1}-band</small>
+                        <strong>{item.title}</strong>
+                      </span>
+                      <label>
+                        <select
+                          value={item.minutes}
+                          onChange={(event) =>
+                            setPlanDraft((current) =>
+                              current.map((candidate) =>
+                                candidate.id === item.id
+                                  ? { ...candidate, minutes: Number(event.target.value) }
+                                  : candidate,
+                              ),
+                            )
+                          }
+                          aria-label={`${item.title} davomiyligi`}
+                        >
+                          {PLAN_MINUTES.map((minutes) => (
+                            <option key={minutes} value={minutes}>
+                              {minutes} daq
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setPlanDraft((current) =>
+                            current.filter((candidate) => candidate.id !== item.id),
+                          )
+                        }
+                        aria-label={`${item.title} bandini o‘chirish`}
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                  );
+                })}
               </div>
             ) : (
-              <div className="home-calm-empty">
-                <Check size={25} />
-                <h3>Tanlash uchun ochiq band yo‘q</h3>
-                <p>Yangi vazifa yoki takrorlash muddati kelganda variantlar shu yerda chiqadi.</p>
+              <div className="home-plan-empty-draft">
+                <Check size={20} />
+                <span>Checklist hali bo‘sh. Birinchi bandni qo‘shing.</span>
               </div>
+            )}
+            {!!planDraft.length && (
+              <p className="home-plan-total">
+                Jami:{' '}
+                <strong>{planDraft.reduce((sum, item) => sum + item.minutes, 0)} daqiqa</strong>
+              </p>
             )}
             <div className="home-plan-editor-actions">
               <button type="button" className="button secondary" onClick={() => setPlanOpen(false)}>
                 Bekor qilish
               </button>
-              <SubmitButton
-                busy={planSaving}
-                disabled={!!plan.options.length && !planSelection.length}
-              >
+              <SubmitButton busy={planSaving} disabled={!planDraft.length}>
                 Rejani saqlash
               </SubmitButton>
             </div>

@@ -33,7 +33,6 @@ import { topikTeachingReport, createTopikAssignment, studyAssignment } from '@/l
 import { wordCloze } from '@/lib/word-context';
 import { dailyPlan, dailyStep } from '@/lib/daily';
 import { studySummary, rateStudyWord, saveStudyWord, saveTodayStudyPlan } from '@/lib/study';
-import { homeTasks } from '@/lib/student-home';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { randomBytes } from 'node:crypto';
@@ -428,9 +427,32 @@ async function handle(req: NextRequest, ctx: { params: Promise<{ path: string[] 
     }
     if (endpoint === 'study/reviews' && method === 'GET') return json(studySummary(user.id));
     if (endpoint === 'study/today-plan' && method === 'POST') {
-      const b = z.object({ itemIds: z.array(str(1, 100)).max(30) }).parse(await body(req));
-      const state = studentState(user);
-      return json(saveTodayStudyPlan(user, homeTasks(state), b.itemIds));
+      const b = z
+        .object({
+          items: z
+            .array(
+              z.object({
+                id: str(1, 100),
+                kind: z.enum([
+                  'reading',
+                  'listening',
+                  'speaking',
+                  'writing',
+                  'vocabulary',
+                  'grammar',
+                  'homework',
+                  'other',
+                ]),
+                title: str(1, 80),
+                minutes: z.number().int().min(5).max(180),
+                complete: z.boolean(),
+              }),
+            )
+            .min(1)
+            .max(12),
+        })
+        .parse(await body(req));
+      return json(saveTodayStudyPlan(user, b.items));
     }
     if (endpoint === 'study/word/save' && method === 'POST') {
       const b = z.object({ wordId: str(1, 180) }).parse(await body(req));

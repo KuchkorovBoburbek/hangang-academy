@@ -51,7 +51,7 @@ Bular faqat namoyish hisoblari. Serverga mahalliy `data` papkasini ko‘chirmang
 - Jami **99 boshlang‘ich savol**: 48 lug‘at + 51 grammatika. Grammatikada bo‘sh joyni to‘ldirish hamda yaqin ma’noli ifodani tanlash mashqlari mavjud.
 - Mashq rejimida har javobdan so‘ng izoh; kichik sinovda yakunda izoh. Yarim qolgan mashq saqlanadi.
 - Takrorlash: xato savol ertasi kuni; to‘g‘ri javoblar 2, 4, 7, 14 va 30 kunlik oraliqda qaytadi. Kunlik savollar va oxirgi 7 kundagi faollik ko‘rinadi.
-- Bosh sahifadagi **Bugungi rejam** uchun tizim faqat ochiq, muddati kelgan takrorlashlar va ustoz vazifalarini tavsiya qiladi; talaba shu variantlardan o‘z kunlik rejasini belgilaydi. Reja sana bo‘yicha saqlanadi va bajarilgan bandlar belgilanadi. Bir materialni o‘sha kuni qayta yechish interval bosqichini sun’iy oshirmaydi — o‘zlashtirish turli kunlardagi xotiradan javoblar bilan baholanadi.
+- Bosh sahifadagi **Bugungi rejam** — talabaning shaxsiy checklisti. Talaba o‘qish, tinglash, gapirish, yozish, lug‘at, grammatika, uyga vazifa yoki o‘z faoliyatini qo‘shadi, unga vaqt belgilaydi va bajargach belgilab boradi. Reja har kun uchun alohida saqlanadi. Bir materialni o‘sha kuni qayta yechish interval bosqichini sun’iy oshirmaydi — o‘zlashtirish turli kunlardagi xotiradan javoblar bilan baholanadi.
 - Shaxsiy daftar: qo‘llanma bandini saqlash, o‘z qaydini yozish, tahrirlash va o‘chirish.
 - Guruhlar, taklif kodlari, ochiladigan mavzular va topshirish muddati bilan vazifalar.
 - Yozma vazifa: matn, **JPG/PNG/WebP rasmi va PDF**. Har biri 5 MB gacha, bir topshiriqqa 3 ta fayl.

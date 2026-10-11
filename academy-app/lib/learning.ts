@@ -3,7 +3,6 @@ import { studentCourses } from './courses';
 import { assignmentComplete } from './topik-teaching';
 import { topikProgress, topikGrammarCoverage, grammarMastery } from './progress';
 import { studySummary, recordStudy, dueStudyIds, todayStudyPlan } from './study';
-import { homeTasks } from './student-home';
 import { randomInt, createHash } from 'node:crypto';
 import { many, one, run, transaction, id, now } from './db';
 import { AppError, teacherGroup } from './auth';
@@ -359,7 +358,6 @@ export function studentState(user: User) {
     ...assignments.filter((a) => assignmentComplete(user.id, a.id)).map((a) => a.id),
   ];
   const courses = studentCourses(user);
-  const tasks = homeTasks({ courses, assignments, submissions, completedAssignments });
   return {
     completedAssignments,
     group: group
@@ -425,7 +423,7 @@ export function studentState(user: User) {
     })),
     coverage: questionCoverage(),
     courses,
-    todayPlan: todayStudyPlan(user, tasks),
+    todayPlan: todayStudyPlan(user),
     access,
     grammars: GRAMMARS.filter((g) => !access.managed || access.grammarIds.includes(g.id)),
     words: WORDS,

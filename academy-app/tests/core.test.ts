@@ -66,74 +66,37 @@ describe('Learning and access boundaries', () => {
       )?.stage,
     ).toBe(1);
   });
-  it('builds one access-safe daily priority and advances mastery only on another local day', () => {
-    const grammar = one<Question>(
-      "SELECT * FROM questions WHERE kind='grammar' AND topic_id IN (SELECT value FROM json_each((SELECT grammar_ids FROM groups WHERE id=?))) LIMIT 1",
-      student.group_id!,
-    )!;
-    const word = one<Question>(
-      "SELECT * FROM questions WHERE kind='vocabulary' AND topic_id IN (SELECT value FROM json_each((SELECT vocabulary_ids FROM groups WHERE id=?))) LIMIT 1",
-      student.group_id!,
-    )!;
-    for (const [kind, itemId] of [
-      ['question', grammar.id],
-      ['word', word.topic_id],
-      ['word', 'closed-word'],
-    ] as const)
-      run(
-        `INSERT INTO study_reviews(user_id,kind,item_id,stage,due_at,correct_count,wrong_count,last_at)
-         VALUES(?,?,?,0,'2000-01-02T00:00:00.000Z',0,1,'2000-01-01T00:00:00.000Z')
-         ON CONFLICT(user_id,kind,item_id) DO UPDATE SET due_at=excluded.due_at,wrong_count=excluded.wrong_count,last_at=excluded.last_at`,
-        student.id,
-        kind,
-        itemId,
-      );
-    const tasks = [
+  it('stores a private timed checklist and advances mastery only on another local day', () => {
+    const emptyPlan = todayStudyPlan(student);
+    expect(emptyPlan.configured).toBe(false);
+    expect(emptyPlan.items).toEqual([]);
+    const plan = saveTodayStudyPlan(student, [
       {
-        id: 'teacher-task',
-        title: 'Ustoz ochgan yangi vazifa',
+        id: 'reading-plan',
         kind: 'reading',
-        status: 'todo',
-        source: 'lesson',
-        required: true,
-        lesson: '2-dars · Maktab',
-        dueAt: '2026-10-20T00:00:00.000Z',
+        title: '읽기 · O‘qish',
+        minutes: 20,
+        complete: false,
       },
-    ] as const;
-    const suggestion = todayStudyPlan(student, [...tasks]);
-    expect(suggestion.configured).toBe(false);
-    expect(suggestion.items).toEqual([]);
-    expect(suggestion.options.map((item) => item.kind)).toEqual(['words', 'grammar', 'task']);
-    const plan = saveTodayStudyPlan(
-      student,
-      [...tasks],
-      suggestion.options.map((item) => item.id),
-    );
+      {
+        id: 'vocabulary-plan',
+        kind: 'vocabulary',
+        title: '단어 · Lug‘at',
+        minutes: 15,
+        complete: false,
+      },
+    ]);
     expect(plan.configured).toBe(true);
-    expect(plan.items.map((item) => item.kind)).toEqual(['words', 'grammar', 'task']);
-    expect(plan.items[0].wordIds).toContain(word.topic_id);
-    expect(plan.items[0].wordIds).not.toContain('closed-word');
-    expect(plan.headline).toContain('3 ta tanlangan qadam');
-    const wordReview = startQuiz(
-      student,
-      'review',
-      'practice',
-      undefined,
-      undefined,
-      plan.items[0].wordIds,
-    );
-    expect(wordReview.total).toBe(plan.items[0].wordIds?.length);
-    const grammarItem = plan.items.find((item) => item.kind === 'grammar')!;
-    const grammarReview = startQuiz(
-      student,
-      'review',
-      'practice',
-      undefined,
-      undefined,
-      undefined,
-      grammarItem.questionIds,
-    );
-    expect(grammarReview.total).toBe(grammarItem.questionIds?.length);
+    expect(plan.items.map((item) => item.kind)).toEqual(['reading', 'vocabulary']);
+    expect(plan.estimatedMinutes).toBe(35);
+    expect(plan.headline).toContain('2 ta band');
+    expect(todayStudyPlan(other).configured).toBe(false);
+    const checked = saveTodayStudyPlan(student, [
+      { ...plan.items[0], complete: true },
+      plan.items[1],
+    ]);
+    expect(checked.completedCount).toBe(1);
+    expect(checked.estimatedMinutes).toBe(15);
 
     transaction(() =>
       recordStudy(

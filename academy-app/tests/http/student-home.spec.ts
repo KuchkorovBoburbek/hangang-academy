@@ -143,16 +143,21 @@ test('Mobile home shows four real states, preserves access, opens exact practice
   await expect(page.locator('[data-skill=speaking]')).toContainText('Bajarish kerak');
   await expect(page.locator('[data-skill=writing]')).toContainText('Tekshirilmoqda');
   await expect(page.getByRole('heading', { name: 'Bugungi rejam' })).toBeVisible();
-  await expect(page.getByText('Bugun nimani qilishni tanlaysiz?')).toBeVisible();
+  await expect(page.getByText('O‘zingiz uchun bugungi checklist')).toBeVisible();
   await expect(page.locator('.home-plan-answer')).toHaveText(
-    'Bugungi rejangizni o‘zingiz belgilang.',
+    'O‘zingiz uchun oddiy checklist tuzing.',
   );
   await page.getByRole('button', { name: 'Reja tuzish' }).click();
-  await expect(page.getByRole('dialog')).toContainText('Faqat sizga ochilgan materiallar');
-  await page.getByRole('checkbox', { name: /자기소개/ }).check();
+  await expect(page.getByRole('dialog')).toContainText('Faoliyatni va unga ajratmoqchi');
+  await page.getByLabel('Reja faoliyati').selectOption('reading');
+  await page.getByLabel('Reja davomiyligi').selectOption('20');
+  await page.getByRole('button', { name: 'Band qo‘shish' }).click();
+  await expect(page.getByRole('dialog')).toContainText('읽기 · O‘qish');
+  await expect(page.getByRole('dialog')).toContainText('Jami: 20 daqiqa');
   await page.getByRole('button', { name: 'Rejani saqlash' }).click();
-  await expect(page.locator('.home-plan-answer')).toHaveText('1 ta tanlangan qadam qoldi.');
-  await expect(page.getByRole('button', { name: /1-qadam: 자기소개/ })).toBeVisible();
+  await expect(page.locator('.home-plan-answer')).toHaveText('1 ta band · 20 daqiqa qoldi.');
+  await page.getByRole('checkbox', { name: '읽기 · O‘qish bajarildi' }).check();
+  await expect(page.locator('.home-plan-answer')).toHaveText('Bugungi rejangiz bajarildi.');
   await expect(page.getByText('Bajarilishi shart', { exact: true })).toHaveCount(0);
   await expect(page.locator('.home-required-list')).toHaveCount(0);
   await expect(page.getByRole('heading', { name: 'Qo‘shimcha vazifalar' })).toBeVisible();
@@ -231,7 +236,7 @@ test('Empty groups show no invented homework, and legacy students use the same l
     if (name === 'empty') {
       await expect(page.locator('.home-skill-card.empty')).toHaveCount(4);
       await expect(page.locator('.home-today-plan')).toContainText(
-        'Bugungi rejangizni o‘zingiz belgilang.',
+        'O‘zingiz uchun oddiy checklist tuzing.',
       );
       await page
         .getByRole('button', { name: '말하기 · Gapirish uchun qo‘shimcha mashqlar' })

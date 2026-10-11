@@ -1,7 +1,12 @@
 import type { NextConfig } from 'next';
+const allowedDevOrigins = (process.env.DEV_ALLOWED_ORIGINS || '')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
 const config: NextConfig = {
   poweredByHeader: false,
   devIndicators: false,
+  allowedDevOrigins,
   serverExternalPackages: ['node:sqlite'],
   experimental: { proxyClientMaxBodySize: '22mb' },
   async headers() {

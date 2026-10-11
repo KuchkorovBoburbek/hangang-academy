@@ -28,6 +28,7 @@ import {
 } from '@/lib/student-home';
 import { COURSE_LEVELS } from '@/lib/course-types';
 import type { User } from '@/lib/types';
+import type { TodayPlanItem } from '@/lib/study';
 import type { StudentData, StartQuiz } from './student';
 import { Modal, dateLabel } from './ui';
 import '@/app/student-home.css';
@@ -80,6 +81,7 @@ export default function StudentHome({
   const requiredTasks = tasks.filter((task) => task.source === 'lesson' && task.required);
   const additionalTasks = tasks.filter((task) => task.source === 'extra');
   const progress = taskSummary(requiredTasks);
+  const plan = data.todayPlan;
   const courses = data.courses;
   const level = COURSE_LEVELS.find((l) => l.id === courses.level)?.label || data.group?.level;
   const skill = HOME_SKILLS.find((s) => s.id === sheet?.skill);
@@ -105,6 +107,16 @@ export default function StudentHome({
       (task.assignment.kind === 'grammar' || task.assignment.kind === 'vocabulary')
     )
       start(task.assignment.kind, 'practice', undefined, task.assignment.id);
+  }
+  function openPlanItem(item: TodayPlanItem) {
+    if (item.kind === 'words') start('review', 'practice', undefined, undefined, item.wordIds);
+    else if (item.kind === 'grammar')
+      start('review', 'practice', undefined, undefined, undefined, item.questionIds);
+    else if (item.kind === 'topik') go('/daily');
+    else {
+      const task = tasks.find((candidate) => candidate.id === item.taskId);
+      if (task) openTask(task);
+    }
   }
   return (
     <div className="student-home">
@@ -229,78 +241,145 @@ export default function StudentHome({
           )}
         </section>
 
-        <section className="home-extra" aria-labelledby="practice-title">
+        <section
+          className={`home-today-plan ${plan.complete ? 'complete' : ''}`}
+          aria-labelledby="today-plan-title"
+        >
           <div className="home-section-heading">
             <div>
               <span className="home-overline" lang="ko">
-                조금씩, 매일
+                오늘의 계획
               </span>
-              <h2 id="practice-title">Qo‘shimcha mashqlar</h2>
+              <h2 id="today-plan-title">Bugungi rejam</h2>
             </div>
-            <Sparkles size={22} />
-          </div>
-          <p className="home-section-note">O‘z sur’atingizda, o‘zingiz uchun.</p>
-          <div className="home-practice-grid">
-            {HOME_SKILLS.map((s) => {
-              const Icon = skillIcons[s.id];
-              return (
-                <button
-                  key={s.id}
-                  className={`home-practice-link ${s.id}`}
-                  onClick={() => setSheet({ type: 'practice', skill: s.id })}
-                  aria-label={`${s.ko} · ${s.label} uchun qo‘shimcha mashqlar`}
-                >
-                  <Icon size={21} strokeWidth={1.7} />
-                  <span>
-                    <strong lang="ko">{s.ko}</strong>
-                    <small>{s.label}</small>
-                  </span>
-                  <ArrowUpRight size={16} />
-                </button>
-              );
-            })}
-          </div>
-          <button
-            className="home-word-quiz"
-            onClick={() => (data.words.length >= 2 ? start('vocabulary') : go('/vocabulary'))}
-          >
-            <span className="home-word-art" aria-hidden="true">
-              <span lang="ko">가</span>
-              <span>A</span>
+            <span className="home-plan-time">
+              {plan.complete ? <Check size={15} /> : <Clock3 size={14} />}
+              {plan.complete ? 'Tayyor' : `≈ ${plan.estimatedMinutes} daqiqa`}
             </span>
-            <span className="home-word-copy">
-              <small>단어 QUIZ</small>
-              <strong>So‘z yodlaymiz</strong>
-              <span>Quiz bilan eslab qoling</span>
-            </span>
-            <span className="home-word-arrow">
-              <ArrowRight size={20} />
-            </span>
-          </button>
-          <div className="home-small-links">
-            <button onClick={() => go('/grammar')}>
-              <BookOpen size={17} />
-              Grammatika
-              <ChevronRight size={15} />
-            </button>
-            <button onClick={() => go('/notebook')}>
-              <NotebookPen size={17} />
-              Daftarim
-              <ChevronRight size={15} />
-            </button>
           </div>
-          {data.access.topik && (
-            <button className="home-daily-link" onClick={() => go('/daily')}>
-              <RotateCcw size={18} />
+          <p className="home-plan-question">Bugun nimani qilishim kerak?</p>
+          <strong className="home-plan-answer">{plan.headline}</strong>
+          {plan.items.length ? (
+            <div className="home-plan-list">
+              {plan.items.map((item, index) => {
+                const Icon =
+                  item.kind === 'words' ? Languages : item.kind === 'task' ? BookOpen : RotateCcw;
+                return (
+                  <button
+                    key={item.id}
+                    className={`home-plan-item ${index === 0 ? 'next' : ''}`}
+                    onClick={() => openPlanItem(item)}
+                    aria-label={`${index + 1}-qadam: ${item.title}`}
+                  >
+                    <span className="home-plan-order">{index + 1}</span>
+                    <span className={`home-plan-icon ${item.kind}`}>
+                      <Icon size={18} strokeWidth={1.8} />
+                    </span>
+                    <span className="home-plan-copy">
+                      <strong>{item.title}</strong>
+                      <small>{item.detail}</small>
+                    </span>
+                    {index === 0 ? (
+                      <span className="home-plan-start">
+                        Boshlash
+                        <ArrowRight size={14} />
+                      </span>
+                    ) : (
+                      <ChevronRight className="home-plan-chevron" size={17} />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="home-plan-done">
               <span>
-                <strong>Kunlik takrorlash</strong>
-                <small>10, 20 yoki 30 daqiqalik reja</small>
+                <Check size={23} />
               </span>
-              <ChevronRight size={16} />
-            </button>
+              <div>
+                <strong>Bugungi muhim ishlar tugadi</strong>
+                <small>Yangi vazifa yoki takrorlash muddati kelganda shu yerda chiqadi.</small>
+              </div>
+            </div>
           )}
+          <p className="home-plan-rule">
+            <RotateCcw size={14} />
+            Takrorlash muddati birinchi, ustoz vazifasi undan keyin.
+          </p>
         </section>
       </div>
+
+      <section className="home-extra home-secondary-section" aria-labelledby="practice-title">
+        <div className="home-section-heading">
+          <div>
+            <span className="home-overline" lang="ko">
+              조금씩, 매일
+            </span>
+            <h2 id="practice-title">Qo‘shimcha mashqlar</h2>
+          </div>
+          <Sparkles size={22} />
+        </div>
+        <p className="home-section-note">O‘z sur’atingizda, o‘zingiz uchun.</p>
+        <div className="home-practice-grid">
+          {HOME_SKILLS.map((s) => {
+            const Icon = skillIcons[s.id];
+            return (
+              <button
+                key={s.id}
+                className={`home-practice-link ${s.id}`}
+                onClick={() => setSheet({ type: 'practice', skill: s.id })}
+                aria-label={`${s.ko} · ${s.label} uchun qo‘shimcha mashqlar`}
+              >
+                <Icon size={21} strokeWidth={1.7} />
+                <span>
+                  <strong lang="ko">{s.ko}</strong>
+                  <small>{s.label}</small>
+                </span>
+                <ArrowUpRight size={16} />
+              </button>
+            );
+          })}
+        </div>
+        <button
+          className="home-word-quiz"
+          onClick={() => (data.words.length >= 2 ? start('vocabulary') : go('/vocabulary'))}
+        >
+          <span className="home-word-art" aria-hidden="true">
+            <span lang="ko">가</span>
+            <span>A</span>
+          </span>
+          <span className="home-word-copy">
+            <small>단어 QUIZ</small>
+            <strong>So‘z yodlaymiz</strong>
+            <span>Quiz bilan eslab qoling</span>
+          </span>
+          <span className="home-word-arrow">
+            <ArrowRight size={20} />
+          </span>
+        </button>
+        <div className="home-small-links">
+          <button onClick={() => go('/grammar')}>
+            <BookOpen size={17} />
+            Grammatika
+            <ChevronRight size={15} />
+          </button>
+          <button onClick={() => go('/notebook')}>
+            <NotebookPen size={17} />
+            Daftarim
+            <ChevronRight size={15} />
+          </button>
+        </div>
+        {data.access.topik && (
+          <button className="home-daily-link" onClick={() => go('/daily')}>
+            <RotateCcw size={18} />
+            <span>
+              <strong>Kunlik takrorlash</strong>
+              <small>10, 20 yoki 30 daqiqalik reja</small>
+            </span>
+            <ChevronRight size={16} />
+          </button>
+        )}
+      </section>
 
       {live.map((r) => (
         <button className="home-live" key={r.id} onClick={() => go(`/lessons/${r.id}`)}>

@@ -2,7 +2,8 @@ import { courseAccess } from './course-access';
 import { studentCourses } from './courses';
 import { assignmentComplete } from './topik-teaching';
 import { topikProgress, topikGrammarCoverage, grammarMastery } from './progress';
-import { studySummary, recordStudy } from './study';
+import { studySummary, recordStudy, dueStudyIds, todayStudyPlan } from './study';
+import { homeTasks } from './student-home';
 import { randomInt, createHash } from 'node:crypto';
 import { many, one, run, transaction, id, now } from './db';
 import { AppError, teacherGroup } from './auth';
@@ -99,6 +100,7 @@ export function startQuiz(
   topicId?: string,
   assignmentId?: string,
   topicIds?: string[],
+  questionIds?: string[],
 ) {
   if (user.role !== 'student') throw new AppError(403, 'Mashq o‘quvchi hisobidan boshlanadi.');
   const group = one<Group>('SELECT * FROM groups WHERE id=?', user.group_id || '');
@@ -122,7 +124,13 @@ export function startQuiz(
     'active',
     assignmentId || '',
   );
-  if (active && !topicId && !courseAccess(user).managed)
+  if (
+    active &&
+    !topicId &&
+    !topicIds?.length &&
+    !questionIds?.length &&
+    !courseAccess(user).managed
+  )
     return viewSession(getSession(active.id, user));
   const access = courseAccess(user);
   const allowed = access.managed
@@ -130,7 +138,7 @@ export function startQuiz(
     : ([...JSON.parse(group.grammar_ids), ...JSON.parse(group.vocabulary_ids)] as string[]);
   const visible = vocabulary(user);
   const visibleWords = new Set(visible.map((w) => w.id));
-  if (access.managed && kind === 'vocabulary') {
+  if (access.managed && (kind === 'vocabulary' || (kind === 'review' && topicIds?.length))) {
     for (const word of visible) {
       const distractors = [...new Set(visible.filter((w) => w.uz !== word.uz).map((w) => w.uz))]
         .sort()
@@ -166,17 +174,32 @@ export function startQuiz(
       (kind === 'review' || q.kind === kind) &&
       (!topicId || q.topic_id === topicId) &&
       (!topicIds?.length || topicIds.includes(q.topic_id)) &&
+      (!questionIds?.length || questionIds.includes(q.id)) &&
       (!requested?.length || requested.includes(q.topic_id)),
   );
-  const reviews = many<{ question_id: string; due_at: string; wrong_count: number }>(
-    'SELECT * FROM reviews WHERE user_id=?',
-    user.id,
-  );
-  const due = reviews.filter((r) => r.due_at <= now()).map((r) => r.question_id);
-  if (kind === 'review') questions = questions.filter((q) => due.includes(q.id));
-  const priority = shuffle(questions.filter((q) => due.includes(q.id))).slice(0, 4);
+  const dueQuestions = new Set(dueStudyIds(user.id, 'question'));
+  const dueWords = new Set(dueStudyIds(user.id, 'word'));
+  const isDue = (question: { id: string; kind: string; topic_id: string }) =>
+    question.kind === 'vocabulary'
+      ? dueWords.has(question.topic_id)
+      : dueQuestions.has(question.id);
+  if (kind === 'review') questions = questions.filter(isDue);
+  if (questionIds?.length && questions.length !== new Set(questionIds).size)
+    throw new AppError(409, 'Bugungi reja yangilandi. Bosh sahifani yangilang.');
+  const priority = shuffle(questions.filter(isDue)).slice(0, 4);
   const rest = shuffle(questions.filter((q) => !priority.some((p) => p.id === q.id)));
-  const selected = [...priority, ...rest].slice(0, 10);
+  const ordered = questionIds?.length
+    ? questionIds.map((questionId) => questions.find((question) => question.id === questionId)!)
+    : [...priority, ...rest];
+  const seenVocabulary = new Set<string>();
+  const selected = ordered
+    .filter((question) => {
+      if (kind !== 'review' || question.kind !== 'vocabulary') return true;
+      if (seenVocabulary.has(question.topic_id)) return false;
+      seenVocabulary.add(question.topic_id);
+      return true;
+    })
+    .slice(0, 10);
   if (!selected.length)
     throw new AppError(
       400,
@@ -210,8 +233,15 @@ export function answerQuiz(user: User, sid: string, qid: string, choice: number)
       throw new AppError(400, 'Javobni tanlang.');
     const correct = choice === q.answer;
     const t = now();
-    if (q.kind === 'vocabulary')
-      recordStudy(user.id, 'word', q.topic_id, correct, false, `quiz:${sid}:${qid}`, t);
+    recordStudy(
+      user.id,
+      q.kind === 'vocabulary' ? 'word' : 'question',
+      q.kind === 'vocabulary' ? q.topic_id : q.id,
+      correct,
+      false,
+      `quiz:${sid}:${qid}`,
+      t,
+    );
     answers.push({ question_id: qid, choice, correct, at: t });
     const complete = answers.length === ids.length;
     const score = answers.filter((a) => a.correct).length;
@@ -222,24 +252,6 @@ export function answerQuiz(user: User, sid: string, qid: string, choice: number)
       complete ? 'completed' : 'active',
       complete ? t : null,
       sid,
-    );
-    const previous = one<{ box: number }>(
-      'SELECT box FROM reviews WHERE user_id=? AND question_id=?',
-      user.id,
-      qid,
-    );
-    const box = correct ? Math.min((previous?.box || 0) + 1, 5) : 0;
-    const days = [1, 2, 4, 7, 14, 30][box];
-    const due = new Date(Date.now() + days * 86400000).toISOString();
-    run(
-      'INSERT INTO reviews(user_id,question_id,box,due_at,correct_count,wrong_count,last_at) VALUES(?,?,?,?,?,?,?) ON CONFLICT(user_id,question_id) DO UPDATE SET box=excluded.box,due_at=excluded.due_at,correct_count=reviews.correct_count+excluded.correct_count,wrong_count=reviews.wrong_count+excluded.wrong_count,last_at=excluded.last_at',
-      user.id,
-      qid,
-      box,
-      due,
-      correct ? 1 : 0,
-      correct ? 0 : 1,
-      t,
     );
     return {
       correct: s.mode === 'practice' ? correct : undefined,
@@ -310,20 +322,16 @@ export function studentState(user: User) {
     ...topik.answers,
   ];
   const todayAnswers = allAnswers.filter((a) => localDate(new Date(a.at), user.timezone) === today);
-  const allowed = group
-    ? [...JSON.parse(group.grammar_ids), ...JSON.parse(group.vocabulary_ids)]
-    : [];
-  const reviews = many<{
-    question_id: string;
-    box: number;
-    due_at: string;
-    wrong_count: number;
-    correct_count: number;
-    topic_id: string;
-  }>(
-    'SELECT r.*,q.topic_id FROM reviews r JOIN questions q ON q.id=r.question_id WHERE user_id=?',
-    user.id,
-  ).filter((r) => allowed.includes(r.topic_id));
+  const reviews = study.items
+    .filter((review) => review.source === 'quiz')
+    .map((review) => ({
+      question_id: review.item_id,
+      box: review.stage,
+      due_at: review.due_at,
+      wrong_count: review.wrong_count,
+      correct_count: review.correct_count,
+      topic_id: review.topic_id!,
+    }));
   const assignments = many<Assignment>(
     'SELECT * FROM assignments WHERE group_id=? ORDER BY due_at',
     user.group_id || '',
@@ -346,11 +354,14 @@ export function studentState(user: User) {
     'SELECT s.*,a.title AS assignment_title FROM submissions s JOIN assignments a ON a.id=s.assignment_id WHERE s.user_id=? ORDER BY s.created_at DESC',
     user.id,
   ).map((s) => withSubmissionDetails(s, false));
+  const completedAssignments = [
+    ...new Set(complete.map((s) => s.assignment_id).filter((id): id is string => !!id)),
+    ...assignments.filter((a) => assignmentComplete(user.id, a.id)).map((a) => a.id),
+  ];
+  const courses = studentCourses(user);
+  const tasks = homeTasks({ courses, assignments, submissions, completedAssignments });
   return {
-    completedAssignments: [
-      ...new Set(complete.map((s) => s.assignment_id).filter((id): id is string => !!id)),
-      ...assignments.filter((a) => assignmentComplete(user.id, a.id)).map((a) => a.id),
-    ],
+    completedAssignments,
     group: group
       ? {
           id: group.id,
@@ -378,8 +389,8 @@ export function studentState(user: User) {
         ...topik.answers.map((a) => `topik:${a.category}`),
         ...topik.answers.flatMap((a) => a.grammarIds),
       ]).size,
-      due: reviews.filter((r) => r.due_at <= now()).length + study.questions + study.words,
-      topikDue: study.questions,
+      due: study.questions + study.words,
+      topikDue: study.topikQuestions,
       wordDue: study.words,
       weekDays: week.filter((w) => w.completed).length,
     },
@@ -413,7 +424,8 @@ export function studentState(user: User) {
       mode: s.mode,
     })),
     coverage: questionCoverage(),
-    courses: studentCourses(user),
+    courses,
+    todayPlan: todayStudyPlan(user, tasks),
     access,
     grammars: GRAMMARS.filter((g) => !access.managed || access.grammarIds.includes(g.id)),
     words: WORDS,

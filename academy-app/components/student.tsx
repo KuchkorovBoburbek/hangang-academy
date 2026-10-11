@@ -35,6 +35,7 @@ export type StartQuiz = (
   topicId?: string,
   assignmentId?: string,
   topicIds?: string[],
+  questionIds?: string[],
 ) => void;
 export function PracticeLibrary({
   kind,

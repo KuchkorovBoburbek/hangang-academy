@@ -292,6 +292,180 @@ button.home-skill-card:active {
   background: var(--blue);
   border-radius: 50%;
 }
+.home-today-plan {
+  padding: 20px;
+  border: 1px solid var(--home-line);
+  border-radius: 26px;
+  background: var(--home-surface);
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--ink) 5.5%, transparent);
+}
+.home-plan-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 30px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: var(--blue-light);
+  color: var(--blue);
+  font-size: 10px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+.home-plan-question {
+  margin: 18px 0 3px;
+  color: var(--home-muted);
+  font-size: 11px;
+  font-weight: 650;
+}
+.home-plan-answer {
+  display: block;
+  max-width: 31ch;
+  color: var(--home-ink);
+  font-size: 18px;
+  line-height: 1.42;
+  letter-spacing: -0.035em;
+}
+.home-plan-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 17px;
+}
+.home-plan-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  min-width: 0;
+  min-height: 62px;
+  padding: 10px;
+  border: 1px solid var(--home-line);
+  border-radius: 15px;
+  background: var(--paper);
+  color: var(--home-ink);
+  text-align: left;
+  transition:
+    border-color 0.15s,
+    background 0.15s,
+    transform 0.15s;
+}
+.home-plan-item:hover {
+  border-color: var(--blue-border);
+  background: var(--home-soft);
+  transform: translateY(-1px);
+}
+.home-plan-item.next {
+  border-color: var(--blue-border);
+  background: linear-gradient(120deg, var(--blue-light), var(--paper));
+}
+.home-plan-order {
+  display: grid;
+  place-items: center;
+  align-self: flex-start;
+  flex: 0 0 20px;
+  height: 20px;
+  margin-top: 9px;
+  border: 1px solid var(--blue-border);
+  border-radius: 50%;
+  color: var(--blue);
+  background: var(--paper);
+  font-size: 9px;
+  font-weight: 800;
+}
+.home-plan-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 36px;
+  height: 36px;
+  border-radius: 12px;
+  color: var(--blue);
+  background: var(--surface-soft);
+}
+.home-plan-icon.task {
+  color: var(--blue-deep);
+  background: var(--blue-fill);
+}
+.home-plan-copy {
+  flex: 1;
+  min-width: 0;
+}
+.home-plan-copy strong,
+.home-plan-copy small {
+  display: block;
+  overflow-wrap: anywhere;
+}
+.home-plan-copy strong {
+  font-size: 12px;
+  line-height: 1.45;
+}
+.home-plan-copy small {
+  margin-top: 2px;
+  color: var(--home-muted);
+  font-size: 10px;
+  line-height: 1.45;
+}
+.home-plan-start {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  min-height: 30px;
+  padding: 6px 8px;
+  border-radius: 9px;
+  color: var(--paper);
+  background: var(--blue);
+  font-size: 9px;
+  font-weight: 750;
+}
+.home-plan-chevron {
+  flex-shrink: 0;
+  color: var(--blue);
+}
+.home-plan-rule {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 14px 2px 0;
+  color: var(--home-muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+.home-plan-rule svg {
+  flex-shrink: 0;
+  color: var(--blue);
+}
+.home-plan-done {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  padding: 17px;
+  border: 1px solid var(--blue-border);
+  border-radius: 16px;
+  background: var(--blue-light);
+}
+.home-plan-done > span {
+  display: grid;
+  place-items: center;
+  flex: 0 0 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--blue);
+}
+.home-plan-done strong,
+.home-plan-done small {
+  display: block;
+}
+.home-plan-done strong {
+  font-size: 13px;
+}
+.home-plan-done small {
+  margin-top: 3px;
+  color: var(--home-muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
 .home-extra {
   padding-top: 3px;
 }
@@ -802,6 +976,9 @@ button.home-skill-card:active {
   .home-extra {
     padding: 20px 0;
   }
+  .home-today-plan {
+    padding: 20px;
+  }
   .home-support-grid {
     grid-template-columns: 1fr 1fr;
     align-items: start;
@@ -867,6 +1044,21 @@ button.home-skill-card:active {
     padding: 18px 14px 14px;
     border-radius: 23px;
     margin: 0 -3px;
+  }
+  .home-today-plan {
+    order: -1;
+    padding: 18px 14px 15px;
+    border-radius: 23px;
+    margin: 0 -3px;
+  }
+  .home-plan-question,
+  .home-plan-answer,
+  .home-plan-rule {
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+  .home-plan-item {
+    padding: 9px 8px;
   }
   .home-homework > .home-section-heading,
   .home-homework > .home-section-note,
@@ -970,6 +1162,17 @@ button.home-skill-card:active {
   .home-homework {
     padding-left: 10px;
     padding-right: 10px;
+  }
+  .home-today-plan {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .home-plan-order {
+    display: none;
+  }
+  .home-plan-start {
+    padding-left: 6px;
+    padding-right: 6px;
   }
   .home-skill-card {
     padding: 12px 10px;

@@ -2,6 +2,7 @@ import { courseAccess } from './course-access';
 import { allVocabulary, visibleVocabularyWord } from './vocabulary-data';
 import { many, one, run, now, transaction } from './db';
 import { AppError } from './auth';
+import type { HomeTask } from './student-home';
 import type { User } from './types';
 export type StudyKind = 'question' | 'word';
 export type StudyReview = {
@@ -13,6 +14,37 @@ export type StudyReview = {
   wrong_count: number;
   last_at: string;
 };
+export type StudyReviewItem = StudyReview & {
+  source: 'word' | 'quiz' | 'topik';
+  topic_id?: string;
+};
+export type TodayPlanItem = {
+  id: string;
+  kind: 'words' | 'grammar' | 'topik' | 'task';
+  title: string;
+  detail: string;
+  count: number;
+  wordIds?: string[];
+  questionIds?: string[];
+  taskId?: string;
+};
+export type TodayPlan = {
+  headline: string;
+  items: TodayPlanItem[];
+  reviewCount: number;
+  assignmentCount: number;
+  estimatedMinutes: number;
+  complete: boolean;
+};
+
+function studyDay(at: string, timezone: string) {
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: timezone || 'Asia/Tashkent',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(new Date(at));
+}
 // Called within the caller's transaction. Event keys make retries harmless.
 export function recordStudy(
   userId: string,
@@ -41,12 +73,13 @@ export function recordStudy(
     itemId,
   );
   if (previous && previous.last_at > at) return;
-  // Confident new questions do not create unnecessary reviews. Once scheduled,
-  // a question stays in the review cycle; multiple same-day retries cannot advance it.
-  if (kind === 'question' && correct && !uncertain && !previous) return;
+  const timezone =
+    one<{ timezone: string }>('SELECT timezone FROM users WHERE id=?', userId)?.timezone ||
+    'Asia/Tashkent';
   const success = correct && !uncertain;
-  const canAdvance =
-    !previous || new Date(at).getTime() - new Date(previous.last_at).getTime() >= 20 * 3600000;
+  // Mastery grows only when recall succeeds on a different local calendar day.
+  // Repeating the same item many times today can reinforce it, but cannot skip intervals.
+  const canAdvance = !previous || studyDay(previous.last_at, timezone) !== studyDay(at, timezone);
   const stage = success ? Math.min((previous?.stage || 0) + (canAdvance ? 1 : 0), 5) : 0;
   const days = [1, 2, 4, 7, 14, 30][stage];
   const due =
@@ -74,17 +107,128 @@ export function dueStudyIds(userId: string, kind: StudyKind) {
     now(),
   ).map((r) => r.item_id);
 }
-export function studySummary(userId: string) {
+export function visibleStudyReviews(userId: string): StudyReviewItem[] {
   const user = one<User>('SELECT * FROM users WHERE id=?', userId);
-  const visible = new Set(user ? allVocabulary(user).map((w) => w.id) : []);
-  const items = many<StudyReview>(
-    `SELECT r.* FROM study_reviews r WHERE user_id=? AND (kind='word' OR EXISTS(SELECT 1 FROM topik_questions q WHERE q.id=r.item_id AND (q.servable=1 OR q.current=0))) ORDER BY due_at`,
+  if (!user) return [];
+  const access = courseAccess(user);
+  const visibleWords = new Set(allVocabulary(user).map((word) => word.id));
+  const group = one<{ grammar_ids: string }>(
+    'SELECT grammar_ids FROM groups WHERE id=?',
+    user.group_id || '',
+  );
+  const visibleGrammar = new Set<string>(
+    access.managed ? access.grammarIds : JSON.parse(group?.grammar_ids || '[]'),
+  );
+  const quizQuestions = new Map(
+    many<{ id: string; kind: string; topic_id: string }>(
+      "SELECT id,kind,topic_id FROM questions WHERE kind='grammar'",
+    ).map((question) => [question.id, question]),
+  );
+  const topikQuestions = new Set(
+    many<{ id: string }>('SELECT id FROM topik_questions WHERE servable=1 OR current=0').map(
+      (question) => question.id,
+    ),
+  );
+  const rows = many<StudyReview>(
+    'SELECT * FROM study_reviews WHERE user_id=? ORDER BY due_at,wrong_count DESC',
     userId,
-  ).filter((r) => (r.kind === 'word' ? visible.has(r.item_id) : !user || courseAccess(user).topik));
+  );
+  const items: StudyReviewItem[] = [];
+  for (const review of rows) {
+    if (review.kind === 'word') {
+      if (visibleWords.has(review.item_id)) items.push({ ...review, source: 'word' });
+      continue;
+    }
+    const quiz = quizQuestions.get(review.item_id);
+    if (quiz) {
+      if (visibleGrammar.has(quiz.topic_id))
+        items.push({ ...review, source: 'quiz', topic_id: quiz.topic_id });
+      continue;
+    }
+    if (access.topik && topikQuestions.has(review.item_id))
+      items.push({ ...review, source: 'topik' });
+  }
+  return items;
+}
+export function studySummary(userId: string) {
+  const items = visibleStudyReviews(userId);
+  const due = items.filter((review) => review.due_at <= now());
   return {
     items,
-    questions: items.filter((r) => r.kind === 'question' && r.due_at <= now()).length,
-    words: items.filter((r) => r.kind === 'word' && r.due_at <= now()).length,
+    questions: due.filter((review) => review.kind === 'question').length,
+    grammarQuestions: due.filter((review) => review.source === 'quiz').length,
+    topikQuestions: due.filter((review) => review.source === 'topik').length,
+    words: due.filter((review) => review.kind === 'word').length,
+  };
+}
+
+export function todayStudyPlan(user: User, tasks: HomeTask[]): TodayPlan {
+  const due = visibleStudyReviews(user.id).filter((review) => review.due_at <= now());
+  const words = due.filter((review) => review.source === 'word').slice(0, 5);
+  const grammar = due
+    .filter((review) => review.source === 'quiz')
+    .sort((a, b) => b.wrong_count - a.wrong_count || a.due_at.localeCompare(b.due_at))
+    .slice(0, 3);
+  const topik = due
+    .filter((review) => review.source === 'topik')
+    .sort((a, b) => b.wrong_count - a.wrong_count || a.due_at.localeCompare(b.due_at))
+    .slice(0, 3);
+  const teacherTask = tasks.find((task) => task.required && task.status === 'todo');
+  const items: TodayPlanItem[] = [];
+  if (words.length)
+    items.push({
+      id: 'due-words',
+      kind: 'words',
+      title: `${words.length} ta eski so‘zni eslash`,
+      detail: 'Muddati kelgan so‘zlar · xotiradan topish',
+      count: words.length,
+      wordIds: words.map((review) => review.item_id),
+    });
+  if (grammar.length)
+    items.push({
+      id: 'due-grammar',
+      kind: 'grammar',
+      title: `${grammar.length} ta grammatika savoli`,
+      detail: grammar.some((review) => review.wrong_count > 0)
+        ? 'Oldingi xatolarni mustahkamlash'
+        : 'Muddati kelgan grammatikani eslash',
+      count: grammar.length,
+      questionIds: grammar.map((review) => review.item_id),
+    });
+  if (topik.length)
+    items.push({
+      id: 'due-topik',
+      kind: 'topik',
+      title: `${topik.length} ta TOPIK savolini takrorlash`,
+      detail: 'Oldingi xatolar va ikkilangan javoblar',
+      count: topik.length,
+      questionIds: topik.map((review) => review.item_id),
+    });
+  if (teacherTask)
+    items.push({
+      id: `task-${teacherTask.id}`,
+      kind: 'task',
+      title: teacherTask.title,
+      detail: `${teacherTask.lesson} · ustoz vazifasi`,
+      count: 1,
+      taskId: teacherTask.id,
+    });
+  const reviewCount = words.length + grammar.length + topik.length;
+  const assignmentCount = teacherTask ? 1 : 0;
+  return {
+    headline:
+      reviewCount && assignmentCount
+        ? 'Avval takrorlash, keyin ustoz vazifasi.'
+        : reviewCount
+          ? 'Muddati kelgan takrorlashlardan boshlang.'
+          : assignmentCount
+            ? 'Bugun ustoz ochgan vazifani bajaring.'
+            : 'Bugungi majburiy rejangiz bajarildi.',
+    items,
+    reviewCount,
+    assignmentCount,
+    estimatedMinutes: words.length + (grammar.length + topik.length) * 2 + assignmentCount * 10,
+    complete: items.length === 0,
   };
 }
 export function rateStudyWord(user: User, wordId: string, remembered: boolean, eventKey: string) {

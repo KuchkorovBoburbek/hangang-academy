@@ -142,6 +142,12 @@ test('Mobile home shows four real states, preserves access, opens exact practice
   await expect(page.locator('[data-skill=listening]')).toContainText('Vazifa yo‘q');
   await expect(page.locator('[data-skill=speaking]')).toContainText('Bajarish kerak');
   await expect(page.locator('[data-skill=writing]')).toContainText('Tekshirilmoqda');
+  await expect(page.getByRole('heading', { name: 'Bugungi rejam' })).toBeVisible();
+  await expect(page.getByText('Bugun nimani qilishim kerak?')).toBeVisible();
+  await expect(page.locator('.home-plan-answer')).toHaveText(
+    'Bugun ustoz ochgan vazifani bajaring.',
+  );
+  await expect(page.getByRole('button', { name: /1-qadam: 자기소개/ })).toBeVisible();
   await expect(page.getByText('Bajarilishi shart', { exact: true })).toHaveCount(0);
   await expect(page.locator('.home-required-list')).toHaveCount(0);
   await expect(page.getByRole('heading', { name: 'Qo‘shimcha vazifalar' })).toBeVisible();
@@ -219,6 +225,9 @@ test('Empty groups show no invented homework, and legacy students use the same l
     await expect(page.locator('.home-skill-card')).toHaveCount(4);
     if (name === 'empty') {
       await expect(page.locator('.home-skill-card.empty')).toHaveCount(4);
+      await expect(page.locator('.home-today-plan')).toContainText(
+        'Bugungi majburiy rejangiz bajarildi.',
+      );
       await page
         .getByRole('button', { name: '말하기 · Gapirish uchun qo‘shimcha mashqlar' })
         .click();

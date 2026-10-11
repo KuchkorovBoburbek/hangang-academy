@@ -4,7 +4,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { createHmac } from 'node:crypto';
 vi.mock('next/headers', () => ({ cookies: vi.fn() }));
-import { resetDbForTests, one, many, run, id, now } from '../lib/db';
+import { resetDbForTests, one, many, run, id, now, transaction } from '../lib/db';
 import { ensureSeed } from '../lib/seed';
 import { verifyTelegram, enforceOrigin } from '../lib/auth';
 import {
@@ -20,6 +20,7 @@ import { validateFile } from '../lib/files';
 import { normalizeReview, evaluateSubmission } from '../lib/ai';
 import { aiConfig } from '../lib/ai-config';
 import { claimAIJob, queueReminders } from '../lib/worker';
+import { recordStudy, todayStudyPlan } from '../lib/study';
 import type { User, Question, Submission } from '../lib/types';
 let root: string;
 let student: User;
@@ -58,12 +59,124 @@ describe('Learning and access boundaries', () => {
     expect(startQuiz(student, 'vocabulary', 'practice').id).toBe(s.id);
     expect(startQuiz(student, 'grammar', 'practice').question?.kind).toBe('grammar');
     expect(
-      one<{ box: number }>(
-        'SELECT box FROM reviews WHERE user_id=? AND question_id=?',
+      one<{ stage: number }>(
+        "SELECT stage FROM study_reviews WHERE user_id=? AND kind='word' AND item_id=?",
         student.id,
-        q.id,
-      )?.box,
+        q.topic_id,
+      )?.stage,
     ).toBe(1);
+  });
+  it('builds one access-safe daily priority and advances mastery only on another local day', () => {
+    const grammar = one<Question>(
+      "SELECT * FROM questions WHERE kind='grammar' AND topic_id IN (SELECT value FROM json_each((SELECT grammar_ids FROM groups WHERE id=?))) LIMIT 1",
+      student.group_id!,
+    )!;
+    const word = one<Question>(
+      "SELECT * FROM questions WHERE kind='vocabulary' AND topic_id IN (SELECT value FROM json_each((SELECT vocabulary_ids FROM groups WHERE id=?))) LIMIT 1",
+      student.group_id!,
+    )!;
+    for (const [kind, itemId] of [
+      ['question', grammar.id],
+      ['word', word.topic_id],
+      ['word', 'closed-word'],
+    ] as const)
+      run(
+        `INSERT INTO study_reviews(user_id,kind,item_id,stage,due_at,correct_count,wrong_count,last_at)
+         VALUES(?,?,?,0,'2000-01-02T00:00:00.000Z',0,1,'2000-01-01T00:00:00.000Z')
+         ON CONFLICT(user_id,kind,item_id) DO UPDATE SET due_at=excluded.due_at,wrong_count=excluded.wrong_count,last_at=excluded.last_at`,
+        student.id,
+        kind,
+        itemId,
+      );
+    const plan = todayStudyPlan(student, [
+      {
+        id: 'teacher-task',
+        title: 'Ustoz ochgan yangi vazifa',
+        kind: 'reading',
+        status: 'todo',
+        source: 'lesson',
+        required: true,
+        lesson: '2-dars · Maktab',
+        dueAt: '2026-10-20T00:00:00.000Z',
+      },
+    ]);
+    expect(plan.items.map((item) => item.kind)).toEqual(['words', 'grammar', 'task']);
+    expect(plan.items[0].wordIds).toContain(word.topic_id);
+    expect(plan.items[0].wordIds).not.toContain('closed-word');
+    expect(plan.headline).toContain('Avval takrorlash');
+    const wordReview = startQuiz(
+      student,
+      'review',
+      'practice',
+      undefined,
+      undefined,
+      plan.items[0].wordIds,
+    );
+    expect(wordReview.total).toBe(plan.items[0].wordIds?.length);
+    const grammarItem = plan.items.find((item) => item.kind === 'grammar')!;
+    const grammarReview = startQuiz(
+      student,
+      'review',
+      'practice',
+      undefined,
+      undefined,
+      undefined,
+      grammarItem.questionIds,
+    );
+    expect(grammarReview.total).toBe(grammarItem.questionIds?.length);
+
+    transaction(() =>
+      recordStudy(
+        student.id,
+        'question',
+        'calendar-day-test',
+        true,
+        false,
+        'calendar-1',
+        '2026-01-01T18:30:00.000Z',
+      ),
+    );
+    const firstInterval = one<{ stage: number; due_at: string }>(
+      'SELECT stage,due_at FROM study_reviews WHERE user_id=? AND item_id=?',
+      student.id,
+      'calendar-day-test',
+    )!;
+    transaction(() =>
+      recordStudy(
+        student.id,
+        'question',
+        'calendar-day-test',
+        true,
+        false,
+        'calendar-2',
+        '2026-01-01T18:50:00.000Z',
+      ),
+    );
+    expect(
+      one<{ stage: number; due_at: string }>(
+        'SELECT stage,due_at FROM study_reviews WHERE user_id=? AND item_id=?',
+        student.id,
+        'calendar-day-test',
+      ),
+    ).toMatchObject({ stage: 1, due_at: firstInterval.due_at });
+    transaction(() =>
+      recordStudy(
+        student.id,
+        'question',
+        'calendar-day-test',
+        true,
+        false,
+        'calendar-3',
+        '2026-01-01T19:10:00.000Z',
+      ),
+    );
+    expect(
+      one<{ stage: number }>(
+        'SELECT stage FROM study_reviews WHERE user_id=? AND item_id=?',
+        student.id,
+        'calendar-day-test',
+      )?.stage,
+    ).toBe(2);
   });
   it('completes a test without revealing explanations before the result', () => {
     let s = startQuiz(student, 'grammar', 'test', 'A01');

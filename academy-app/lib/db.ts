@@ -11,7 +11,7 @@ export const dataDir = () =>
 export const now = () => new Date().toISOString();
 export const id = () => randomUUID();
 export function db() {
-  if (globalDb.academyDb && globalDb.academySchemaVersion === 18) return globalDb.academyDb;
+  if (globalDb.academyDb && globalDb.academySchemaVersion === 19) return globalDb.academyDb;
   fs.mkdirSync(dataDir(), { recursive: true });
   const connection = globalDb.academyDb || new DatabaseSync(path.join(dataDir(), 'academy.sqlite'));
   connection.exec('PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON; PRAGMA busy_timeout=10000;');
@@ -233,13 +233,58 @@ export function db() {
       connection.exec(
         "UPDATE notes SET kind=CASE WHEN topic_id GLOB '[ABCD][0-9][0-9]' THEN 'grammar' WHEN topic_id IS NOT NULL THEN 'word' ELSE 'note' END",
       );
+    if (
+      !connection.prepare("SELECT key FROM app_meta WHERE key='study-reviews-unified-v1'").get()
+    ) {
+      const legacy = connection
+        .prepare(
+          'SELECT r.*,q.kind AS question_kind,q.topic_id FROM reviews r JOIN questions q ON q.id=r.question_id ORDER BY r.last_at',
+        )
+        .all() as {
+        user_id: string;
+        question_id: string;
+        question_kind: string;
+        topic_id: string;
+        box: number;
+        due_at: string;
+        correct_count: number;
+        wrong_count: number;
+        last_at: string;
+      }[];
+      const existing = connection.prepare(
+        'SELECT 1 FROM study_reviews WHERE user_id=? AND kind=? AND item_id=?',
+      );
+      const insert = connection.prepare(
+        'INSERT INTO study_reviews(user_id,kind,item_id,stage,due_at,correct_count,wrong_count,last_at) VALUES(?,?,?,?,?,?,?,?)',
+      );
+      for (const row of legacy) {
+        const kind = row.question_kind === 'vocabulary' ? 'word' : 'question';
+        const itemId = kind === 'word' ? row.topic_id : row.question_id;
+        // Vocabulary attempts were already mirrored by the newer study engine.
+        // Keep that richer row when it exists; import legacy-only grammar history.
+        if (existing.get(row.user_id, kind, itemId)) continue;
+        insert.run(
+          row.user_id,
+          kind,
+          itemId,
+          row.box,
+          row.due_at,
+          row.correct_count,
+          row.wrong_count,
+          row.last_at,
+        );
+      }
+      connection
+        .prepare("INSERT INTO app_meta(key,value) VALUES('study-reviews-unified-v1',?)")
+        .run(now());
+    }
     connection.exec('COMMIT');
   } catch (error) {
     connection.exec('ROLLBACK');
     throw error;
   }
   globalDb.academyDb = connection;
-  globalDb.academySchemaVersion = 18;
+  globalDb.academySchemaVersion = 19;
   return connection;
 }
 export function one<T = Record<string, unknown>>(

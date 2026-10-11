@@ -544,10 +544,13 @@ async function handle(req: NextRequest, ctx: { params: Promise<{ path: string[] 
           mode: z.enum(['practice', 'test']).default('practice'),
           topicId: str(1, 30).optional(),
           topicIds: z.array(str(1, 30)).max(30).optional(),
+          questionIds: z.array(str(1, 180)).max(10).optional(),
           assignmentId: str(1, 50).optional(),
         })
         .parse(await body(req));
-      return json(startQuiz(user, b.kind, b.mode, b.topicId, b.assignmentId, b.topicIds));
+      return json(
+        startQuiz(user, b.kind, b.mode, b.topicId, b.assignmentId, b.topicIds, b.questionIds),
+      );
     }
     if (endpoint === 'quiz/answer' && method === 'POST') {
       const b = z

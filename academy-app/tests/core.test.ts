@@ -20,7 +20,7 @@ import { validateFile } from '../lib/files';
 import { normalizeReview, evaluateSubmission } from '../lib/ai';
 import { aiConfig } from '../lib/ai-config';
 import { claimAIJob, queueReminders } from '../lib/worker';
-import { recordStudy, todayStudyPlan } from '../lib/study';
+import { recordStudy, saveTodayStudyPlan, todayStudyPlan } from '../lib/study';
 import type { User, Question, Submission } from '../lib/types';
 let root: string;
 let student: User;
@@ -88,7 +88,7 @@ describe('Learning and access boundaries', () => {
         kind,
         itemId,
       );
-    const plan = todayStudyPlan(student, [
+    const tasks = [
       {
         id: 'teacher-task',
         title: 'Ustoz ochgan yangi vazifa',
@@ -99,11 +99,21 @@ describe('Learning and access boundaries', () => {
         lesson: '2-dars · Maktab',
         dueAt: '2026-10-20T00:00:00.000Z',
       },
-    ]);
+    ] as const;
+    const suggestion = todayStudyPlan(student, [...tasks]);
+    expect(suggestion.configured).toBe(false);
+    expect(suggestion.items).toEqual([]);
+    expect(suggestion.options.map((item) => item.kind)).toEqual(['words', 'grammar', 'task']);
+    const plan = saveTodayStudyPlan(
+      student,
+      [...tasks],
+      suggestion.options.map((item) => item.id),
+    );
+    expect(plan.configured).toBe(true);
     expect(plan.items.map((item) => item.kind)).toEqual(['words', 'grammar', 'task']);
     expect(plan.items[0].wordIds).toContain(word.topic_id);
     expect(plan.items[0].wordIds).not.toContain('closed-word');
-    expect(plan.headline).toContain('Avval takrorlash');
+    expect(plan.headline).toContain('3 ta tanlangan qadam');
     const wordReview = startQuiz(
       student,
       'review',

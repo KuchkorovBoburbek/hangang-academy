@@ -351,7 +351,14 @@ export default function Academy() {
               ) : pathname === '/my-group' && state.user.group_id ? (
                 <GroupBoard groupId={state.user.group_id} teacher={false} notify={setNotice} />
               ) : pathname === '/' ? (
-                <StudentHome data={student} user={state.user} start={start} go={go} />
+                <StudentHome
+                  data={student}
+                  user={state.user}
+                  start={start}
+                  go={go}
+                  notify={setNotice}
+                  refresh={refresh}
+                />
               ) : pathname.startsWith('/assignment/') ? (
                 <StudyAssignmentView
                   assignmentId={pathname.split('/')[2]}

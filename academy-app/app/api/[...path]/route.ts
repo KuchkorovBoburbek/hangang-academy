@@ -32,7 +32,8 @@ import { solutionSchema } from '@/lib/solution-schema';
 import { topikTeachingReport, createTopikAssignment, studyAssignment } from '@/lib/topik-teaching';
 import { wordCloze } from '@/lib/word-context';
 import { dailyPlan, dailyStep } from '@/lib/daily';
-import { studySummary, rateStudyWord, saveStudyWord } from '@/lib/study';
+import { studySummary, rateStudyWord, saveStudyWord, saveTodayStudyPlan } from '@/lib/study';
+import { homeTasks } from '@/lib/student-home';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { randomBytes } from 'node:crypto';
@@ -426,6 +427,11 @@ async function handle(req: NextRequest, ctx: { params: Promise<{ path: string[] 
       return json(dailyStep(user, b.planId, b.step));
     }
     if (endpoint === 'study/reviews' && method === 'GET') return json(studySummary(user.id));
+    if (endpoint === 'study/today-plan' && method === 'POST') {
+      const b = z.object({ itemIds: z.array(str(1, 100)).max(30) }).parse(await body(req));
+      const state = studentState(user);
+      return json(saveTodayStudyPlan(user, homeTasks(state), b.itemIds));
+    }
     if (endpoint === 'study/word/save' && method === 'POST') {
       const b = z.object({ wordId: str(1, 180) }).parse(await body(req));
       return json(saveStudyWord(user, b.wordId));

@@ -27,14 +27,26 @@ export type TodayPlanItem = {
   wordIds?: string[];
   questionIds?: string[];
   taskId?: string;
+  complete: boolean;
 };
 export type TodayPlan = {
+  day: string;
   headline: string;
   items: TodayPlanItem[];
+  options: TodayPlanItem[];
   reviewCount: number;
   assignmentCount: number;
   estimatedMinutes: number;
+  completedCount: number;
+  configured: boolean;
   complete: boolean;
+};
+type TodayPlanRow = {
+  user_id: string;
+  day: string;
+  items: string;
+  created_at: string;
+  updated_at: string;
 };
 
 function studyDay(at: string, timezone: string) {
@@ -162,8 +174,7 @@ export function studySummary(userId: string) {
   };
 }
 
-export function todayStudyPlan(user: User, tasks: HomeTask[]): TodayPlan {
-  const due = visibleStudyReviews(user.id).filter((review) => review.due_at <= now());
+function todayPlanCandidates(user: User, tasks: HomeTask[], due: StudyReviewItem[]) {
   const words = due.filter((review) => review.source === 'word').slice(0, 5);
   const grammar = due
     .filter((review) => review.source === 'quiz')
@@ -173,7 +184,6 @@ export function todayStudyPlan(user: User, tasks: HomeTask[]): TodayPlan {
     .filter((review) => review.source === 'topik')
     .sort((a, b) => b.wrong_count - a.wrong_count || a.due_at.localeCompare(b.due_at))
     .slice(0, 3);
-  const teacherTask = tasks.find((task) => task.required && task.status === 'todo');
   const items: TodayPlanItem[] = [];
   if (words.length)
     items.push({
@@ -183,6 +193,7 @@ export function todayStudyPlan(user: User, tasks: HomeTask[]): TodayPlan {
       detail: 'Muddati kelgan so‘zlar · xotiradan topish',
       count: words.length,
       wordIds: words.map((review) => review.item_id),
+      complete: false,
     });
   if (grammar.length)
     items.push({
@@ -194,6 +205,7 @@ export function todayStudyPlan(user: User, tasks: HomeTask[]): TodayPlan {
         : 'Muddati kelgan grammatikani eslash',
       count: grammar.length,
       questionIds: grammar.map((review) => review.item_id),
+      complete: false,
     });
   if (topik.length)
     items.push({
@@ -203,8 +215,9 @@ export function todayStudyPlan(user: User, tasks: HomeTask[]): TodayPlan {
       detail: 'Oldingi xatolar va ikkilangan javoblar',
       count: topik.length,
       questionIds: topik.map((review) => review.item_id),
+      complete: false,
     });
-  if (teacherTask)
+  for (const teacherTask of tasks.filter((task) => task.required && task.status === 'todo'))
     items.push({
       id: `task-${teacherTask.id}`,
       kind: 'task',
@@ -212,24 +225,119 @@ export function todayStudyPlan(user: User, tasks: HomeTask[]): TodayPlan {
       detail: `${teacherTask.lesson} · ustoz vazifasi`,
       count: 1,
       taskId: teacherTask.id,
+      complete: false,
     });
-  const reviewCount = words.length + grammar.length + topik.length;
-  const assignmentCount = teacherTask ? 1 : 0;
+  return items;
+}
+
+function hydratePlanItem(
+  raw: TodayPlanItem,
+  reviews: StudyReviewItem[],
+  dueIds: Set<string>,
+  tasks: HomeTask[],
+): TodayPlanItem | null {
+  if (raw.kind === 'task') {
+    const task = tasks.find((candidate) => candidate.id === raw.taskId);
+    if (!task?.required) return null;
+    return {
+      ...raw,
+      title: task.title,
+      detail: `${task.lesson} · ustoz vazifasi`,
+      complete: task.status !== 'todo',
+    };
+  }
+  const source = raw.kind === 'words' ? 'word' : raw.kind === 'grammar' ? 'quiz' : 'topik';
+  const ids = raw.kind === 'words' ? raw.wordIds || [] : raw.questionIds || [];
+  const visible = new Set(
+    reviews.filter((review) => review.source === source).map((review) => review.item_id),
+  );
+  const allowedIds = ids.filter((itemId) => visible.has(itemId));
+  if (!allowedIds.length) return null;
+  const count = allowedIds.length;
   return {
-    headline:
-      reviewCount && assignmentCount
-        ? 'Avval takrorlash, keyin ustoz vazifasi.'
-        : reviewCount
-          ? 'Muddati kelgan takrorlashlardan boshlang.'
-          : assignmentCount
-            ? 'Bugun ustoz ochgan vazifani bajaring.'
-            : 'Bugungi majburiy rejangiz bajarildi.',
+    ...raw,
+    title:
+      raw.kind === 'words'
+        ? `${count} ta eski so‘zni eslash`
+        : raw.kind === 'grammar'
+          ? `${count} ta grammatika savoli`
+          : `${count} ta TOPIK savolini takrorlash`,
+    count,
+    wordIds: raw.kind === 'words' ? allowedIds : undefined,
+    questionIds: raw.kind === 'words' ? undefined : allowedIds,
+    complete: allowedIds.every((itemId) => !dueIds.has(itemId)),
+  };
+}
+
+export function todayStudyPlan(user: User, tasks: HomeTask[]): TodayPlan {
+  const day = studyDay(now(), user.timezone);
+  const reviews = visibleStudyReviews(user.id);
+  const due = reviews.filter((review) => review.due_at <= now());
+  const dueIds = new Set(due.map((review) => review.item_id));
+  const candidates = todayPlanCandidates(user, tasks, due);
+  const row = one<TodayPlanRow>(
+    'SELECT * FROM student_day_plans WHERE user_id=? AND day=?',
+    user.id,
+    day,
+  );
+  const saved = row
+    ? (JSON.parse(row.items) as TodayPlanItem[])
+        .map((item) => hydratePlanItem(item, reviews, dueIds, tasks))
+        .filter((item): item is TodayPlanItem => !!item)
+    : [];
+  const optionMap = new Map<string, TodayPlanItem>();
+  for (const option of [...saved, ...candidates])
+    if (!optionMap.has(option.id)) optionMap.set(option.id, option);
+  const items = saved;
+  const remaining = items.filter((item) => !item.complete);
+  const reviewCount = remaining
+    .filter((item) => item.kind !== 'task')
+    .reduce((sum, item) => sum + item.count, 0);
+  const assignmentCount = remaining.filter((item) => item.kind === 'task').length;
+  return {
+    day,
+    headline: !row
+      ? 'Bugungi rejangizni o‘zingiz belgilang.'
+      : !items.length
+        ? 'Bugun uchun ochiq reja bandi yo‘q.'
+        : !remaining.length
+          ? 'Siz belgilagan bugungi reja bajarildi.'
+          : `${remaining.length} ta tanlangan qadam qoldi.`,
     items,
+    options: [...optionMap.values()],
     reviewCount,
     assignmentCount,
-    estimatedMinutes: words.length + (grammar.length + topik.length) * 2 + assignmentCount * 10,
-    complete: items.length === 0,
+    estimatedMinutes: remaining.reduce(
+      (minutes, item) => minutes + (item.kind === 'task' ? 10 : item.count * 2),
+      0,
+    ),
+    completedCount: items.length - remaining.length,
+    configured: !!row,
+    complete: !!row && !remaining.length,
   };
+}
+
+export function saveTodayStudyPlan(user: User, tasks: HomeTask[], selectedIds: string[]) {
+  if (user.role !== 'student') throw new AppError(403, 'Rejani o‘quvchi belgilaydi.');
+  const current = todayStudyPlan(user, tasks);
+  const unique = [...new Set(selectedIds)];
+  const options = new Map(current.options.map((option) => [option.id, option]));
+  if (unique.some((itemId) => !options.has(itemId)))
+    throw new AppError(409, 'Reja variantlari yangilandi. Sahifani yangilang.');
+  if (current.options.length && !unique.length)
+    throw new AppError(400, 'Bugungi rejangiz uchun kamida bitta band tanlang.');
+  const selected = unique.map((itemId) => options.get(itemId)!);
+  const timestamp = now();
+  run(
+    `INSERT INTO student_day_plans(user_id,day,items,created_at,updated_at) VALUES(?,?,?,?,?)
+     ON CONFLICT(user_id,day) DO UPDATE SET items=excluded.items,updated_at=excluded.updated_at`,
+    user.id,
+    current.day,
+    JSON.stringify(selected),
+    timestamp,
+    timestamp,
+  );
+  return todayStudyPlan(user, tasks);
 }
 export function rateStudyWord(user: User, wordId: string, remembered: boolean, eventKey: string) {
   if (!visibleVocabularyWord(user, wordId)) throw new AppError(404, 'So‘z topilmadi.');

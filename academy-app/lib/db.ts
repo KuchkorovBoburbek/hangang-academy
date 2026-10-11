@@ -11,7 +11,7 @@ export const dataDir = () =>
 export const now = () => new Date().toISOString();
 export const id = () => randomUUID();
 export function db() {
-  if (globalDb.academyDb && globalDb.academySchemaVersion === 19) return globalDb.academyDb;
+  if (globalDb.academyDb && globalDb.academySchemaVersion === 20) return globalDb.academyDb;
   fs.mkdirSync(dataDir(), { recursive: true });
   const connection = globalDb.academyDb || new DatabaseSync(path.join(dataDir(), 'academy.sqlite'));
   connection.exec('PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON; PRAGMA busy_timeout=10000;');
@@ -46,6 +46,7 @@ export function db() {
  CREATE TABLE IF NOT EXISTS topik_assignment_attempts(user_id TEXT NOT NULL REFERENCES users(id),assignment_id TEXT NOT NULL REFERENCES assignments(id),session_id TEXT NOT NULL REFERENCES topik_sessions(id),PRIMARY KEY(user_id,assignment_id));
  CREATE TABLE IF NOT EXISTS topik_timing_events(session_id TEXT NOT NULL REFERENCES topik_sessions(id),event_id TEXT NOT NULL,question_id TEXT NOT NULL,seconds INTEGER NOT NULL,PRIMARY KEY(session_id,event_id));
  CREATE TABLE IF NOT EXISTS daily_plans(id TEXT PRIMARY KEY,user_id TEXT NOT NULL REFERENCES users(id),day TEXT NOT NULL,minutes INTEGER NOT NULL,steps TEXT NOT NULL,created_at TEXT NOT NULL,UNIQUE(user_id,day,minutes));
+ CREATE TABLE IF NOT EXISTS student_day_plans(user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,day TEXT NOT NULL,items TEXT NOT NULL DEFAULT '[]',created_at TEXT NOT NULL,updated_at TEXT NOT NULL,PRIMARY KEY(user_id,day));
  CREATE TABLE IF NOT EXISTS study_reviews(user_id TEXT NOT NULL REFERENCES users(id),kind TEXT NOT NULL,item_id TEXT NOT NULL,stage INTEGER NOT NULL DEFAULT 0,due_at TEXT NOT NULL,correct_count INTEGER NOT NULL DEFAULT 0,wrong_count INTEGER NOT NULL DEFAULT 0,last_at TEXT NOT NULL,PRIMARY KEY(user_id,kind,item_id));
  CREATE INDEX IF NOT EXISTS study_review_due ON study_reviews(user_id,due_at);
  CREATE TABLE IF NOT EXISTS study_events(user_id TEXT NOT NULL REFERENCES users(id),event_key TEXT NOT NULL,kind TEXT NOT NULL,item_id TEXT NOT NULL,correct INTEGER NOT NULL,uncertain INTEGER NOT NULL DEFAULT 0,at TEXT NOT NULL,PRIMARY KEY(user_id,event_key));
@@ -284,7 +285,7 @@ export function db() {
     throw error;
   }
   globalDb.academyDb = connection;
-  globalDb.academySchemaVersion = 19;
+  globalDb.academySchemaVersion = 20;
   return connection;
 }
 export function one<T = Record<string, unknown>>(

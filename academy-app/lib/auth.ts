@@ -77,7 +77,16 @@ export const checkPassword = (p: string, h: string) => bcrypt.compareSync(p, h);
 export function enforceOrigin(request: Request) {
   const origin = request.headers.get('origin');
   const expected = new URL(process.env.APP_URL || request.url).origin;
-  if (!origin || origin !== expected)
+  const allowedOrigins = new Set([expected]);
+
+  // During local development the same server can be opened through localhost
+  // on the Mac and through its LAN address on a phone. Both are legitimate
+  // same-origin requests even when APP_URL names only one of them.
+  if (process.env.NODE_ENV !== 'production') {
+    allowedOrigins.add(new URL(request.url).origin);
+  }
+
+  if (!origin || !allowedOrigins.has(origin))
     throw new AppError(403, 'So‘rov manbasi tasdiqlanmadi. Sahifani yangilang.');
 }
 export function rateLimit(key: string, limit = 20, windowMs = 60000) {

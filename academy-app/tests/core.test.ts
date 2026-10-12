@@ -192,6 +192,21 @@ describe('Learning and access boundaries', () => {
         }),
       ),
     ).toThrow('manbasi');
+
+    const appUrl = process.env.APP_URL;
+    try {
+      process.env.APP_URL = 'http://172.30.1.96:3000';
+      expect(() =>
+        enforceOrigin(
+          new Request('http://localhost:3000/api/logout', {
+            headers: { origin: 'http://localhost:3000' },
+          }),
+        ),
+      ).not.toThrow();
+    } finally {
+      process.env.APP_URL = appUrl;
+    }
+
     expect(() => validateFile(Buffer.from('<script>alert(1)</script>'), 'image/png')).toThrow(
       'faylini',
     );

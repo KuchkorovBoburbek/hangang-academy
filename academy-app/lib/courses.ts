@@ -147,6 +147,8 @@ export function saveCourseGroup(user: User, input: unknown) {
       id: z.string().uuid().optional(),
       name: text(80).min(2),
       level: z.enum(['hangul', 'topik34', 'topik56']),
+      grammarIds: z.array(text(30).min(1)).max(200).optional(),
+      vocabularyIds: z.array(text(180).min(1)).max(1000).optional(),
     })
     .parse(input);
   ensureCourses(user);
@@ -156,9 +158,30 @@ export function saveCourseGroup(user: User, input: unknown) {
     b.level,
   )!;
   const gid = b.id || id();
+  const grammarIds = [...new Set(b.grammarIds || [])];
+  const vocabularyIds = [...new Set(b.vocabularyIds || [])];
+  if (
+    grammarIds.some(
+      (grammarId) =>
+        !GRAMMARS.some((grammar) => grammar.id === grammarId) ||
+        (b.level === 'hangul' && !grammarId.startsWith('S1A-')),
+    )
+  )
+    throw new AppError(400, 'Takrorlash grammatikasi topilmadi.');
+  const allowedWords = new Set(
+    allVocabulary(user)
+      .filter((word) => word.level === b.level)
+      .map((word) => word.id),
+  );
+  if (vocabularyIds.some((wordId) => !allowedWords.has(wordId)))
+    throw new AppError(400, 'Takrorlash lug‘ati guruh darajasiga mos emas.');
   if (b.id) {
     teacherGroup(user, b.id);
     const existing = one<Group>('SELECT * FROM groups WHERE id=?', b.id)!;
+    const savedGrammarIds =
+      b.grammarIds === undefined ? JSON.parse(existing.grammar_ids) : grammarIds;
+    const savedVocabularyIds =
+      b.vocabularyIds === undefined ? JSON.parse(existing.vocabulary_ids) : vocabularyIds;
     if (
       existing.course_id &&
       existing.course_id !== c.id &&
@@ -169,21 +192,26 @@ export function saveCourseGroup(user: User, input: unknown) {
         'Darslari ochilgan guruhning darajasini almashtirib bo‘lmaydi. Yangi guruh oching.',
       );
     run(
-      'UPDATE groups SET name=?,level=?,course_id=? WHERE id=?',
+      'UPDATE groups SET name=?,level=?,course_id=?,grammar_ids=?,vocabulary_ids=? WHERE id=?',
       b.name,
       COURSE_LEVELS.find((l) => l.id === b.level)!.label,
       c.id,
+      JSON.stringify(savedGrammarIds),
+      JSON.stringify(savedVocabularyIds),
       gid,
     );
+    run('DELETE FROM daily_plans WHERE user_id IN (SELECT id FROM users WHERE group_id=?)', gid);
   } else
     run(
-      'INSERT INTO groups(id,name,level,invite_code,teacher_id,course_id,created_at) VALUES(?,?,?,?,?,?,?)',
+      'INSERT INTO groups(id,name,level,invite_code,teacher_id,course_id,grammar_ids,vocabulary_ids,created_at) VALUES(?,?,?,?,?,?,?,?,?)',
       gid,
       b.name,
       COURSE_LEVELS.find((l) => l.id === b.level)!.label,
       randomBytes(5).toString('hex').toUpperCase(),
       user.id,
       c.id,
+      JSON.stringify(grammarIds),
+      JSON.stringify(vocabularyIds),
       now(),
     );
   return { id: gid };

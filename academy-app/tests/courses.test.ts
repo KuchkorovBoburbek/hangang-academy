@@ -27,6 +27,7 @@ import type { CourseLesson, LessonMaterial } from '../lib/course-types';
 import { youtubeEmbedUrl, youtubeVideoId } from '../lib/youtube';
 import { SEOULTE_1A_UNITS } from '../lib/seoulte-1a';
 import { dailyPlan, dailyStep } from '../lib/daily';
+import { createVocabularyWord } from '../lib/vocabulary';
 let root: string,
   teacher: User,
   student: User,
@@ -154,6 +155,52 @@ it('builds Hangul daily review only from materials opened for the learner group'
   const unopened = dailyPlan(other, 10);
   expect(unopened.steps).toHaveLength(0);
   expect(() => dailyStep(other, plan.id, 1)).toThrow('Reja topilmadi');
+});
+it('lets the teacher open extra Hangul words and grammar for daily review', () => {
+  const group = one<Group>('SELECT * FROM groups WHERE id=?', gid)!;
+  const extraWord = createVocabularyWord(
+    teacher,
+    {
+      ko: '복습하다',
+      uz: 'takrorlamoq',
+      pos: '동사',
+      example: '매일 복습해요.',
+      translation: 'Har kuni takrorlayman.',
+      kind: 'word',
+      level: 'hangul',
+      book: '1A',
+      section: 'reading',
+      categories: ['unit-8'],
+    },
+    [gid2],
+    id(),
+  );
+  const previous = dailyPlan(student, 20);
+
+  saveCourseGroup(teacher, {
+    id: gid,
+    name: group.name,
+    level: 'hangul',
+    grammarIds: ['S1A-01-01'],
+    vocabularyIds: [extraWord.id],
+  });
+
+  expect(one('SELECT id FROM daily_plans WHERE id=?', previous.id)).toBeUndefined();
+  expect(courseAccess(student).grammarIds).toContain('S1A-01-01');
+  expect(allVocabulary(student).map((word) => word.id)).toContain(extraWord.id);
+  expect(
+    dailyPlan(student, 20)
+      .steps.flatMap((step) => step.words || [])
+      .map((word) => word.id),
+  ).toContain(extraWord.id);
+
+  saveCourseGroup(teacher, {
+    id: gid,
+    name: group.name,
+    level: 'hangul',
+    grammarIds: [],
+    vocabularyIds: [],
+  });
 });
 it('publishes a video-only lesson without requiring an extra material card', () => {
   let videoLesson = createLesson(teacher, lesson.course_id);

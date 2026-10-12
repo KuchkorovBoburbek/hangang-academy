@@ -291,3 +291,25 @@ test('Empty groups show no invented homework, and legacy students use the same l
     await context.close();
   }
 });
+test('Teacher can explicitly open Hangul grammar for daily review', async ({ browser }) => {
+  const context = await browser.newContext({
+    storageState: await teacher.storageState(),
+    viewport: { width: 1280, height: 900 },
+  });
+  const page = await context.newPage();
+  await page.goto('/groups');
+  const groupCard = page.locator('.group-card').filter({ hasText: 'Mobile Empty' });
+  await groupCard.getByRole('button', { name: 'Kunlik takrorlashni sozlash' }).click();
+  const dialog = page.getByRole('dialog');
+  await expect(dialog).toContainText('O‘quvchiga qo‘shimcha material ochish');
+  await expect(dialog).toContainText('Dars bilan ochilgan materiallar avtomatik qo‘shiladi');
+  await dialog
+    .locator('.daily-access-columns fieldset')
+    .first()
+    .getByRole('checkbox')
+    .first()
+    .check();
+  await dialog.getByRole('button', { name: 'Guruhni saqlash' }).click();
+  await expect(page.getByRole('status')).toContainText('Guruh saqlandi');
+  await context.close();
+});

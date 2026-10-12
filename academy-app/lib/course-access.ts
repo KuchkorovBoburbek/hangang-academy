@@ -12,8 +12,8 @@ export function courseAccess(user: User) {
       wordIds: [] as string[],
       words: [] as LessonBody['materials'][number]['words'],
     };
-  const course = one<{ level: CourseLevel }>(
-    'SELECT c.level FROM groups g JOIN courses c ON c.id=g.course_id WHERE g.id=?',
+  const course = one<{ level: CourseLevel; grammar_ids: string; vocabulary_ids: string }>(
+    'SELECT c.level,g.grammar_ids,g.vocabulary_ids FROM groups g JOIN courses c ON c.id=g.course_id WHERE g.id=?',
     user.group_id || '',
   );
   const snapshots = course
@@ -37,12 +37,18 @@ export function courseAccess(user: User) {
       })
     : [];
   const materials = snapshots.flatMap((s) => s.materials);
+  const explicitlyOpenedGrammar: string[] = JSON.parse(course?.grammar_ids || '[]');
+  const explicitlyOpenedWords: string[] = JSON.parse(course?.vocabulary_ids || '[]');
   return {
     managed: !!course,
     topik: !course || course.level !== 'hangul',
     level: course?.level || null,
-    grammarIds: [...new Set(materials.flatMap((m) => m.grammarIds))],
-    wordIds: [...new Set(materials.flatMap((m) => m.words.map((w) => w.id)))],
+    grammarIds: [
+      ...new Set([...materials.flatMap((m) => m.grammarIds), ...explicitlyOpenedGrammar]),
+    ],
+    wordIds: [
+      ...new Set([...materials.flatMap((m) => m.words.map((w) => w.id)), ...explicitlyOpenedWords]),
+    ],
     words: materials.flatMap((m) => m.words),
   };
 }

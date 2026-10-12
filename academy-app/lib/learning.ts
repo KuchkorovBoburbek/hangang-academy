@@ -20,6 +20,7 @@ import type {
 } from './types';
 import { GRAMMARS } from './content';
 import { vocabulary, questionCoverage } from './library';
+import { allVocabulary } from './vocabulary-data';
 export function localDate(date: Date, timezone = 'Asia/Tashkent') {
   return new Intl.DateTimeFormat('en-CA', {
     timeZone: timezone,
@@ -537,6 +538,15 @@ export function teacherState(user: User) {
     coverage: questionCoverage(),
     grammars: GRAMMARS,
     words: WORDS,
+    dailyReviewWords: allVocabulary(user)
+      .filter((word) => word.level === 'hangul')
+      .map((word) => ({
+        id: word.id,
+        ko: word.ko,
+        uz: word.uz,
+        book: word.book,
+        topic: word.categories[0] || 'general',
+      })),
   };
 }
 export function enqueueNotification(

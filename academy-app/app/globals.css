@@ -1822,6 +1822,10 @@ td small {
 .group-card > p {
   font-size: 0.8rem;
 }
+.group-card > .button {
+  width: 100%;
+  margin-top: 9px;
+}
 .group-counts {
   display: flex;
   gap: 12px;
@@ -1876,6 +1880,46 @@ td small {
   font-weight: 400;
   font-size: 0.8rem;
   line-height: 1.7;
+}
+.daily-access-editor {
+  display: grid;
+  gap: 17px;
+  padding: 19px;
+  border: 1px solid var(--blue-border);
+  border-radius: 14px;
+  background: var(--blue-light);
+}
+.daily-access-editor h3 {
+  margin: 5px 0;
+}
+.daily-access-editor p {
+  margin: 0;
+}
+.daily-access-columns {
+  align-items: start;
+}
+.daily-access-columns fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.daily-access-columns legend {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+.daily-access-columns legend span,
+.daily-access-columns .checkbox-label small {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 400;
+}
+.daily-access-columns .checkbox-label > span {
+  display: grid;
+  gap: 2px;
 }
 .review-grid {
   display: grid;

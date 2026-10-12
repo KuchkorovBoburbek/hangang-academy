@@ -25,6 +25,7 @@ import {
   GraduationCap,
   AlertCircle,
   LoaderCircle,
+  RotateCcw,
 } from 'lucide-react';
 import type { teacherState } from '@/lib/learning';
 import type { Group, Submission, AIReview, Grammar, Word, HomeworkSkill } from '@/lib/types';
@@ -219,17 +220,12 @@ export function Groups({
   const [busy, setBusy] = useState(false);
   const [grammarIds, setGrammarIds] = useState<string[]>([]);
   const [wordIds, setWordIds] = useState<string[]>([]);
+  const [reviewSearch, setReviewSearch] = useState('');
   function edit(g?: Group) {
     setEditing(g || {});
-    setGrammarIds(
-      g
-        ? JSON.parse(g.grammar_ids)
-        : data.grammars
-            .filter((x) => x.id.startsWith('A'))
-            .slice(0, 15)
-            .map((x) => x.id),
-    );
-    setWordIds(g ? JSON.parse(g.vocabulary_ids) : data.words.map((x) => x.id));
+    setGrammarIds(g ? JSON.parse(g.grammar_ids) : []);
+    setWordIds(g ? JSON.parse(g.vocabulary_ids) : []);
+    setReviewSearch('');
   }
   async function save(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -306,6 +302,12 @@ export function Groups({
             <a className="button secondary" href="/courses">
               {g.course_id ? 'Darslarni boshqarish' : 'Dasturga ulash uchun darajani tanlang'}
             </a>
+            {/hangul|한글|boshlang/i.test(g.level) && (
+              <button className="button secondary" onClick={() => edit(g)}>
+                <RotateCcw size={17} />
+                Kunlik takrorlashni sozlash
+              </button>
+            )}
             <div className="invite-code">
               <div>
                 <small>TAKLIF KODI</small>
@@ -434,6 +436,103 @@ export function Groups({
               Tanlangan darajadagi o‘quv dasturi avtomatik biriktiriladi. Materiallarni “Dars
               dasturlari” bo‘limida tayyorlang va shu guruh uchun darslarni oching.
             </div>
+            {editing.id && /hangul|한글|boshlang/i.test(editing.level || '') && (
+              <section className="daily-access-editor">
+                <div>
+                  <span className="eyebrow">KUNLIK TAKRORLASH</span>
+                  <h3>O‘quvchiga qo‘shimcha material ochish</h3>
+                  <p>
+                    Dars bilan ochilgan materiallar avtomatik qo‘shiladi. Bu yerdan esa so‘z va
+                    grammatikani alohida ochishingiz mumkin.
+                  </p>
+                </div>
+                <label>
+                  So‘z yoki grammatika qidirish
+                  <input
+                    value={reviewSearch}
+                    onChange={(event) => setReviewSearch(event.target.value)}
+                    placeholder="Masalan: 이에요 yoki 가족"
+                  />
+                </label>
+                <div className="form-two daily-access-columns">
+                  <fieldset>
+                    <legend>
+                      Grammatika <span>{grammarIds.length} ta tanlangan</span>
+                    </legend>
+                    <div className="check-grid">
+                      {data.grammars
+                        .filter(
+                          (grammar) =>
+                            grammar.id.startsWith('S1A-') &&
+                            (!reviewSearch.trim() ||
+                              `${grammar.form} ${grammar.meaning} ${grammar.uz}`
+                                .toLocaleLowerCase()
+                                .includes(reviewSearch.trim().toLocaleLowerCase())),
+                        )
+                        .map((grammar) => (
+                          <label className="checkbox-label" key={grammar.id}>
+                            <input
+                              type="checkbox"
+                              checked={grammarIds.includes(grammar.id)}
+                              onChange={(event) =>
+                                setGrammarIds(
+                                  event.target.checked
+                                    ? [...grammarIds, grammar.id]
+                                    : grammarIds.filter((id) => id !== grammar.id),
+                                )
+                              }
+                            />
+                            <span>
+                              <strong lang="ko">{grammar.form}</strong>
+                              <small>{grammar.meaning}</small>
+                            </span>
+                          </label>
+                        ))}
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <legend>
+                      Lug‘at <span>{wordIds.length} ta tanlangan</span>
+                    </legend>
+                    <div className="check-grid">
+                      {data.dailyReviewWords
+                        .filter(
+                          (word) =>
+                            !reviewSearch.trim() ||
+                            `${word.ko} ${word.uz} ${word.book || ''} ${word.topic}`
+                              .toLocaleLowerCase()
+                              .includes(reviewSearch.trim().toLocaleLowerCase()),
+                        )
+                        .map((word) => (
+                          <label className="checkbox-label" key={word.id}>
+                            <input
+                              type="checkbox"
+                              checked={wordIds.includes(word.id)}
+                              onChange={(event) =>
+                                setWordIds(
+                                  event.target.checked
+                                    ? [...wordIds, word.id]
+                                    : wordIds.filter((id) => id !== word.id),
+                                )
+                              }
+                            />
+                            <span>
+                              <strong lang="ko">{word.ko}</strong>
+                              <small>
+                                {word.uz} · Seoulte {word.book} · {word.topic.replace('unit-', '')}
+                                -mavzu
+                              </small>
+                            </span>
+                          </label>
+                        ))}
+                    </div>
+                  </fieldset>
+                </div>
+                <p className="field-meta">
+                  Saqlangach, guruh o‘quvchilarining bugungi takrorlash rejasi yangilanadi.
+                </p>
+              </section>
+            )}
             <SubmitButton busy={busy}>
               Guruhni saqlash
               <Check size={18} />

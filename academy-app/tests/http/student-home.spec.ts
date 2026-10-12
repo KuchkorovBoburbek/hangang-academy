@@ -165,6 +165,11 @@ test('Mobile home shows four real states, preserves access, opens exact practice
   await expect(page.getByRole('heading', { name: 'Qo‘shimcha vazifalar' })).toBeVisible();
   await expect(page.getByRole('button', { name: /Qo‘shimcha insho/ })).toBeVisible();
   await expect(page.getByRole('button', { name: /Kunlik takrorlash/ })).toBeVisible();
+  await page.getByRole('button', { name: /Kunlik takrorlash/ }).click();
+  await page.getByRole('button', { name: 'Rejani ochish' }).click();
+  await expect(page.getByText('So‘z va iboralarni eslash')).toBeVisible();
+  await expect(page.getByText('Bu bo‘lim guruhingiz darajasi uchun ochilmagan')).toHaveCount(0);
+  await page.goto('/');
   await expect(page.getByRole('progressbar', { name: 'Vazifalar bajarilishi' })).toHaveAttribute(
     'aria-valuenow',
     '33',

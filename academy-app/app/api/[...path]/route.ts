@@ -261,12 +261,7 @@ async function handle(req: NextRequest, ctx: { params: Promise<{ path: string[] 
     const user = await requireUser();
     rateLimit(`api:${user.id}`, 180, 60000);
     if (parts[0] === 'courses') return await courseHttp(req, user, parts);
-    if (
-      parts[0] === 'topik' ||
-      parts[0] === 'daily' ||
-      (parts[0] === 'study' && parts[1] === 'daily')
-    )
-      requireTopikAccess(user);
+    if (parts[0] === 'topik') requireTopikAccess(user);
     if (endpoint === 'vocabulary' && method === 'GET') {
       const q = z
         .object({

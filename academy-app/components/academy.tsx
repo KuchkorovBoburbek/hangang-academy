@@ -6,7 +6,6 @@ import {
   LayoutDashboard,
   Languages,
   BookOpen,
-  PenLine,
   NotebookPen,
   Settings,
   LogOut,
@@ -53,7 +52,6 @@ const studentNav = [
   { path: '/vocabulary', label: 'Lug‘at', icon: Languages },
   { path: '/grammar', label: 'Grammatika', icon: BookOpen },
   { path: '/topik', label: 'TOPIK 읽기', icon: ClipboardCheck },
-  { path: '/writing', label: 'Yozma vazifalar', icon: PenLine },
   { path: '/notebook', label: 'Mening daftarim', icon: NotebookPen },
   { path: '/daily', label: 'Kunlik takrorlash', icon: RotateCcw },
   { path: '/focus', label: 'Pomodoro', icon: Timer },
@@ -209,7 +207,7 @@ export default function Academy() {
         { path: '/', label: 'Bosh sahifa', icon: LayoutDashboard },
         student.courses.managed
           ? { path: '/lessons', label: 'Darslar', icon: BookOpen }
-          : { path: '/writing', label: 'Vazifalar', icon: PenLine },
+          : { path: '/daily', label: 'Takrorlash', icon: RotateCcw },
         { path: '/vocabulary', label: 'Lug‘at', icon: Languages },
         student.courses.managed
           ? { path: '/my-group', label: 'Guruhim', icon: Users }
@@ -388,8 +386,15 @@ export default function Academy() {
                 ) : (
                   <AccessFallback go={go} />
                 )
-              ) : pathname === '/writing' ? (
-                <Writing data={student} refresh={refresh} notify={setNotice} />
+              ) : pathname.startsWith('/writing/') ? (
+                <Writing
+                  key={pathname}
+                  assignmentId={pathname.split('/')[2]}
+                  data={student}
+                  refresh={refresh}
+                  notify={setNotice}
+                  go={go}
+                />
               ) : pathname === '/notebook' ? (
                 <Notebook data={student} refresh={refresh} notify={setNotice} />
               ) : (
@@ -430,15 +435,13 @@ export default function Academy() {
             <span>
               {n.path === '/topik'
                 ? 'TOPIK'
-                : n.label === 'Yozma vazifalar'
-                  ? 'Yozuv'
-                  : n.label === 'Mening daftarim'
-                    ? 'Daftarim'
-                    : n.label === 'Guruhlar va vazifalar'
-                      ? 'Guruhlar'
-                      : n.label === 'Umumiy ko‘rinish'
-                        ? 'Asosiy'
-                        : n.label}
+                : n.label === 'Mening daftarim'
+                  ? 'Daftarim'
+                  : n.label === 'Guruhlar va vazifalar'
+                    ? 'Guruhlar'
+                    : n.label === 'Umumiy ko‘rinish'
+                      ? 'Asosiy'
+                      : n.label}
             </span>
           </button>
         ))}

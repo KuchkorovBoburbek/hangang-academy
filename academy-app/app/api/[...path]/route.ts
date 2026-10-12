@@ -686,10 +686,7 @@ async function handle(req: NextRequest, ctx: { params: Promise<{ path: string[] 
         user.id,
       );
       if (previous && previous.review_outcome !== 'fail')
-        throw new AppError(
-          409,
-          'Bu topshiriq yuborilgan. Natijani yozma ishlar bo‘limidan ko‘ring.',
-        );
+        throw new AppError(409, 'Bu topshiriq yuborilgan. Natijani vazifa kartasidan ko‘ring.');
       const prepared: { name: string; mime: string; size: number; bytes: Buffer }[] = [];
       for (const file of files) {
         const bytes = Buffer.from(await file.arrayBuffer());

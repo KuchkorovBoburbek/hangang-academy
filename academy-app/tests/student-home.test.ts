@@ -62,7 +62,7 @@ it('every standalone task has one of four skills and writing needs published fee
   expect(tasks.find((t) => t.id === 'write')).toMatchObject({
     kind: 'writing',
     status: 'submitted',
-    path: '/writing?assignment=write',
+    path: '/writing/write',
   });
 });
 it('uses the skill selected by the teacher independently from the response format', () => {

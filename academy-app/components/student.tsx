@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { ReadingSession } from './topik';
 import GrammarLesson from './grammar-lesson';
 import type { TopikSession } from '@/lib/topik-types';
@@ -20,7 +20,7 @@ import {
 } from 'lucide-react';
 import type { studentState } from '@/lib/learning';
 import type { QuizKind, Grammar, Word, Assignment, Note, Submission } from '@/lib/types';
-import { api, Badge, Modal, Empty, SubmitButton, dateLabel, errorText } from './ui';
+import { api, Badge, Modal, Empty, SubmitButton, errorText } from './ui';
 import {
   SEOULTE_1A_BOOK,
   SEOULTE_1A_UNITS,
@@ -389,35 +389,31 @@ export function PracticeLibrary({
   );
 }
 export function Writing({
+  assignmentId,
   data,
   refresh,
   notify,
+  go,
 }: {
+  assignmentId: string;
   data: StudentData;
   refresh: () => void;
   notify: (s: string) => void;
+  go: (path: string) => void;
 }) {
-  const [assignment, setAssignment] = useState<Assignment | null>(null);
-  const [result, setResult] = useState<Submission | null>(null);
+  const target = data.assignments.find(
+    (item) => item.id === assignmentId && item.kind === 'writing',
+  );
+  const submitted = data.submissions.find((item) => item.assignment_id === assignmentId);
+  const retry = submitted?.review_outcome === 'fail';
+  const [assignment, setAssignment] = useState<Assignment | null>(
+    retry || !submitted ? target || null : null,
+  );
+  const [result, setResult] = useState<Submission | null>(submitted && !retry ? submitted : null);
   const [text, setText] = useState('');
   const [files, setFiles] = useState<File[]>([]);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
-  const openedFromUrl = useRef('');
-  useEffect(() => {
-    const id = new URLSearchParams(window.location.search).get('assignment');
-    if (!id || openedFromUrl.current === id) return;
-    const target = data.assignments.find((item) => item.id === id && item.kind === 'writing');
-    if (!target) return;
-    openedFromUrl.current = id;
-    const submission = data.submissions.find((item) => item.assignment_id === id);
-    if (submission?.review_outcome === 'fail') setAssignment(target);
-    else if (submission) setResult(submission);
-    else {
-      setAssignment(target);
-      setError('');
-    }
-  }, [data.assignments, data.submissions]);
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     if (!assignment) return;
@@ -434,6 +430,7 @@ export function Writing({
       setFiles([]);
       notify('Vazifangiz ustozga yuborildi.');
       refresh();
+      go('/');
     } catch (e) {
       setError(errorText(e));
     } finally {
@@ -442,85 +439,19 @@ export function Writing({
   }
   return (
     <>
-      <div className="page-heading">
-        <div>
-          <span className="eyebrow">쓰기 · FIKRINGIZNI YOZING</span>
-          <h1>Yozma vazifalar</h1>
-          <p>Yozing, topshiring va ustozingizdan izoh oling.</p>
-        </div>
-        <div className="heading-icon sand">
-          <PenLine size={29} />
-        </div>
-      </div>
-      <div className="writing-grid">
-        {data.assignments
-          .filter((a) => a.kind === 'writing')
-          .map((a) => {
-            const s = data.submissions.find((s) => s.assignment_id === a.id);
-            const outcome = s?.review_outcome || (s?.published_at ? 'success' : null);
-            return (
-              <article className="writing-card" key={a.id}>
-                <div className="writing-card-top">
-                  <Badge
-                    tone={
-                      outcome === 'success'
-                        ? 'green'
-                        : outcome === 'fail'
-                          ? 'orange'
-                          : s
-                            ? 'blue'
-                            : 'orange'
-                    }
-                  >
-                    {outcome === 'success'
-                      ? 'Success'
-                      : outcome === 'fail'
-                        ? 'Fail · qayta topshiring'
-                        : s
-                          ? 'Ustoz tekshiruvida'
-                          : 'Topshirish kerak'}
-                  </Badge>
-                  <span>{dateLabel(a.due_at)} gacha</span>
-                </div>
-                <h2>{a.title}</h2>
-                <p>{a.prompt}</p>
-                <div className="writing-bottom">
-                  <span>
-                    <Paperclip size={16} />
-                    Matn · Rasm · PDF
-                  </span>
-                  {s && outcome !== 'fail' ? (
-                    <button className="button secondary" onClick={() => setResult(s)}>
-                      Ishni ko‘rish
-                      <ArrowUpRight size={17} />
-                    </button>
-                  ) : (
-                    <button
-                      className="button primary"
-                      onClick={() => {
-                        setAssignment(a);
-                        setError('');
-                      }}
-                    >
-                      {outcome === 'fail' ? 'Qayta topshirish' : 'Yozishni boshlash'}
-                      <PenLine size={17} />
-                    </button>
-                  )}
-                </div>
-              </article>
-            );
-          })}
-      </div>
-      {!data.assignments.some((a) => a.kind === 'writing') && (
-        <Empty title="Yangi vazifa hali berilmagan">
-          Ustozingiz topshiriq bergach, shu yerda ko‘rinadi.
+      {!assignment && !result && (
+        <Empty title="Vazifa topilmadi">
+          Bu vazifa guruhingiz uchun mavjud emas.
+          <button className="button primary" onClick={() => go('/')}>
+            Bosh sahifaga qaytish
+          </button>
         </Empty>
       )}
       {assignment && (
         <Modal
           title="Yozma vazifani topshirish"
           onClose={() => {
-            if (!busy) setAssignment(null);
+            if (!busy) go('/');
           }}
           wide
         >
@@ -605,11 +536,7 @@ export function Writing({
         </Modal>
       )}
       {result && (
-        <Modal
-          title={result.assignment_title || 'Yozma ishingiz'}
-          onClose={() => setResult(null)}
-          wide
-        >
+        <Modal title={result.assignment_title || 'Yozma ishingiz'} onClose={() => go('/')} wide>
           <Badge tone={result.review_outcome === 'success' ? 'green' : 'orange'}>
             {result.review_outcome === 'success' || (result.published_at && !result.review_outcome)
               ? 'Success'

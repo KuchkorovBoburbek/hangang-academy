@@ -198,7 +198,7 @@ test('Mobile home shows four real states, preserves access, opens exact practice
   await expect(page).toHaveURL(new RegExp(`lessons/${releaseId}#material-${materials[2].id}`));
   await page.goto('/');
   await page.getByRole('button', { name: /Qo‘shimcha insho/ }).click();
-  await expect(page).toHaveURL(/\/writing\?assignment=/);
+  await expect(page).toHaveURL(/\/writing\//);
   await expect(page.getByRole('dialog')).toContainText('Qo‘shimcha insho');
   await page.getByRole('button', { name: 'Yopish', exact: true }).click();
   await page.goto('/');
@@ -213,6 +213,9 @@ test('Mobile home shows four real states, preserves access, opens exact practice
   await page.getByRole('button', { name: 'Yopish', exact: true }).click();
   await page.getByRole('button', { name: 'Yana', exact: true }).click();
   await expect(page.getByRole('dialog').getByRole('button', { name: /TOPIK/ })).toHaveCount(0);
+  await expect(
+    page.getByRole('dialog').getByRole('button', { name: 'Yozma vazifalar' }),
+  ).toHaveCount(0);
   await page.getByRole('dialog').getByRole('button', { name: 'Grammatika', exact: true }).click();
   await expect(page).toHaveURL(/\/grammar$/);
   await page.goto('/');

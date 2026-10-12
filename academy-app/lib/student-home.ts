@@ -81,7 +81,7 @@ export function homeTasks(data: HomeData): HomeTask[] {
         dueAt: a.due_at,
         path:
           a.kind === 'writing'
-            ? `/writing?assignment=${a.id}`
+            ? `/writing/${a.id}`
             : a.kind === 'topik' || a.kind === 'topik_words'
               ? `/assignment/${a.id}`
               : undefined,

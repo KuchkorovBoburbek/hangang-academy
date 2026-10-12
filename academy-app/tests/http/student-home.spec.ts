@@ -164,6 +164,7 @@ test('Mobile home shows four real states, preserves access, opens exact practice
   await expect(page.locator('.home-required-list')).toHaveCount(0);
   await expect(page.getByRole('heading', { name: 'Qo‘shimcha vazifalar' })).toBeVisible();
   await expect(page.getByRole('button', { name: /Qo‘shimcha insho/ })).toBeVisible();
+  await expect(page.getByRole('button', { name: /Kunlik takrorlash/ })).toBeVisible();
   await expect(page.getByRole('progressbar', { name: 'Vazifalar bajarilishi' })).toHaveAttribute(
     'aria-valuenow',
     '33',
@@ -216,6 +217,9 @@ test('Mobile home shows four real states, preserves access, opens exact practice
   await expect(
     page.getByRole('dialog').getByRole('button', { name: 'Yozma vazifalar' }),
   ).toHaveCount(0);
+  await expect(
+    page.getByRole('dialog').getByRole('button', { name: 'Kunlik takrorlash' }),
+  ).toBeVisible();
   await page.getByRole('dialog').getByRole('button', { name: 'Grammatika', exact: true }).click();
   await expect(page).toHaveURL(/\/grammar$/);
   await page.goto('/');

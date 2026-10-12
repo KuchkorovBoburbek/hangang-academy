@@ -463,16 +463,14 @@ export default function StudentHome({
             <ChevronRight size={15} />
           </button>
         </div>
-        {data.access.topik && (
-          <button className="home-daily-link" onClick={() => go('/daily')}>
-            <RotateCcw size={18} />
-            <span>
-              <strong>Kunlik takrorlash</strong>
-              <small>10, 20 yoki 30 daqiqalik reja</small>
-            </span>
-            <ChevronRight size={16} />
-          </button>
-        )}
+        <button className="home-daily-link" onClick={() => go('/daily')}>
+          <RotateCcw size={18} />
+          <span>
+            <strong>Kunlik takrorlash</strong>
+            <small>10, 20 yoki 30 daqiqalik reja</small>
+          </span>
+          <ChevronRight size={16} />
+        </button>
       </section>
 
       {live.map((r) => (

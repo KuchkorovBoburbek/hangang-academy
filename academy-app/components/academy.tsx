@@ -183,8 +183,7 @@ export default function Academy() {
           ...studentNav.filter(
             (n) =>
               n.path !== '/' &&
-              (!['/topik', '/daily'].includes(n.path) ||
-                (state as State & StudentData).access.topik),
+              (n.path !== '/topik' || (state as State & StudentData).access.topik),
           ),
         ]
       : studentNav;

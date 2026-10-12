@@ -26,6 +26,7 @@ import { validateAudio } from '../lib/files';
 import type { CourseLesson, LessonMaterial } from '../lib/course-types';
 import { youtubeEmbedUrl, youtubeVideoId } from '../lib/youtube';
 import { SEOULTE_1A_UNITS } from '../lib/seoulte-1a';
+import { dailyPlan, dailyStep } from '../lib/daily';
 let root: string,
   teacher: User,
   student: User,
@@ -131,6 +132,28 @@ it('new groups automatically share a level program but drafts are private and pa
   expect(allVocabulary(student).map((w) => w.ko)).toEqual(['가족', '동생']);
   expect(allVocabulary(other)).toHaveLength(0);
   expect(() => requireTopikAccess(student)).toThrow();
+});
+it('builds Hangul daily review only from materials opened for the learner group', () => {
+  const stale = dailyPlan(student, 10);
+  run(
+    'UPDATE daily_plans SET steps=? WHERE id=?',
+    JSON.stringify([{ kind: 'reading', title: 'Eski TOPIK rejasi', category: '1-2', count: 4 }]),
+    stale.id,
+  );
+  const plan = dailyPlan(student, 10);
+  expect(plan.id).not.toBe(stale.id);
+  expect(plan.steps.map((step) => step.kind)).toEqual(['words', 'grammar']);
+  expect(plan.steps[0].words.map((word) => word.ko)).toEqual(['가족', '동생']);
+  expect(plan.steps.some((step) => step.kind === 'reading')).toBe(false);
+
+  const grammar = dailyStep(student, plan.id, 1);
+  expect('kind' in grammar && grammar.kind).toBe('grammar');
+  expect('question' in grammar && grammar.question?.topic_id).toBe('A01');
+  expect(dailyStep(student, plan.id, 1).id).toBe(grammar.id);
+
+  const unopened = dailyPlan(other, 10);
+  expect(unopened.steps).toHaveLength(0);
+  expect(() => dailyStep(other, plan.id, 1)).toThrow('Reja topilmadi');
 });
 it('publishes a video-only lesson without requiring an extra material card', () => {
   let videoLesson = createLesson(teacher, lesson.course_id);

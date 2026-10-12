@@ -9,10 +9,13 @@ import {
   topikCatalog,
 } from './topik';
 import { dueStudyIds } from './study';
+import { courseAccess } from './course-access';
+import { getSession, startQuiz, viewSession } from './learning';
 import type { User } from './types';
 import type { TopikGroup } from './topik-types';
 export type DailyStep = {
   kind: 'words' | 'reading' | 'grammar';
+  engine?: 'topik' | 'quiz';
   title: string;
   wordIds?: string[];
   category?: string;
@@ -41,7 +44,11 @@ function view(user: User, row: PlanRow) {
         ),
       )
       .map((w) => w.id);
-    const session = step.sessionId ? getTopikSession(user, step.sessionId) : null;
+    const session = step.sessionId
+      ? step.engine === 'quiz'
+        ? viewSession(getSession(step.sessionId, user))
+        : getTopikSession(user, step.sessionId)
+      : null;
     return {
       ...step,
       words,
@@ -62,16 +69,26 @@ export function dailyPlan(user: User, minutes: 10 | 20 | 30) {
   const day = new Intl.DateTimeFormat('en-CA', {
     timeZone: user.timezone || 'Asia/Tashkent',
   }).format(new Date());
+  const access = courseAccess(user);
   const existing = one<PlanRow>(
     'SELECT * FROM daily_plans WHERE user_id=? AND day=? AND minutes=?',
     user.id,
     day,
     minutes,
   );
-  if (existing) return view(user, existing);
-  topikCatalog(user); // Bring historical mistakes into the review schedule first.
-  const groups = topikGroups();
-  if (!groups.length) throw new AppError(409, 'TOPIK bazasi hali tayyor emas.');
+  if (existing) {
+    const saved = JSON.parse(existing.steps) as DailyStep[];
+    const incompatibleHangulPlan =
+      !access.topik &&
+      saved.some(
+        (step) => step.kind === 'reading' || (step.kind === 'grammar' && step.engine !== 'quiz'),
+      );
+    if (!incompatibleHangulPlan) return view(user, existing);
+    run('DELETE FROM daily_plans WHERE id=?', existing.id);
+  }
+  if (access.topik) topikCatalog(user); // Bring historical mistakes into the review schedule first.
+  const groups = access.topik ? topikGroups() : [];
+  if (access.topik && !groups.length) throw new AppError(409, 'TOPIK bazasi hali tayyor emas.');
   const dueWords = new Set(dueStudyIds(user.id, 'word'));
   const lastWord = new Map(
     many<{ item_id: string; last_at: string }>(
@@ -115,31 +132,60 @@ export function dailyPlan(user: User, minutes: 10 | 20 | 30) {
     (g) => g.origin === 'generated' && g.questions.some((q) => q.grammarIds?.length),
   );
   const dueQuestions = new Set(dueStudyIds(user.id, 'question'));
-  const grammar =
+  const topikGrammar =
     grammarGroups.find((g) => g.questions.some((q) => dueQuestions.has(q.id))) ||
     [...grammarGroups].sort(
       (a, b) => (practiced.get(a.questions[0].id) || 0) - (practiced.get(b.questions[0].id) || 0),
     )[0];
-  const steps: DailyStep[] = [
-    {
+  const steps: DailyStep[] = [];
+  if (words.length)
+    steps.push({
       kind: 'words',
       title: 'So‘z va iboralarni eslash',
       wordIds: words.slice(0, minutes / 2).map((w) => w.id),
-    },
-    {
+    });
+  if (access.topik) {
+    steps.push({
       kind: 'reading',
+      engine: 'topik',
       title: `읽기 ${weak} · ${errors[weak]?.total >= 4 ? 'Mustahkamlash' : 'Boshlang‘ich mashq'}`,
       category: weak,
       count: (minutes / 10) * 4,
-    },
-    {
+    });
+    steps.push({
       kind: 'grammar',
+      engine: 'topik',
       title: 'Grammatikani qo‘llash',
-      grammarId: grammar?.questions[0].grammarIds?.[0],
-      category: grammar?.category || '1-2',
+      grammarId: topikGrammar?.questions[0].grammarIds?.[0],
+      category: topikGrammar?.category || '1-2',
       count: 1,
-    },
-  ];
+    });
+  } else {
+    const allowedGrammar = new Set(access.grammarIds);
+    const grammarQuestions = many<{ id: string; topic_id: string }>(
+      "SELECT id,topic_id FROM questions WHERE kind='grammar'",
+    ).filter((question) => allowedGrammar.has(question.topic_id));
+    const dueGrammar = grammarQuestions.find((question) => dueQuestions.has(question.id));
+    const grammarId =
+      dueGrammar?.topic_id ||
+      [...access.grammarIds].sort((a, b) => {
+        const aCount = grammarQuestions
+          .filter((question) => question.topic_id === a)
+          .reduce((total, question) => total + (practiced.get(question.id) || 0), 0);
+        const bCount = grammarQuestions
+          .filter((question) => question.topic_id === b)
+          .reduce((total, question) => total + (practiced.get(question.id) || 0), 0);
+        return aCount - bCount;
+      })[0];
+    if (grammarId && grammarQuestions.some((question) => question.topic_id === grammarId))
+      steps.push({
+        kind: 'grammar',
+        engine: 'quiz',
+        title: 'Dars grammatikasini mustahkamlash',
+        grammarId,
+        count: grammarQuestions.filter((question) => question.topic_id === grammarId).length,
+      });
+  }
   const row = {
     id: id(),
     user_id: user.id,
@@ -165,7 +211,16 @@ export function dailyStep(user: User, planId: string, index: number) {
   const steps: DailyStep[] = JSON.parse(row.steps),
     step = steps[index];
   if (!step || step.kind === 'words') throw new AppError(400, 'Mashq bosqichini tanlang.');
-  if (step.sessionId) return getTopikSession(user, step.sessionId);
+  if (step.sessionId)
+    return step.engine === 'quiz'
+      ? viewSession(getSession(step.sessionId, user))
+      : getTopikSession(user, step.sessionId);
+  if (step.engine === 'quiz') {
+    const session = startQuiz(user, 'grammar', 'practice', step.grammarId);
+    step.sessionId = session.id;
+    run('UPDATE daily_plans SET steps=? WHERE id=?', JSON.stringify(steps), row.id);
+    return session;
+  }
   const session = startTopikSession(user, {
     mode: 'practice',
     category: step.category,

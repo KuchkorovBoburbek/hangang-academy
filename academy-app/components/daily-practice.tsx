@@ -4,6 +4,7 @@ import type { DailyPlan } from '@/lib/daily';
 import type { TopikSession } from '@/lib/topik-types';
 import { api, errorText } from './ui';
 import { ReadingSession } from './topik';
+import Quiz, { type SessionView } from './quiz';
 export default function DailyPractice({
   notify,
   onRefresh,
@@ -14,6 +15,7 @@ export default function DailyPractice({
   const [minutes, setMinutes] = useState<10 | 20 | 30>(10);
   const [plan, setPlan] = useState<DailyPlan | null>(null);
   const [session, setSession] = useState<TopikSession | null>(null);
+  const [quiz, setQuiz] = useState<SessionView | null>(null);
   const [wordsOpen, setWordsOpen] = useState(false);
   const [reveal, setReveal] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -40,12 +42,12 @@ export default function DailyPractice({
     }
     setBusy(true);
     try {
-      setSession(
-        await api<TopikSession>('study/daily/step', {
-          method: 'POST',
-          body: JSON.stringify({ planId: plan.id, step: index }),
-        }),
-      );
+      const result = await api<TopikSession | SessionView>('study/daily/step', {
+        method: 'POST',
+        body: JSON.stringify({ planId: plan.id, step: index }),
+      });
+      if ('groups' in result) setSession(result);
+      else setQuiz(result);
     } catch (e) {
       setError(errorText(e));
     } finally {
@@ -82,6 +84,17 @@ export default function DailyPractice({
         notify={notify}
         onExit={() => {
           setSession(null);
+          void load();
+        }}
+      />
+    );
+  if (quiz)
+    return (
+      <Quiz
+        initial={quiz}
+        onComplete={() => void load()}
+        onClose={() => {
+          setQuiz(null);
           void load();
         }}
       />
@@ -131,22 +144,31 @@ export default function DailyPractice({
                 : `${plan.steps.filter((s) => s.complete).length} / ${plan.steps.length} bosqich bajarildi`}
             </h2>
           </section>
-          <div className="study-plan-steps">
-            {plan.steps.map((s, i) => (
-              <section className="panel" key={s.kind}>
-                <span className="eyebrow">{i + 1}-BOSQICH</span>
-                <h2>{s.title}</h2>
-                <p>
-                  {s.kind === 'words'
-                    ? `${s.reviewed.length} / ${s.words.length} karta`
-                    : `${s.count} ta savol · Bir matndagi savollar birga beriladi`}
-                </p>
-                <button className="button primary" disabled={busy} onClick={() => start(i)}>
-                  {s.complete ? 'Natijani ko‘rish' : s.sessionId ? 'Davom etish' : 'Boshlash'}
-                </button>
-              </section>
-            ))}
-          </div>
+          {plan.steps.length ? (
+            <div className="study-plan-steps">
+              {plan.steps.map((s, i) => (
+                <section className="panel" key={s.kind}>
+                  <span className="eyebrow">{i + 1}-BOSQICH</span>
+                  <h2>{s.title}</h2>
+                  <p>
+                    {s.kind === 'words'
+                      ? `${s.reviewed.length} / ${s.words.length} karta`
+                      : `${s.count} ta savol · Bir matndagi savollar birga beriladi`}
+                  </p>
+                  <button className="button primary" disabled={busy} onClick={() => start(i)}>
+                    {s.complete ? 'Natijani ko‘rish' : s.sessionId ? 'Davom etish' : 'Boshlash'}
+                  </button>
+                </section>
+              ))}
+            </div>
+          ) : (
+            <section className="panel empty-state">
+              <h2>Takrorlash uchun ochilgan material yo‘q</h2>
+              <p>
+                Ustoz dars lug‘ati yoki grammatikani ochgach, reja shu yerda avtomatik tuziladi.
+              </p>
+            </section>
+          )}
         </>
       )}
       {wordsOpen && (

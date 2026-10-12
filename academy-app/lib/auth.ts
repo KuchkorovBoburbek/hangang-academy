@@ -84,6 +84,11 @@ export function enforceOrigin(request: Request) {
   // same-origin requests even when APP_URL names only one of them.
   if (process.env.NODE_ENV !== 'production') {
     allowedOrigins.add(new URL(request.url).origin);
+    const host = request.headers.get('host');
+    if (host) {
+      const protocol = request.headers.get('x-forwarded-proto') || new URL(request.url).protocol;
+      allowedOrigins.add(`${protocol.replace(/:$/, '')}://${host}`);
+    }
   }
 
   if (!origin || !allowedOrigins.has(origin))

@@ -198,8 +198,11 @@ describe('Learning and access boundaries', () => {
       process.env.APP_URL = 'http://172.30.1.96:3000';
       expect(() =>
         enforceOrigin(
-          new Request('http://localhost:3000/api/logout', {
-            headers: { origin: 'http://localhost:3000' },
+          new Request('http://172.30.1.96:3000/api/logout', {
+            headers: {
+              host: 'localhost:3000',
+              origin: 'http://localhost:3000',
+            },
           }),
         ),
       ).not.toThrow();

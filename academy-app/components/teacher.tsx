@@ -1,5 +1,6 @@
 'use client';
 import { COURSE_LEVELS } from '@/lib/course-types';
+import { SEOULTE_1A_UNITS } from '@/lib/seoulte-1a';
 import TopikTeaching from './topik-teaching';
 
 import { useState, useEffect } from 'react';
@@ -251,6 +252,45 @@ export function Groups({
       setBusy(false);
     }
   }
+  const reviewQuery = reviewSearch.trim().toLocaleLowerCase();
+  const grammarTopics = SEOULTE_1A_UNITS.map((unit) => ({
+    id: unit.id,
+    title: `${unit.position}-mavzu · ${unit.koTitle} · ${unit.title}`,
+    items: data.grammars.filter(
+      (grammar) =>
+        unit.grammarIds.includes(grammar.id) &&
+        (!reviewQuery ||
+          `${unit.title} ${unit.koTitle} ${grammar.form} ${grammar.meaning} ${grammar.uz}`
+            .toLocaleLowerCase()
+            .includes(reviewQuery)),
+    ),
+  })).filter((topic) => topic.items.length);
+  const wordTopics = (['1A', '1B', '2A', '2B'] as const).flatMap((book) =>
+    Array.from({ length: 8 }, (_, index) => {
+      const position = index + 1;
+      const unit = book === '1A' ? SEOULTE_1A_UNITS[index] : null;
+      const title = `Seoulte ${book} · ${position}-mavzu${unit ? ` · ${unit.koTitle}` : ''}`;
+      return {
+        id: `${book}-unit-${position}`,
+        title,
+        items: data.dailyReviewWords.filter(
+          (word) =>
+            word.book === book &&
+            word.topic === `unit-${position}` &&
+            (!reviewQuery ||
+              `${title} ${word.ko} ${word.uz}`.toLocaleLowerCase().includes(reviewQuery)),
+        ),
+      };
+    }).filter((topic) => topic.items.length),
+  );
+  function toggleTopic(current: string[], ids: string[], update: (ids: string[]) => void) {
+    const allSelected = ids.every((item) => current.includes(item));
+    update(
+      allSelected
+        ? current.filter((item) => !ids.includes(item))
+        : [...new Set([...current, ...ids])],
+    );
+  }
   return (
     <>
       <div className="page-heading">
@@ -459,72 +499,98 @@ export function Groups({
                     <legend>
                       Grammatika <span>{grammarIds.length} ta tanlangan</span>
                     </legend>
-                    <div className="check-grid">
-                      {data.grammars
-                        .filter(
-                          (grammar) =>
-                            grammar.id.startsWith('S1A-') &&
-                            (!reviewSearch.trim() ||
-                              `${grammar.form} ${grammar.meaning} ${grammar.uz}`
-                                .toLocaleLowerCase()
-                                .includes(reviewSearch.trim().toLocaleLowerCase())),
-                        )
-                        .map((grammar) => (
-                          <label className="checkbox-label" key={grammar.id}>
-                            <input
-                              type="checkbox"
-                              checked={grammarIds.includes(grammar.id)}
-                              onChange={(event) =>
-                                setGrammarIds(
-                                  event.target.checked
-                                    ? [...grammarIds, grammar.id]
-                                    : grammarIds.filter((id) => id !== grammar.id),
-                                )
-                              }
-                            />
-                            <span>
-                              <strong lang="ko">{grammar.form}</strong>
-                              <small>{grammar.meaning}</small>
-                            </span>
-                          </label>
-                        ))}
+                    <div className="daily-topic-list">
+                      {grammarTopics.map((topic) => {
+                        const ids = topic.items.map((item) => item.id);
+                        const selected = ids.filter((id) => grammarIds.includes(id)).length;
+                        return (
+                          <details className="daily-topic-group" key={topic.id}>
+                            <summary>
+                              <span>{topic.title}</span>
+                              <b>
+                                {selected}/{ids.length}
+                              </b>
+                            </summary>
+                            <button
+                              type="button"
+                              className="daily-topic-toggle"
+                              onClick={() => toggleTopic(grammarIds, ids, setGrammarIds)}
+                            >
+                              {selected === ids.length ? 'Mavzuni bekor qilish' : 'Mavzuni tanlash'}
+                            </button>
+                            <div className="check-grid">
+                              {topic.items.map((grammar) => (
+                                <label className="checkbox-label" key={grammar.id}>
+                                  <input
+                                    type="checkbox"
+                                    checked={grammarIds.includes(grammar.id)}
+                                    onChange={(event) =>
+                                      setGrammarIds(
+                                        event.target.checked
+                                          ? [...grammarIds, grammar.id]
+                                          : grammarIds.filter((id) => id !== grammar.id),
+                                      )
+                                    }
+                                  />
+                                  <span>
+                                    <strong lang="ko">{grammar.form}</strong>
+                                    <small>{grammar.meaning}</small>
+                                  </span>
+                                </label>
+                              ))}
+                            </div>
+                          </details>
+                        );
+                      })}
                     </div>
                   </fieldset>
                   <fieldset>
                     <legend>
                       Lug‘at <span>{wordIds.length} ta tanlangan</span>
                     </legend>
-                    <div className="check-grid">
-                      {data.dailyReviewWords
-                        .filter(
-                          (word) =>
-                            !reviewSearch.trim() ||
-                            `${word.ko} ${word.uz} ${word.book || ''} ${word.topic}`
-                              .toLocaleLowerCase()
-                              .includes(reviewSearch.trim().toLocaleLowerCase()),
-                        )
-                        .map((word) => (
-                          <label className="checkbox-label" key={word.id}>
-                            <input
-                              type="checkbox"
-                              checked={wordIds.includes(word.id)}
-                              onChange={(event) =>
-                                setWordIds(
-                                  event.target.checked
-                                    ? [...wordIds, word.id]
-                                    : wordIds.filter((id) => id !== word.id),
-                                )
-                              }
-                            />
-                            <span>
-                              <strong lang="ko">{word.ko}</strong>
-                              <small>
-                                {word.uz} · Seoulte {word.book} · {word.topic.replace('unit-', '')}
-                                -mavzu
-                              </small>
-                            </span>
-                          </label>
-                        ))}
+                    <div className="daily-topic-list">
+                      {wordTopics.map((topic) => {
+                        const ids = topic.items.map((item) => item.id);
+                        const selected = ids.filter((id) => wordIds.includes(id)).length;
+                        return (
+                          <details className="daily-topic-group" key={topic.id}>
+                            <summary>
+                              <span>{topic.title}</span>
+                              <b>
+                                {selected}/{ids.length}
+                              </b>
+                            </summary>
+                            <button
+                              type="button"
+                              className="daily-topic-toggle"
+                              onClick={() => toggleTopic(wordIds, ids, setWordIds)}
+                            >
+                              {selected === ids.length ? 'Mavzuni bekor qilish' : 'Mavzuni tanlash'}
+                            </button>
+                            <div className="check-grid">
+                              {topic.items.map((word) => (
+                                <label className="checkbox-label" key={word.id}>
+                                  <input
+                                    type="checkbox"
+                                    checked={wordIds.includes(word.id)}
+                                    onChange={(event) =>
+                                      setWordIds(
+                                        event.target.checked
+                                          ? [...wordIds, word.id]
+                                          : wordIds.filter((id) => id !== word.id),
+                                      )
+                                    }
+                                  />
+                                  <span>
+                                    <strong lang="ko">{word.ko}</strong>
+                                    <small>{word.uz}</small>
+                                  </span>
+                                </label>
+                              ))}
+                            </div>
+                          </details>
+                        );
+                      })}
                     </div>
                   </fieldset>
                 </div>

@@ -303,12 +303,15 @@ test('Teacher can explicitly open Hangul grammar for daily review', async ({ bro
   const dialog = page.getByRole('dialog');
   await expect(dialog).toContainText('O‘quvchiga qo‘shimcha material ochish');
   await expect(dialog).toContainText('Dars bilan ochilgan materiallar avtomatik qo‘shiladi');
-  await dialog
+  const firstTopic = dialog
     .locator('.daily-access-columns fieldset')
     .first()
-    .getByRole('checkbox')
-    .first()
-    .check();
+    .locator('details')
+    .first();
+  await expect(firstTopic).toContainText('1-mavzu');
+  await firstTopic.locator('summary').click();
+  await firstTopic.getByRole('button', { name: 'Mavzuni tanlash' }).click();
+  await expect(firstTopic.locator('summary')).toContainText('3/3');
   await dialog.getByRole('button', { name: 'Guruhni saqlash' }).click();
   await expect(page.getByRole('status')).toContainText('Guruh saqlandi');
   await context.close();

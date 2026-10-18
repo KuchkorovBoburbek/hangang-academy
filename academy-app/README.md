@@ -6,9 +6,9 @@ Koreys tili darslari orasida muntazam mashq qilish uchun o‘quvchi va o‘qituv
 
 ## Serverdagi nusxa
 
-[HangangAcademy saytini ochish](https://hangang.3.37.181.144.sslip.io) · [Telegram bot](https://t.me/hangang_academy_bot)
+[HangangAcademy saytini ochish](https://hangang.34.50.15.119.sslip.io) · [Telegram bot](https://t.me/hangang_academy_bot)
 
-Serverdagi admin kirish ma’lumoti kompyuteringizda `.deploy/ACCESS.txt` faylida saqlangan. Serverni boshqarish va keyin o‘z domeningizga o‘tish tartibi: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
+Google Cloud serverini boshqarish, zaxira va keyingi o‘zgarishlarni `npm run deploy:gcp` bilan joylash: [Google Cloud qo‘llanmasi](docs/GOOGLE-CLOUD.md). Avvalgi server haqidagi tarixiy ma’lumot: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
 
 ## Mahalliy nusxani ochish
 

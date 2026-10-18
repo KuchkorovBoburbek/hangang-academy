@@ -12,6 +12,7 @@
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "backup": "node --import tsx scripts/backup.ts",
+    "deploy:gcp": "bash scripts/deploy-gcp.sh",
     "test:e2e": "playwright test",
     "format": "prettier --write app components lib scripts tests *.ts *.mts *.json *.yaml",
     "db:solutions": "node --import tsx scripts/import-solutions.ts"

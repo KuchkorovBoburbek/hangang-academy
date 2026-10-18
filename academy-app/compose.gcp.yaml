@@ -1,0 +1,79 @@
+name: hangang-academy
+x-common: &common
+  image: ${HANGANG_IMAGE:?HANGANG_IMAGE is required}
+  env_file: ${HANGANG_ENV_FILE:-/srv/hangang-academy/.env}
+  environment:
+    NODE_ENV: production
+    DEMO_MODE: 'false'
+    DATA_DIR: /app/data
+    BACKUP_DIR: /app/backups
+  volumes:
+    - /srv/hangang-academy/data:/app/data
+    - /srv/hangang-academy/backups:/app/backups
+  restart: unless-stopped
+  init: true
+  security_opt: [no-new-privileges:true]
+  cap_drop: [ALL]
+  logging:
+    driver: json-file
+    options:
+      max-size: '10m'
+      max-file: '3'
+services:
+  app:
+    <<: *common
+    mem_limit: 768m
+    environment:
+      NODE_ENV: production
+      DEMO_MODE: 'false'
+      DATA_DIR: /app/data
+      BACKUP_DIR: /app/backups
+      NODE_OPTIONS: --max-old-space-size=512
+    command: ['sh', '-c', 'npm run db:seed && npm run db:topik && exec npm start']
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://127.0.0.1:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 10s
+      timeout: 5s
+      start_period: 45s
+      retries: 12
+  worker:
+    <<: *common
+    mem_limit: 512m
+    command: ['npm', 'run', 'worker']
+    depends_on:
+      app:
+        condition: service_healthy
+    stop_grace_period: 11m
+  backup:
+    <<: *common
+    mem_limit: 192m
+    command: ['node', '--import', 'tsx', 'scripts/backup-worker.ts']
+    depends_on:
+      app:
+        condition: service_healthy
+  proxy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    environment:
+      ACADEMY_HOST: ${ACADEMY_HOST:?ACADEMY_HOST is required}
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./deploy/gcp/Caddyfile:/etc/caddy/Caddyfile:ro
+      - /srv/hangang-academy/caddy/data:/data
+      - /srv/hangang-academy/caddy/config:/config
+    depends_on:
+      app:
+        condition: service_healthy
+    logging:
+      driver: json-file
+      options:
+        max-size: '10m'
+        max-file: '3'

@@ -10,6 +10,7 @@ Koreys tilini guruh darajasi va darslar bo‘yicha o‘rganish platformasi. Usto
 - **[TOPIK grammatika PDF qo‘llanmasi](output/pdf/HangangAcademy_TOPIK_II_Grammatika_1-4.pdf)** — HangangAcademy brendi ostidagi o‘quv qo‘llanma.
 - **[handbook](handbook/)** — PDF qo‘llanmasining matni va dastlabki generatori.
 - **[Server qo‘llanmasi](academy-app/docs/DEPLOYMENT.md)** — mavjud server tuzilmasi va Docker bilan boshqarish.
+- **[Google Cloud deploy](academy-app/docs/GOOGLE-CLOUD.md)** — joriy server, kundalik zaxira va `npm run deploy:gcp` bilan yangilash.
 
 ## Mahalliy ishga tushirish
 

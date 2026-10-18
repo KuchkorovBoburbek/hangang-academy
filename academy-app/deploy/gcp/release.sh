@@ -20,7 +20,7 @@ compose() {
   local folder=$1; shift
   docker compose --project-name hangang-academy \
     --env-file /srv/hangang-academy/.env --env-file "$folder/deploy.env" \
-    -f "$folder/compose.gcp.yaml" "$@"
+    -f "$folder/compose.gcp.yaml" "$@" </dev/null
 }
 previous=$(readlink -f "$root/current" || true)
 recover() {

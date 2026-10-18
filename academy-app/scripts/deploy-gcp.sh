@@ -26,5 +26,5 @@ remote="$GCP_SSH_USER@$GCP_INSTANCE"
 echo "Uploading committed release $release..."
 "$gcloud_bin" compute scp "$archive" "$remote:/tmp/hangang-$release.tar.gz" "${common[@]}"
 "$gcloud_bin" compute ssh "$remote" "${common[@]}" \
-  --command="sudo bash -s -- '$release'" < "$app_dir/deploy/gcp/release.sh"
+  --command="mkdir -p '/tmp/hangang-$release-runner' && tar -xzf '/tmp/hangang-$release.tar.gz' -C '/tmp/hangang-$release-runner' deploy/gcp/release.sh && sudo bash '/tmp/hangang-$release-runner/deploy/gcp/release.sh' '$release' </dev/null"
 echo "Deploy complete: $release"
